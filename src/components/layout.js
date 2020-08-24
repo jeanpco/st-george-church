@@ -5,11 +5,6 @@ import BackgroundImage from 'gatsby-background-image'
 
 import cosmicjsLogo from '../../static/cosmicjs.svg'
 import gatsbyLogo from '../../static/gatsby.png'
-import { rhythm, scale } from '../utils/typography'
-
-// Import typefaces
-import 'typeface-montserrat'
-import 'typeface-merriweather'
 
 export default ({ children, location }) => (
   <StaticQuery
@@ -52,21 +47,18 @@ export default ({ children, location }) => (
             fluid={homgePageHero}
             backgroundColor={`#007ACC`}
             style={{
-              height: rhythm(14),
               position: 'relative',
-              marginBottom: `${rhythm(1.5)}`,
             }}
           >
             <h1
               style={{
-                ...scale(1.3),
                 position: 'absolute',
                 textAlign: 'center',
                 left: 0,
                 right: 0,
-                top: rhythm(4),
+                top: 0,
                 marginTop: '0',
-                height: rhythm(2.5),
+                height: 200,
               }}
             >
               <Link
@@ -86,13 +78,9 @@ export default ({ children, location }) => (
         header = (
           <h3
             style={{
-              fontFamily: 'Montserrat, sans-serif',
               marginTop: 0,
-              marginBottom: rhythm(-1),
               marginLeft: 'auto',
               marginRight: 'auto',
-              maxWidth: rhythm(24),
-              paddingTop: `${rhythm(1.5)}`,
             }}
           >
             <Link
@@ -115,8 +103,6 @@ export default ({ children, location }) => (
             style={{
               marginLeft: 'auto',
               marginRight: 'auto',
-              maxWidth: rhythm(24),
-              padding: `0 ${rhythm(3 / 4)} ${rhythm(1.5)} ${rhythm(3 / 4)}`,
               minHeight: 'calc(100vh - 42px)',
             }}
           >
