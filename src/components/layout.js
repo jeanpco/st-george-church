@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
-
+import PropTypes from 'prop-types'
 import cosmicjsLogo from '../../static/cosmicjs.svg'
 import gatsbyLogo from '../../static/gatsby.png'
 
-export default ({ children, location }) => (
+const Layout = ({ children, location }) => (
   <StaticQuery
     query={graphql`
       query LayoutQuery {
@@ -34,9 +34,9 @@ export default ({ children, location }) => (
 
       let rootPath = `/`
       let postsPath = `/posts`
-      if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
-        rootPath = __PATH_PREFIX__ + `/`
-        postsPath = __PATH_PREFIX__ + `/posts`
+      if (typeof __dirname !== `undefined` && __dirname) {
+        rootPath = __dirname + `/`
+        postsPath = __dirname + `/posts`
       }
 
       if (location.pathname === rootPath || location.pathname === postsPath) {
@@ -116,6 +116,7 @@ export default ({ children, location }) => (
           >
             powered by&nbsp;
             <a
+              rel="noopener noreferrer" 
               target="_blank"
               href="https://gatsbyjs.org"
               style={{
@@ -135,6 +136,7 @@ export default ({ children, location }) => (
             </a>
             &nbsp;and&nbsp;
             <a
+              rel="noopener noreferrer" 
               target="_blank"
               href="https://cosmicjs.com"
               style={{
@@ -158,3 +160,10 @@ export default ({ children, location }) => (
     }}
   />
 )
+
+Layout.propTypes = {
+  children: PropTypes.any,
+  location: PropTypes.object,
+}
+
+export default Layout;

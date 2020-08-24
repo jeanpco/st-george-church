@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export default ({ settings }) => (
+const Bio = ({ settings }) => (
   <div>
     <img
       src={settings.author_avatar.imgix_url}
@@ -9,3 +10,9 @@ export default ({ settings }) => (
     <div dangerouslySetInnerHTML={{ __html: settings.author_bio }} />
   </div>
 )
+
+Bio.propTypes = {
+  settings: PropTypes.object,
+}
+
+export default Bio

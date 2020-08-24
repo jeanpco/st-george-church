@@ -1,5 +1,6 @@
 import React from 'react'
 import Layout from '../components/layout'
+import PropTypes from 'prop-types'
 
 const NotFoundPage = ({ location }) => (
   <Layout location={location}>
@@ -7,5 +8,9 @@ const NotFoundPage = ({ location }) => (
     <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
   </Layout>
 )
+
+NotFoundPage.propTypes = {
+  location: PropTypes.object,
+}
 
 export default NotFoundPage

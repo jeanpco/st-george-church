@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 import get from 'lodash/get'
 import { graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
-
+import PropTypes from 'prop-types'
 import Bio from '../components/Bio'
 import Layout from '../components/layout'
 
@@ -72,6 +72,11 @@ class BlogPostTemplate extends React.Component {
       </Layout>
     )
   }
+}
+
+BlogPostTemplate.propTypes = {
+  data: PropTypes.object.isRequired,
+  pageContext: PropTypes.object,
 }
 
 export default BlogPostTemplate
