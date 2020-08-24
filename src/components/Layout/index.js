@@ -3,8 +3,8 @@ import { Link } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 import PropTypes from 'prop-types'
-import cosmicjsLogo from '../../static/cosmicjs.svg'
-import gatsbyLogo from '../../static/gatsby.png'
+import cosmicjsLogo from '~/static/cosmicjs.svg'
+import gatsbyLogo from '~/static/gatsby.png'
 
 const Layout = ({ children, location }) => (
   <StaticQuery
@@ -39,7 +39,7 @@ const Layout = ({ children, location }) => (
         postsPath = __dirname + `/posts`
       }
 
-      if (location.pathname === rootPath || location.pathname === postsPath) {
+       if (location.pathname === rootPath || location.pathname === postsPath) {
         header = (
           <BackgroundImage
             Tag="div"

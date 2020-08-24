@@ -6,7 +6,6 @@ import { graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 import PropTypes from 'prop-types'
 import Bio from '../components/Bio'
-import Layout from '../components/layout'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -16,21 +15,16 @@ class BlogPostTemplate extends React.Component {
       'data.cosmicjsSettings.metadata.site_title'
     )
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
-    const location = get(this, 'props.location')
     const { previous, next } = this.props.pageContext
 
     return (
-      <Layout location={location}>
+      <>
         <Helmet title={`${post.title} | ${siteTitle}`} />
         <div>
           <Link to="/">← Back to Posts</Link>
         </div>
-        <h1>
-          {post.title}
-        </h1>
-        <p>
-          {post.created}
-        </p>
+        <h1>{post.title}</h1>
+        <p>{post.created}</p>
         <BackgroundImage
           Tag="div"
           className="post-hero"
@@ -69,7 +63,7 @@ class BlogPostTemplate extends React.Component {
             </li>
           )}
         </ul>
-      </Layout>
+      </>
     )
   }
 }

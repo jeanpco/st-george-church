@@ -3,9 +3,7 @@ import { Link } from 'gatsby'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
-
 import Bio from '../components/Bio'
-import Layout from '../components/layout'
 
 class BlogIndex extends React.Component {
   render() {
@@ -15,10 +13,9 @@ class BlogIndex extends React.Component {
     )
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
-    const location = get(this, 'props.location')
 
     return (
-      <Layout location={location}>
+      <>
         <Helmet title={siteTitle} />
         <Bio settings={author} />
         {posts.map(({ node }) => {
@@ -37,7 +34,7 @@ class BlogIndex extends React.Component {
             </div>
           )
         })}
-      </Layout>
+      </>
     )
   }
 }
