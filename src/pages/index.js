@@ -7,6 +7,6 @@ const Index = ({ location }) => {
 }
 
 Index.propTypes = {
-  location: PropTypes.any,
+  location: PropTypes.object,
 }
 export default Index

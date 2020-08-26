@@ -8,6 +8,7 @@ import { theme } from './src/utils/styles'
 import { LocaleProvider } from './src/context/LocaleProvider'
 
 const wrapPageElement = ({ element, props }) => {
+  console.log(props)
   return (
     <LocaleProvider locale={props.pageContext.locale}>
       <ThemeProvider theme={theme}>
@@ -20,10 +21,10 @@ const wrapPageElement = ({ element, props }) => {
 
 wrapPageElement.propTypes = {
   element: PropTypes.node.isRequired,
-  props: PropTypes.any,
-  location: PropTypes.any,
-  pageContext: PropTypes.any,
-  pageContextLocale: PropTypes.any,
+  props: PropTypes.object,
+  location: PropTypes.object,
+  pageContext: PropTypes.node,
+  pageContextLocale: PropTypes.node,
 }
 
 export default wrapPageElement

@@ -1,6 +1,21 @@
 module.exports = {
-  'fr-ca': {
+  'en-ca': {
     default: true,
+    path: 'en',
+    locale: 'en-ca',
+    siteLanguage: 'en',
+    ogLang: 'en_ca',
+    category: 'Category',
+    categories: 'Categories',
+    was: 'was',
+    were: 'were',
+    tagged: 'tagged with',
+    recent: 'Recent',
+    projects: 'projects',
+    allCategories: 'All categories',
+    entries: 'entries',
+  },
+  'fr-ca': {
     path: 'fr',
     locale: 'fr-ca',
     siteLanguage: 'fr',
@@ -17,20 +32,5 @@ module.exports = {
     projects: 'Projekte',
     allCategories: 'Alle Kategorien',
     entries: 'Einträge',
-  },
-  'en-ca': {
-    path: 'en',
-    locale: 'en-ca',
-    siteLanguage: 'en',
-    ogLang: 'en_ca',
-    category: 'Category',
-    categories: 'Categories',
-    was: 'was',
-    were: 'were',
-    tagged: 'tagged with',
-    recent: 'Recent',
-    projects: 'projects',
-    allCategories: 'All categories',
-    entries: 'entries',
   },
 }

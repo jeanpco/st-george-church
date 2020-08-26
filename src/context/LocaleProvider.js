@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 const LocaleContext = createContext()
 
 export const LocaleProvider = ({ children, locale }) => {
-  console.log(children)
   console.log(locale)
   return (
     <LocaleContext.Provider value={{ locale, i18n }}>
@@ -16,7 +15,7 @@ export const LocaleProvider = ({ children, locale }) => {
 
 LocaleProvider.propTypes = {
   children: PropTypes.any,
-  locale: PropTypes.any,
+  locale: PropTypes.string,
 }
 
 export default LocaleContext

@@ -7,6 +7,6 @@ const indexLayout = ({ location }) => {
 }
 
 indexLayout.propTypes = {
-  location: PropTypes.any,
+  location: PropTypes.object,
 }
 export default indexLayout

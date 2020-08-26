@@ -8,7 +8,6 @@ module.exports = {
   plugins: [
     'gatsby-plugin-material-ui',
     'gatsby-plugin-emotion',
-    `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -48,13 +47,6 @@ module.exports = {
         theme_color: `#000000`,
         display: `minimal-ui`,
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-i18n',
-      options: {
-        langKeyDefault: 'en',
-        useLangKeyLayout: false,
       },
     },
     {
