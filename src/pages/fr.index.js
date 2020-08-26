@@ -2,11 +2,11 @@ import React from 'react'
 import IndexLayout from '../components/pages/Home'
 import PropTypes from 'prop-types'
 
-const Index = ({ location }) => {
+const indexLayout = ({ location }) => {
   return <IndexLayout location={location} />
 }
 
-Index.propTypes = {
+indexLayout.propTypes = {
   location: PropTypes.any,
 }
-export default Index
+export default indexLayout

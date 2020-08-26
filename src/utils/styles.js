@@ -11,17 +11,10 @@ export const breakpoints = {
 
 export const theme = {
   colors: {
-    peach: '#FAC2A5',
-    peach50: 'rgba(250, 194, 165, 0.5)',
-    peach20: 'rgba(250, 194, 165, 0.2)',
+    yello: '#F0E290',
     black: '#000000',
-    black50: 'rgba(32, 32, 32, 0.5)',
-    black20: 'rgba(32, 32, 32, 0.2)',
-    black10: 'rgba(32, 32, 32, 0.1)',
-    black5: 'rgba(32, 32, 32, 0.05)',
-    gray: '#979797',
-    primary: '#202020',
-    secondary: '#FAC2A5',
+    primary: '#000000',
+    secondary: '#CC1D27',
     tertiary: '#ffffff',
     background: '#f6f6f6',
     success: '',
@@ -37,18 +30,19 @@ export const theme = {
     xl: '1920px',
   },
   fontFamily: {
-    primary: 'Azo Sans',
+    primary: 'sans-serif',
+    secondary: 'sans-serif',
   },
   fonts: {
-    heading1: '60px',
-    heading2: '50px',
-    heading3: '35px',
-    heading4: '20px',
-    heading5: '16px',
+    heading1: '45px',
+    heading2: '36px',
+    heading3: '30px',
+    heading4: '24px',
+    heading5: '18px',
     subheading1: '20px',
-    bigText: '18px',
-    body: '12px',
-    smallText: '10px',
+    bigText: '24px',
+    body: '18px',
+    smallText: '12px',
     cta: '10px',
     links: '10px',
   },
@@ -70,7 +64,7 @@ export const theme = {
     if (value.indexOf(' ') >= 0) {
       value = value.split(' ')
       value = value
-        .map(v => `${Math.floor(+v.split('px')[0] * by)}px`)
+        .map((v) => `${Math.floor(+v.split('px')[0] * by)}px`)
         .join(' ')
       return value
     } else {
@@ -81,30 +75,22 @@ export const theme = {
   },
 }
 
-export const GlobalStyle = props => (
+export const GlobalStyle = (props) => (
   <Global
     {...props}
     styles={css`
       ${reset};
 
       body {
-        margin: 0;
-        font-family: 'Azo Sans';
-        color: #202020;
-        margin-top: 84px;
-
-        @media (min-width: ${theme.breakpoints.s}) {
-          margin-top: 129px;
-        }
-
-        @media (min-width: ${theme.breakpoints.md}) {
-          margin-top: 186px;
-        }
+        color: ${theme.colors.black};
+        background-color: #ffffff;
+        scroll-behavior: smooth;
+        overflow: visible;
       }
       html {
-        font-family: sans-serif;
-        -ms-text-size-adjust: 100%;
-        -webkit-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
       }
     `}
   />
