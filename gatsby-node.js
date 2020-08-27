@@ -1,55 +1,35 @@
-const each = require('lodash/each')
-const Promise = require('bluebird')
-const path = require('path')
+const locales = require('./config/i18n')
+const {
+  replaceTrailing,
+  replaceBoth,
+} = require('./src/utils/gatsby-node-helpers')
 
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
-  const indexPage = path.resolve('./src/pages/index.js')
-  createPage({
-    path: `posts`,
-    component: indexPage,
-  })
+// Take the pages from src/pages and generate pages for all locales, e.g. /index and /en/index
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions
 
-  return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
-    resolve(
-      graphql(
-        `
-          {
-            allCosmicjsPosts(sort: { fields: [created], order: DESC }, limit: 1000) {
-              edges {
-                node {
-                  slug,
-                  title
-                }
-              }
-            }
-          }
-        `
-      ).then(result => {
-        if (result.errors) {
-          console.log(result.errors)
-          reject(result.errors)
-        }
+  // First delete the pages so we can re-create them
+  deletePage(page)
 
-        // Create blog posts pages.
-        const posts = result.data.allCosmicjsPosts.edges;
+  Object.keys(locales).map((lang) => {
+    // Remove the trailing slash from the path, e.g. --> /categories
+    page.path = replaceTrailing(page.path)
 
-        each(posts, (post, index) => {
-          const next = index === posts.length - 1 ? null : posts[index + 1].node;
-          const previous = index === 0 ? null : posts[index - 1].node;
+    // Remove the leading AND traling slash from path, e.g. --> categories
+    const name = replaceBoth(page.path)
 
-          createPage({
-            path: `posts/${post.node.slug}`,
-            component: blogPost,
-            context: {
-              slug: post.node.slug,
-              previous,
-              next,
-            },
-          })
-        })
-      })
-    )
+    // Create the "slugs" for the pages. Unless default language, add prefix àla "/en"
+    const localizedPath = locales[lang].default
+      ? page.path
+      : `${locales[lang].path}${page.path}`
+
+    return createPage({
+      ...page,
+      path: localizedPath,
+      context: {
+        locale: lang,
+        name,
+      },
+    })
   })
 }
