@@ -10,17 +10,20 @@ const LocaleComponent = ({ location }) => {
     <>
       {i18n.locale === 'en-ca' ? (
         <Link
-          to={`/fr${
-            location.pathname.includes('/en')
-              ? location.pathname.replace('/en', '')
-              : location.pathname
-          }`}
+          to={`/fr${location.pathname}`}
           className="Header__LanguageSwitcher-button"
         >
           FR
         </Link>
       ) : i18n.locale === 'fr-ca' ? (
-        <Link to="/" className="Header__LanguageSwitcher-button">
+        <Link
+          to={`/${
+            location.pathname.includes('/fr')
+              ? location.pathname.replace('/fr', '')
+              : location.pathname
+          }`}
+          className="Header__LanguageSwitcher-button"
+        >
           EN
         </Link>
       ) : (

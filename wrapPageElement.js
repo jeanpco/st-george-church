@@ -8,7 +8,6 @@ import { theme } from './src/utils/styles'
 import { LocaleProvider } from './src/context/LocaleProvider'
 
 const wrapPageElement = ({ element, props }) => {
-  console.log(props)
   return (
     <LocaleProvider locale={props.pageContext.locale}>
       <ThemeProvider theme={theme}>

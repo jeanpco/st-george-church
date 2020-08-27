@@ -61,12 +61,6 @@ module.exports = {
         '~': path.join(__dirname, 'src/'),
       },
     },
-    // {
-    //   resolve: 'gatsby-plugin-root-import',
-    //   options: {
-    //     '~': path.join(__dirname, 'static/'),
-    //   },
-    // },
     `gatsby-plugin-eslint`,
     'gatsby-plugin-offline',
   ],
