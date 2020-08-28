@@ -6,10 +6,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import Header from '../../components/Header/index'
 
-export const Wrapper = styled.div`
-  margin: 16px auto;
-  padding: 16px;
-`
+export const Wrapper = styled.div``
 
 const Layout = ({ children, location }) => {
   return (
