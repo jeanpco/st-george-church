@@ -1,8 +1,12 @@
-import styled from '@emotion/styled';
-import { theme } from '~/utils/styles';
+import styled from '@emotion/styled'
+import { theme } from '~/utils/styles'
 
 export const TitleStyled = styled.p`
-  
+  &.menuHeading {
+    color: ${theme.colors.secondary};
+    text-decoration: underline;
+  }
+
   &.heading1 {
     font-size: ${theme.fonts.heading3};
     letter-spacing: ${theme.letterSpacing.heading3};
@@ -60,4 +64,8 @@ export const TitleStyled = styled.p`
     font-style: normal;
     text-transform: uppercase;
   }
-`;
+
+  &.smallHeading {
+    font-size: ${theme.fonts.smallHeading};
+  }
+`
