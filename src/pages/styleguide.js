@@ -26,6 +26,27 @@ const Styleguide = () => {
           Heading3
         </Title>
         <br />
+        <br />
+        <Title as="h3" type="heading4">
+          Heading4
+        </Title>
+        <br />
+        <br />
+        <Title as="h3" type="heading5">
+          Heading5
+        </Title>
+        <br />
+        <br />
+        <br />
+        <Title as="h1" type="overline">
+          overline
+        </Title>
+        <br />
+        <br />
+        <Title as="h1" type="menuHeading">
+          Menu
+        </Title>
+        <br />
         <Title type="subheading1">Subheading1</Title>
         <br />
         <hr />
