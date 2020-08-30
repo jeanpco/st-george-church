@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const locales = require('./config/i18n')
 const {
   replaceTrailing,
