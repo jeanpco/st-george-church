@@ -16,7 +16,7 @@ import Drawer from '../Drawer'
 import { Tablet, Desktop } from '~/components/Utilities/Media'
 import Icon from '~/components/Icon'
 
-const Header = ({ location, data }) => {
+const Header = ({ location }) => {
   const HeaderQuery = useStaticQuery(graphql`
     {
       allCosmicjsHeaders {
