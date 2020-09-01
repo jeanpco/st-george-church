@@ -17,6 +17,9 @@ const SocialMedia = ({ customClassName }) => {
               instagram {
                 url
               }
+              youtube {
+                url
+              }
             }
           }
         }
@@ -35,7 +38,7 @@ const SocialMedia = ({ customClassName }) => {
           return (
             <a
               key={`SocialMediaIcons - ${index}`}
-              href="www.google.com"
+              href="https://www.google.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
