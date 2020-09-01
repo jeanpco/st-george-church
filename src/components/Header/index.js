@@ -11,16 +11,16 @@ import {
   HeaderTitle,
 } from './styles'
 import Title from '../Utilities/Title'
-import MenuLogo from '../../images/Vector.svg'
 import Drawer from '../Drawer'
 import { Tablet, Desktop } from '~/components/Utilities/Media'
 import Icon from '~/components/Icon'
 
 const Header = ({ location }) => {
-  const HeaderQuery = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     {
-      allCosmicjsHeaders {
+      header: allCosmicjsHeaders {
         nodes {
+          title
           metadata {
             site_sub_title
             site_title
@@ -46,14 +46,41 @@ const Header = ({ location }) => {
   `)
 
   const [toggleDrawer, setToggleDrawer] = useState(false)
+
   const logo =
-    HeaderQuery.allCosmicjsHeaders.nodes[0].metadata.logo.local.publicURL
+    data.header &&
+    data.header.nodes[0] &&
+    data.header.nodes[0].metadata &&
+    data.header &&
+    data.header.nodes[0] &&
+    data.header.nodes[0].metadata.logo &&
+    data.header.nodes[0].metadata.logo.local.publicURL
+      ? data.header.nodes[0].metadata.logo.local.publicURL
+      : ''
 
   const desktopLogo =
-    HeaderQuery.allCosmicjsHeaders.nodes[0].metadata.logo_desktop.local
-      .publicURL
+    data.header &&
+    data.header.nodes[0] &&
+    data.header.nodes[0].metadata &&
+    data.header &&
+    data.header.nodes[0] &&
+    data.header.nodes[0].metadata.logo &&
+    data.header.nodes[0].metadata.logo.local.publicURL
+      ? data.header.nodes[0].metadata.logo_desktop.local.publicURL
+      : ''
+
   const graphic =
-    HeaderQuery.allCosmicjsHeaders.nodes[0].metadata.graphic.local.publicURL
+    data.header &&
+    data.header.nodes[0] &&
+    data.header.nodes[0].metadata &&
+    data.header &&
+    data.header.nodes[0] &&
+    data.header.nodes[0].metadata.logo &&
+    data.header.nodes[0].metadata.logo.local.publicURL
+      ? data.header.nodes[0].metadata.graphic.local.publicURL
+      : ''
+
+  const menuTitle = data.header.nodes[0].title
 
   return (
     <HeaderBg>
@@ -69,7 +96,7 @@ const Header = ({ location }) => {
             <TitleContainer>
               <HeaderTitle>
                 <Title as="h3" type="heading6">
-                  Menu
+                  {menuTitle}
                 </Title>
                 <div
                   role="button"
@@ -83,8 +110,7 @@ const Header = ({ location }) => {
           </MenuContainer>
 
           <Drawer
-            menuBlocks="heheh"
-            menuItems="jskdjskdj"
+            title={menuTitle}
             toggleDrawer={toggleDrawer}
             setToggleDrawer={setToggleDrawer}
           />
@@ -94,7 +120,7 @@ const Header = ({ location }) => {
           <MenuContainer>
             <TitleContainer>
               <Title as="h3" type="heading6">
-                Menu
+                {menuTitle}
               </Title>
               <div
                 className="Header__button"
@@ -107,11 +133,9 @@ const Header = ({ location }) => {
             <img src={graphic} alt="" className="Header__Graphic" />
           </MenuContainer>
           <Drawer
-            menuBlocks="heheh"
-            menuItems="jskdjskdj"
+            title={menuTitle}
             toggleDrawer={toggleDrawer}
             setToggleDrawer={setToggleDrawer}
-            logoUrl={MenuLogo}
           ></Drawer>
         </Tablet>
       </HeaderContainer>

@@ -45,6 +45,12 @@ export const MenuContainer = styled.div`
   position: relative;
   bottom: 4px;
 
+  @media (min-width: ${theme.breakpoints.md}) {
+    justify-content: none;
+    justify-content: flex-end;
+    margin-right: 100px;
+  }
+
   .Header__button {
     position: relative;
     bottom: 2px;
@@ -54,39 +60,38 @@ export const MenuContainer = styled.div`
     width: 16px;
     height: 30px;
     margin-right: 12px;
-  }
 
-  span {
-    padding-left: 8px;
-  }
-
-  span img {
-    vertical-align: 0;
-  }
-
-  @media (min-width: ${theme.breakpoints.md}) {
-    justify-content: none;
-    justify-content: flex-end;
-    margin-right: 100px;
-
-    .Header__Graphic {
+    @media (min-width: ${theme.breakpoints.md}) {
       height: 90px;
       width: 50px;
     }
+  }
+  span {
+    padding-left: 8px;
 
-    .Title_Container {
+    img {
+      vertical-align: 0;
+    }
+  }
+
+  .Title_Container {
+    @media (min-width: ${theme.breakpoints.md}) {
       width: 220px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
+  }
 
-    .Title {
+  .Title {
+    @media (min-width: ${theme.breakpoints.md}) {
       display: flex;
       align-items: center;
     }
+  }
 
-    .Title h3 {
+  .Title h3 {
+    @media (min-width: ${theme.breakpoints.md}) {
       margin-right: 10px;
     }
   }

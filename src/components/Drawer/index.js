@@ -14,7 +14,7 @@ import LanguageSwitcherContainer from '../../LanguageSwitcher/LanguageSwitcher'
 
 import Icon from '~/components/Icon'
 
-const Drawer = ({ toggleDrawer, setToggleDrawer }) => {
+const Drawer = ({ toggleDrawer, setToggleDrawer, title }) => {
   return (
     <ThemeProvider theme={theme}>
       <SwipeableDrawer
@@ -33,7 +33,7 @@ const Drawer = ({ toggleDrawer, setToggleDrawer }) => {
 
           <DrawerHeaderContent>
             <Title as="h1" type="menuHeading">
-              Menu
+              {title}
             </Title>
           </DrawerHeaderContent>
         </DrawerHeader>
@@ -46,6 +46,7 @@ Drawer.propTypes = {
   toggleDrawer: PropTypes.bool,
   setToggleDrawer: PropTypes.func.isRequired,
   logoUrl: PropTypes.string,
+  title: PropTypes.string,
 }
 
 export default Drawer
