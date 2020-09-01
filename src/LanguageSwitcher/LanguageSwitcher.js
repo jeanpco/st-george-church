@@ -50,5 +50,6 @@ const LocaleComponent = ({ location }) => {
 LocaleComponent.propTypes = {
   location: PropTypes.object,
   customStyle: PropTypes.any,
+  className: PropTypes.string,
 }
 export default LocaleComponent

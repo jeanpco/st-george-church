@@ -24,6 +24,9 @@ export const theme = {
     tertiary: '#ffffff',
     background: '#f6f6f6',
   },
+  maxWidthDesktop: '1440px',
+  maxWidthMobile: '600px',
+  maxWidthText: '720px',
   breakpoints: {
     xxs: '350px',
     xs: '400px',
