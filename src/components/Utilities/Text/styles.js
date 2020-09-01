@@ -21,6 +21,7 @@ export const TextStyled = styled.p`
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.mediumText};
+      opacity: 0.4;
     }
   }
 
@@ -33,6 +34,7 @@ export const TextStyled = styled.p`
     span {
       text-decoration: underline;
     }
+
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.mediumText};
     }

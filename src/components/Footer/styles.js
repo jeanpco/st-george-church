@@ -3,6 +3,9 @@ import { theme } from '../../utils/styles'
 
 export const FooterContainer = styled.div`
   text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 
   @media (min-width: ${theme.breakpoints.s}) {
     flex-direction: row;
@@ -51,6 +54,12 @@ export const FooterContainer = styled.div`
     letter-spacing: 0px;
     text-align: center;
     padding-left: 10px;
+
+    @media (min-width: ${theme.breakpoints.s}) {
+      font-size: ${theme.fonts.m_small};
+      margin-bottom: 0px;
+      margin-right: 10px;
+    }
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.m_small};
@@ -109,7 +118,7 @@ export const FooterContentContainer = styled.div`
 export const LogoContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid red;
+  border-top: 2px solid ${theme.colors.secondary};
   padding-top: 40px;
 `
 

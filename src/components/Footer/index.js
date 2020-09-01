@@ -29,7 +29,7 @@ const Footer = () => {
             }
             logo_footer {
               local {
-                url
+                publicURL
               }
             }
           }
@@ -38,7 +38,7 @@ const Footer = () => {
     }
   `)
 
-  const logo = data.footer.nodes[0].metadata.logo_footer.local.url
+  const logo = data.footer.nodes[0].metadata.logo_footer.local.publicURL
 
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
@@ -47,7 +47,6 @@ const Footer = () => {
     .filter((node) => node.locale.toLowerCase() === i18n.locale)
     .map((r) => r.metadata)
 
-  console.log(footerData)
   const today = new Date()
   const year = today.getFullYear()
 
