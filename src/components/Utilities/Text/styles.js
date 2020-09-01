@@ -14,20 +14,28 @@ export const TextStyled = styled.p`
 
   &.smallText400 {
     font-family: ${(props) => props.theme.fontFamily.tertiary};
-    font-size: ${(props) => props.theme.fonts.smallText};
-    letter-spacing: ${(props) => props.theme.letterSpacing.smallText};
-    font-weight: 400;
+    font-size: ${(props) => props.theme.fonts.links};
+    color: ${(props) => props.theme.colors.black};
+    font-weight: normal;
     font-style: normal;
-    text-transform: uppercase;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: ${(props) => props.theme.fonts.mediumText};
+    }
   }
 
   &.smallText500 {
     font-family: ${(props) => props.theme.fontFamily.tertiary};
     font-size: ${(props) => props.theme.fonts.smallText};
-    letter-spacing: ${(props) => props.theme.letterSpacing.smallText};
-    font-weight: 500;
+    font-weight: normal;
     font-style: normal;
-    text-transform: uppercase;
+
+    span {
+      text-decoration: underline;
+    }
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: ${(props) => props.theme.fonts.mediumText};
+    }
   }
 
   &.smallText700 {
@@ -56,17 +64,19 @@ export const TextStyled = styled.p`
   }
 
   &.link {
-    font-weight: 500;
-    text-transform: uppercase;
+    color: ${(props) => props.theme.colors.black};
+    font-family: ${(props) => props.theme.fontFamily.tertiary};
+    font-weight: normal;
     padding: 6px 2px;
     font-size: ${(props) => props.theme.fonts.links};
-    letter-spacing: 1.14px;
     display: inline-block;
     text-decoration: none;
-    transition: 150ms linear;
-    transition-property: color, border-color;
-    position: relative;
+    opacity: 0.4;
     cursor: pointer;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: ${(props) => props.theme.fonts.mediumText};
+    }
 
     &::before,
     &::after {
