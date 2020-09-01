@@ -11,10 +11,11 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import { ThemeProvider } from '@material-ui/core/styles'
 import Title from '../Utilities/Title'
 import LanguageSwitcherContainer from '../../LanguageSwitcher/LanguageSwitcher'
+import About from '../About'
 
 import Icon from '~/components/Icon'
 
-const Drawer = ({ toggleDrawer, setToggleDrawer, title }) => {
+const Drawer = ({ toggleDrawer, setToggleDrawer, title, menuLinks }) => {
   return (
     <ThemeProvider theme={theme}>
       <SwipeableDrawer
@@ -35,6 +36,14 @@ const Drawer = ({ toggleDrawer, setToggleDrawer, title }) => {
             <Title as="h1" type="menuHeading">
               {title}
             </Title>
+            {menuLinks.map((menu, index) => {
+              return (
+                <Title key={index} as="h2" type="menuHeading">
+                  {menu}
+                </Title>
+              )
+            })}
+            <About />
           </DrawerHeaderContent>
         </DrawerHeader>
       </SwipeableDrawer>
@@ -45,6 +54,7 @@ const Drawer = ({ toggleDrawer, setToggleDrawer, title }) => {
 Drawer.propTypes = {
   toggleDrawer: PropTypes.bool,
   setToggleDrawer: PropTypes.func.isRequired,
+  menuLinks: PropTypes.array,
   logoUrl: PropTypes.string,
   title: PropTypes.string,
 }

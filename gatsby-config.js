@@ -30,7 +30,7 @@ module.exports = {
       resolve: 'gatsby-source-cosmicjs',
       options: {
         bucketSlug: process.env.COSMIC_BUCKET,
-        objectTypes: ['headers'],
+        objectTypes: ['headers', 'abouts'],
         apiAccess: {
           read_key: process.env.COSMIC_READ_KEY,
         },
