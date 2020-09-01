@@ -26,6 +26,7 @@ export const FooterContainer = styled.div`
     width: 160px;
     height: 27px;
     margin-bottom: 25px;
+    margin-left: 10px;
 
     @media (min-width: ${theme.breakpoints.md}) {
       width: 286px;
@@ -91,6 +92,7 @@ export const LegalLinksContainer = styled.div`
   @media (min-width: ${theme.breakpoints.md}) {
     justify-content: space-between;
     display: flex;
+    flex-direction: row;
   }
 `
 
