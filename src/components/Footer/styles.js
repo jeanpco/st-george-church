@@ -4,7 +4,7 @@ import { theme } from '../../utils/styles'
 export const FooterContainer = styled.div`
   text-align: center;
 
-  @media (min-width: ${theme.breakpoints.md}) {
+  @media (min-width: ${theme.breakpoints.s}) {
     flex-direction: row;
     min-height: 250px;
     width: 100%;
@@ -89,7 +89,7 @@ export const LegalLinksContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: ${theme.breakpoints.md}) {
+  @media (min-width: ${theme.breakpoints.s}) {
     justify-content: space-between;
     display: flex;
     flex-direction: row;

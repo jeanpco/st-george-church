@@ -1,5 +1,5 @@
 import React from 'react'
-import { MobileDown, Tablet, Desktop } from '~/components/Utilities/Media'
+import { MobileDown } from '~/components/Utilities/Media'
 
 import {
   FooterContainer,
@@ -72,60 +72,31 @@ const Footer = () => {
           <span>RAP</span> × <span>Field Office</span>
         </Text>
         <LegalContainerDesktop>
-          <Tablet>
-            <LegalLinksContainer>
-              {footerData[0].legal_sections.length > 0
-                ? footerData[0].legal_sections.map((section, index) => {
-                    return (
-                      <Link key={`LegalSectionsLink -  ${index}`} to="/">
-                        <Text type="link" className="Footer__LegalLinks">
-                          {section.privacy}
-                        </Text>
-                        <Text type="link" className="Footer__LegalLinks">
-                          {section.terms_of_service}
-                        </Text>
-                      </Link>
-                    )
-                  })
-                : ''}
-              {footerData[0].copyright_text ? (
-                <Text
-                  type="smallText400"
-                  as="small"
-                  className="Footer__CopyrightText"
-                >{`© ${year} ${footerData[0].copyright_text}`}</Text>
-              ) : (
-                ''
-              )}
-            </LegalLinksContainer>
-          </Tablet>
-          <Desktop>
-            <LegalLinksContainer>
-              {footerData[0].copyright_text ? (
-                <Text
-                  type="smallText400"
-                  as="small"
-                  className="Footer__CopyrightText"
-                >{`© ${year} ${footerData[0].copyright_text}`}</Text>
-              ) : (
-                ''
-              )}
-              {footerData[0].legal_sections.length > 0
-                ? footerData[0].legal_sections.map((section, index) => {
-                    return (
-                      <Link key={`LegalSectionsLink -  ${index}`} to="/">
-                        <Text type="link" className="Footer__LegalLinks">
-                          {section.privacy}
-                        </Text>
-                        <Text type="link" className="Footer__LegalLinks">
-                          {section.terms_of_service}
-                        </Text>
-                      </Link>
-                    )
-                  })
-                : ''}
-            </LegalLinksContainer>
-          </Desktop>
+          <LegalLinksContainer>
+            {footerData[0].legal_sections.length > 0
+              ? footerData[0].legal_sections.map((section, index) => {
+                  return (
+                    <Link key={`LegalSectionsLink -  ${index}`} to="/">
+                      <Text type="link" className="Footer__LegalLinks">
+                        {section.privacy}
+                      </Text>
+                      <Text type="link" className="Footer__LegalLinks">
+                        {section.terms_of_service}
+                      </Text>
+                    </Link>
+                  )
+                })
+              : ''}
+            {footerData[0].copyright_text ? (
+              <Text
+                type="smallText400"
+                as="small"
+                className="Footer__CopyrightText"
+              >{`© ${year} ${footerData[0].copyright_text}`}</Text>
+            ) : (
+              ''
+            )}
+          </LegalLinksContainer>
         </LegalContainerDesktop>
       </WidthLimiterContainer>
     </FooterContainer>
