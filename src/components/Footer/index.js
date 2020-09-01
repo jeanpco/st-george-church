@@ -64,7 +64,7 @@ const Footer = () => {
           type="smallText500"
           className="Footer__AgencyCopyright"
         >
-          Designed and built by
+          Designed and built by {''}
           <MobileDown>
             <br />
           </MobileDown>{' '}
