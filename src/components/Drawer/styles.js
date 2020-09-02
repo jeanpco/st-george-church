@@ -1,55 +1,34 @@
 import styled from '@emotion/styled'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { theme as localTheme } from '~/utils/styles'
-import Text from '~/components/Utilities/Text'
-
-export const DrawerItem = styled(Text)`
-  /* keeping it for later when I will add the text for the drawer menu as an example */
-`
-
-export const DrawerButtons = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 24px;
-  position: absolute;
-  left: 179px;
-  top: 28px;
-
-  @media (min-width: ${localTheme.breakpoints.md}) {
-    left: 0;
-    top: 28px;
-    display: flex;
-    justify-content: inherit;
-    width: 100%;
-    justify-content: flex-end;
-    padding-right: 103px;
-  }
-`
 
 export const IconContainer = styled.div`
-  cursor: pointer;
-  position: absolute;
-  left: 269px;
-  right: 32px;
-  top: 30px;
-
-  @media (min-width: ${localTheme.breakpoints.md}) {
-    left: 558px;
-  }
+  /* used for the onClickFunction */
 `
 
 export const DrawerHeaderContent = styled.div`
   padding-left: 34px;
-  margin-top: 40px;
+  margin-top: -13px;
 
   .Drawer__Menu-Title {
     margin-bottom: 14px;
   }
 `
+export const DrawerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 31px;
+  padding-top: 28px;
+
+  @media (min-width: ${localTheme.breakpoints.md}) {
+    padding-right: 45;
+    padding-top: 47;
+  }
+`
 
 export const DrawerMenuTextContainer = styled.div`
- margin-bottom: 116px;
+  margin-bottom: 116px;
 `
 
 export const DrawerMenuText = styled.div`
@@ -80,7 +59,6 @@ export const DrawerMenuText = styled.div`
     }
   }
 `
-export const DrawerHeader = styled.div``
 
 export let theme = createMuiTheme({})
 theme = {

@@ -2,6 +2,11 @@ import styled from '@emotion/styled'
 
 export const LanguageSwitcherContainer = styled.div`
   display: inline-flex;
+  padding-right: 23px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    padding-right: 39px;
+  }
 
   p {
     margin-bottom: 0px !important;

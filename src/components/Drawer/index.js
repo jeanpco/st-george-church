@@ -4,9 +4,8 @@ import LocalizedLink from '../../components/LocalizedLink'
 import {
   theme,
   IconContainer,
-  DrawerHeader,
   DrawerHeaderContent,
-  DrawerButtons,
+  DrawerContainer,
   DrawerMenuText,
   DrawerMenuTextContainer,
 } from './styles'
@@ -25,67 +24,58 @@ const Drawer = ({ toggleDrawer, setToggleDrawer, title, menuLinks }) => {
         onOpen={() => setToggleDrawer(true)}
         open={toggleDrawer}
       >
-        <DrawerHeader>
-          <div>
-
-
-          <DrawerButtons>
-            <LanguageSwitcherContainer location={location} />
-          </DrawerButtons>
+        <DrawerContainer>
+          <LanguageSwitcherContainer location={location} />
 
           <IconContainer onClick={() => setToggleDrawer(false)}>
             <Icon type="clear" />
           </IconContainer>
-          </div>
+        </DrawerContainer>
 
-          <DrawerHeaderContent>
-            <Title as="h1" type="menuHeading" className="Drawer__Menu-Title">
-              {title}
-            </Title>
-            <DrawerMenuTextContainer>
-              {menuLinks?.length > 0
-                ? menuLinks.map((menuText, index) => {
-                    return (
-                      <DrawerMenuText key={index}>
-                        <Title as="h2" type="heading4">
-                          {index === 0 ? (
-                            <LocalizedLink
-                              to="/"
-                              className="Header__Menu-button current"
-                            >
-                              {menuText}
-                              {index === 0 ? (
-                                <span>
-                                  <Icon type="arrow-forward" />
-                                </span>
-                              ) : (
-                                ''
-                              )}
-                            </LocalizedLink>
-                          ) : (
-                            <LocalizedLink
-                              to="/"
-                              className="Header__Menu-button"
-                            >
-                              {menuText}
-                              {index === 0 ? (
-                                <span>
-                                  <Icon type="arrow-forward" />
-                                </span>
-                              ) : (
-                                ''
-                              )}
-                            </LocalizedLink>
-                          )}
-                        </Title>
-                      </DrawerMenuText>
-                    )
-                  })
-                : ''}
-            </DrawerMenuTextContainer>
-            <About />
-          </DrawerHeaderContent>
-        </DrawerHeader>
+        <DrawerHeaderContent>
+          <Title as="h1" type="menuHeading" className="Drawer__Menu-Title">
+            {title}
+          </Title>
+          <DrawerMenuTextContainer>
+            {menuLinks?.length > 0
+              ? menuLinks.map((menuText, index) => {
+                  return (
+                    <DrawerMenuText key={index}>
+                      <Title as="h2" type="heading4">
+                        {index === 0 ? (
+                          <LocalizedLink
+                            to="/"
+                            className="Header__Menu-button current"
+                          >
+                            {menuText}
+                            {index === 0 ? (
+                              <span>
+                                <Icon type="arrow-forward" />
+                              </span>
+                            ) : (
+                              ''
+                            )}
+                          </LocalizedLink>
+                        ) : (
+                          <LocalizedLink to="/" className="Header__Menu-button">
+                            {menuText}
+                            {index === 0 ? (
+                              <span>
+                                <Icon type="arrow-forward" />
+                              </span>
+                            ) : (
+                              ''
+                            )}
+                          </LocalizedLink>
+                        )}
+                      </Title>
+                    </DrawerMenuText>
+                  )
+                })
+              : ''}
+          </DrawerMenuTextContainer>
+          <About />
+        </DrawerHeaderContent>
       </SwipeableDrawer>
     </ThemeProvider>
   )
