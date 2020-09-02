@@ -6,12 +6,12 @@ export const TitleStyled = styled.p`
     font-size: ${theme.fonts.heading5};
     font-weight: normal;
     font-style: normal;
-    line-height: 24px;
+    line-height: 1.3;
     font-family: ${theme.fontFamily.secondary};
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading1};
-      line-height: 60px;
+      line-height: 1.3;
     }
   }
 
@@ -21,6 +21,7 @@ export const TitleStyled = styled.p`
     letter-spacing: ${theme.letterSpacing.heading2};
     font-weight: normal;
     font-style: normal;
+    line-height: 1.3;
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading2};
@@ -33,11 +34,11 @@ export const TitleStyled = styled.p`
     font-size: ${theme.fonts.heading5};
     font-weight: normal;
     font-style: normal;
-    line-height: 23px;
+    line-height: 1.3;
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading3};
-      line-height: 48px;
+      line-height: 1.3;
     }
   }
 
@@ -46,18 +47,18 @@ export const TitleStyled = styled.p`
     font-size: ${theme.fonts.heading6};
     font-weight: normal;
     font-style: normal;
-    line-height: 20px;
+    line-height: 1.3;
 
     @media (min-width: ${theme.breakpoints.md}) {
-      font-size: ${theme.fonts.heading3};
-      line-height: 48px;
+      font-size: ${theme.fonts.heading4};
+      line-height: 1.3;
     }
   }
 
   &.heading5 {
     font-family: ${theme.fontFamily.primary};
     font-size: ${theme.fonts.heading7};
-    line-height: 48px;
+    line-height: 1.3;
     font-weight: normal;
     font-style: normal;
   }
@@ -65,19 +66,19 @@ export const TitleStyled = styled.p`
   &.heading6 {
     font-family: ${theme.fontFamily.secondary};
     font-size: ${theme.fonts.overline};
-    line-height: 16px;
+    line-height: 1.3;
     font-style: normal;
     font-weight: normal;
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading6};
-      line-height: 48px;
+      line-height: 1.3;
     }
   }
 
   &.overline {
     font-size: ${theme.fonts.overline};
-    line-height: 48px;
+    line-height: normal;
     font-weight: normal;
     font-style: normal;
     text-transform: uppercase;
@@ -90,7 +91,7 @@ export const TitleStyled = styled.p`
   &.menuHeading {
     font-family: ${theme.fontFamily.secondary};
     font-size: ${theme.fonts.heading6};
-    line-height: 26px;
+    line-height: 1.3;
     font-weight: normal;
     font-style: normal;
     color: ${theme.colors.secondary};
@@ -98,7 +99,7 @@ export const TitleStyled = styled.p`
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading3};
-      line-height: 50px;
+      line-height: 1, 3;
     }
   }
 `
