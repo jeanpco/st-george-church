@@ -1,9 +1,9 @@
 import React from 'react'
 import LocaleContext from '../../context/LocaleProvider'
 import { useStaticQuery, graphql } from 'gatsby'
-import { AboutContainer } from './style'
-import Text from '~/components/Utilities/Text'
+import { AboutContainer, AboutText } from './style'
 import Title from '~/components/Utilities/Title'
+import Text from '~/components/Utilities/Text'
 
 const About = () => {
   const data = useStaticQuery(graphql`
@@ -33,13 +33,14 @@ const About = () => {
 
   return (
     <AboutContainer>
-      <Title as="h2" type="heading1">
-        {' '}
+      <Title as="h2" type="heading4" className="About__Drawer-Title">
         {aboutTitle}
       </Title>
-      <Text as="body" type="">
-        {aboutText}
-      </Text>
+      <AboutText>
+        <Text as="small" type="smallText500" className="About__Drawer-text">
+          {aboutText}
+        </Text>
+      </AboutText>
     </AboutContainer>
   )
 }

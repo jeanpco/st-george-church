@@ -42,14 +42,14 @@ export const TitleStyled = styled.p`
   }
 
   &.heading4 {
-    font-family: ${theme.fontFamily.primary};
+    font-family: ${theme.fontFamily.secondary};
     font-size: ${theme.fonts.heading6};
     font-weight: normal;
     font-style: normal;
     line-height: 20px;
 
     @media (min-width: ${theme.breakpoints.md}) {
-      font-size: ${theme.fonts.heading4};
+      font-size: ${theme.fonts.heading3};
       line-height: 48px;
     }
   }

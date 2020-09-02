@@ -13,12 +13,12 @@ export const DrawerButtons = styled.div`
   align-items: center;
   height: 24px;
   position: absolute;
-  left: 56%;
-  top: 5%;
+  left: 179px;
+  top: 28px;
 
   @media (min-width: ${localTheme.breakpoints.md}) {
     left: 0;
-    top: 5%;
+    top: 28px;
     display: flex;
     justify-content: inherit;
     width: 100%;
@@ -30,19 +30,55 @@ export const DrawerButtons = styled.div`
 export const IconContainer = styled.div`
   cursor: pointer;
   position: absolute;
-  left: 84.06%;
-  right: 9.69%;
-  top: 5.28%;
-  bottom: 91.2%;
+  left: 269px;
+  right: 32px;
+  top: 30px;
 
   @media (min-width: ${localTheme.breakpoints.md}) {
-    left: 90%;
+    left: 558px;
   }
 `
 
 export const DrawerHeaderContent = styled.div`
   padding-left: 34px;
-  margin-top: 14%;
+  margin-top: 40px;
+
+  .Drawer__Menu-Title {
+    margin-bottom: 14px;
+  }
+`
+
+export const DrawerMenuTextContainer = styled.div`
+ margin-bottom: 116px;
+`
+
+export const DrawerMenuText = styled.div`
+  margin-bottom: 5px;
+  span {
+    display: none;
+  }
+  @media (min-width: ${localTheme.breakpoints.md}) {
+    margin-bottom: 0;
+
+    span {
+      padding-left: 15px;
+      position: relative;
+      bottom: 6px;
+      display: inline;
+    }
+  }
+
+  .Header__Menu-button {
+    text-decoration: none;
+    color: ${localTheme.colors.black};
+    font-family: ${localTheme.fontFamily.secondary};
+  }
+
+  .Header__Menu-button.current {
+    @media (min-width: ${localTheme.breakpoints.md}) {
+      text-decoration: underline;
+    }
+  }
 `
 export const DrawerHeader = styled.div``
 

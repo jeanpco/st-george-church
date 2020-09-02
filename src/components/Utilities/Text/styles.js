@@ -22,12 +22,15 @@ export const TextStyled = styled.p`
   }
 
   &.smallText500 {
-    font-family: ${(props) => props.theme.fontFamily.tertiary};
+    font-family: ${(props) => props.theme.fontFamily.primary};
     font-size: ${(props) => props.theme.fonts.smallText};
-    letter-spacing: ${(props) => props.theme.letterSpacing.smallText};
-    font-weight: 500;
+    font-weight: normal;
     font-style: normal;
-    text-transform: uppercase;
+    line-height: normal;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: ${(props) => props.theme.fonts.mediumText};
+    }
   }
 
   &.smallText700 {
