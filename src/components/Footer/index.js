@@ -7,6 +7,7 @@ import {
   LegalLinksContainer,
   LogoContainer,
   GraphicContainer,
+  DesignedTextContainer,
 } from './styles'
 import { useStaticQuery, graphql } from 'gatsby'
 import LocaleContext from '../../context/LocaleProvider'
@@ -74,7 +75,7 @@ const Footer = () => {
             <SocialMedia />
           </SocialMediaFooterContainer>
         </LogoContainer>
-        <div>
+        <DesignedTextContainer>
           <Text
             as="small"
             type="smallText500"
@@ -108,13 +109,13 @@ const Footer = () => {
               </a>
             </span>
           </Text>
-        </div>
+        </DesignedTextContainer>
         <LegalLinksContainer>
           <MobileDown>
             {footerData?.[0]?.legal_sections?.length > 0
               ? footerData[0].legal_sections.map((section, index) => {
                   return (
-                    <Link key={`LegalSectionsLink -  ${index}`} to="/">
+                    <Link key={`LegalSectionsLink -  ${index}`} to="faq">
                       <Text type="link" className="Footer__LegalLinks">
                         {section?.privacy ? section.privacy : ''}
                       </Text>

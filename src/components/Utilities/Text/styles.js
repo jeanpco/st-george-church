@@ -74,7 +74,6 @@ export const TextStyled = styled.p`
     color: ${(props) => props.theme.colors.black};
     font-family: ${(props) => props.theme.fontFamily.tertiary};
     font-weight: normal;
-    padding: 6px 2px;
     font-size: ${(props) => props.theme.fonts.links};
     display: inline-block;
     text-decoration: none;

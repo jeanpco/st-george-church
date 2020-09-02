@@ -60,25 +60,23 @@ export const FooterContainer = styled.div`
     @media (min-width: ${theme.breakpoints.s}) {
       font-size: ${theme.fonts.m_small};
       margin-bottom: 0px;
-      margin-right: 10px;
       margin-top: 0px;
-      width: 326px;
+      width: 321px;
       opacity: 0.4;
     }
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.m_small};
       margin-bottom: 0px;
-      margin-right: 10px;
       word-break: none;
-      width: 466px;
+      width: 446px;
       margin-top: 0px;
     }
   }
 
   .Footer__LegalLinks {
     font-size: ${theme.fonts.m_small};
-    margin-right: 5px;
+    padding-left: 14px;
     opacity: 0.4;
     letter-spacing: 0px;
     text-align: center;
@@ -86,8 +84,14 @@ export const FooterContainer = styled.div`
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.m_small};
       margin-left: 10px;
+      margin-right: 0;
+      padding: 0;
     }
   }
+`
+
+export const DesignedTextContainer = styled.div`
+  margin-top: 10px;
 `
 
 export const GraphicContainer = styled.div`
