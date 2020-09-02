@@ -1,63 +1,105 @@
-import styled from '@emotion/styled';
-import { theme } from '~/utils/styles';
+import styled from '@emotion/styled'
+import { theme } from '~/utils/styles'
 
 export const TitleStyled = styled.p`
-  
   &.heading1 {
-    font-size: ${theme.fonts.heading3};
-    letter-spacing: ${theme.letterSpacing.heading3};
-    font-weight: 300;
+    font-size: ${theme.fonts.heading5};
+    font-weight: normal;
     font-style: normal;
-    line-height: 0.9;
+    line-height: 1.3;
+    font-family: ${theme.fontFamily.secondary};
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading1};
-      letter-spacing: ${theme.letterSpacing.heading1};
+      line-height: 1.3;
     }
   }
 
   &.heading2 {
-    font-size: ${theme.fonts.heading5};
-    letter-spacing: ${theme.letterSpacing.heading5};
-    font-weight: 400;
+    font-family: ${theme.fontFamily.secondary};
+    font-size: ${theme.fonts.heading6};
+    letter-spacing: ${theme.letterSpacing.heading2};
+    font-weight: normal;
     font-style: normal;
-    text-transform: uppercase;
+    line-height: 1.3;
 
     @media (min-width: ${theme.breakpoints.md}) {
-      font-weight: 300;
       font-size: ${theme.fonts.heading2};
       letter-spacing: ${theme.letterSpacing.heading2};
     }
   }
 
   &.heading3 {
-    font-size: ${theme.fonts.heading3};
-    letter-spacing: ${theme.letterSpacing.heading3};
-    font-weight: 300;
+    font-family: ${theme.fontFamily.primary};
+    font-size: ${theme.fonts.heading5};
+    font-weight: normal;
     font-style: normal;
+    line-height: 1.3;
+
+    @media (min-width: ${theme.breakpoints.md}) {
+      font-size: ${theme.fonts.heading3};
+      line-height: 1.3;
+    }
   }
 
   &.heading4 {
-    font-size: ${theme.fonts.heading4};
-    letter-spacing: ${theme.letterSpacing.heading4};
-    font-weight: 300;
+    font-family: ${theme.fontFamily.primary};
+    font-size: ${theme.fonts.heading6};
+    font-weight: normal;
     font-style: normal;
-    text-transform: uppercase;
+    line-height: 1.3;
+
+    @media (min-width: ${theme.breakpoints.md}) {
+      font-size: ${theme.fonts.heading4};
+      line-height: 1.3;
+    }
   }
 
   &.heading5 {
-    font-size: ${theme.fonts.heading5};
-    letter-spacing: ${theme.letterSpacing.heading5};
-    font-weight: 400;
+    font-family: ${theme.fontFamily.primary};
+    font-size: ${theme.fonts.heading7};
+    line-height: 1.3;
+    font-weight: normal;
     font-style: normal;
-    text-transform: uppercase;
   }
 
-  &.subheading1 {
-    font-size: ${theme.fonts.subheading1};
-    letter-spacing: ${theme.letterSpacing.subheading1};
+  &.heading6 {
+    font-family: ${theme.fontFamily.secondary};
+    font-size: ${theme.fonts.overline};
+    line-height: 1.3;
+    font-style: normal;
+    font-weight: normal;
+
+    @media (min-width: ${theme.breakpoints.md}) {
+      font-size: ${theme.fonts.heading6};
+      line-height: 1.3;
+    }
+  }
+
+  &.overline {
+    font-size: ${theme.fonts.overline};
+    line-height: normal;
     font-weight: normal;
     font-style: normal;
     text-transform: uppercase;
+
+    @media (min-width: ${theme.breakpoints.md}) {
+      font-size: ${theme.fonts.heading6};
+    }
   }
-`;
+
+  &.menuHeading {
+    font-family: ${theme.fontFamily.secondary};
+    font-size: ${theme.fonts.heading6};
+    line-height: 1.3;
+    font-weight: normal;
+    font-style: normal;
+    color: ${theme.colors.secondary};
+    text-decoration: underline;
+
+    @media (min-width: ${theme.breakpoints.md}) {
+      font-size: ${theme.fonts.heading3};
+      line-height: 1, 3;
+    }
+  }
+`

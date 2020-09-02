@@ -28,6 +28,7 @@ import { FastShipping } from './assets/FastShipping'
 import { Minus } from './assets/Minus'
 import { AfterPay } from './assets/AfterPay'
 import { Zip } from './assets/Zip'
+import { BigMenu } from './assets/BigMenu'
 
 const Icon = ({ type }) => {
   switch (type) {
@@ -87,6 +88,8 @@ const Icon = ({ type }) => {
       return <Search />
     case 'fast-shipping':
       return <FastShipping />
+    case 'bigMenu':
+      return <BigMenu />
     default:
       return ''
   }
