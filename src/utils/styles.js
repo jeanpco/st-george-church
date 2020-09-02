@@ -11,7 +11,7 @@ export const breakpoints = {
 
 export const theme = {
   colors: {
-    yello: '#F0E290',
+    yellow: '#F0E290',
     black: '#000000',
     black50: 'rgba(0, 0, 0, 0.8)',
     black20: 'rgba(0, 0, 0, 0.6)',

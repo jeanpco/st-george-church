@@ -6,6 +6,7 @@ export const TextStyled = styled.p`
     font-size: ${(props) => props.theme.fonts.smallText};
     font-weight: normal;
     font-style: normal;
+    line-height: normal;
 
     @media (max-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.bigText};
@@ -18,6 +19,7 @@ export const TextStyled = styled.p`
     color: ${(props) => props.theme.colors.black};
     font-weight: normal;
     font-style: normal;
+    line-height: normal;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.mediumText};
@@ -30,6 +32,7 @@ export const TextStyled = styled.p`
     font-size: ${(props) => props.theme.fonts.smallText};
     font-weight: normal;
     font-style: normal;
+    line-height: normal;
 
     span {
       text-decoration: underline;
@@ -47,6 +50,7 @@ export const TextStyled = styled.p`
     font-weight: 700;
     font-style: normal;
     text-transform: uppercase;
+    line-height: normal;
   }
 
   &.bigText400 {
@@ -55,6 +59,7 @@ export const TextStyled = styled.p`
     letter-spacing: ${(props) => props.theme.letterSpacing.body};
     font-weight: normal;
     font-style: normal;
+    line-height: normal;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.bigText};
@@ -75,6 +80,7 @@ export const TextStyled = styled.p`
     text-decoration: none;
     opacity: 0.4;
     cursor: pointer;
+    line-height: normal;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.mediumText};

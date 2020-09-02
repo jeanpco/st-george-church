@@ -1,12 +1,12 @@
 import React from 'react'
-import { MobileDown } from '~/components/Utilities/Media'
+import { MobileDown, MobileUp } from '~/components/Utilities/Media'
 
 import {
   FooterContainer,
   SocialMediaFooterContainer,
   LegalLinksContainer,
   LogoContainer,
-  LegalContainerDesktop,
+  GraphicContainer,
 } from './styles'
 import { useStaticQuery, graphql } from 'gatsby'
 import LocaleContext from '../../context/LocaleProvider'
@@ -22,6 +22,11 @@ const Footer = () => {
         nodes {
           locale
           metadata {
+            footer_graphic {
+              local {
+                publicURL
+              }
+            }
             copyright_text
             legal_sections {
               privacy
@@ -38,7 +43,14 @@ const Footer = () => {
     }
   `)
 
-  const logo = data.footer.nodes[0].metadata.logo_footer.local.publicURL
+  const logo = data?.footer?.nodes[0]?.metadata?.logo_footer?.local?.publicURL
+    ? data.footer.nodes[0].metadata.logo_footer.local.publicURL
+    : ''
+
+  const footerGraphic = data?.footer?.nodes[0]?.metadata.footer_graphic?.local
+    ?.publicURL
+    ? data.footer.nodes[0].metadata.footer_graphic.local.publicURL
+    : ''
 
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
@@ -53,40 +65,69 @@ const Footer = () => {
   return (
     <FooterContainer>
       <WidthLimiterContainer className="Footer__WidthLimiter">
+        <GraphicContainer>
+          <img src={footerGraphic} alt="" className="Footer__Graphic" />
+        </GraphicContainer>
         <LogoContainer>
           <img src={logo} alt="" className="Footer__Logo" />
           <SocialMediaFooterContainer>
             <SocialMedia />
           </SocialMediaFooterContainer>
         </LogoContainer>
-        <Text
-          as="small"
-          type="smallText500"
-          className="Footer__AgencyCopyright"
-        >
-          Designed and built by {''}
+        <div>
+          <Text
+            as="small"
+            type="smallText500"
+            className="Footer__AgencyCopyright"
+          >
+            Designed and built by {''}
+            <MobileDown>
+              <br />
+            </MobileDown>{' '}
+            <span>
+              {' '}
+              <a
+                href="https://rap.agency/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'black' }}
+              >
+                RAP
+              </a>
+            </span>{' '}
+            ×{' '}
+            <span>
+              {' '}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://field-office.ca/"
+                style={{ color: 'black' }}
+              >
+                Field Office
+              </a>
+            </span>
+          </Text>
+        </div>
+        <LegalLinksContainer>
           <MobileDown>
-            <br />
-          </MobileDown>{' '}
-          <span>RAP</span> × <span>Field Office</span>
-        </Text>
-        <LegalContainerDesktop>
-          <LegalLinksContainer>
-            {footerData[0].legal_sections.length > 0
+            {footerData?.[0]?.legal_sections?.length > 0
               ? footerData[0].legal_sections.map((section, index) => {
                   return (
                     <Link key={`LegalSectionsLink -  ${index}`} to="/">
                       <Text type="link" className="Footer__LegalLinks">
-                        {section.privacy}
+                        {section?.privacy ? section.privacy : ''}
                       </Text>
                       <Text type="link" className="Footer__LegalLinks">
-                        {section.terms_of_service}
+                        {section?.terms_of_service
+                          ? section.terms_of_service
+                          : ''}
                       </Text>
                     </Link>
                   )
                 })
               : ''}
-            {footerData[0].copyright_text ? (
+            {footerData?.[0]?.copyright_text ? (
               <Text
                 type="smallText400"
                 as="small"
@@ -95,8 +136,35 @@ const Footer = () => {
             ) : (
               ''
             )}
-          </LegalLinksContainer>
-        </LegalContainerDesktop>
+          </MobileDown>
+          <MobileUp>
+            {footerData?.[0]?.copyright_text ? (
+              <Text
+                type="smallText400"
+                as="small"
+                className="Footer__CopyrightText"
+              >{`© ${year} ${footerData[0].copyright_text}`}</Text>
+            ) : (
+              ''
+            )}
+            {footerData?.[0]?.legal_sections?.length > 0
+              ? footerData[0].legal_sections.map((section, index) => {
+                  return (
+                    <Link key={`LegalSectionsLink -  ${index}`} to="/">
+                      <Text type="link" className="Footer__LegalLinks">
+                        {section?.privacy ? section.privacy : ''}
+                      </Text>
+                      <Text type="link" className="Footer__LegalLinks">
+                        {section?.terms_of_service
+                          ? section.terms_of_service
+                          : ''}
+                      </Text>
+                    </Link>
+                  )
+                })
+              : ''}
+          </MobileUp>
+        </LegalLinksContainer>
       </WidthLimiterContainer>
     </FooterContainer>
   )

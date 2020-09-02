@@ -50,21 +50,29 @@ export const FooterContainer = styled.div`
   }
 
   .Footer__CopyrightText {
-    margin-bottom: 25px;
     letter-spacing: 0px;
     text-align: center;
     padding-left: 10px;
+    margin-top: 16px;
+    width: 145px;
+    word-break: break-word;
 
     @media (min-width: ${theme.breakpoints.s}) {
       font-size: ${theme.fonts.m_small};
       margin-bottom: 0px;
       margin-right: 10px;
+      margin-top: 0px;
+      width: 326px;
+      opacity: 0.4;
     }
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.m_small};
       margin-bottom: 0px;
       margin-right: 10px;
+      word-break: none;
+      width: 466px;
+      margin-top: 0px;
     }
   }
 
@@ -82,9 +90,31 @@ export const FooterContainer = styled.div`
   }
 `
 
+export const GraphicContainer = styled.div`
+  margin-bottom: 43px;
+
+  .Footer__Graphic {
+    width: 190px;
+    height: 45px;
+  }
+
+  @media (min-width: ${theme.breakpoints.s}) {
+    text-align: center;
+  }
+
+  @media (min-width: ${theme.breakpoints.md}) {
+    text-align: center;
+    margin-bottom: 100px;
+
+    .Footer__Graphic {
+      width: 500px;
+      height: 120px;
+    }
+  }
+`
+
 export const SocialMediaFooterContainer = styled.div`
   margin-bottom: 30px;
-  margin-left: -25px;
 
   @media (min-width: ${theme.breakpoints.md}) {
     margin-left: 0px;
@@ -97,11 +127,14 @@ export const LegalLinksContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-
+  margin-top: 25px;
+  margin-bottom: 25px;
   @media (min-width: ${theme.breakpoints.s}) {
     justify-content: space-between;
     display: flex;
     flex-direction: row;
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 `
 
@@ -120,9 +153,4 @@ export const LogoContainer = styled.div`
   justify-content: space-between;
   border-top: 2px solid ${theme.colors.secondary};
   padding-top: 40px;
-`
-
-export const LegalContainerDesktop = styled.div`
-  @media (min-width: ${theme.breakpoints.md}) {
-  }
 `

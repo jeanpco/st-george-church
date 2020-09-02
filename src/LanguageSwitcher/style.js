@@ -16,13 +16,13 @@ export const LanguageSwitcherContainer = styled.div`
     text-decoration: none;
     color: black;
     font-family: ${theme.fontFamily.secondary};
-    line-height: 26px;
+    line-height: normal;
     font-style: normal;
     font-size: ${theme.fonts.heading6};
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading5};
-      line-height: 34px;
+      line-height: normal;
     }
   }
 `
