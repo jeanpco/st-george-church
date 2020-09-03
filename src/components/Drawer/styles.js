@@ -5,11 +5,42 @@ import { theme as localTheme } from '~/utils/styles'
 export const IconContainer = styled.div`
   /* used for the onClickFunction */
 `
-
 export const DrawerSocialMedia = styled.div`
   position: absolute;
-  width: 80%;
   bottom: 41px;
+
+  @media (min-width: ${localTheme.breakpoints.md}) {
+    max-width: 400px;
+  }
+
+  .Social-Media-Container {
+    margin-bottom: 0;
+
+    .SocialMedia__Logo {
+      width: 147px;
+
+      @media (min-width: ${localTheme.breakpoints.s}) {
+        width: 127px;
+      }
+
+      @media (min-width: ${localTheme.breakpoints.md}) {
+        width: 219px;
+      }
+    }
+
+    .Social__Icon-Container {
+      justify-content: flex-start;
+    }
+  }
+
+  .Social__Logo-Container {
+    margin-left: 0;
+    margin-right: 16px;
+
+    @media (min-width: ${localTheme.breakpoints.md}) {
+      margin-right: 27px;
+    }
+  }
 `
 
 export const DrawerHeaderContent = styled.div`

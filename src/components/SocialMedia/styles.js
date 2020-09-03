@@ -29,7 +29,6 @@ export const SocialContentContainer = styled.div`
     padding-top: 25px;
   }
 `
-
 export const LogoContainer = styled.div`
   margin-left: 10px;
 
@@ -42,11 +41,22 @@ export const LinkContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: flex-end;
+  padding-top: 1px;
+  position: relative;
+  top: 4px;
+  @media (min-width: ${theme.breakpoints.s}) {
+    position: relative;
+    top: 0;
+  }
+
+  @media (min-width: ${theme.breakpoints.md}) {
+    position: relative;
+    top: 0;
+  }
 
   .SocialMedia__Icon {
     width: 20px;
     height: 20px;
-
     margin-right: 5px;
 
     @media (min-width: ${theme.breakpoints.md}) {

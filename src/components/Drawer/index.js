@@ -16,7 +16,7 @@ import Title from '../Utilities/Title'
 import LanguageSwitcherContainer from '../LanguageSwitcher/LanguageSwitcher'
 import About from '../About'
 import Icon from '~/components/Icon'
-import SocialMediaContainer from '../SocialMedia'
+import SocialMedia from '../SocialMedia'
 
 const Drawer = ({ toggleDrawer, setToggleDrawer, title, menuLinks }) => {
   return (
@@ -78,7 +78,7 @@ const Drawer = ({ toggleDrawer, setToggleDrawer, title, menuLinks }) => {
           </DrawerMenuTextContainer>
           <About />
           <DrawerSocialMedia>
-            <SocialMediaContainer />
+            <SocialMedia customClassName="Social-Media-Container" />
           </DrawerSocialMedia>
         </DrawerHeaderContent>
       </SwipeableDrawer>

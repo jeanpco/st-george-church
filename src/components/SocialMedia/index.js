@@ -66,10 +66,10 @@ const SocialMedia = ({ customClassName }) => {
 
   return (
     <SocialMediaContainer {...socialMediaProps}>
-      <LogoContainer>
+      <LogoContainer className="Social__Logo-Container">
         <img src={logoImg} alt="" className="SocialMedia__Logo" />
       </LogoContainer>
-      <LinkContainer>
+      <LinkContainer className="Social__Icon-Container">
         {logos?.length > 0
           ? logos.map((info, index) => {
               return (
