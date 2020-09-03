@@ -21,7 +21,7 @@ const Title = ({
 }
 
 Title.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.any,
   as: PropTypes.string,
   type: PropTypes.oneOf([
     'heading1',
