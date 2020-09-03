@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 const SocialMedia = ({ customClassName }) => {
   const data = useStaticQuery(graphql`
     {
-      SocialMedia: allCosmicjsMedia {
+      SocialMedia: allCosmicjsMedias {
         nodes {
           metadata {
             facebook_link
