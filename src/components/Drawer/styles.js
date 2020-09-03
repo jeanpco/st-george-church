@@ -6,6 +6,12 @@ export const IconContainer = styled.div`
   /* used for the onClickFunction */
 `
 
+export const DrawerSocialMedia = styled.div`
+  position: absolute;
+  width: 80%;
+  bottom: 41px;
+`
+
 export const DrawerHeaderContent = styled.div`
   padding-left: 34px;
   margin-top: -13px;

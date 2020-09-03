@@ -8,6 +8,7 @@ import {
   DrawerContainer,
   DrawerMenuText,
   DrawerMenuTextContainer,
+  DrawerSocialMedia,
 } from './styles'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -15,6 +16,7 @@ import Title from '../Utilities/Title'
 import LanguageSwitcherContainer from '../LanguageSwitcher/LanguageSwitcher'
 import About from '../About'
 import Icon from '~/components/Icon'
+import SocialMediaContainer from '../SocialMedia'
 
 const Drawer = ({ toggleDrawer, setToggleDrawer, title, menuLinks }) => {
   return (
@@ -75,6 +77,9 @@ const Drawer = ({ toggleDrawer, setToggleDrawer, title, menuLinks }) => {
               : ''}
           </DrawerMenuTextContainer>
           <About />
+          <DrawerSocialMedia>
+            <SocialMediaContainer />
+          </DrawerSocialMedia>
         </DrawerHeaderContent>
       </SwipeableDrawer>
     </ThemeProvider>
