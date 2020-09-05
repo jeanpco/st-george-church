@@ -36,6 +36,7 @@ export const DrawerSocialMedia = styled.div`
   .Social__Logo-Container {
     margin-left: 0;
     margin-right: 16px;
+    padding-right: 10px;
 
     @media (min-width: ${localTheme.breakpoints.md}) {
       margin-right: 27px;

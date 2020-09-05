@@ -2,9 +2,6 @@ import styled from '@emotion/styled'
 import { theme } from '../../utils/styles'
 
 export const SliderStyling = styled.div`
-  position: relative;
-  margin-bottom: 40px;
-
   @media (min-width: ${theme.breakpoints.md}) {
     margin-left: 180px;
     margin-top: 100px;
@@ -13,13 +10,15 @@ export const SliderStyling = styled.div`
   .slick-arrow,
   .slick-prev,
   .slick-next {
+    display: none !important;
     @media (min-width: ${theme.breakpoints.md}) {
       display: block !important;
     }
   }
 
   .slick-prev {
-    display: block;
+    display: none;
+    /* display: block; */
     position: absolute;
     margin: 0px;
     padding: 0px;
@@ -44,7 +43,8 @@ export const SliderStyling = styled.div`
   }
 
   .slick-next {
-    display: block;
+    display: none;
+    /* display: block; */
     position: absolute;
     margin: 0px;
     padding: 0px;
@@ -95,5 +95,18 @@ export const SliderStyling = styled.div`
       justify-content: center;
       text-align: center;
     }
+  }
+`
+
+export const LinearProgressBarContainer = styled.div`
+  margin-bottom: 30px;
+  margin-top: 5px;
+
+  .MuiLinearProgress-colorPrimary {
+    background-color: ${theme.colors.red10};
+  }
+
+  .MuiLinearProgress-barColorPrimary {
+    background-color: ${theme.colors.secondary};
   }
 `

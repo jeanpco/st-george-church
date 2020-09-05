@@ -18,7 +18,7 @@ export const theme = {
     black10: 'rgba(0, 0, 0, 0.4)',
     red50: 'rgba(204, 29, 39, 0.8)',
     red20: 'rgba(204, 29, 39, 0.6)',
-    red10: ' rgba(204, 29, 39, 0.6)',
+    red10: ' rgba(204, 29, 39, 0.4)',
     primary: '#000000',
     secondary: '#CC1D27',
     tertiary: '#ffffff',
