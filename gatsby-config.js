@@ -12,6 +12,9 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     'gatsby-plugin-page-transitions',
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -19,6 +22,7 @@ module.exports = {
         name: 'pages',
       },
     },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
