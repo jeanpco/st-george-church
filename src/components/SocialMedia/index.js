@@ -51,7 +51,7 @@ const SocialMedia = ({ customClassName }) => {
     : ''
 
   const logos = []
-  //
+
   data?.SocialMedia?.nodes[0]?.metadata?.social_media_links
     ? data.SocialMedia.nodes[0].metadata.social_media_links.map((info) => {
         Object.values(info).map((values) => {

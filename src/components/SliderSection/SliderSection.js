@@ -13,15 +13,6 @@ const SliderSection = ({ children, imgLength }) => {
       <Desktop>
         <SliderSectionContainer>
           <WidthLimiterContainer className="SliderSection__WidthLimiter">
-            {/* <Title
-                            whiteTitle
-                            withGreenLine
-                            className="SliderSection__Title"
-                            type="h3"
-                            as="h2"
-                        >
-                            {title}
-                        </Title> */}
             <SliderContent
               imgLength={imgLength}
               slidesToShow={1}
