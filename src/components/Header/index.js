@@ -107,11 +107,11 @@ const Header = ({ location }) => {
       <HeaderContainer>
         <Tablet>
           <div>
-            <img src={logo} alt="" className="Header__Logo" />
+            <img src={logo} alt="header logo" className="Header__Logo" />
           </div>
         </Tablet>
         <Desktop>
-          <img src={desktopLogo} alt="" className="Header__Logo" />
+          <img src={desktopLogo} alt="header logo" className="Header__Logo" />
           <MenuContainer>
             <TitleContainer>
               <HeaderTitle>
@@ -125,7 +125,11 @@ const Header = ({ location }) => {
                   <Icon type="bigMenu" />
                 </div>
               </HeaderTitle>
-              <img src={graphic} alt="" className="Header__Graphic" />
+              <img
+                src={graphic}
+                alt="header graphic"
+                className="Header__Graphic"
+              />
             </TitleContainer>
           </MenuContainer>
 
@@ -151,7 +155,11 @@ const Header = ({ location }) => {
                 <Icon type="menu" />
               </div>
             </TitleContainer>
-            <img src={graphic} alt="" className="Header__Graphic" />
+            <img
+              src={graphic}
+              alt="header graphic"
+              className="Header__Graphic"
+            />
           </MenuContainer>
           <Drawer
             menuLinks={menuLinks}

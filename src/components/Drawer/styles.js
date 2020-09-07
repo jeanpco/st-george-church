@@ -6,9 +6,6 @@ export const IconContainer = styled.div`
   /* used for the onClickFunction */
 `
 export const DrawerSocialMedia = styled.div`
-  position: absolute;
-  bottom: 41px;
-
   @media (min-width: ${localTheme.breakpoints.md}) {
     max-width: 400px;
   }

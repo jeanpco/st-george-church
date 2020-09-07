@@ -24,7 +24,7 @@ const IndexLayout = ({ data }) => {
 
   const homePage = HomePageData[0]
 
-  const homeIntoGraphic = homePage?.intro_graphic?.local?.publicURL
+  const homeIntroGraphic = homePage?.intro_graphic?.local?.publicURL
     ? homePage.intro_graphic.local.publicURL
     : ''
 
@@ -49,12 +49,16 @@ const IndexLayout = ({ data }) => {
         <SliderSection imgLength={images.length}>
           {images?.length > 0
             ? images.map((img, index) => {
-                return <img src={img} alt="" key={index} />
+                return (
+                  <div key={index}>
+                    <img src={img} alt="slider images" />
+                  </div>
+                )
               })
             : ''}
         </SliderSection>
         <HomeIntroContainer>
-          <img src={homeIntoGraphic} alt="" />
+          <img src={homeIntroGraphic} alt="home__intro-graphic" />
 
           <HomeIntroContentContainer>
             <HomeIntroTitle>
@@ -79,7 +83,7 @@ const IndexLayout = ({ data }) => {
       <Desktop>
         <DeskToIntroContainer>
           <HomeIntroContainer>
-            <img src={homeIntoGraphic} alt="" />
+            <img src={homeIntroGraphic} alt="home intro graphic" />
 
             <HomeIntroContentContainer>
               <HomeIntroTitle>
@@ -103,7 +107,11 @@ const IndexLayout = ({ data }) => {
             <SliderSection imgLength={images.length}>
               {images?.length > 0
                 ? images.map((img, index) => {
-                    return <img src={img} alt="" key={index} />
+                    return (
+                      <div key={index}>
+                        <img src={img} alt="slider images" />
+                      </div>
+                    )
                   })
                 : ''}
             </SliderSection>

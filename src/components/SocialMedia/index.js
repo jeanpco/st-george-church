@@ -67,7 +67,11 @@ const SocialMedia = ({ customClassName }) => {
   return (
     <SocialMediaContainer {...socialMediaProps}>
       <LogoContainer className="Social__Logo-Container">
-        <img src={logoImg} alt="" className="SocialMedia__Logo" />
+        <img
+          src={logoImg}
+          alt="social media logo"
+          className="SocialMedia__Logo"
+        />
       </LogoContainer>
       <LinkContainer className="Social__Icon-Container">
         {logos?.length > 0

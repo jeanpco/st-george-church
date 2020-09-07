@@ -66,7 +66,11 @@ const Footer = () => {
     <FooterContainer>
       <WidthLimiterContainer className="Footer__WidthLimiter">
         <GraphicContainer>
-          <img src={footerGraphic} alt="" className="Footer__Graphic" />
+          <img
+            src={footerGraphic}
+            alt="footer graphic"
+            className="Footer__Graphic"
+          />
         </GraphicContainer>
         <SocialContentContainer>
           <SocialMedia />
