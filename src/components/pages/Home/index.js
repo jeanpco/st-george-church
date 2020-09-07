@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import LocaleContext from '../../../context/LocaleProvider'
 import Text from '../../Utilities/Text'
 import Title from '../../Utilities/Title'
+import Quote from '../../Quote'
 import { Tablet, Desktop } from '../../Utilities/Media'
 import {
   HomeIntroContainer,
@@ -72,6 +73,7 @@ const IndexLayout = ({ data }) => {
             </LocalizedLink>
           </Text>
         </HomeIntroContainer>
+        <Quote />
       </Tablet>
 
       <Desktop>
@@ -107,6 +109,7 @@ const IndexLayout = ({ data }) => {
             </SliderSection>
           </div>
         </DeskToIntroContainer>
+        <Quote />
       </Desktop>
     </Fragment>
   )

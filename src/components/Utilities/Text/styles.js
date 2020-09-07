@@ -56,15 +56,14 @@ export const TextStyled = styled.p`
   }
 
   &.bigText400 {
-    font-family: ${(props) => props.theme.fontFamily.tertiary};
+    font-family: ${(props) => props.theme.fontFamily.primary};
     font-size: ${(props) => props.theme.fonts.body};
-    letter-spacing: ${(props) => props.theme.letterSpacing.body};
     font-weight: normal;
     font-style: normal;
     line-height: normal;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: ${(props) => props.theme.fonts.bigText};
+      font-size: ${(props) => props.theme.fonts.quote};
     }
   }
 

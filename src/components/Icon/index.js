@@ -29,6 +29,8 @@ import { Minus } from './assets/Minus'
 import { AfterPay } from './assets/AfterPay'
 import { Zip } from './assets/Zip'
 import { BigMenu } from './assets/BigMenu'
+import { HorizontalLine } from './assets/HorizontalLine'
+import { HorizontalLineDes } from './assets/HorizontalLineDes'
 
 const Icon = ({ type }) => {
   switch (type) {
@@ -90,6 +92,10 @@ const Icon = ({ type }) => {
       return <FastShipping />
     case 'bigMenu':
       return <BigMenu />
+    case 'horizontal-line':
+      return <HorizontalLine />
+    case 'horizontal-line-des':
+      return <HorizontalLineDes />
     default:
       return ''
   }
