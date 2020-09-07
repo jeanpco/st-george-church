@@ -49,11 +49,7 @@ const IndexLayout = ({ data }) => {
         <SliderSection imgLength={images.length}>
           {images?.length > 0
             ? images.map((img, index) => {
-                return (
-                  <div key={index}>
-                    <img src={img} alt="slider images" />
-                  </div>
-                )
+                return <img src={img} alt="slider-images" key={index} />
               })
             : ''}
         </SliderSection>
@@ -107,11 +103,7 @@ const IndexLayout = ({ data }) => {
             <SliderSection imgLength={images.length}>
               {images?.length > 0
                 ? images.map((img, index) => {
-                    return (
-                      <div key={index}>
-                        <img src={img} alt="slider images" />
-                      </div>
-                    )
+                    return <img src={img} alt="slider images" key={index} />
                   })
                 : ''}
             </SliderSection>

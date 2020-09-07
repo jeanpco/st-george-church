@@ -4,7 +4,6 @@ import { theme } from '../../utils/styles'
 export const SliderStyling = styled.div`
   @media (min-width: ${theme.breakpoints.md}) {
     width: 714px;
-    /* margin-left: 140px; */
   }
 
   .slick-arrow,
