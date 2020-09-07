@@ -37,7 +37,7 @@ const SliderContent = ({ children, customClassName, imgLength }) => {
     if (sliderStateCount.count >= imgLength) {
       setsliderStateCount({ ...sliderStateCount, count: 0 })
     }
-  })
+  }, [])
 
   const normalise = (value) => ((value - 0) * 100) / (imgLength - 1)
 

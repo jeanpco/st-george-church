@@ -41,8 +41,6 @@ const IndexLayout = ({ data }) => {
       })
     : ''
 
-  console.log(images)
-
   return (
     <Fragment>
       <Tablet>

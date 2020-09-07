@@ -115,7 +115,7 @@ const Footer = () => {
             {footerData?.[0]?.legal_sections?.length > 0
               ? footerData[0].legal_sections.map((section, index) => {
                   return (
-                    <Link key={`LegalSectionsLink -  ${index}`} to="faq">
+                    <Link key={`LegalSectionsLink -  ${index}`} to="/faq">
                       <Text type="link" className="Footer__LegalLinks">
                         {section?.privacy ? section.privacy : ''}
                       </Text>
@@ -151,7 +151,7 @@ const Footer = () => {
             {footerData?.[0]?.legal_sections?.length > 0
               ? footerData[0].legal_sections.map((section, index) => {
                   return (
-                    <Link key={`LegalSectionsLink -  ${index}`} to="faq">
+                    <Link key={`LegalSectionsLink -  ${index}`} to="/faq">
                       <Text type="link" className="Footer__LegalLinks">
                         {section?.privacy ? section.privacy : ''}
                       </Text>
