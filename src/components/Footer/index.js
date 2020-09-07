@@ -3,12 +3,11 @@ import { MobileDown, MobileUp } from '~/components/Utilities/Media'
 
 import {
   FooterContainer,
-  SocialMediaFooterContainer,
   LegalLinksContainer,
-  LogoContainer,
   GraphicContainer,
   DesignedTextContainer,
 } from './styles'
+import { SocialContentContainer } from '../SocialMedia/styles'
 import { useStaticQuery, graphql } from 'gatsby'
 import LocaleContext from '../../context/LocaleProvider'
 import SocialMedia from '../../components/SocialMedia'
@@ -44,9 +43,9 @@ const Footer = () => {
     }
   `)
 
-  const logo = data?.footer?.nodes[0]?.metadata?.logo_footer?.local?.publicURL
-    ? data.footer.nodes[0].metadata.logo_footer.local.publicURL
-    : ''
+  // const logo = data?.footer?.nodes[0]?.metadata?.logo_footer?.local?.publicURL
+  //   ? data.footer.nodes[0].metadata.logo_footer.local.publicURL
+  //   : ''
 
   const footerGraphic = data?.footer?.nodes[0]?.metadata.footer_graphic?.local
     ?.publicURL
@@ -69,12 +68,9 @@ const Footer = () => {
         <GraphicContainer>
           <img src={footerGraphic} alt="" className="Footer__Graphic" />
         </GraphicContainer>
-        <LogoContainer>
-          <img src={logo} alt="" className="Footer__Logo" />
-          <SocialMediaFooterContainer>
-            <SocialMedia />
-          </SocialMediaFooterContainer>
-        </LogoContainer>
+        <SocialContentContainer>
+          <SocialMedia />
+        </SocialContentContainer>
         <DesignedTextContainer>
           <Text
             as="small"
@@ -151,7 +147,7 @@ const Footer = () => {
             {footerData?.[0]?.legal_sections?.length > 0
               ? footerData[0].legal_sections.map((section, index) => {
                   return (
-                    <Link key={`LegalSectionsLink -  ${index}`} to="/">
+                    <Link key={`LegalSectionsLink -  ${index}`} to="faq">
                       <Text type="link" className="Footer__LegalLinks">
                         {section?.privacy ? section.privacy : ''}
                       </Text>

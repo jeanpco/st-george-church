@@ -28,7 +28,7 @@ export const TextStyled = styled.p`
   }
 
   &.smallText500 {
-    font-family: ${(props) => props.theme.fontFamily.tertiary};
+    font-family: ${(props) => props.theme.fontFamily.primary};
     font-size: ${(props) => props.theme.fonts.smallText};
     font-weight: normal;
     font-style: normal;

@@ -43,7 +43,7 @@ export const TitleStyled = styled.p`
   }
 
   &.heading4 {
-    font-family: ${theme.fontFamily.primary};
+    font-family: ${theme.fontFamily.secondary};
     font-size: ${theme.fonts.heading6};
     font-weight: normal;
     font-style: normal;

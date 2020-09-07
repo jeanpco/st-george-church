@@ -19,9 +19,13 @@ export const FooterContainer = styled.div`
     padding: 40px 20px 20px;
     margin: 0 auto;
 
+    @media (min-width: ${theme.breakpoints.s}) {
+      padding: 42px 42px;
+    }
+
     @media (min-width: ${theme.breakpoints.md}) {
       flex-direction: row;
-      padding: 50px 100px;
+      padding: 42px 100px;
     }
   }
 
@@ -117,14 +121,6 @@ export const GraphicContainer = styled.div`
   }
 `
 
-export const SocialMediaFooterContainer = styled.div`
-  margin-bottom: 30px;
-
-  @media (min-width: ${theme.breakpoints.md}) {
-    margin-left: 0px;
-  }
-`
-
 export const LegalLinksContainer = styled.div`
   width: 100%;
   align-items: center;
@@ -140,6 +136,10 @@ export const LegalLinksContainer = styled.div`
     margin-top: 0px;
     margin-bottom: 0px;
   }
+
+  @media (min-width: ${theme.breakpoints.md}) {
+    padding-top: 5px;
+  }
 `
 
 export const FooterContentContainer = styled.div`
@@ -150,11 +150,4 @@ export const FooterContentContainer = styled.div`
   @media (min-width: ${theme.breakpoints.md}) {
     align-items: flex-end;
   }
-`
-
-export const LogoContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  border-top: 2px solid ${theme.colors.secondary};
-  padding-top: 40px;
 `

@@ -1,17 +1,22 @@
 import React, { Fragment } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import { SocialMediaContainer } from './styles'
+import { SocialMediaContainer, LinkContainer, LogoContainer } from './styles'
 import PropTypes from 'prop-types'
 
 const SocialMedia = ({ customClassName }) => {
   const data = useStaticQuery(graphql`
     {
-      SocialMedia: allCosmicjsMedia {
+      SocialMedia: allCosmicjsMedias {
         nodes {
           metadata {
             facebook_link
             instagram_link
             youtube_link
+            logo {
+              local {
+                publicURL
+              }
+            }
             social_media_links {
               facebook {
                 url
@@ -41,8 +46,12 @@ const SocialMedia = ({ customClassName }) => {
     ? data.SocialMedia.nodes[0].metadata.instagram_link
     : ''
 
-  const logos = []
+  const logoImg = data?.SocialMedia?.nodes[0]?.metadata?.logo?.local?.publicURL
+    ? data.SocialMedia.nodes[0].metadata.logo.local.publicURL
+    : ''
 
+  const logos = []
+  //
   data?.SocialMedia?.nodes[0]?.metadata?.social_media_links
     ? data.SocialMedia.nodes[0].metadata.social_media_links.map((info) => {
         Object.values(info).map((values) => {
@@ -57,35 +66,40 @@ const SocialMedia = ({ customClassName }) => {
 
   return (
     <SocialMediaContainer {...socialMediaProps}>
-      {logos?.length > 0
-        ? logos.map((info, index) => {
-            return (
-              <Fragment key={index}>
-                <a
-                  key={`SocialMediaIcons - ${index}`}
-                  href={
-                    index === 0
-                      ? facebookLink
-                      : null || index === 1
-                      ? instagramLink
-                      : null || index === 2
-                      ? youtubeLink
-                      : null
-                  }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    key={index}
-                    src={info}
-                    alt="social-media"
-                    className="SocialMedia__Icon"
-                  />
-                </a>
-              </Fragment>
-            )
-          })
-        : ''}
+      <LogoContainer className="Social__Logo-Container">
+        <img src={logoImg} alt="" className="SocialMedia__Logo" />
+      </LogoContainer>
+      <LinkContainer className="Social__Icon-Container">
+        {logos?.length > 0
+          ? logos.map((info, index) => {
+              return (
+                <Fragment key={index}>
+                  <a
+                    key={`SocialMediaIcons - ${index}`}
+                    href={
+                      index === 0
+                        ? facebookLink
+                        : null || index === 1
+                        ? instagramLink
+                        : null || index === 2
+                        ? youtubeLink
+                        : null
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      key={index}
+                      src={info}
+                      alt="social-media"
+                      className="SocialMedia__Icon"
+                    />
+                  </a>
+                </Fragment>
+              )
+            })
+          : ''}
+      </LinkContainer>
     </SocialMediaContainer>
   )
 }

@@ -1,50 +1,101 @@
 import styled from '@emotion/styled'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { theme as localTheme } from '~/utils/styles'
-import Text from '~/components/Utilities/Text'
-
-export const DrawerItem = styled(Text)`
-  /* keeping it for later when I will add the text for the drawer menu as an example */
-`
-
-export const DrawerButtons = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 24px;
-  position: absolute;
-  left: 56%;
-  top: 5%;
-
-  @media (min-width: ${localTheme.breakpoints.md}) {
-    left: 0;
-    top: 5%;
-    display: flex;
-    justify-content: inherit;
-    width: 100%;
-    justify-content: flex-end;
-    padding-right: 103px;
-  }
-`
 
 export const IconContainer = styled.div`
-  cursor: pointer;
+  /* used for the onClickFunction */
+`
+export const DrawerSocialMedia = styled.div`
   position: absolute;
-  left: 84.06%;
-  right: 9.69%;
-  top: 5.28%;
-  bottom: 91.2%;
+  bottom: 41px;
 
   @media (min-width: ${localTheme.breakpoints.md}) {
-    left: 90%;
+    max-width: 400px;
+  }
+
+  .Social-Media-Container {
+    margin-bottom: 0;
+
+    .SocialMedia__Logo {
+      width: 147px;
+
+      @media (min-width: ${localTheme.breakpoints.s}) {
+        width: 127px;
+      }
+
+      @media (min-width: ${localTheme.breakpoints.md}) {
+        width: 219px;
+      }
+    }
+
+    .Social__Icon-Container {
+      justify-content: flex-start;
+    }
+  }
+
+  .Social__Logo-Container {
+    margin-left: 0;
+    margin-right: 16px;
+
+    @media (min-width: ${localTheme.breakpoints.md}) {
+      margin-right: 27px;
+    }
   }
 `
 
 export const DrawerHeaderContent = styled.div`
   padding-left: 34px;
-  margin-top: 14%;
+  margin-top: -13px;
+
+  .Drawer__Menu-Title {
+    margin-bottom: 14px;
+  }
 `
-export const DrawerHeader = styled.div``
+export const DrawerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 31px;
+  padding-top: 28px;
+
+  @media (min-width: ${localTheme.breakpoints.md}) {
+    padding-right: 45;
+    padding-top: 47;
+  }
+`
+
+export const DrawerMenuTextContainer = styled.div`
+  margin-bottom: 116px;
+`
+
+export const DrawerMenuText = styled.div`
+  margin-bottom: 5px;
+  span {
+    display: none;
+  }
+  @media (min-width: ${localTheme.breakpoints.md}) {
+    margin-bottom: 0;
+
+    span {
+      padding-left: 15px;
+      position: relative;
+      bottom: 6px;
+      display: inline;
+    }
+  }
+
+  .Header__Menu-button {
+    text-decoration: none;
+    color: ${localTheme.colors.black};
+    font-family: ${localTheme.fontFamily.secondary};
+  }
+
+  .Header__Menu-button.current {
+    @media (min-width: ${localTheme.breakpoints.md}) {
+      text-decoration: underline;
+    }
+  }
+`
 
 export let theme = createMuiTheme({})
 theme = {

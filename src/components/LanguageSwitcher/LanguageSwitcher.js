@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import LocaleContext from '../context/LocaleProvider'
+import LocaleContext from '../../context/LocaleProvider'
 import PropTypes from 'prop-types'
 import { LanguageSwitcherContainer } from './style'
 
@@ -50,5 +50,6 @@ const LocaleComponent = ({ location }) => {
 LocaleComponent.propTypes = {
   location: PropTypes.object,
   customStyle: PropTypes.any,
+  className: PropTypes.string,
 }
 export default LocaleComponent
