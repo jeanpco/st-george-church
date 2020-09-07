@@ -20,9 +20,7 @@ const SliderSectionMobile = ({ children, imgLength }) => {
 
 SliderSectionMobile.propTypes = {
   children: PropTypes.array.isRequired,
-  state: PropTypes.any,
-  props: PropTypes.any,
-  imgLength: PropTypes.any,
+  imgLength: PropTypes.number,
 }
 
 export default SliderSectionMobile

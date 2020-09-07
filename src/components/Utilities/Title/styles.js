@@ -22,7 +22,11 @@ export const TitleStyled = styled.p`
     font-style: normal;
     line-height: 1.3;
 
-    @media (min-width: ${theme.breakpoints.md}) {
+    /* @media (min-width: ${theme.breakpoints.md}) {
+      font-size: ${theme.fonts.heading2};
+    } */
+
+    @media (min-width: ${theme.breakpoints.lg}) {
       font-size: ${theme.fonts.heading2};
     }
   }

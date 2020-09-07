@@ -49,6 +49,6 @@ const SliderSection = ({ children, imgLength }) => {
 
 SliderSection.propTypes = {
   children: PropTypes.array.isRequired,
-  imgLength: PropTypes.any,
+  imgLength: PropTypes.number,
 }
 export default SliderSection

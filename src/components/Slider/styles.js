@@ -3,8 +3,8 @@ import { theme } from '../../utils/styles'
 
 export const SliderStyling = styled.div`
   @media (min-width: ${theme.breakpoints.md}) {
-    margin-left: 180px;
-    margin-top: 100px;
+    width: 714px;
+    /* margin-left: 140px; */
   }
 
   .slick-arrow,
@@ -13,6 +13,7 @@ export const SliderStyling = styled.div`
     display: none !important;
     @media (min-width: ${theme.breakpoints.md}) {
       display: block !important;
+      display: none;
     }
   }
 

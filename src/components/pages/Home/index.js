@@ -10,6 +10,7 @@ import {
   HomeIntroContentContainer,
   HomeIntroTitle,
   HomeIntroText,
+  DeskToIntroContainer,
 } from './style'
 import LocalizedLink from '../../LocalizedLink'
 
@@ -32,19 +33,23 @@ const IndexLayout = ({ data }) => {
   const homeIntroLink = homePage?.intro_link ? homePage.intro_link : ''
 
   const images = []
-  homePage.slider_images.map((info) => {
-    Object.values(info).map((img) => {
-      images.push(img.url)
-    })
-  })
+  homePage?.slider_images
+    ? homePage.slider_images.map((info) => {
+        Object.values(info).map((img) => {
+          images.push(img.url)
+        })
+      })
+    : ''
 
   return (
     <Fragment>
       <Tablet>
         <SliderSection imgLength={images.length}>
-          {images.map((img, index) => {
-            return <img src={img} alt="" key={index} />
-          })}
+          {images?.images.length > 0
+            ? images.map((img, index) => {
+                return <img src={img} alt="" key={index} />
+              })
+            : ''}
         </SliderSection>
         <HomeIntroContainer>
           <img src={homeIntoGraphic} alt="" />
@@ -70,7 +75,7 @@ const IndexLayout = ({ data }) => {
       </Tablet>
 
       <Desktop>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <DeskToIntroContainer>
           <HomeIntroContainer>
             <img src={homeIntoGraphic} alt="" />
 
@@ -92,12 +97,16 @@ const IndexLayout = ({ data }) => {
               </LocalizedLink>
             </Text>
           </HomeIntroContainer>
-          <SliderSection imgLength={images.length}>
-            {images.map((img, index) => {
-              return <img src={img} alt="" key={index} />
-            })}
-          </SliderSection>
-        </div>
+          <div>
+            <SliderSection imgLength={images.length}>
+              {images?.images.length > 0
+                ? images.map((img, index) => {
+                    return <img src={img} alt="" key={index} />
+                  })
+                : ''}
+            </SliderSection>
+          </div>
+        </DeskToIntroContainer>
       </Desktop>
     </Fragment>
   )

@@ -60,7 +60,7 @@ SliderContent.propTypes = {
   slidesToScroll: PropTypes.number.isRequired,
   slidesToShow: PropTypes.number.isRequired,
   customClassName: PropTypes.any,
-  imgLength: PropTypes.any,
+  imgLength: PropTypes.number,
 }
 
 export default SliderContent
