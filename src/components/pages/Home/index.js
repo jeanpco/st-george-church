@@ -41,11 +41,13 @@ const IndexLayout = ({ data }) => {
       })
     : ''
 
+  console.log(images)
+
   return (
     <Fragment>
       <Tablet>
         <SliderSection imgLength={images.length}>
-          {images?.images.length > 0
+          {images?.length > 0
             ? images.map((img, index) => {
                 return <img src={img} alt="" key={index} />
               })
@@ -99,7 +101,7 @@ const IndexLayout = ({ data }) => {
           </HomeIntroContainer>
           <div>
             <SliderSection imgLength={images.length}>
-              {images?.images.length > 0
+              {images?.length > 0
                 ? images.map((img, index) => {
                     return <img src={img} alt="" key={index} />
                   })
