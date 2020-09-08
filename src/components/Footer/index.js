@@ -1,6 +1,5 @@
 import React from 'react'
 import { MobileDown, MobileUp } from '~/components/Utilities/Media'
-// import Img from "gatsby-image"
 
 import {
   FooterContainer,

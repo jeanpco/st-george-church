@@ -5,6 +5,7 @@ import LocaleContext from '../../../context/LocaleProvider'
 import Text from '../../Utilities/Text'
 import Title from '../../Utilities/Title'
 import Quote from '../../Quote'
+import AnchorList from '../../AnchorList'
 import { Tablet, Desktop } from '../../Utilities/Media'
 import {
   HomeIntroContainer,
@@ -14,7 +15,6 @@ import {
   DesktopIntroContainer,
 } from './style'
 import LocalizedLink from '../../LocalizedLink'
-
 const IndexLayout = ({ data }) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
@@ -40,6 +40,23 @@ const IndexLayout = ({ data }) => {
   const quoteGraphic = data?.homePagequote?.nodes[0]?.metadata?.quote_graphic
     ?.local?.publicURL
     ? data.homePagequote.nodes[0].metadata.quote_graphic.local.publicURL
+    : ''
+
+  console.log(data.anchor)
+  // const anchorText = data?.anchor?.nodes[0]?.metadata?.anchor_text
+  //   ? data.anchor.nodes[0].metadata.anchor_text
+  //   : ''
+
+  const anchorTitle = data?.anchor?.nodes[0]?.metadata?.anchor_title
+    ? data.anchor.nodes[0].metadata.anchor_title
+    : ''
+
+  // const anchorImages = data?.anchor?.nodes[0]?.metadata?.anchor_image
+  //   ? data.anchor.nodes[0].metadata.anchor_image
+  //   : ''
+
+  const anchorLinks = data?.anchor?.nodes[0]?.metadata?.anchor_list
+    ? data.anchor.nodes[0].metadata.anchor_list
     : ''
 
   const images = []
@@ -75,7 +92,7 @@ const IndexLayout = ({ data }) => {
 
           <HomeIntroContentContainer>
             <HomeIntroTitle>
-              <Title as="h3" type="heading2">
+              <Title as="h1" type="heading1">
                 {homeIntroTitle}
               </Title>
             </HomeIntroTitle>
@@ -97,6 +114,14 @@ const IndexLayout = ({ data }) => {
             graphic: quoteGraphic,
           }}
         />
+        <AnchorList
+          anchorQuery={{
+            title: anchorTitle,
+            // text: anchorText,
+            // images: anchorImages,
+            links: anchorLinks,
+          }}
+        />
       </Tablet>
 
       <Desktop>
@@ -110,7 +135,7 @@ const IndexLayout = ({ data }) => {
 
             <HomeIntroContentContainer>
               <HomeIntroTitle>
-                <Title as="h3" type="heading2">
+                <Title as="h1" type="heading1">
                   {homeIntroTitle}
                 </Title>
               </HomeIntroTitle>
@@ -140,6 +165,14 @@ const IndexLayout = ({ data }) => {
           query={{
             text: quoteText,
             graphic: quoteGraphic,
+          }}
+        />
+        <AnchorList
+          anchorQuery={{
+            title: anchorTitle,
+            // text: anchorText,
+            // images: anchorImages,
+            links: anchorLinks,
           }}
         />
       </Desktop>

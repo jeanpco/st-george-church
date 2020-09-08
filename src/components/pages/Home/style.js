@@ -33,7 +33,7 @@ export const HomeIntroTitle = styled.div`
   justify-content: center;
   padding-bottom: 20px;
 
-  h3 {
+  h1 {
     width: 217px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {

@@ -54,6 +54,32 @@ export const query = graphql`
         }
       }
     }
+    anchor: allCosmicjsAnchors {
+      nodes {
+        metadata {
+          anchor_title
+          youth_ministries {
+            anchor_image {
+              url
+            }
+            anchor_text
+            anchor_title
+          }
+          anchor_list {
+            link_1
+            link_2
+            link_3
+            link_4
+            link_5
+            link_6
+            link_7
+            link_8
+            link_9
+            link_10
+          }
+        }
+      }
+    }
   }
 `
 

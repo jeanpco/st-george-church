@@ -6,27 +6,23 @@ export const TitleStyled = styled.p`
     font-size: ${theme.fonts.heading5};
     font-weight: normal;
     font-style: normal;
-    line-height: 1.3;
+    line-height: normal;
     font-family: ${theme.fontFamily.secondary};
 
     @media (min-width: ${theme.breakpoints.md}) {
-      font-size: ${theme.fonts.heading1};
-      line-height: 1.3;
+      font-size: ${theme.fonts.heading2};
     }
   }
 
   &.heading2 {
     font-family: ${theme.fontFamily.secondary};
-    font-size: ${theme.fonts.heading5};
+    font-size: ${theme.fonts.heading6};
+    letter-spacing: 2px;
     font-weight: normal;
     font-style: normal;
     line-height: normal;
 
-    /* @media (min-width: ${theme.breakpoints.md}) {
-      font-size: ${theme.fonts.heading2};
-    } */
-
-    @media (min-width: ${theme.breakpoints.lg}) {
+    @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading2};
     }
   }
@@ -36,11 +32,10 @@ export const TitleStyled = styled.p`
     font-size: ${theme.fonts.heading5};
     font-weight: normal;
     font-style: normal;
-    line-height: 1.3;
+    line-height: normal;
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading3};
-      line-height: 1.3;
     }
   }
 
@@ -49,18 +44,17 @@ export const TitleStyled = styled.p`
     font-size: ${theme.fonts.heading6};
     font-weight: normal;
     font-style: normal;
-    line-height: 1.3;
+    line-height: normal;
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading4};
-      line-height: 1.3;
     }
   }
 
   &.heading5 {
     font-family: ${theme.fontFamily.primary};
     font-size: ${theme.fonts.heading7};
-    line-height: 1.3;
+    line-height: normal;
     font-weight: normal;
     font-style: normal;
   }
@@ -68,13 +62,10 @@ export const TitleStyled = styled.p`
   &.heading6 {
     font-family: ${theme.fontFamily.secondary};
     font-size: ${theme.fonts.overline};
-    line-height: 1.3;
-    font-style: normal;
-    font-weight: normal;
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading6};
-      line-height: 1.3;
+      line-height: normal;
     }
   }
 
@@ -93,7 +84,7 @@ export const TitleStyled = styled.p`
   &.menuHeading {
     font-family: ${theme.fontFamily.secondary};
     font-size: ${theme.fonts.heading6};
-    line-height: 1.3;
+    line-height: normal;
     font-weight: normal;
     font-style: normal;
     color: ${theme.colors.secondary};
@@ -101,7 +92,6 @@ export const TitleStyled = styled.p`
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading3};
-      line-height: 1, 3;
     }
   }
 `

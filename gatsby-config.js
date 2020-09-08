@@ -41,6 +41,7 @@ module.exports = {
           'abouts',
           'homes',
           'quotes',
+          'anchors',
         ],
         apiAccess: {
           read_key: process.env.COSMIC_READ_KEY,
