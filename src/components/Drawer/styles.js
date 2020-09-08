@@ -66,20 +66,22 @@ export const DrawerMenuTextContainer = styled.div`
   margin-bottom: 116px;
 `
 
+export const IconArrowContainer = styled.div`
+  display: none;
+
+  @media (min-width: ${localTheme.breakpoints.md}) {
+    padding-left: 15px;
+    position: relative;
+    bottom: 6px;
+    display: inline;
+  }
+`
+
 export const DrawerMenuText = styled.div`
   margin-bottom: 5px;
-  span {
-    display: none;
-  }
+
   @media (min-width: ${localTheme.breakpoints.md}) {
     margin-bottom: 0;
-
-    span {
-      padding-left: 15px;
-      position: relative;
-      bottom: 6px;
-      display: inline;
-    }
   }
 
   .Header__Menu-button {

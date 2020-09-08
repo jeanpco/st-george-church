@@ -11,7 +11,7 @@ import {
   HomeIntroContentContainer,
   HomeIntroTitle,
   HomeIntroText,
-  DeskToIntroContainer,
+  DesktopIntroContainer,
 } from './style'
 import LocalizedLink from '../../LocalizedLink'
 
@@ -33,6 +33,15 @@ const IndexLayout = ({ data }) => {
   const homeIntroText = homePage?.intro_text ? homePage.intro_text : ''
   const homeIntroLink = homePage?.intro_link ? homePage.intro_link : ''
 
+  const quoteText = data?.homePagequote?.nodes[0]?.metadata?.quote
+    ? data.homePagequote.nodes[0].metadata.quote
+    : ''
+
+  const quoteGraphic = data?.homePagequote?.nodes[0]?.metadata?.quote_graphic
+    ?.local?.publicURL
+    ? data.homePagequote.nodes[0].metadata.quote_graphic.local.publicURL
+    : ''
+
   const images = []
   homePage?.slider_images
     ? homePage.slider_images.map((info) => {
@@ -42,13 +51,22 @@ const IndexLayout = ({ data }) => {
       })
     : ''
 
+  const imagesMob = []
+  homePage?.slider_image_mob
+    ? homePage.slider_image_mob.map((info) => {
+        Object.values(info).map((img) => {
+          imagesMob.push(img.url)
+        })
+      })
+    : ''
+
   return (
     <Fragment>
       <Tablet>
         <SliderSection imgLength={images.length}>
-          {images?.length > 0
-            ? images.map((img, index) => {
-                return <img src={img} alt="slider-images" key={index} />
+          {imagesMob?.length > 0
+            ? imagesMob.map((img, index) => {
+                return <img key={index} src={img} alt="slider-images" />
               })
             : ''}
         </SliderSection>
@@ -73,13 +91,22 @@ const IndexLayout = ({ data }) => {
             </LocalizedLink>
           </Text>
         </HomeIntroContainer>
-        <Quote />
+        <Quote
+          query={{
+            text: quoteText,
+            graphic: quoteGraphic,
+          }}
+        />
       </Tablet>
 
       <Desktop>
-        <DeskToIntroContainer>
+        <DesktopIntroContainer>
           <HomeIntroContainer>
-            <img src={homeIntroGraphic} alt="home intro graphic" />
+            <img
+              src={homeIntroGraphic}
+              alt="home intro graphic"
+              className="Home__Intro-Graphic"
+            />
 
             <HomeIntroContentContainer>
               <HomeIntroTitle>
@@ -108,8 +135,13 @@ const IndexLayout = ({ data }) => {
                 : ''}
             </SliderSection>
           </div>
-        </DeskToIntroContainer>
-        <Quote />
+        </DesktopIntroContainer>
+        <Quote
+          query={{
+            text: quoteText,
+            graphic: quoteGraphic,
+          }}
+        />
       </Desktop>
     </Fragment>
   )

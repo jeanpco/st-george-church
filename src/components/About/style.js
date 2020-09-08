@@ -20,12 +20,4 @@ export const AboutText = styled.div`
     margin-top: 11px;
     display: block;
   }
-
-  @media (min-width: ${theme.breakpoints.md}) {
-    width: 452px;
-    height: 152px;
-
-    .About__Drawer-text {
-    }
-  }
 `

@@ -10,6 +10,7 @@ export const SliderSectionContainer = styled.div`
   .SliderSection__Slider {
     .slick-prev {
       display: none !important;
+      /* keeping the arrows just in case the figma changes */
       /* position: relative; */
       /* top: 546px;
       bottom: unset;
@@ -24,27 +25,11 @@ export const SliderSectionContainer = styled.div`
     }
 
     .slick-slider {
-      /* position: unset; */
+      position: unset;
     }
   }
 
-  .slick-list {
-    img {
-      height: 624px;
-    }
-  }
-`
-
-export const SliderSectionMobileContainer = styled.div`
-  .slick-track {
-    margin-left: 0%;
-  }
-
-  .slick-list {
-    padding: 0px !important;
-  }
-
-  .SliderSection__CTAButton {
-    margin-top: 10px;
+  .slick-slide {
+    min-width: 1px;
   }
 `

@@ -17,6 +17,17 @@ export const query = graphql`
               publicURL
             }
           }
+          slider_image_mob {
+            image_1 {
+              url
+            }
+            image_2 {
+              url
+            }
+            image_3 {
+              url
+            }
+          }
           slider_images {
             image_1 {
               url
@@ -26,6 +37,18 @@ export const query = graphql`
             }
             image_3 {
               url
+            }
+          }
+        }
+      }
+    }
+    homePagequote: allCosmicjsQuotes {
+      nodes {
+        metadata {
+          quote
+          quote_graphic {
+            local {
+              publicURL
             }
           }
         }

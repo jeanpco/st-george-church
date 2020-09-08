@@ -17,7 +17,7 @@ export const FooterContainer = styled.div`
     padding: 40px 20px 20px;
     margin: 0 auto;
     @media (min-width: ${theme.breakpoints.s}) {
-      padding: 42px 42px;
+      padding: 42px 42px 42px;
     }
 
     @media (min-width: ${theme.breakpoints.md}) {

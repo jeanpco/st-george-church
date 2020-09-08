@@ -9,6 +9,7 @@ import {
   DrawerMenuText,
   DrawerMenuTextContainer,
   DrawerSocialMedia,
+  IconArrowContainer,
 } from './styles'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -18,7 +19,13 @@ import About from '../About'
 import Icon from '~/components/Icon'
 import SocialMedia from '../SocialMedia'
 
-const Drawer = ({ toggleDrawer, setToggleDrawer, title, menuLinks }) => {
+const Drawer = ({
+  toggleDrawer,
+  setToggleDrawer,
+  title,
+  menuLinks,
+  aboutData,
+}) => {
   return (
     <ThemeProvider theme={theme}>
       <SwipeableDrawer
@@ -36,7 +43,7 @@ const Drawer = ({ toggleDrawer, setToggleDrawer, title, menuLinks }) => {
 
         <DrawerHeaderContent>
           <Title as="h1" type="menuHeading" className="Drawer__Menu-Title">
-            {title}
+            {title ? title : ''}
           </Title>
           <DrawerMenuTextContainer>
             {menuLinks?.length > 0
@@ -49,22 +56,22 @@ const Drawer = ({ toggleDrawer, setToggleDrawer, title, menuLinks }) => {
                             to="/"
                             className="Header__Menu-button current"
                           >
-                            {menuText}
+                            {menuText ? menuText : ''}
                             {index === 0 ? (
-                              <span>
+                              <IconArrowContainer>
                                 <Icon type="arrow-forward" />
-                              </span>
+                              </IconArrowContainer>
                             ) : (
                               ''
                             )}
                           </LocalizedLink>
                         ) : (
                           <LocalizedLink to="/" className="Header__Menu-button">
-                            {menuText}
+                            {menuText ? menuText : ''}
                             {index === 0 ? (
-                              <span>
+                              <IconArrowContainer>
                                 <Icon type="arrow-forward" />
-                              </span>
+                              </IconArrowContainer>
                             ) : (
                               ''
                             )}
@@ -76,7 +83,12 @@ const Drawer = ({ toggleDrawer, setToggleDrawer, title, menuLinks }) => {
                 })
               : ''}
           </DrawerMenuTextContainer>
-          <About />
+          <About
+            query={{
+              title: aboutData.about_title,
+              text: aboutData.about_text,
+            }}
+          />
           <DrawerSocialMedia>
             <SocialMedia customClassName="Social-Media-Container" />
           </DrawerSocialMedia>
@@ -92,6 +104,7 @@ Drawer.propTypes = {
   menuLinks: PropTypes.array,
   logoUrl: PropTypes.string,
   title: PropTypes.string,
+  aboutData: PropTypes.object,
 }
 
 export default Drawer

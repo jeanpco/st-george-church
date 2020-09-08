@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import PropTypes from 'prop-types'
+
 import {
   HomeQuoteContainer,
   HomeQuoteContentContainer,
@@ -10,31 +11,7 @@ import { Tablet, Desktop } from '../Utilities/Media'
 import Text from '../Utilities/Text'
 import Icon from '~/components/Icon'
 
-const Quote = () => {
-  const data = useStaticQuery(graphql`
-    {
-      homePagequote: allCosmicjsQuotes {
-        nodes {
-          metadata {
-            quote
-            quote_graphic {
-              local {
-                publicURL
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
-
-  const quoteGraphic = data?.homePagequote?.nodes[0]?.metadata?.quote_graphic
-    ?.local?.publicURL
-    ? data.homePagequote.nodes[0].metadata.quote_graphic.local.publicURL
-    : ''
-  const quote = data?.homePagequote?.nodes[0]?.metadata?.quote
-    ? data.homePagequote.nodes[0].metadata.quote
-    : ''
+const Quote = ({ query }) => {
   return (
     <Fragment>
       <Tablet>
@@ -42,10 +19,10 @@ const Quote = () => {
           <HomeQuoteContentContainer>
             <Icon type="horizontal-line" />
             <HomeQuoteContent>
-              <img src={quoteGraphic} alt="" />
+              <img src={query.graphic ? query.graphic : ''} alt="" />
 
               <Text as="p" type="bigText400">
-                {quote}
+                {query.text ? query.text : ''}
               </Text>
             </HomeQuoteContent>
             <Icon type="horizontal-line" />
@@ -59,10 +36,10 @@ const Quote = () => {
             <Icon type="horizontal-line-des" />
             <HomeQuoteContent>
               <Text as="p" type="bigText400">
-                {quote}
+                {query.text ? query.text : ''}
               </Text>
               <img
-                src={quoteGraphic}
+                src={query.graphic ? query.graphic : ''}
                 alt="quote graphic"
                 className="Home__Quote-Graphic"
               />
@@ -75,4 +52,7 @@ const Quote = () => {
   )
 }
 
+Quote.propTypes = {
+  query: PropTypes.object,
+}
 export default Quote

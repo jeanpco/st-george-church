@@ -50,6 +50,15 @@ const Header = ({ location }) => {
           }
         }
       }
+      about: allCosmicjsAbouts {
+        nodes {
+          metadata {
+            about_text
+            about_title
+          }
+          locale
+        }
+      }
     }
   `)
 
@@ -58,9 +67,19 @@ const Header = ({ location }) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
 
-  const headerData = data.header.nodes
-    .filter((node) => node.locale.toLowerCase() === i18n.locale)
-    .map((r) => r.metadata)
+  const headerData = data?.header?.nodes
+    ? data.header.nodes
+        .filter((node) => node.locale.toLowerCase() === i18n.locale)
+        .map((r) => r.metadata)
+    : ''
+
+  const aboutData = data?.about?.nodes
+    ? data.about.nodes
+        .filter((node) => node.locale.toLowerCase() === i18n.locale)
+        .map((r) => r.metadata)
+    : ''
+
+  const aboutLocal = aboutData[0]
 
   const headerLocal = headerData[0]
 
@@ -126,7 +145,7 @@ const Header = ({ location }) => {
                 </div>
               </HeaderTitle>
               <img
-                src={graphic}
+                src={graphic ? graphic : ''}
                 alt="header graphic"
                 className="Header__Graphic"
               />
@@ -134,8 +153,9 @@ const Header = ({ location }) => {
           </MenuContainer>
 
           <Drawer
-            menuLinks={menuLinks}
-            title={menuTitle}
+            aboutData={aboutLocal ? aboutLocal : ''}
+            menuLinks={menuLinks ? menuLinks : ''}
+            title={menuTitle ? menuTitle : ''}
             toggleDrawer={toggleDrawer}
             setToggleDrawer={setToggleDrawer}
           />
@@ -162,8 +182,9 @@ const Header = ({ location }) => {
             />
           </MenuContainer>
           <Drawer
-            menuLinks={menuLinks}
-            title={menuTitle}
+            aboutData={aboutLocal ? aboutLocal : ''}
+            menuLinks={menuLinks ? menuLinks : ''}
+            title={menuTitle ? menuTitle : ''}
             toggleDrawer={toggleDrawer}
             setToggleDrawer={setToggleDrawer}
           ></Drawer>

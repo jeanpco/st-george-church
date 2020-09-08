@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
-import { theme } from '../../utils/styles'
 
 export const SliderStyling = styled.div`
-  @media (min-width: ${theme.breakpoints.md}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     width: 714px;
   }
 
@@ -10,14 +9,14 @@ export const SliderStyling = styled.div`
   .slick-prev,
   .slick-next {
     display: none !important;
-    @media (min-width: ${theme.breakpoints.md}) {
-      display: block !important;
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      /* display: block !important; */
       display: none;
     }
   }
 
   .slick-prev {
-    display: none;
+    display: none !important;
     /* display: block; */
     position: absolute;
     margin: 0px;
@@ -33,17 +32,17 @@ export const SliderStyling = styled.div`
     z-index: 1;
 
     &:hover {
-      background-color: ${theme.colors.bg};
+      background-color: ${(props) => props.theme.colors.bg};
       transition: background-color 150ms linear;
 
       &:before {
-        color: ${theme.colors.primaryblue};
+        color: ${(props) => props.theme.colors.primaryblue};
       }
     }
   }
 
   .slick-next {
-    display: none;
+    display: none !important;
     /* display: block; */
     position: absolute;
     margin: 0px;
@@ -58,11 +57,11 @@ export const SliderStyling = styled.div`
     border: 1px solid white;
 
     &:hover {
-      background-color: ${theme.colors.bg};
+      background-color: ${(props) => props.theme.colors.bg};
       transition: background-color 150ms linear;
 
       &:before {
-        color: ${theme.colors.primaryblue};
+        color: ${(props) => props.theme.colors.primaryblue};
       }
     }
   }
@@ -79,7 +78,7 @@ export const SliderStyling = styled.div`
   .slick-slide {
     padding-top: 35px;
 
-    @media (min-width: ${theme.breakpoints.md}) {
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       padding-top: 0px;
     }
   }
@@ -90,7 +89,7 @@ export const SliderStyling = styled.div`
     margin: 0 auto;
     width: 100%;
 
-    @media (min-width: ${theme.breakpoints.md}) {
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       align-items: center;
       justify-content: center;
       text-align: center;
@@ -103,10 +102,10 @@ export const LinearProgressBarContainer = styled.div`
   margin-top: 5px;
 
   .MuiLinearProgress-colorPrimary {
-    background-color: ${theme.colors.red10};
+    background-color: ${(props) => props.theme.colors.red10};
   }
 
   .MuiLinearProgress-barColorPrimary {
-    background-color: ${theme.colors.secondary};
+    background-color: ${(props) => props.theme.colors.secondary};
   }
 `

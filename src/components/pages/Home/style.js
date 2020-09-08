@@ -1,10 +1,9 @@
 import styled from '@emotion/styled'
 
-export const DeskToIntroContainer = styled.div`
+export const DesktopIntroContainer = styled.div`
   display: flex;
   align-items: center;
-
-  max-width: 1444px;
+  justify-content: center;
 `
 
 export const HomeIntroContainer = styled.div`
@@ -14,6 +13,10 @@ export const HomeIntroContainer = styled.div`
     width: 50%;
     padding-right: 10px;
     padding-left: 10px;
+
+    .Home__Intro-Graphic {
+      width: 262px;
+    }
   }
 
   .Home__Intro-link {
@@ -22,13 +25,13 @@ export const HomeIntroContainer = styled.div`
   }
 `
 export const HomeIntroContentContainer = styled.div`
-  margin-top: 15px;
+  margin-top: 35px;
 `
 
 export const HomeIntroTitle = styled.div`
   display: flex;
   justify-content: center;
-  padding-bottom: 24px;
+  padding-bottom: 20px;
 
   h3 {
     width: 217px;
@@ -57,6 +60,7 @@ export const HomeIntroText = styled.div`
 
     @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
       width: 459px;
+      padding-bottom: 49px;
     }
   }
 `

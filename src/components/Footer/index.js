@@ -1,5 +1,6 @@
 import React from 'react'
 import { MobileDown, MobileUp } from '~/components/Utilities/Media'
+// import Img from "gatsby-image"
 
 import {
   FooterContainer,
@@ -43,11 +44,7 @@ const Footer = () => {
     }
   `)
 
-  // const logo = data?.footer?.nodes[0]?.metadata?.logo_footer?.local?.publicURL
-  //   ? data.footer.nodes[0].metadata.logo_footer.local.publicURL
-  //   : ''
-
-  const footerGraphic = data?.footer?.nodes[0]?.metadata.footer_graphic?.local
+  const footerGraphic = data?.footer?.nodes[0]?.metadata?.footer_graphic?.local
     ?.publicURL
     ? data.footer.nodes[0].metadata.footer_graphic.local.publicURL
     : ''
