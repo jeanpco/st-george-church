@@ -6,39 +6,72 @@ import PropTypes from 'prop-types'
 import {
   theme,
   useStylesMainModal,
-  DialogTitle,
   DialogContentContainer,
+  ModalCloseIncon,
+  ModalContent,
+  ModalTitleContainer,
+  ModalTitleContent,
+  ModalTextContent,
+  ModalLinksFooter,
+  ModalTitleFooter,
 } from './styles'
 import Title from '../Utilities/Title'
+import Text from '../Utilities/Text'
+import { Link } from 'gatsby'
 
 const Modal = ({ open, setOpen, query }) => {
   const classes = useStylesMainModal()
+
+  console.log(query.currentLink)
+
+  console.log(query.nextLink)
 
   return (
     <ThemeProvider theme={theme}>
       <Dialog fullScreen onClose={() => setOpen(false)} open={open}>
         <div className={classes.root}>
-          <DialogContentContainer>
-            <DialogTitle>
-              <Title>{query.link}</Title>
-              <div onClick={() => setOpen(false)}>
-                <Icon type="clear" />
-              </div>
-            </DialogTitle>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora
-              alias ullam iure!
-            </p>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora
-              alias ullam iure!
-            </p>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora
-              alias ullam iure!
-            </p>
-          </DialogContentContainer>
+          <ModalTitleContainer>
+            <ModalTitleContent>
+              <Title as="h2" type="heading4">
+                {query.currentLink}
+              </Title>
+            </ModalTitleContent>
+            <ModalCloseIncon onClick={() => setOpen(false)}>
+              <Icon type="clear" />
+            </ModalCloseIncon>
+          </ModalTitleContainer>
+          <ModalContent>
+            <div>
+              {query.ministries.map((info, index) => {
+                return (
+                  <DialogContentContainer key={index}>
+                    <img
+                      src={info.anchor_image.url}
+                      alt=""
+                      className="Modal_Anchor-Img"
+                    />
+                    <ModalTextContent>
+                      <Text type="body">{info.anchor_text}</Text>
+                    </ModalTextContent>
+                  </DialogContentContainer>
+                )
+              })}
+            </div>
+          </ModalContent>
         </div>
+        <ModalLinksFooter>
+          <Link className="Modal__Footer-Links" to="/">
+            Prev
+          </Link>
+          <ModalTitleFooter>
+            <Title as="h4" type="heading5">
+              {query.nextLink}
+            </Title>
+          </ModalTitleFooter>
+          <Link className="Modal__Footer-Links" to="/">
+            Next
+          </Link>
+        </ModalLinksFooter>
       </Dialog>
     </ThemeProvider>
   )

@@ -9,7 +9,7 @@ export const TextStyled = styled.p`
     line-height: normal;
 
     @media (max-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: ${(props) => props.theme.fonts.bigText};
+      font-size: ${(props) => props.theme.fonts.smallText};
     }
   }
 

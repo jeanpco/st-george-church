@@ -15,10 +15,9 @@ import { Tablet, Desktop } from '../Utilities/Media'
 
 const AnchorList = ({ anchorQuery }) => {
   const [open, setOpen] = useState(false)
+  const [index, setIndex] = useState(0)
 
   const links = []
-
-  const [index, setIndex] = useState(0)
 
   anchorQuery.links.map((info) => {
     Object.values(info).map((values) => {
@@ -26,12 +25,18 @@ const AnchorList = ({ anchorQuery }) => {
     })
   })
 
-  const currentLink = links[index]
-  console.log(currentLink)
+  console.log(anchorQuery.ministries)
+
+  const ministries = []
+
+  anchorQuery.ministries.map((info) => {
+    if (info.anchor_title === links[index]) {
+      ministries.push(info)
+    }
+  })
 
   const handelClick = (e) => {
     setOpen(true)
-
     setIndex(links.indexOf(e.target.innerText))
   }
 
@@ -56,7 +61,6 @@ const AnchorList = ({ anchorQuery }) => {
             <AnchorTitle as="h2" type="heading2">
               <AnchorIconTitle>
                 {anchorQuery.title}
-
                 <Icon type="cross" />
               </AnchorIconTitle>
             </AnchorTitle>
@@ -65,9 +69,9 @@ const AnchorList = ({ anchorQuery }) => {
               open={open}
               setOpen={setOpen}
               query={{
-                text: anchorQuery.text,
-                images: anchorQuery.images,
-                link: currentLink,
+                ministries: anchorQuery.ministries,
+                currentLink: links[index],
+                nextLink: links[index + 1],
               }}
             />
           </Tablet>
