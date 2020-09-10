@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
+import { WidthLimiterContainer } from '../Layout/styles'
 
 import {
   HomeQuoteContainer,
@@ -13,7 +14,7 @@ import Icon from '~/components/Icon'
 
 const Quote = ({ query }) => {
   return (
-    <Fragment>
+    <WidthLimiterContainer>
       <Tablet>
         <HomeQuoteContainer>
           <HomeQuoteContentContainer>
@@ -48,7 +49,7 @@ const Quote = ({ query }) => {
           </HomeQuoteContentContainer>
         </HomeQuoteContainer>
       </Desktop>
-    </Fragment>
+    </WidthLimiterContainer>
   )
 }
 

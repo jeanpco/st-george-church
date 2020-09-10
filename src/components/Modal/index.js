@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Dialog } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core/styles'
 import Icon from '~/components/Icon'
@@ -14,17 +14,28 @@ import {
   ModalTextContent,
   ModalLinksFooter,
   ModalTitleFooter,
+  useStyles,
 } from './styles'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
-import { Link } from 'gatsby'
+import { LinearProgress } from '@material-ui/core'
 
 const Modal = ({ open, setOpen, query }) => {
   const classes = useStylesMainModal()
+  const classesLinear = useStyles()
 
-  console.log(query.currentLink)
+  const ref = React.createRef()
 
-  console.log(query.nextLink)
+  useEffect(() => {
+    console.log(ref)
+  })
+
+  const hangdleClick = () => {
+    ref.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -41,36 +52,44 @@ const Modal = ({ open, setOpen, query }) => {
             </ModalCloseIncon>
           </ModalTitleContainer>
           <ModalContent>
-            <div>
-              {query.ministries.map((info, index) => {
-                return (
-                  <DialogContentContainer key={index}>
-                    <img
-                      src={info.anchor_image.url}
-                      alt=""
-                      className="Modal_Anchor-Img"
-                    />
-                    <ModalTextContent>
-                      <Text type="body">{info.anchor_text}</Text>
-                    </ModalTextContent>
-                  </DialogContentContainer>
-                )
-              })}
+            <div style={{ display: 'flex' }}>
+              <div>
+                {query?.ministries
+                  ? query.ministries.map((info, index) => {
+                      return (
+                        <DialogContentContainer key={index} ref={ref}>
+                          <img
+                            src={info.anchor_image.url}
+                            alt=""
+                            className="Modal_Anchor-Img"
+                          />
+                          <ModalTextContent>
+                            <Text type="body">{info.anchor_text}</Text>
+                          </ModalTextContent>
+                        </DialogContentContainer>
+                      )
+                    })
+                  : ''}
+              </div>
+              <h2>Hello</h2>
+              <div className={classesLinear.root}>
+                <LinearProgress variant="determinate" value={10} />
+              </div>
             </div>
           </ModalContent>
         </div>
         <ModalLinksFooter>
-          <Link className="Modal__Footer-Links" to="/">
+          <div className="Modal__Footer-Links" onClick={hangdleClick}>
             Prev
-          </Link>
+          </div>
           <ModalTitleFooter>
             <Title as="h4" type="heading5">
               {query.nextLink}
             </Title>
           </ModalTitleFooter>
-          <Link className="Modal__Footer-Links" to="/">
+          <div className="Modal__Footer-Links" to="/" onClick={hangdleClick}>
             Next
-          </Link>
+          </div>
         </ModalLinksFooter>
       </Dialog>
     </ThemeProvider>

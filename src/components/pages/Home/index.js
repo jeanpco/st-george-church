@@ -42,22 +42,11 @@ const IndexLayout = ({ data }) => {
     ? data.homePagequote.nodes[0].metadata.quote_graphic.local.publicURL
     : ''
 
-  console.log(data.anchor)
-  // const anchorText = data?.anchor?.nodes[0]?.metadata?.anchor_text
-  //   ? data.anchor.nodes[0].metadata.anchor_text
-  //   : ''
-
   const anchorTitle = data?.anchor?.nodes[0]?.metadata?.anchor_title
     ? data.anchor.nodes[0].metadata.anchor_title
     : ''
 
-  // const anchorImages = data?.anchor?.nodes[0]?.metadata?.anchor_image
-  //   ? data.anchor.nodes[0].metadata.anchor_image
-  //   : ''
-
   const ministries = data.anchor.nodes[0].metadata.youth_ministries
-
-  console.log(ministries)
 
   const anchorLinks = data?.anchor?.nodes[0]?.metadata?.anchor_list
     ? data.anchor.nodes[0].metadata.anchor_list
@@ -173,9 +162,8 @@ const IndexLayout = ({ data }) => {
         <AnchorList
           anchorQuery={{
             title: anchorTitle,
-            // text: anchorText,
-            // images: anchorImages,
             links: anchorLinks,
+            ministries: ministries,
           }}
         />
       </Desktop>

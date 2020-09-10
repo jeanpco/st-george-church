@@ -32,6 +32,9 @@ import { BigMenu } from './assets/BigMenu'
 import { HorizontalLine } from './assets/HorizontalLine'
 import { HorizontalLineDes } from './assets/HorizontalLineDes'
 import { Cross } from './assets/Cross'
+import { CrossDes } from './assets/CrossDes'
+
+import { AddDes } from './assets/AddDes'
 
 const Icon = ({ type }) => {
   switch (type) {
@@ -99,6 +102,10 @@ const Icon = ({ type }) => {
       return <HorizontalLineDes />
     case 'cross':
       return <Cross />
+    case 'cross-des':
+      return <CrossDes />
+    case 'add-des':
+      return <AddDes />
     default:
       return ''
   }

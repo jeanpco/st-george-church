@@ -16,6 +16,13 @@ export const ModalContent = styled.div`
   border-left: 1px solid ${(props) => props.theme.colors.black};
 `
 
+export const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    transform: 'rotate(90deg)',
+  },
+})
+
 export let theme = createMuiTheme({})
 theme = {
   ...theme,

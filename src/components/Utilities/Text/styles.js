@@ -8,8 +8,8 @@ export const TextStyled = styled.p`
     font-style: normal;
     line-height: normal;
 
-    @media (max-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: ${(props) => props.theme.fonts.smallText};
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: ${(props) => props.theme.fonts.body};
     }
   }
 

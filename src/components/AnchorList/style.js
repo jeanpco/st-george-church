@@ -6,10 +6,6 @@ export const AncherContainer = styled.div`
 `
 export const AnchorTitle = styled(Title)`
   padding-bottom: 16px;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    text-decoration: underline;
-  }
 `
 export const AnchorContent = styled.div`
   border-top: 6px solid ${(props) => props.theme.colors.black};
@@ -18,7 +14,7 @@ export const AnchorContent = styled.div`
   padding-bottom: 30px;
 `
 
-export const AnchorLinks = styled.div`
+export const AnchorLinksMob = styled.div`
   display: flex;
   flex-direction: row;
   padding-top: 9px;
@@ -33,6 +29,27 @@ export const AnchorLinks = styled.div`
   }
 `
 
+export const AnchorLinks = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 9px;
+  padding-right: 82px;
+  align-items: center;
+
+  .anchor_links {
+    display: flex;
+    /* padding-bottom: 10px; */
+    color: ${(props) => props.theme.colors.black};
+    font-family: ${(props) => props.theme.fontFamily.primary};
+    font-size: ${(props) => props.theme.fonts.body};
+    text-decoration: none;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: ${(props) => props.theme.fonts.heading4};
+    }
+  }
+`
+
 export const AnchorIconLink = styled.div`
   padding-right: 21px;
 `
@@ -40,4 +57,27 @@ export const AnchorIconLink = styled.div`
 export const AnchorIconTitle = styled.div`
   display: flex;
   justify-content: space-between;
+`
+
+export const AnchorContainerDes = styled.div`
+  display: flex;
+  padding-top: 82px;
+`
+
+export const AnchorContentDes = styled.div`
+  width: 730px;
+  margin-bottom: 120px;
+  height: 588px;
+  padding-left: 43px;
+  border-left: 2px solid ${(props) => props.theme.colors.black};
+  border-right: 2px solid ${(props) => props.theme.colors.black};
+`
+export const AnchorItemsDes = styled.div`
+  text-align: center;
+  width: 645px;
+`
+
+export const AnchorItemsText = styled.div`
+  text-align: left;
+  padding-top: 39px;
 `
