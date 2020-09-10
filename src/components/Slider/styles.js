@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 export const SliderStyling = styled.div`
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    width: 600px;
+    width: 560px;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.lg}) {

@@ -14,6 +14,7 @@ import {
   DesktopIntroContainer,
 } from './style'
 import LocalizedLink from '../../LocalizedLink'
+import { WidthLimiterContainer } from '../../Layout/styles'
 
 const IndexLayout = ({ data }) => {
   const lang = React.useContext(LocaleContext)
@@ -98,44 +99,45 @@ const IndexLayout = ({ data }) => {
           }}
         />
       </Tablet>
-
       <Desktop>
-        <DesktopIntroContainer>
-          <HomeIntroContainer>
-            <img
-              src={homeIntroGraphic}
-              alt="home intro graphic"
-              className="Home__Intro-Graphic"
-            />
+        <WidthLimiterContainer>
+          <DesktopIntroContainer>
+            <HomeIntroContainer>
+              <img
+                src={homeIntroGraphic}
+                alt="home intro graphic"
+                className="Home__Intro-Graphic"
+              />
 
-            <HomeIntroContentContainer>
-              <HomeIntroTitle>
-                <Title as="h3" type="heading2">
-                  {homeIntroTitle}
-                </Title>
-              </HomeIntroTitle>
-              <HomeIntroText>
-                <Text as="p" type="smallText700">
-                  {homeIntroText}
-                </Text>
-              </HomeIntroText>
-            </HomeIntroContentContainer>
-            <Text as="p" type="smallText700">
-              <LocalizedLink to="/" className="Home__Intro-link">
-                {homeIntroLink}
-              </LocalizedLink>
-            </Text>
-          </HomeIntroContainer>
-          <div>
-            <SliderSection imgLength={images.length}>
-              {images?.length > 0
-                ? images.map((img, index) => {
-                    return <img src={img} alt="slider images" key={index} />
-                  })
-                : ''}
-            </SliderSection>
-          </div>
-        </DesktopIntroContainer>
+              <HomeIntroContentContainer>
+                <HomeIntroTitle>
+                  <Title as="h3" type="heading2">
+                    {homeIntroTitle}
+                  </Title>
+                </HomeIntroTitle>
+                <HomeIntroText>
+                  <Text as="p" type="smallText700">
+                    {homeIntroText}
+                  </Text>
+                </HomeIntroText>
+              </HomeIntroContentContainer>
+              <Text as="p" type="smallText700">
+                <LocalizedLink to="/" className="Home__Intro-link">
+                  {homeIntroLink}
+                </LocalizedLink>
+              </Text>
+            </HomeIntroContainer>
+            <div>
+              <SliderSection imgLength={images.length}>
+                {images?.length > 0
+                  ? images.map((img, index) => {
+                      return <img src={img} alt="slider images" key={index} />
+                    })
+                  : ''}
+              </SliderSection>
+            </div>
+          </DesktopIntroContainer>
+        </WidthLimiterContainer>
         <Quote
           query={{
             text: quoteText,

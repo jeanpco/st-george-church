@@ -4,8 +4,11 @@ import { theme } from '~/utils/styles'
 export const HeaderBg = styled.div`
   width: 100%;
 
-  @media (min-width: ${theme.breakpoints.md}) {
-    max-width: ${theme.maxWidthDesktop};
+  .Header__WidthContainer {
+    @media (min-width: ${theme.breakpoints.md}) {
+      padding-right: 0;
+      padding-left: 0;
+    }
   }
 `
 
@@ -45,11 +48,7 @@ export const MenuContainer = styled.div`
 
   @media (min-width: ${theme.breakpoints.xs}) {
     justify-content: flex-end;
-    padding-right: 6%;
-  }
-
-  @media (min-width: ${theme.breakpoints.md}) {
-    padding-right: 0pc;
+    padding-right: 14px;
   }
 
   .Header__button {

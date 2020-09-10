@@ -3,8 +3,6 @@ import styled from '@emotion/styled'
 export const DesktopIntroContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  max-width: 1444px;
 `
 
 export const HomeIntroContainer = styled.div`
@@ -12,8 +10,7 @@ export const HomeIntroContainer = styled.div`
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     width: 50%;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: 147px;
 
     .Home__Intro-Graphic {
       width: 262px;
