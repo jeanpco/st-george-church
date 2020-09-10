@@ -3,7 +3,6 @@ import { theme } from '../../utils/styles'
 
 export const FooterContainer = styled.div`
   text-align: center;
-  max-width: 1444px;
 
   @media (min-width: ${theme.breakpoints.s}) {
     flex-direction: row;

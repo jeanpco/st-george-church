@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 export const HomeQuoteContainer = styled.div`
   margin-top: 31px;
   text-align: center;
-  max-width: 1444px;
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin-top: 123px;
   }

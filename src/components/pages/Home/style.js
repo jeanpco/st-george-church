@@ -37,10 +37,6 @@ export const HomeIntroTitle = styled.div`
     width: 217px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      width: 190px;
-    }
-
-    @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
       width: 377px;
     }
   }
@@ -55,7 +51,8 @@ export const HomeIntroText = styled.div`
     width: 223px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      width: 189px;
+      width: 300px;
+      padding-bottom: 49px;
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
