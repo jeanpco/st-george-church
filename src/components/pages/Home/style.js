@@ -4,6 +4,7 @@ export const DesktopIntroContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 1444px;
 `
 
 export const HomeIntroContainer = styled.div`
