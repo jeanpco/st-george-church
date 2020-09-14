@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { WidthLimiterContainer } from '../Layout/styles'
 
 import {
   HomeQuoteContainer,
@@ -11,10 +10,11 @@ import {
 import { Tablet, Desktop } from '../Utilities/Media'
 import Text from '../Utilities/Text'
 import Icon from '~/components/Icon'
+import { WidthLimiterContainer } from '../Layout/styles'
 
 const Quote = ({ query }) => {
   return (
-    <WidthLimiterContainer>
+    <Fragment>
       <Tablet>
         <HomeQuoteContainer>
           <HomeQuoteContentContainer>
@@ -32,24 +32,26 @@ const Quote = ({ query }) => {
       </Tablet>
 
       <Desktop>
-        <HomeQuoteContainer>
-          <HomeQuoteContentContainer>
-            <Icon type="horizontal-line-des" />
-            <HomeQuoteContent>
-              <Text as="p" type="bigText400">
-                {query.text ? query.text : ''}
-              </Text>
-              <img
-                src={query.graphic ? query.graphic : ''}
-                alt="quote graphic"
-                className="Home__Quote-Graphic"
-              />
-            </HomeQuoteContent>
-            <Icon type="horizontal-line-des" />
-          </HomeQuoteContentContainer>
-        </HomeQuoteContainer>
+        <WidthLimiterContainer>
+          <HomeQuoteContainer>
+            <HomeQuoteContentContainer>
+              <Icon type="horizontal-line-des" />
+              <HomeQuoteContent>
+                <Text as="p" type="bigText400">
+                  {query.text ? query.text : ''}
+                </Text>
+                <img
+                  src={query.graphic ? query.graphic : ''}
+                  alt="quote graphic"
+                  className="Home__Quote-Graphic"
+                />
+              </HomeQuoteContent>
+              <Icon type="horizontal-line-des" />
+            </HomeQuoteContentContainer>
+          </HomeQuoteContainer>
+        </WidthLimiterContainer>
       </Desktop>
-    </WidthLimiterContainer>
+    </Fragment>
   )
 }
 
