@@ -7,7 +7,6 @@ import {
   DrawerHeaderContent,
   DrawerHeaderContainer,
   DrawerMenuText,
-  DrawerMenuTextContainer,
   DrawerSocialMedia,
   IconArrowContainer,
   DrawerContainer,
@@ -48,47 +47,45 @@ const Drawer = ({
               <Title as="h1" type="menuHeading" className="Drawer__Menu-Title">
                 {title ? title : ''}
               </Title>
-              <DrawerMenuTextContainer>
-                {menuLinks?.length > 0
-                  ? menuLinks.map((menuText, index) => {
-                      return (
-                        <DrawerMenuText key={index}>
-                          <Title as="h2" type="heading4">
-                            {index === 0 ? (
-                              <LocalizedLink
-                                to="/"
-                                className="Header__Menu-button current"
-                              >
-                                {menuText ? menuText : ''}
-                                {index === 0 ? (
-                                  <IconArrowContainer>
-                                    <Icon type="arrow-forward" />
-                                  </IconArrowContainer>
-                                ) : (
-                                  ''
-                                )}
-                              </LocalizedLink>
-                            ) : (
-                              <LocalizedLink
-                                to="/"
-                                className="Header__Menu-button"
-                              >
-                                {menuText ? menuText : ''}
-                                {index === 0 ? (
-                                  <IconArrowContainer>
-                                    <Icon type="arrow-forward" />
-                                  </IconArrowContainer>
-                                ) : (
-                                  ''
-                                )}
-                              </LocalizedLink>
-                            )}
-                          </Title>
-                        </DrawerMenuText>
-                      )
-                    })
-                  : ''}
-              </DrawerMenuTextContainer>
+              {menuLinks?.length > 0
+                ? menuLinks.map((menuText, index) => {
+                    return (
+                      <DrawerMenuText key={index}>
+                        <Title as="h2" type="heading4">
+                          {index === 0 ? (
+                            <LocalizedLink
+                              to="/"
+                              className="Header__Menu-button current"
+                            >
+                              {menuText ? menuText : ''}
+                              {index === 0 ? (
+                                <IconArrowContainer>
+                                  <Icon type="arrow-forward" />
+                                </IconArrowContainer>
+                              ) : (
+                                ''
+                              )}
+                            </LocalizedLink>
+                          ) : (
+                            <LocalizedLink
+                              to="/"
+                              className="Header__Menu-button"
+                            >
+                              {menuText ? menuText : ''}
+                              {index === 0 ? (
+                                <IconArrowContainer>
+                                  <Icon type="arrow-forward" />
+                                </IconArrowContainer>
+                              ) : (
+                                ''
+                              )}
+                            </LocalizedLink>
+                          )}
+                        </Title>
+                      </DrawerMenuText>
+                    )
+                  })
+                : ''}
             </div>
             <DrawerSocialMedia>
               <About

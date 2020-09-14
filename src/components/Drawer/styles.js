@@ -71,8 +71,6 @@ export const DrawerHeaderContainer = styled.div`
   }
 `
 
-export const DrawerMenuTextContainer = styled.div``
-
 export const IconArrowContainer = styled.div`
   display: none;
 
