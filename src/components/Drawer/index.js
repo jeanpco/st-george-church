@@ -44,7 +44,7 @@ const Drawer = ({
 
           <DrawerHeaderContent>
             <div>
-              <Title as="h1" type="menuHeading" className="Drawer__Menu-Title">
+              <Title as="h2" type="menuHeading" className="Drawer__Menu-Title">
                 {title ? title : ''}
               </Title>
               {menuLinks?.length > 0
