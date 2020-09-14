@@ -17,15 +17,17 @@ export const TitleStyled = styled.p`
 
   &.heading2 {
     font-family: ${theme.fontFamily.secondary};
-    font-size: ${theme.fonts.heading6};
-    letter-spacing: ${theme.letterSpacing.heading2};
+    font-size: ${theme.fonts.heading5};
     font-weight: normal;
     font-style: normal;
-    line-height: 1.3;
+    line-height: normal;
 
-    @media (min-width: ${theme.breakpoints.md}) {
+    /* @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading2};
-      letter-spacing: ${theme.letterSpacing.heading2};
+    } */
+
+    @media (min-width: ${theme.breakpoints.lg}) {
+      font-size: ${theme.fonts.heading2};
     }
   }
 

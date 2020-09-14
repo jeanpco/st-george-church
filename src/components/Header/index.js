@@ -14,6 +14,7 @@ import Title from '../Utilities/Title'
 import Drawer from '../Drawer'
 import { Tablet, Desktop } from '~/components/Utilities/Media'
 import Icon from '~/components/Icon'
+import { WidthLimiterContainer } from '../Layout/styles'
 
 const Header = ({ location }) => {
   const data = useStaticQuery(graphql`
@@ -50,6 +51,15 @@ const Header = ({ location }) => {
           }
         }
       }
+      about: allCosmicjsAbouts {
+        nodes {
+          metadata {
+            about_text
+            about_title
+          }
+          locale
+        }
+      }
     }
   `)
 
@@ -58,9 +68,19 @@ const Header = ({ location }) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
 
-  const headerData = data.header.nodes
-    .filter((node) => node.locale.toLowerCase() === i18n.locale)
-    .map((r) => r.metadata)
+  const headerData = data?.header?.nodes
+    ? data.header.nodes
+        .filter((node) => node.locale.toLowerCase() === i18n.locale)
+        .map((r) => r.metadata)
+    : ''
+
+  const aboutData = data?.about?.nodes
+    ? data.about.nodes
+        .filter((node) => node.locale.toLowerCase() === i18n.locale)
+        .map((r) => r.metadata)
+    : ''
+
+  const aboutLocal = aboutData[0]
 
   const headerLocal = headerData[0]
 
@@ -104,63 +124,75 @@ const Header = ({ location }) => {
 
   return (
     <HeaderBg>
-      <HeaderContainer>
-        <Tablet>
-          <div>
-            <img src={logo} alt="" className="Header__Logo" />
-          </div>
-        </Tablet>
-        <Desktop>
-          <img src={desktopLogo} alt="" className="Header__Logo" />
-          <MenuContainer>
-            <TitleContainer>
-              <HeaderTitle>
+      <WidthLimiterContainer className="Header__WidthContainer">
+        <HeaderContainer>
+          <Tablet>
+            <div>
+              <img src={logo} alt="header logo" className="Header__Logo" />
+            </div>
+          </Tablet>
+          <Desktop>
+            <img src={desktopLogo} alt="header logo" className="Header__Logo" />
+            <MenuContainer>
+              <TitleContainer>
+                <HeaderTitle>
+                  <Title as="h3" type="heading6">
+                    {menuTitle}
+                  </Title>
+                  <div
+                    role="button"
+                    onClick={() => setToggleDrawer(!toggleDrawer)}
+                  >
+                    <Icon type="bigMenu" />
+                  </div>
+                </HeaderTitle>
+                <img
+                  src={graphic ? graphic : ''}
+                  alt="header graphic"
+                  className="Header__Graphic"
+                />
+              </TitleContainer>
+            </MenuContainer>
+
+            <Drawer
+              aboutData={aboutLocal ? aboutLocal : ''}
+              menuLinks={menuLinks ? menuLinks : ''}
+              title={menuTitle ? menuTitle : ''}
+              toggleDrawer={toggleDrawer}
+              setToggleDrawer={setToggleDrawer}
+            />
+          </Desktop>
+          <LanguageSwitcher location={location} />
+          <Tablet>
+            <MenuContainer>
+              <TitleContainer>
                 <Title as="h3" type="heading6">
                   {menuTitle}
                 </Title>
                 <div
+                  className="Header__button"
                   role="button"
                   onClick={() => setToggleDrawer(!toggleDrawer)}
                 >
-                  <Icon type="bigMenu" />
+                  <Icon type="menu" />
                 </div>
-              </HeaderTitle>
-              <img src={graphic} alt="" className="Header__Graphic" />
-            </TitleContainer>
-          </MenuContainer>
-
-          <Drawer
-            menuLinks={menuLinks}
-            title={menuTitle}
-            toggleDrawer={toggleDrawer}
-            setToggleDrawer={setToggleDrawer}
-          />
-        </Desktop>
-        <LanguageSwitcher location={location} />
-        <Tablet>
-          <MenuContainer>
-            <TitleContainer>
-              <Title as="h3" type="heading6">
-                {menuTitle}
-              </Title>
-              <div
-                className="Header__button"
-                role="button"
-                onClick={() => setToggleDrawer(!toggleDrawer)}
-              >
-                <Icon type="menu" />
-              </div>
-            </TitleContainer>
-            <img src={graphic} alt="" className="Header__Graphic" />
-          </MenuContainer>
-          <Drawer
-            menuLinks={menuLinks}
-            title={menuTitle}
-            toggleDrawer={toggleDrawer}
-            setToggleDrawer={setToggleDrawer}
-          ></Drawer>
-        </Tablet>
-      </HeaderContainer>
+              </TitleContainer>
+              <img
+                src={graphic}
+                alt="header graphic"
+                className="Header__Graphic"
+              />
+            </MenuContainer>
+            <Drawer
+              aboutData={aboutLocal ? aboutLocal : ''}
+              menuLinks={menuLinks ? menuLinks : ''}
+              title={menuTitle ? menuTitle : ''}
+              toggleDrawer={toggleDrawer}
+              setToggleDrawer={setToggleDrawer}
+            ></Drawer>
+          </Tablet>
+        </HeaderContainer>
+      </WidthLimiterContainer>
     </HeaderBg>
   )
 }

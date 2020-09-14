@@ -4,8 +4,13 @@ import { theme } from '~/utils/styles'
 export const HeaderBg = styled.div`
   width: 100%;
 
-  @media (min-width: ${theme.breakpoints.md}) {
-    max-width: ${theme.maxWidthDesktop};
+  .Header__WidthContainer {
+    padding-left: 0;
+    padding-right: 0;
+    @media (min-width: ${theme.breakpoints.md}) {
+      padding-right: 0;
+      padding-left: 0;
+    }
   }
 `
 
@@ -24,8 +29,7 @@ export const HeaderTitle = styled.div`
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  padding-left: 7px;
-
+  padding-right: 12px;
   h3 {
     margin-right: 10px;
   }
@@ -45,11 +49,7 @@ export const MenuContainer = styled.div`
 
   @media (min-width: ${theme.breakpoints.xs}) {
     justify-content: flex-end;
-    padding-right: 6%;
-  }
-
-  @media (min-width: ${theme.breakpoints.md}) {
-    padding-right: 0pc;
+    padding-right: 14px;
   }
 
   .Header__button {
@@ -103,7 +103,6 @@ export const HeaderContainer = styled.header`
   .Header__Logo {
     position: relative;
     left: 8px;
-    margin-right: 10px;
     @media (min-width: ${theme.breakpoints.md}) {
       top: 10px;
       width: 500px;

@@ -1,5 +1,6 @@
 import React from 'react'
 import { MobileDown, MobileUp } from '~/components/Utilities/Media'
+// import Img from "gatsby-image"
 
 import {
   FooterContainer,
@@ -43,11 +44,7 @@ const Footer = () => {
     }
   `)
 
-  // const logo = data?.footer?.nodes[0]?.metadata?.logo_footer?.local?.publicURL
-  //   ? data.footer.nodes[0].metadata.logo_footer.local.publicURL
-  //   : ''
-
-  const footerGraphic = data?.footer?.nodes[0]?.metadata.footer_graphic?.local
+  const footerGraphic = data?.footer?.nodes[0]?.metadata?.footer_graphic?.local
     ?.publicURL
     ? data.footer.nodes[0].metadata.footer_graphic.local.publicURL
     : ''
@@ -66,7 +63,11 @@ const Footer = () => {
     <FooterContainer>
       <WidthLimiterContainer className="Footer__WidthLimiter">
         <GraphicContainer>
-          <img src={footerGraphic} alt="" className="Footer__Graphic" />
+          <img
+            src={footerGraphic}
+            alt="footer graphic"
+            className="Footer__Graphic"
+          />
         </GraphicContainer>
         <SocialContentContainer>
           <SocialMedia />
@@ -111,7 +112,7 @@ const Footer = () => {
             {footerData?.[0]?.legal_sections?.length > 0
               ? footerData[0].legal_sections.map((section, index) => {
                   return (
-                    <Link key={`LegalSectionsLink -  ${index}`} to="faq">
+                    <Link key={`LegalSectionsLink -  ${index}`} to="/faq">
                       <Text type="link" className="Footer__LegalLinks">
                         {section?.privacy ? section.privacy : ''}
                       </Text>
@@ -147,7 +148,7 @@ const Footer = () => {
             {footerData?.[0]?.legal_sections?.length > 0
               ? footerData[0].legal_sections.map((section, index) => {
                   return (
-                    <Link key={`LegalSectionsLink -  ${index}`} to="faq">
+                    <Link key={`LegalSectionsLink -  ${index}`} to="/faq">
                       <Text type="link" className="Footer__LegalLinks">
                         {section?.privacy ? section.privacy : ''}
                       </Text>

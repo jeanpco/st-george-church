@@ -28,7 +28,7 @@ export const TextStyled = styled.p`
   }
 
   &.smallText500 {
-    font-family: ${(props) => props.theme.fontFamily.primary};
+    font-family: ${(props) => props.theme.fontFamily.tertiary};
     font-size: ${(props) => props.theme.fonts.smallText};
     font-weight: normal;
     font-style: normal;
@@ -46,23 +46,24 @@ export const TextStyled = styled.p`
   &.smallText700 {
     font-family: ${(props) => props.theme.fontFamily.tertiary};
     font-size: ${(props) => props.theme.fonts.smallText};
-    letter-spacing: ${(props) => props.theme.letterSpacing.smallText};
-    font-weight: 700;
-    font-style: normal;
-    text-transform: uppercase;
-    line-height: normal;
-  }
-
-  &.bigText400 {
-    font-family: ${(props) => props.theme.fontFamily.tertiary};
-    font-size: ${(props) => props.theme.fonts.body};
-    letter-spacing: ${(props) => props.theme.letterSpacing.body};
     font-weight: normal;
     font-style: normal;
     line-height: normal;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.bigText};
+    }
+  }
+
+  &.bigText400 {
+    font-family: ${(props) => props.theme.fontFamily.primary};
+    font-size: ${(props) => props.theme.fonts.body};
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: ${(props) => props.theme.fonts.quote};
     }
   }
 
@@ -132,7 +133,7 @@ export const TextStyled = styled.p`
     }
 
     &.secondary {
-      color: ${(props) => props.theme.colors.secondary};
+      color: ${(props) => props.theme.colors.black};
 
       &::before,
       &::after {
