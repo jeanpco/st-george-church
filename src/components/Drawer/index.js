@@ -5,11 +5,12 @@ import {
   theme,
   IconContainer,
   DrawerHeaderContent,
-  DrawerContainer,
+  DrawerHeaderContainer,
   DrawerMenuText,
   DrawerMenuTextContainer,
   DrawerSocialMedia,
   IconArrowContainer,
+  DrawerContainer,
 } from './styles'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -34,65 +35,72 @@ const Drawer = ({
         open={toggleDrawer}
       >
         <DrawerContainer>
-          <LanguageSwitcherContainer location={location} />
+          <DrawerHeaderContainer>
+            <LanguageSwitcherContainer location={location} />
 
-          <IconContainer onClick={() => setToggleDrawer(false)}>
-            <Icon type="clear" />
-          </IconContainer>
+            <IconContainer onClick={() => setToggleDrawer(false)}>
+              <Icon type="clear" />
+            </IconContainer>
+          </DrawerHeaderContainer>
+
+          <DrawerHeaderContent>
+            <div>
+              <Title as="h1" type="menuHeading" className="Drawer__Menu-Title">
+                {title ? title : ''}
+              </Title>
+              <DrawerMenuTextContainer>
+                {menuLinks?.length > 0
+                  ? menuLinks.map((menuText, index) => {
+                      return (
+                        <DrawerMenuText key={index}>
+                          <Title as="h2" type="heading4">
+                            {index === 0 ? (
+                              <LocalizedLink
+                                to="/"
+                                className="Header__Menu-button current"
+                              >
+                                {menuText ? menuText : ''}
+                                {index === 0 ? (
+                                  <IconArrowContainer>
+                                    <Icon type="arrow-forward" />
+                                  </IconArrowContainer>
+                                ) : (
+                                  ''
+                                )}
+                              </LocalizedLink>
+                            ) : (
+                              <LocalizedLink
+                                to="/"
+                                className="Header__Menu-button"
+                              >
+                                {menuText ? menuText : ''}
+                                {index === 0 ? (
+                                  <IconArrowContainer>
+                                    <Icon type="arrow-forward" />
+                                  </IconArrowContainer>
+                                ) : (
+                                  ''
+                                )}
+                              </LocalizedLink>
+                            )}
+                          </Title>
+                        </DrawerMenuText>
+                      )
+                    })
+                  : ''}
+              </DrawerMenuTextContainer>
+            </div>
+            <DrawerSocialMedia>
+              <About
+                query={{
+                  title: aboutData.about_title,
+                  text: aboutData.about_text,
+                }}
+              />
+              <SocialMedia customClassName="Social-Media-Container" />
+            </DrawerSocialMedia>
+          </DrawerHeaderContent>
         </DrawerContainer>
-
-        <DrawerHeaderContent>
-          <Title as="h1" type="menuHeading" className="Drawer__Menu-Title">
-            {title ? title : ''}
-          </Title>
-          <DrawerMenuTextContainer>
-            {menuLinks?.length > 0
-              ? menuLinks.map((menuText, index) => {
-                  return (
-                    <DrawerMenuText key={index}>
-                      <Title as="h2" type="heading4">
-                        {index === 0 ? (
-                          <LocalizedLink
-                            to="/"
-                            className="Header__Menu-button current"
-                          >
-                            {menuText ? menuText : ''}
-                            {index === 0 ? (
-                              <IconArrowContainer>
-                                <Icon type="arrow-forward" />
-                              </IconArrowContainer>
-                            ) : (
-                              ''
-                            )}
-                          </LocalizedLink>
-                        ) : (
-                          <LocalizedLink to="/" className="Header__Menu-button">
-                            {menuText ? menuText : ''}
-                            {index === 0 ? (
-                              <IconArrowContainer>
-                                <Icon type="arrow-forward" />
-                              </IconArrowContainer>
-                            ) : (
-                              ''
-                            )}
-                          </LocalizedLink>
-                        )}
-                      </Title>
-                    </DrawerMenuText>
-                  )
-                })
-              : ''}
-          </DrawerMenuTextContainer>
-          <About
-            query={{
-              title: aboutData.about_title,
-              text: aboutData.about_text,
-            }}
-          />
-          <DrawerSocialMedia>
-            <SocialMedia customClassName="Social-Media-Container" />
-          </DrawerSocialMedia>
-        </DrawerHeaderContent>
       </SwipeableDrawer>
     </ThemeProvider>
   )

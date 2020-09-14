@@ -2,9 +2,14 @@ import styled from '@emotion/styled'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { theme as localTheme } from '~/utils/styles'
 
+export const DrawerContainer = styled.div`
+  height: 100%;
+`
+
 export const IconContainer = styled.div`
   /* used for the onClickFunction */
 `
+
 export const DrawerSocialMedia = styled.div`
   @media (min-width: ${localTheme.breakpoints.md}) {
     max-width: 400px;
@@ -22,6 +27,7 @@ export const DrawerSocialMedia = styled.div`
 
       @media (min-width: ${localTheme.breakpoints.md}) {
         width: 219px;
+        margin-bottom: 15px;
       }
     }
 
@@ -33,7 +39,6 @@ export const DrawerSocialMedia = styled.div`
   .Social__Logo-Container {
     margin-left: 0;
     margin-right: 16px;
-    padding-right: 10px;
 
     @media (min-width: ${localTheme.breakpoints.md}) {
       margin-right: 27px;
@@ -42,6 +47,10 @@ export const DrawerSocialMedia = styled.div`
 `
 
 export const DrawerHeaderContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 68px);
   padding-left: 34px;
   margin-top: -13px;
 
@@ -49,7 +58,7 @@ export const DrawerHeaderContent = styled.div`
     margin-bottom: 14px;
   }
 `
-export const DrawerContainer = styled.div`
+export const DrawerHeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -62,9 +71,7 @@ export const DrawerContainer = styled.div`
   }
 `
 
-export const DrawerMenuTextContainer = styled.div`
-  margin-bottom: 116px;
-`
+export const DrawerMenuTextContainer = styled.div``
 
 export const IconArrowContainer = styled.div`
   display: none;
@@ -82,6 +89,7 @@ export const DrawerMenuText = styled.div`
 
   @media (min-width: ${localTheme.breakpoints.md}) {
     margin-bottom: 0;
+    padding-bottom: 10px;
   }
 
   .Header__Menu-button {
@@ -115,6 +123,12 @@ theme = {
         [theme.breakpoints.up('600')]: {
           borderRight: `3px solid ${localTheme.colors.secondary}`,
         },
+      },
+    },
+    MuiBackdrop: {
+      root: {
+        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+        backdropFilter: 'blur(10px)',
       },
     },
   },

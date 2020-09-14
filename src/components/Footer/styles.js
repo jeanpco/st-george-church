@@ -42,6 +42,7 @@ export const FooterContainer = styled.div`
     text-align: center;
     margin-bottom: 25px;
     letter-spacing: 0px;
+    font-family: ${(props) => props.theme.fontFamily.tertiary} !important;
 
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.m_small};
