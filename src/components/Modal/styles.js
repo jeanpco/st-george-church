@@ -4,16 +4,19 @@ import { createMuiTheme } from '@material-ui/core/styles'
 
 export const useStylesMainModal = makeStyles(() => ({
   root: {
-    padding: '25px 25px 25px',
     height: '100%',
   },
 }))
 
+export const ModalDialogContainer = styled.div`
+  height: calc(100% - 130px);
+  padding: 27px 25px 0;
+`
+
 export const ModalContent = styled.div`
-  height: 400px;
-  overflow: scroll;
-  max-width: 260px;
   border-left: 1px solid ${(props) => props.theme.colors.black};
+  height: 100%;
+  overflow: auto;
 `
 
 export const useStyles = makeStyles({
@@ -26,46 +29,51 @@ export const useStyles = makeStyles({
 export let theme = createMuiTheme({})
 theme = {
   ...theme,
-  overrides: {
-    MuiPaper: {
-      root: {
-        width: '100%',
-      },
-    },
-    MuiDrawer: {
-      paper: {},
-    },
-  },
 }
 
 export const DialogContentContainer = styled.div`
   padding-left: 18px;
 
   .Modal_Anchor-Img {
-    width: 230px;
+    width: 92%;
   }
 `
 
-export const ModalCloseIncon = styled.div``
+export const ModalCloseIncon = styled.div`
+  /* for onclick? */
+`
 
 export const ModalTitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding-bottom: 24px;
+  padding: 27px 25px 0;
 `
 export const ModalTitleContent = styled.div`
-  max-width: 150px;
+  width: 200px;
+  height: 50px;
 `
 export const ModalTextContent = styled.div`
+  height: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
+  word-break: break-word;
+  width: 94%;
+
+  p::first-letter {
+    color: ${(props) => props.theme.colors.secondary};
+    font-family: ${(props) => props.theme.fontFamily.primary};
+    font-size: ${(props) => props.theme.fonts.heading1};
+    text-transform: uppercase;
+    float: left;
+    padding-right: 10px;
+    line-height: 0.7;
+  }
 `
 export const ModalLinksFooter = styled.div`
   display: flex;
   align-items: center;
-  padding-left: 14px;
-  padding-bottom: 20px;
-  padding-right: 14px;
+  padding: 14px 14px 0 15px;
 
   .Modal__Footer-Links {
     color: ${(props) => props.theme.colors.secondary};

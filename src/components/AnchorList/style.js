@@ -21,7 +21,6 @@ export const AnchorLinksMob = styled.div`
 
   .anchor_links {
     display: flex;
-    /* padding-bottom: 10px; */
     color: ${(props) => props.theme.colors.black};
     font-family: ${(props) => props.theme.fontFamily.primary};
     font-size: ${(props) => props.theme.fonts.body};
@@ -38,7 +37,6 @@ export const AnchorLinks = styled.div`
 
   .anchor_links {
     display: flex;
-    /* padding-bottom: 10px; */
     color: ${(props) => props.theme.colors.black};
     font-family: ${(props) => props.theme.fontFamily.primary};
     font-size: ${(props) => props.theme.fonts.body};
@@ -70,7 +68,7 @@ export const AnchorContentDes = styled.div`
   height: 588px;
   padding-left: 43px;
   border-left: 2px solid ${(props) => props.theme.colors.black};
-  border-right: 2px solid ${(props) => props.theme.colors.black};
+  overflow: auto;
 `
 export const AnchorItemsDes = styled.div`
   text-align: center;
@@ -80,4 +78,13 @@ export const AnchorItemsDes = styled.div`
 export const AnchorItemsText = styled.div`
   text-align: left;
   padding-top: 39px;
+
+  p::first-letter {
+    color: ${(props) => props.theme.colors.secondary};
+    font-family: ${(props) => props.theme.fontFamily.primary};
+    font-size: ${(props) => props.theme.fonts.heading1};
+    text-transform: uppercase;
+    float: left;
+    padding-right: 7px;
+  }
 `
