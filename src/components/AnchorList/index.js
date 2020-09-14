@@ -10,6 +10,7 @@ import {
   AnchorIconLink,
   AnchorIconTitle,
   AnchorContainerDes,
+  AnchorLinksContainerDes,
   AnchorContentDes,
   AnchorItemsDes,
   AnchorItemsText,
@@ -117,7 +118,9 @@ const AnchorList = ({ anchorQuery }) => {
               </AnchorIconTitle>
             </AnchorTitle>
             <AnchorContainerDes>
-              <div>{anchorLinks ? anchorLinks : ''}</div>
+              <AnchorLinksContainerDes>
+                {anchorLinks ? anchorLinks : ''}
+              </AnchorLinksContainerDes>
               <AnchorContentDes>
                 {anchorArray.length > 0 ? (
                   anchorArray.map((info, index) => {
@@ -125,24 +128,6 @@ const AnchorList = ({ anchorQuery }) => {
                       <AnchorItemsDes key={index}>
                         <img src={info.anchor_image.url} alt="" />
                         <AnchorItemsText>
-                          <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing
-                            elit. Praesentium quam tempora, placeat aspernatur
-                            quos magnam aliquam esse doloribus maiores eum iure
-                            id eligendi, impedit reiciendis consectetur possimus
-                            suscipit fugiat mollitia vitae repellat rem
-                            blanditiis quasi dicta voluptates. Laboriosam nemo
-                            architecto, labore doloremque vitae totam laudantium
-                            temporibus. Perspiciatis quas a officiis beatae nemo
-                            molestias consequuntur reprehenderit saepe quis et
-                            neque maiores culpa, error odit consequatur unde
-                            voluptate praesentium nobis fugit excepturi incidunt
-                            corrupti! Officiis animi vitae, quia consectetur
-                            neque itaque modi architecto? Omnis assumenda rem
-                            voluptatibus amet cum itaque excepturi ducimus ipsam
-                            magni nam? Aut minus a reprehenderit. Molestias,
-                            quis ipsa!s
-                          </p>
                           <Text type="body">{info.anchor_text}</Text>
                         </AnchorItemsText>
                       </AnchorItemsDes>
