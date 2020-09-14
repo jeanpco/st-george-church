@@ -14,6 +14,7 @@ import Title from '../Utilities/Title'
 import Drawer from '../Drawer'
 import { Tablet, Desktop } from '~/components/Utilities/Media'
 import Icon from '~/components/Icon'
+import { WidthLimiterContainer } from '../Layout/styles'
 
 const Header = ({ location }) => {
   const data = useStaticQuery(graphql`
@@ -123,73 +124,75 @@ const Header = ({ location }) => {
 
   return (
     <HeaderBg>
-      <HeaderContainer>
-        <Tablet>
-          <div>
-            <img src={logo} alt="header logo" className="Header__Logo" />
-          </div>
-        </Tablet>
-        <Desktop>
-          <img src={desktopLogo} alt="header logo" className="Header__Logo" />
-          <MenuContainer>
-            <TitleContainer>
-              <HeaderTitle>
+      <WidthLimiterContainer className="Header__WidthContainer">
+        <HeaderContainer>
+          <Tablet>
+            <div>
+              <img src={logo} alt="header logo" className="Header__Logo" />
+            </div>
+          </Tablet>
+          <Desktop>
+            <img src={desktopLogo} alt="header logo" className="Header__Logo" />
+            <MenuContainer>
+              <TitleContainer>
+                <HeaderTitle>
+                  <Title as="h3" type="heading6">
+                    {menuTitle}
+                  </Title>
+                  <div
+                    role="button"
+                    onClick={() => setToggleDrawer(!toggleDrawer)}
+                  >
+                    <Icon type="bigMenu" />
+                  </div>
+                </HeaderTitle>
+                <img
+                  src={graphic ? graphic : ''}
+                  alt="header graphic"
+                  className="Header__Graphic"
+                />
+              </TitleContainer>
+            </MenuContainer>
+
+            <Drawer
+              aboutData={aboutLocal ? aboutLocal : ''}
+              menuLinks={menuLinks ? menuLinks : ''}
+              title={menuTitle ? menuTitle : ''}
+              toggleDrawer={toggleDrawer}
+              setToggleDrawer={setToggleDrawer}
+            />
+          </Desktop>
+          <LanguageSwitcher location={location} />
+          <Tablet>
+            <MenuContainer>
+              <TitleContainer>
                 <Title as="h3" type="heading6">
                   {menuTitle}
                 </Title>
                 <div
+                  className="Header__button"
                   role="button"
                   onClick={() => setToggleDrawer(!toggleDrawer)}
                 >
-                  <Icon type="bigMenu" />
+                  <Icon type="menu" />
                 </div>
-              </HeaderTitle>
+              </TitleContainer>
               <img
-                src={graphic ? graphic : ''}
+                src={graphic}
                 alt="header graphic"
                 className="Header__Graphic"
               />
-            </TitleContainer>
-          </MenuContainer>
-
-          <Drawer
-            aboutData={aboutLocal ? aboutLocal : ''}
-            menuLinks={menuLinks ? menuLinks : ''}
-            title={menuTitle ? menuTitle : ''}
-            toggleDrawer={toggleDrawer}
-            setToggleDrawer={setToggleDrawer}
-          />
-        </Desktop>
-        <LanguageSwitcher location={location} />
-        <Tablet>
-          <MenuContainer>
-            <TitleContainer>
-              <Title as="h3" type="heading6">
-                {menuTitle}
-              </Title>
-              <div
-                className="Header__button"
-                role="button"
-                onClick={() => setToggleDrawer(!toggleDrawer)}
-              >
-                <Icon type="menu" />
-              </div>
-            </TitleContainer>
-            <img
-              src={graphic}
-              alt="header graphic"
-              className="Header__Graphic"
-            />
-          </MenuContainer>
-          <Drawer
-            aboutData={aboutLocal ? aboutLocal : ''}
-            menuLinks={menuLinks ? menuLinks : ''}
-            title={menuTitle ? menuTitle : ''}
-            toggleDrawer={toggleDrawer}
-            setToggleDrawer={setToggleDrawer}
-          ></Drawer>
-        </Tablet>
-      </HeaderContainer>
+            </MenuContainer>
+            <Drawer
+              aboutData={aboutLocal ? aboutLocal : ''}
+              menuLinks={menuLinks ? menuLinks : ''}
+              title={menuTitle ? menuTitle : ''}
+              toggleDrawer={toggleDrawer}
+              setToggleDrawer={setToggleDrawer}
+            ></Drawer>
+          </Tablet>
+        </HeaderContainer>
+      </WidthLimiterContainer>
     </HeaderBg>
   )
 }

@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 export const DesktopIntroContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
 `
 
 export const HomeIntroContainer = styled.div`
@@ -11,8 +10,7 @@ export const HomeIntroContainer = styled.div`
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     width: 50%;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: 147px;
 
     .Home__Intro-Graphic {
       width: 262px;
@@ -37,10 +35,6 @@ export const HomeIntroTitle = styled.div`
     width: 217px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      width: 190px;
-    }
-
-    @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
       width: 377px;
     }
   }
@@ -55,7 +49,8 @@ export const HomeIntroText = styled.div`
     width: 223px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      width: 189px;
+      width: 300px;
+      padding-bottom: 49px;
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.lg}) {

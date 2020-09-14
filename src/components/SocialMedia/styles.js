@@ -41,9 +41,6 @@ export const LinkContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: flex-end;
-  padding-top: 1px;
-  position: relative;
-  top: 4px;
   @media (min-width: ${theme.breakpoints.s}) {
     position: relative;
     top: 0;
