@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import SliderSection from '../../SliderSection/SliderSection'
 import PropTypes from 'prop-types'
 import LocaleContext from '../../../context/LocaleProvider'
@@ -8,6 +8,7 @@ import Quote from '../../Quote'
 import AnchorList from '../../AnchorList'
 import { Tablet, Desktop } from '../../Utilities/Media'
 import {
+  HomePageContainer,
   HomeIntroContainer,
   HomeIntroContentContainer,
   HomeIntroTitle,
@@ -48,7 +49,9 @@ const IndexLayout = ({ data }) => {
     ? data.anchor.nodes[0].metadata.anchor_title
     : ''
 
-  const ministries = data.anchor.nodes[0].metadata.youth_ministries
+  const ministries = data?.anchor?.nodes[0]?.metadata?.youth_ministries
+    ? data.anchor.nodes[0].metadata.youth_ministries
+    : ''
 
   const anchorLinks = data?.anchor?.nodes[0]?.metadata?.anchor_list
     ? data.anchor.nodes[0].metadata.anchor_list
@@ -73,7 +76,7 @@ const IndexLayout = ({ data }) => {
     : ''
 
   return (
-    <Fragment>
+    <HomePageContainer>
       <Tablet>
         <SliderSection imgLength={images.length}>
           {imagesMob?.length > 0
@@ -84,22 +87,21 @@ const IndexLayout = ({ data }) => {
         </SliderSection>
         <HomeIntroContainer>
           <img src={homeIntroGraphic} alt="home__intro-graphic" />
-
           <HomeIntroContentContainer>
             <HomeIntroTitle>
               <Title as="h1" type="heading1">
-                {homeIntroTitle}
+                {homeIntroTitle ? homeIntroTitle : ''}
               </Title>
             </HomeIntroTitle>
             <HomeIntroText>
               <Text as="p" type="smallText700">
-                {homeIntroText}
+                {homeIntroText ? homeIntroText : ''}
               </Text>
             </HomeIntroText>
           </HomeIntroContentContainer>
           <Text as="p" type="smallText700">
             <LocalizedLink to="/" className="Home__Intro-link">
-              {homeIntroLink}
+              {homeIntroLink ? homeIntroLink : ''}
             </LocalizedLink>
           </Text>
         </HomeIntroContainer>
@@ -118,11 +120,11 @@ const IndexLayout = ({ data }) => {
         />
       </Tablet>
       <Desktop>
-        <WidthLimiterContainer>
+        <WidthLimiterContainer className="HomePage__WidthLimiter">
           <DesktopIntroContainer>
             <HomeIntroContainer>
               <img
-                src={homeIntroGraphic}
+                src={homeIntroGraphic ? homeIntroGraphic : ''}
                 alt="home intro graphic"
                 className="Home__Intro-Graphic"
               />
@@ -130,18 +132,18 @@ const IndexLayout = ({ data }) => {
               <HomeIntroContentContainer>
                 <HomeIntroTitle>
                   <Title as="h3" type="heading2">
-                    {homeIntroTitle}
+                    {homeIntroTitle ? homeIntroTitle : ''}
                   </Title>
                 </HomeIntroTitle>
                 <HomeIntroText>
                   <Text as="p" type="smallText700">
-                    {homeIntroText}
+                    {homeIntroText ? homeIntroText : ''}
                   </Text>
                 </HomeIntroText>
               </HomeIntroContentContainer>
               <Text as="p" type="smallText700">
                 <LocalizedLink to="/" className="Home__Intro-link">
-                  {homeIntroLink}
+                  {homeIntroLink ? homeIntroLink : ''}
                 </LocalizedLink>
               </Text>
             </HomeIntroContainer>
@@ -170,7 +172,7 @@ const IndexLayout = ({ data }) => {
           }}
         />
       </Desktop>
-    </Fragment>
+    </HomePageContainer>
   )
 }
 

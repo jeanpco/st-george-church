@@ -68,6 +68,7 @@ export const ModalTextContent = styled.div`
     float: left;
     padding-right: 10px;
     line-height: 0.7;
+    padding-top: 8px;
   }
 `
 export const ModalLinksFooter = styled.div`

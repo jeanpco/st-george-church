@@ -16,7 +16,6 @@ import {
   ModalTitleFooter,
   ModalDialogContainer,
 } from './styles'
-// import Customize from '../Utilities/CustomizeText'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
 
@@ -31,11 +30,13 @@ const Modal = ({ open, setOpen, query }) => {
   const ministriesArray = query.ministries
   const ministriesContent = []
 
-  ministriesArray.map((info) => {
-    if (currentLink === info.anchor_title) {
-      ministriesContent.push(info)
-    }
-  })
+  ministriesArray
+    ? ministriesArray.map((info) => {
+        if (currentLink === info.anchor_title) {
+          ministriesContent.push(info)
+        }
+      })
+    : ''
 
   const isFirstRun = useRef(true)
   useEffect(() => {
@@ -67,7 +68,7 @@ const Modal = ({ open, setOpen, query }) => {
           <ModalTitleContainer>
             <ModalTitleContent>
               <Title as="h2" type="heading4">
-                {currentLink}
+                {currentLink ? currentLink : ''}
               </Title>
             </ModalTitleContent>
             <ModalCloseIncon onClick={() => setOpen(false)}>
@@ -76,22 +77,28 @@ const Modal = ({ open, setOpen, query }) => {
           </ModalTitleContainer>
           <ModalDialogContainer>
             <ModalContent>
-              {ministriesContent.map((info, index) => {
-                return (
-                  <DialogContentContainer key={index}>
-                    <div>
-                      <img
-                        src={info.anchor_image.url}
-                        alt=""
-                        className="Modal_Anchor-Img"
-                      />
-                    </div>
-                    <ModalTextContent>
-                      <Text type="body">{info.anchor_text}</Text>
-                    </ModalTextContent>
-                  </DialogContentContainer>
-                )
-              })}
+              {ministriesContent
+                ? ministriesContent.map((info, index) => {
+                    return (
+                      <DialogContentContainer key={index}>
+                        <div>
+                          <img
+                            src={
+                              info.anchor_image.url ? info.anchor_image.url : ''
+                            }
+                            alt=""
+                            className="Modal_Anchor-Img"
+                          />
+                        </div>
+                        <ModalTextContent>
+                          <Text type="body">
+                            {info.anchor_text ? info.anchor_text : ''}
+                          </Text>
+                        </ModalTextContent>
+                      </DialogContentContainer>
+                    )
+                  })
+                : ''}
             </ModalContent>
           </ModalDialogContainer>
           <ModalLinksFooter>
@@ -100,7 +107,7 @@ const Modal = ({ open, setOpen, query }) => {
             </div>
             <ModalTitleFooter>
               <Title as="h4" type="heading5">
-                {nextLink}
+                {nextLink ? nextLink : ''}
               </Title>
             </ModalTitleFooter>
             <div

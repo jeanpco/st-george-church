@@ -53,7 +53,7 @@ const AnchorList = ({ anchorQuery }) => {
           <Icon type="add" />
         </AnchorIconLink>
         <div className="anchor_links" onClick={handelClickMobile}>
-          {link}
+          {link ? link : ''}
         </div>
       </AnchorLinksMob>
     )
@@ -80,7 +80,7 @@ const AnchorList = ({ anchorQuery }) => {
           }
           onClick={handelClick}
         >
-          {link}
+          {link ? link : ''}
         </div>
       </AnchorLinks>
     )
@@ -93,7 +93,7 @@ const AnchorList = ({ anchorQuery }) => {
           <Tablet>
             <AnchorTitle as="h2" type="heading2">
               <AnchorIconTitle>
-                {anchorQuery.title}
+                {anchorQuery?.title ? anchorQuery.title : ''}
                 <Icon type="cross" />
               </AnchorIconTitle>
             </AnchorTitle>
@@ -113,7 +113,7 @@ const AnchorList = ({ anchorQuery }) => {
           <Desktop>
             <AnchorTitle as="h2" type="heading2">
               <AnchorIconTitle>
-                {anchorQuery.title}
+                {anchorQuery?.title ? anchorQuery.title : ''}
                 <Icon type="cross-des" />
               </AnchorIconTitle>
             </AnchorTitle>
@@ -136,12 +136,18 @@ const AnchorList = ({ anchorQuery }) => {
                 ) : (
                   <AnchorItemsDes>
                     <img
-                      src={anchorQuery.ministries[0].anchor_image.url}
+                      src={
+                        anchorQuery?.ministries[0]?.anchor_image?.url
+                          ? anchorQuery.ministries[0].anchor_image.url
+                          : ''
+                      }
                       alt=""
                     />
                     <AnchorItemsText>
                       <Text type="body">
-                        {anchorQuery.ministries[0].anchor_text}
+                        {anchorQuery?.ministries[0]?.anchor_text
+                          ? anchorQuery.ministries[0].anchor_text
+                          : ''}
                       </Text>
                     </AnchorItemsText>
                   </AnchorItemsDes>

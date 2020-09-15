@@ -93,9 +93,11 @@ export const AnchorItemsText = styled.div`
   p::first-letter {
     color: ${(props) => props.theme.colors.secondary};
     font-family: ${(props) => props.theme.fontFamily.primary};
-    font-size: ${(props) => props.theme.fonts.heading1};
+    font-size: 73px;
     text-transform: uppercase;
     float: left;
-    padding-right: 7px;
+    padding-right: 12px;
+    line-height: 0.6;
+    padding-top: 16px;
   }
 `

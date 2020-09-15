@@ -103,7 +103,7 @@ export const SliderStyling = styled.div`
 
 export const LinearProgressBarContainer = styled.div`
   margin-bottom: 30px;
-  margin-top: 5px;
+  margin-top: 10px;
 
   .MuiLinearProgress-colorPrimary {
     background-color: ${(props) => props.theme.colors.red10};
