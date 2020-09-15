@@ -21,12 +21,7 @@ export const HomeQuoteContent = styled.div`
   padding-right: 22px;
   padding-left: 22px;
 
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    padding-right: 38px;
-    padding-left: 38px;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     padding-right: 73px;
     padding-left: 73px;
   }

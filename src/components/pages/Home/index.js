@@ -132,7 +132,7 @@ const IndexLayout = ({ data }) => {
 
               <HomeIntroContentContainer>
                 <HomeIntroTitle>
-                  <Title as="h1" type="heading2">
+                  <Title as="h1" type="heading1">
                     {homeIntroTitle ? homeIntroTitle : ''}
                   </Title>
                 </HomeIntroTitle>
