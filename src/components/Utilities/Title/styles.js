@@ -9,8 +9,7 @@ export const TitleStyled = styled.p`
     line-height: 1.3;
     font-family: ${theme.fontFamily.secondary};
     @media (min-width: ${theme.breakpoints.md}) {
-      font-size: ${theme.fonts.heading1};
-      line-height: 1.3;
+      font-size: ${theme.fonts.heading5};
     }
   }
   &.heading2 {
@@ -20,11 +19,13 @@ export const TitleStyled = styled.p`
     font-style: normal;
     line-height: normal;
     @media (min-width: ${theme.breakpoints.md}) {
-      font-size: ${theme.fonts.heading2};
+      font-size: ${theme.fonts.heading5};
     }
-    /* @media (min-width: ${theme.breakpoints.lg}) {
-      font-size: ${theme.fonts.heading2};
-    } */
+
+    @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+      font-size: ${(props) => props.theme.fonts.heading2};
+      width: 416px;
+    }
   }
   &.heading3 {
     font-family: ${theme.fontFamily.primary};

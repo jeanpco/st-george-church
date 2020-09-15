@@ -32,7 +32,8 @@ export const TextStyled = styled.p`
     span {
       text-decoration: underline;
     }
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+
+    @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
       font-size: ${(props) => props.theme.fonts.mediumText};
     }
   }
@@ -43,7 +44,7 @@ export const TextStyled = styled.p`
     font-style: normal;
     line-height: normal;
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: ${(props) => props.theme.fonts.bigText};
+      font-size: ${(props) => props.theme.fonts.body};
     }
   }
   &.bigText400 {

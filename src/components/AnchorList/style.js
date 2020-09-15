@@ -38,8 +38,12 @@ export const AnchorLinks = styled.div`
   display: flex;
   flex-direction: row;
   padding-bottom: 9px;
-  padding-right: 82px;
+  padding-right: 40px;
   align-items: center;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+    padding-right: 82px;
+  }
 
   .anchor_links {
     display: flex;
@@ -79,10 +83,19 @@ export const AnchorContentDes = styled.div`
   width: 60%;
   max-height: 643px;
   min-height: 643px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    width: 65%;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+    width: 70%;
+  }
 `
 export const AnchorItemsDes = styled.div`
   height: calc(100% - 50px);
   overflow: auto;
+  padding-right: 47px;
   img {
     width: 100%;
   }

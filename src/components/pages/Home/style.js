@@ -28,6 +28,10 @@ export const HomeIntroContainer = styled.div`
   .Home__Intro-link {
     color: ${(props) => props.theme.colors.black};
     font-family: ${(props) => props.theme.fontFamily.secondary};
+
+    @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+      font-size: ${(props) => props.theme.fonts.bigText};
+    }
   }
 `
 export const HomeIntroContentContainer = styled.div`
@@ -41,12 +45,10 @@ export const HomeIntroTitle = styled.div`
   h1 {
     width: 217px;
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: ${(props) => props.theme.fonts.heading5} !important;
       width: 253px;
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
-      font-size: ${(props) => props.theme.fonts.heading2} !important;
       width: 416px;
     }
   }
@@ -64,10 +66,9 @@ export const HomeIntroText = styled.div`
   p {
     width: 223px;
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: ${(props) => props.theme.fonts.smallText} !important;
+      width: 323px;
     }
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      font-size: ${(props) => props.theme.fonts.body} !important;
       width: 433px;
       padding-left: 22px;
     }
