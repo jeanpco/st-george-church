@@ -14,6 +14,8 @@ export const AnchorContent = styled.div`
   padding-bottom: 30px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    border-top: 12px solid ${(props) => props.theme.colors.black};
+    border-bottom: 12px solid ${(props) => props.theme.colors.black};
     padding-bottom: 109px;
   }
 `
