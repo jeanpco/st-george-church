@@ -1,14 +1,6 @@
 import styled from '@emotion/styled'
 
 export const SliderStyling = styled.div`
-  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    width: 560px;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
-    width: 714px;
-  }
-
   .slick-arrow,
   .slick-prev,
   .slick-next {
@@ -81,6 +73,7 @@ export const SliderStyling = styled.div`
 
   .slick-slide {
     padding-top: 35px;
+    min-width: 1px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       padding-top: 0px;

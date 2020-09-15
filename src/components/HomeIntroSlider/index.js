@@ -57,8 +57,6 @@ const SliderContent = ({ children, className, imgLength }) => {
 
 SliderContent.propTypes = {
   children: PropTypes.array.isRequired,
-  slidesToScroll: PropTypes.number.isRequired,
-  slidesToShow: PropTypes.number.isRequired,
   className: PropTypes.string,
   imgLength: PropTypes.number,
 }

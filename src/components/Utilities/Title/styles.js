@@ -19,12 +19,12 @@ export const TitleStyled = styled.p`
     font-weight: normal;
     font-style: normal;
     line-height: normal;
-    /* @media (min-width: ${theme.breakpoints.md}) {
-      font-size: ${theme.fonts.heading2};
-    } */
-    @media (min-width: ${theme.breakpoints.lg}) {
+    @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading2};
     }
+    /* @media (min-width: ${theme.breakpoints.lg}) {
+      font-size: ${theme.fonts.heading2};
+    } */
   }
   &.heading3 {
     font-family: ${theme.fontFamily.primary};

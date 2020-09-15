@@ -6,7 +6,12 @@ export const HomePageContainer = styled.div`
   }
 `
 
+export const SilderContainerDes = styled.div`
+  width: 50%;
+`
+
 export const DesktopIntroContainer = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
 `
@@ -33,10 +38,16 @@ export const HomeIntroTitle = styled.div`
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
-  h3 {
+  h1 {
     width: 217px;
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      width: 377px;
+      font-size: ${(props) => props.theme.fonts.heading5} !important;
+      width: 253px;
+    }
+
+    @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+      font-size: ${(props) => props.theme.fonts.heading2} !important;
+      width: 416px;
     }
   }
 `
@@ -44,16 +55,21 @@ export const HomeIntroTitle = styled.div`
 export const HomeIntroText = styled.div`
   display: flex;
   justify-content: center;
-  padding-bottom: 16px;
+  padding-bottom: 20px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+    padding-bottom: 47px;
+  }
+
   p {
     width: 223px;
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      width: 300px;
-      padding-bottom: 49px;
+      font-size: ${(props) => props.theme.fonts.smallText} !important;
     }
-    @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
-      width: 459px;
-      padding-bottom: 49px;
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      font-size: ${(props) => props.theme.fonts.body} !important;
+      width: 433px;
+      padding-left: 22px;
     }
   }
 `

@@ -42,7 +42,7 @@ export const TextStyled = styled.p`
     font-weight: normal;
     font-style: normal;
     line-height: normal;
-    @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.bigText};
     }
   }

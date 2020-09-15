@@ -1,5 +1,5 @@
 import React from 'react'
-import SliderSection from '../../SliderSection/SliderSection'
+import SliderContent from '../../HomeIntroSlider'
 import PropTypes from 'prop-types'
 import LocaleContext from '../../../context/LocaleProvider'
 import Text from '../../Utilities/Text'
@@ -14,6 +14,7 @@ import {
   HomeIntroTitle,
   HomeIntroText,
   DesktopIntroContainer,
+  SilderContainerDes,
 } from './style'
 import LocalizedLink from '../../LocalizedLink'
 import { WidthLimiterContainer } from '../../Layout/styles'
@@ -78,13 +79,13 @@ const IndexLayout = ({ data }) => {
   return (
     <HomePageContainer>
       <Tablet>
-        <SliderSection imgLength={images.length}>
+        <SliderContent imgLength={images.length}>
           {imagesMob?.length > 0
             ? imagesMob.map((img, index) => {
                 return <img key={index} src={img} alt="slider-images" />
               })
             : ''}
-        </SliderSection>
+        </SliderContent>
         <HomeIntroContainer>
           <img src={homeIntroGraphic} alt="home__intro-graphic" />
           <HomeIntroContentContainer>
@@ -131,7 +132,7 @@ const IndexLayout = ({ data }) => {
 
               <HomeIntroContentContainer>
                 <HomeIntroTitle>
-                  <Title as="h3" type="heading2">
+                  <Title as="h1" type="heading2">
                     {homeIntroTitle ? homeIntroTitle : ''}
                   </Title>
                 </HomeIntroTitle>
@@ -147,15 +148,15 @@ const IndexLayout = ({ data }) => {
                 </LocalizedLink>
               </Text>
             </HomeIntroContainer>
-            <div>
-              <SliderSection imgLength={images.length}>
+            <SilderContainerDes>
+              <SliderContent imgLength={images.length}>
                 {images?.length > 0
                   ? images.map((img, index) => {
                       return <img src={img} alt="slider images" key={index} />
                     })
                   : ''}
-              </SliderSection>
-            </div>
+              </SliderContent>
+            </SilderContainerDes>
           </DesktopIntroContainer>
         </WidthLimiterContainer>
         <Quote
