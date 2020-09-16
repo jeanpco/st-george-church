@@ -63,7 +63,7 @@ export const ModalTextContent = styled.div`
   p::first-letter {
     color: ${(props) => props.theme.colors.secondary};
     font-family: ${(props) => props.theme.fontFamily.primary};
-    font-size: ${(props) => props.theme.fonts.heading1};
+    font-size: 46px;
     text-transform: uppercase;
     float: left;
     padding-right: 10px;
