@@ -1,5 +1,6 @@
 import React from 'react'
 import SliderContent from '../../HomeIntroSlider'
+import Galery from '../../Gallery'
 import PropTypes from 'prop-types'
 import LocaleContext from '../../../context/LocaleProvider'
 import Text from '../../Utilities/Text'
@@ -119,6 +120,7 @@ const IndexLayout = ({ data }) => {
             ministries: ministries,
           }}
         />
+        <Galery />
       </Tablet>
       <Desktop>
         <WidthLimiterContainer className="HomePage__WidthLimiter">
@@ -172,6 +174,7 @@ const IndexLayout = ({ data }) => {
             ministries: ministries,
           }}
         />
+        <Galery />
       </Desktop>
     </HomePageContainer>
   )
