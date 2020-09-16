@@ -38,12 +38,7 @@ export const AnchorLinks = styled.div`
   display: flex;
   flex-direction: row;
   padding-bottom: 9px;
-  padding-right: 40px;
   align-items: center;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
-    padding-right: 82px;
-  }
 
   .anchor_links {
     display: flex;
@@ -69,7 +64,13 @@ export const AnchorIconTitle = styled.div`
 `
 
 export const AnchorLinksContainerDes = styled.div`
-  /* width: 35%; */
+  width: 40%;
+  padding-right: 15px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+    width: 30%;
+    padding-right: 30px;
+  }
 `
 
 export const AnchorContainerDes = styled.div`
@@ -80,17 +81,9 @@ export const AnchorContainerDes = styled.div`
 export const AnchorContentDes = styled.div`
   padding-left: 43px;
   border-left: 2px solid ${(props) => props.theme.colors.black};
-  width: 60%;
+  width: 75%;
   max-height: 643px;
   min-height: 643px;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    width: 65%;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
-    width: 70%;
-  }
 `
 export const AnchorItemsDes = styled.div`
   height: calc(100% - 50px);
