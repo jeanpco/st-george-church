@@ -1,0 +1,92 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "Home Page"
+      }
+    },
+    "intro_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Intro Title"
+      }
+    },
+    "intro_graphic": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Intro Graphic"
+      }
+    },
+    "intro_text": {
+      "type": "Text",
+      "config": {
+        "label": "Intro Text"
+      }
+    },
+    "intro_link": {
+      "type": "Text",
+      "config": {
+        "label": "Intro Link"
+      }
+    },
+    "home_quote": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "label": "Home quote"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "slider_home_des": [],
+          "slider_home_mob": []
+        },
+        "choices": {
+          "slider_home_des": {
+            "type": "Slice",
+            "fieldset": "Slider Home Des",
+            "description": "Slider Home Desktop",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "slider_img": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Slider Img"
+                }
+              }
+            }
+          },
+          "slider_home_mob": {
+            "type": "Slice",
+            "fieldset": "Slider Home Mob",
+            "description": "Slider Home Mobile",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "slider_img": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Slider IMG"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

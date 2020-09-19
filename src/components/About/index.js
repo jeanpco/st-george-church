@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-// import LocaleContext from '../../context/LocaleProvider'
-// import { useStaticQuery, graphql } from 'gatsby'
 import { AboutContainer, AboutText } from './style'
 import Title from '~/components/Utilities/Title'
 import Text from '~/components/Utilities/Text'

@@ -19,24 +19,17 @@ import { WidthLimiterContainer } from '../Layout/styles'
 const Footer = () => {
   const data = useStaticQuery(graphql`
     {
-      footer: allCosmicjsFooters {
+      footer: allPrismicFooter {
         nodes {
-          locale
-          metadata {
-            footer_graphic {
-              local {
-                publicURL
-              }
-            }
+          lang
+          data {
             copyright_text
-            legal_sections {
+            footer_graphic {
+              url
+            }
+            legal_section {
               privacy
               terms_of_service
-            }
-            logo_footer {
-              local {
-                publicURL
-              }
             }
           }
         }
@@ -44,18 +37,18 @@ const Footer = () => {
     }
   `)
 
-  const footerGraphic = data?.footer?.nodes[0]?.metadata?.footer_graphic?.local
-    ?.publicURL
-    ? data.footer.nodes[0].metadata.footer_graphic.local.publicURL
-    : ''
-
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
 
   const footerData = data.footer.nodes
-    .filter((node) => node.locale.toLowerCase() === i18n.locale)
-    .map((r) => r.metadata)
+    .filter((node) => node.lang === i18n.locale)
+    .map((r) => r.data)
 
+  const footerLocal = footerData[0]
+
+  const footerGraphic = footerLocal?.footer_graphic?.url
+    ? footerLocal.footer_graphic.url
+    : ''
   const today = new Date()
   const year = today.getFullYear()
 
@@ -109,8 +102,8 @@ const Footer = () => {
         </DesignedTextContainer>
         <LegalLinksContainer>
           <MobileDown>
-            {footerData?.[0]?.legal_sections?.length > 0
-              ? footerData[0].legal_sections.map((section, index) => {
+            {footerLocal?.legal_section?.length > 0
+              ? footerLocal.legal_section.map((section, index) => {
                   return (
                     <Link key={`LegalSectionsLink -  ${index}`} to="/faq">
                       <Text type="link" className="Footer__LegalLinks">
@@ -125,7 +118,7 @@ const Footer = () => {
                   )
                 })
               : ''}
-            {footerData?.[0]?.copyright_text ? (
+            {footerLocal?.copyright_text ? (
               <Text
                 type="smallText400"
                 as="small"
@@ -136,7 +129,7 @@ const Footer = () => {
             )}
           </MobileDown>
           <MobileUp>
-            {footerData?.[0]?.copyright_text ? (
+            {footerLocal?.copyright_text ? (
               <Text
                 type="smallText400"
                 as="small"
@@ -145,8 +138,8 @@ const Footer = () => {
             ) : (
               ''
             )}
-            {footerData?.[0]?.legal_sections?.length > 0
-              ? footerData[0].legal_sections.map((section, index) => {
+            {footerLocal?.legal_section?.length > 0
+              ? footerLocal.legal_section.map((section, index) => {
                   return (
                     <Link key={`LegalSectionsLink -  ${index}`} to="/faq">
                       <Text type="link" className="Footer__LegalLinks">
