@@ -47,6 +47,9 @@ export const query = graphql`
               ... on PrismicQuote {
                 data {
                   quote_text
+                  quote_graphic {
+                    url
+                  }
                 }
               }
             }

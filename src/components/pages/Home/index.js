@@ -14,7 +14,7 @@ import {
 } from './style'
 import LocalizedLink from '../../LocalizedLink'
 import { WidthLimiterContainer } from '../../Layout/styles'
-// import Img from 'gatsby-image'
+import Img from 'gatsby-image'
 
 const IndexLayout = ({ data }) => {
   const homePageQuery = data.homePage.nodes[0].data
@@ -45,9 +45,8 @@ const IndexLayout = ({ data }) => {
   return (
     <Fragment>
       <Tablet>
-        <SliderSection>
-          {/* imgLength={homePageQuery.body[0].items.length} */}
-          {/* {homePageQuery.body[0].items?.length > 0
+        <SliderSection imgLength={homePageQuery.body[0].items.length}>
+          {homePageQuery.body[0].items?.length > 0
             ? homePageQuery.body[0].items.map((img) => {
                 const sliderImage =
                   img.slider_img.localFile.childImageSharp.fluid
@@ -58,10 +57,7 @@ const IndexLayout = ({ data }) => {
                   />
                 )
               })
-            : ''} */}
-
-          <h1>hello</h1>
-          <h1>hello</h1>
+            : ''}
         </SliderSection>
         <HomeIntroContainer>
           <img src={homeIntroGraphic} alt="home__intro-graphic" />
@@ -120,9 +116,8 @@ const IndexLayout = ({ data }) => {
               </Text>
             </HomeIntroContainer>
             <div>
-              <SliderSection>
-                {/* imgLength={homePageQuery.body[0].items.length} */}
-                {/* {homePageQuery.body[1].items?.length > 0
+              <SliderSection imgLength={homePageQuery.body[0].items.length}>
+                {homePageQuery.body[1].items?.length > 0
                   ? homePageQuery.body[1].items.map((img) => {
                       const sliderImage =
                         img.slider_img.localFile.childImageSharp.fluid
@@ -133,9 +128,7 @@ const IndexLayout = ({ data }) => {
                         />
                       )
                     })
-                  : ''} */}
-                <h1>hellp</h1>
-                <h1>hellp</h1>
+                  : ''}
               </SliderSection>
             </div>
           </DesktopIntroContainer>
