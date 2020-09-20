@@ -1,11 +1,13 @@
-import React, { Fragment } from 'react'
-import SliderSection from '../../SliderSection/SliderSection'
+import React from 'react'
+import SliderContent from '../../HomeIntroSlider'
 import PropTypes from 'prop-types'
 import Text from '../../Utilities/Text'
 import Title from '../../Utilities/Title'
 import Quote from '../../Quote'
+// import AnchorList from '../../AnchorList'
 import { Tablet, Desktop } from '../../Utilities/Media'
 import {
+  HomePageContainer,
   HomeIntroContainer,
   HomeIntroContentContainer,
   HomeIntroTitle,
@@ -43,9 +45,9 @@ const IndexLayout = ({ data }) => {
     : ''
 
   return (
-    <Fragment>
+    <HomePageContainer>
       <Tablet>
-        <SliderSection imgLength={homePageQuery.body[0].items.length}>
+        <SliderContent imgLength={homePageQuery.body[0].items.length}>
           {homePageQuery.body[0].items?.length > 0
             ? homePageQuery.body[0].items.map((img) => {
                 const sliderImage =
@@ -58,25 +60,24 @@ const IndexLayout = ({ data }) => {
                 )
               })
             : ''}
-        </SliderSection>
+        </SliderContent>
         <HomeIntroContainer>
           <img src={homeIntroGraphic} alt="home__intro-graphic" />
-
           <HomeIntroContentContainer>
             <HomeIntroTitle>
-              <Title as="h3" type="heading2">
-                {homeIntroTitle}
+              <Title as="h1" type="heading1">
+                {homeIntroTitle ? homeIntroTitle : ''}
               </Title>
             </HomeIntroTitle>
             <HomeIntroText>
               <Text as="p" type="smallText700">
-                {homeIntroText}
+                {homeIntroText ? homeIntroText : ''}
               </Text>
             </HomeIntroText>
           </HomeIntroContentContainer>
           <Text as="p" type="smallText700">
             <LocalizedLink to="/" className="Home__Intro-link">
-              {homeIntroLink}
+              {homeIntroLink ? homeIntroLink : ''}
             </LocalizedLink>
           </Text>
         </HomeIntroContainer>
@@ -86,37 +87,45 @@ const IndexLayout = ({ data }) => {
             graphic: quoteGraphic,
           }}
         />
+        {/* <AnchorList
+          anchorQuery={{
+            title: anchorTitle,
+            links: anchorLinks,
+            ministries: ministries,
+          }}
+        /> */}
       </Tablet>
       <Desktop>
-        <WidthLimiterContainer>
+        <WidthLimiterContainer className="HomePage__WidthLimiter">
           <DesktopIntroContainer>
             <HomeIntroContainer>
               <img
-                src={homeIntroGraphic}
+                src={homeIntroGraphic ? homeIntroGraphic : ''}
                 alt="home intro graphic"
                 className="Home__Intro-Graphic"
               />
 
               <HomeIntroContentContainer>
                 <HomeIntroTitle>
-                  <Title as="h3" type="heading2">
-                    {homeIntroTitle}
+                  <Title as="h1" type="heading1">
+                    {homeIntroTitle ? homeIntroTitle : ''}
                   </Title>
                 </HomeIntroTitle>
                 <HomeIntroText>
                   <Text as="p" type="smallText700">
-                    {homeIntroText}
+                    {homeIntroText ? homeIntroText : ''}
                   </Text>
                 </HomeIntroText>
               </HomeIntroContentContainer>
               <Text as="p" type="smallText700">
                 <LocalizedLink to="/" className="Home__Intro-link">
-                  {homeIntroLink}
+                  {homeIntroLink ? homeIntroLink : ''}
                 </LocalizedLink>
               </Text>
             </HomeIntroContainer>
-            <div>
-              <SliderSection imgLength={homePageQuery.body[0].items.length}>
+
+            <div style={{ width: '50%' }}>
+              <SliderContent imgLength={homePageQuery.body[0].items.length}>
                 {homePageQuery.body[1].items?.length > 0
                   ? homePageQuery.body[1].items.map((img) => {
                       const sliderImage =
@@ -129,7 +138,7 @@ const IndexLayout = ({ data }) => {
                       )
                     })
                   : ''}
-              </SliderSection>
+              </SliderContent>
             </div>
           </DesktopIntroContainer>
         </WidthLimiterContainer>
@@ -139,8 +148,15 @@ const IndexLayout = ({ data }) => {
             graphic: quoteGraphic,
           }}
         />
+        {/* <AnchorList
+          anchorQuery={{
+            title: anchorTitle,
+            links: anchorLinks,
+            ministries: ministries,
+          }}
+        /> */}
       </Desktop>
-    </Fragment>
+    </HomePageContainer>
   )
 }
 

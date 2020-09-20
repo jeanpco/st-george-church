@@ -36,7 +36,9 @@ const Quote = ({ query }) => {
         <WidthLimiterContainer>
           <HomeQuoteContainer>
             <HomeQuoteContentContainer>
-              <Icon type="horizontal-line-des" />
+              <div>
+                <Icon type="horizontal-line-des" />
+              </div>
               <HomeQuoteContent>
                 <Text as="p" type="bigText400">
                   {query.text ? query.text : ''}
@@ -47,7 +49,9 @@ const Quote = ({ query }) => {
                   className="Home__Quote-Graphic"
                 />
               </HomeQuoteContent>
-              <Icon type="horizontal-line-des" />
+              <div>
+                <Icon type="horizontal-line-des" />
+              </div>
             </HomeQuoteContentContainer>
           </HomeQuoteContainer>
         </WidthLimiterContainer>
