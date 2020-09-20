@@ -59,6 +59,42 @@ export const query = graphql`
           intro_title {
             text
           }
+          ministries_section {
+            document {
+              ... on PrismicMinistries {
+                data {
+                  anchor_title {
+                    text
+                  }
+                  body {
+                    ... on PrismicMinistriesBodyMinistriesLinks {
+                      items {
+                        link
+                      }
+                    }
+                    ... on PrismicMinistriesBodyYouthMinistriesList {
+                      items {
+                        list_text
+                        list_title {
+                          text
+                        }
+                        list_image {
+                          localFile {
+                            childImageSharp {
+                              fluid {
+                                ...GatsbyImageSharpFluid
+                              }
+                              id
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

@@ -40,6 +40,13 @@
         "label": "Home quote"
       }
     },
+    "ministries_section": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "label": "Ministries Section"
+      }
+    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",

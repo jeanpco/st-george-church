@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
+
 import { Dialog } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core/styles'
 import Icon from '~/components/Icon'
 import PropTypes from 'prop-types'
+import Img from 'gatsby-image'
 import {
   theme,
   useStylesMainModal,
@@ -32,7 +34,7 @@ const Modal = ({ open, setOpen, query }) => {
 
   ministriesArray
     ? ministriesArray.map((info) => {
-        if (currentLink === info.anchor_title) {
+        if (currentLink === info.list_title.text) {
           ministriesContent.push(info)
         }
       })
@@ -78,13 +80,19 @@ const Modal = ({ open, setOpen, query }) => {
           <ModalDialogContainer>
             <ModalContent>
               {ministriesContent
-                ? ministriesContent.map((info, index) => {
+                ? ministriesContent.map((info) => {
                     return (
-                      <DialogContentContainer key={index}>
+                      <DialogContentContainer
+                        key={info.list_image.localFile.childImageSharp.id}
+                      >
                         <div>
-                          <img
-                            src={
-                              info.anchor_image.url ? info.anchor_image.url : ''
+                          <Img
+                            fluid={
+                              info?.list_image?.localFile?.childImageSharp
+                                ?.fluid
+                                ? info.list_image.localFile.childImageSharp
+                                    .fluid
+                                : ''
                             }
                             alt=""
                             className="Modal_Anchor-Img"
@@ -92,7 +100,7 @@ const Modal = ({ open, setOpen, query }) => {
                         </div>
                         <ModalTextContent>
                           <Text type="body">
-                            {info.anchor_text ? info.anchor_text : ''}
+                            {info?.list_text ? info.list_text : ''}
                           </Text>
                         </ModalTextContent>
                       </DialogContentContainer>

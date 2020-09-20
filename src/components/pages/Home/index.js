@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Text from '../../Utilities/Text'
 import Title from '../../Utilities/Title'
 import Quote from '../../Quote'
-// import AnchorList from '../../AnchorList'
+import AnchorList from '../../AnchorList'
 import { Tablet, Desktop } from '../../Utilities/Media'
 import {
   HomePageContainer,
@@ -42,6 +42,21 @@ const IndexLayout = ({ data }) => {
   const quoteGraphic = homePageQuery?.home_quote?.document?.data?.quote_graphic
     ?.url
     ? homePageQuery.home_quote.document.data.quote_graphic.url
+    : ''
+
+  const ministriesSectionTitle = homePageQuery?.ministries_section?.document
+    ?.data?.anchor_title
+    ? homePageQuery.ministries_section.document.data.anchor_title.text
+    : ''
+
+  const ministriesLinks = homePageQuery?.ministries_section?.document?.data
+    ?.body[0]?.items
+    ? homePageQuery.ministries_section.document.data.body[0].items
+    : ''
+
+  const ministries = homePageQuery?.ministries_section?.document?.data?.body[1]
+    ?.items
+    ? homePageQuery.ministries_section.document.data.body[1].items
     : ''
 
   return (
@@ -87,13 +102,13 @@ const IndexLayout = ({ data }) => {
             graphic: quoteGraphic,
           }}
         />
-        {/* <AnchorList
+        <AnchorList
           anchorQuery={{
-            title: anchorTitle,
-            links: anchorLinks,
+            title: ministriesSectionTitle,
+            links: ministriesLinks,
             ministries: ministries,
           }}
-        /> */}
+        />
       </Tablet>
       <Desktop>
         <WidthLimiterContainer className="HomePage__WidthLimiter">
@@ -148,13 +163,13 @@ const IndexLayout = ({ data }) => {
             graphic: quoteGraphic,
           }}
         />
-        {/* <AnchorList
+        <AnchorList
           anchorQuery={{
-            title: anchorTitle,
-            links: anchorLinks,
+            title: ministriesSectionTitle,
+            links: ministriesLinks,
             ministries: ministries,
           }}
-        /> */}
+        />
       </Desktop>
     </HomePageContainer>
   )

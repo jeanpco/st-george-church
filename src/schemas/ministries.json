@@ -1,0 +1,70 @@
+{
+  "Main": {
+    "anchor_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Anchor Title"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "ministries_links": [],
+          "youth_ministries_list": []
+        },
+        "choices": {
+          "ministries_links": {
+            "type": "Slice",
+            "fieldset": "Ministries Links",
+            "description": "Youth Ministries",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "link": {
+                "type": "Text",
+                "config": {
+                  "label": "Link"
+                }
+              }
+            }
+          },
+          "youth_ministries_list": {
+            "type": "Slice",
+            "fieldset": "Youth Ministries List",
+            "description": "Youth Ministries List",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "list_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "List Image"
+                }
+              },
+              "list_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "label": "List Title"
+                }
+              },
+              "list_text": {
+                "type": "Text",
+                "config": {
+                  "label": "List Text"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

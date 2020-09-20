@@ -33,6 +33,7 @@ module.exports = {
           homepage: require('./src/schemas/homepage.json'),
           quote: require('./src/schemas/quote.json'),
           footer: require('./src/schemas/footer.json'),
+          ministries: require('./src/schemas/ministries.json'),
         },
       },
     },

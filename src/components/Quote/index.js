@@ -13,7 +13,6 @@ import Icon from '~/components/Icon'
 import { WidthLimiterContainer } from '../Layout/styles'
 
 const Quote = ({ query }) => {
-  console.log(query)
   return (
     <Fragment>
       <Tablet>
