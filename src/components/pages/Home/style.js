@@ -6,10 +6,6 @@ export const HomePageContainer = styled.div`
   }
 `
 
-export const SilderContainerDes = styled.div`
-  width: 50%;
-`
-
 export const DesktopIntroContainer = styled.div`
   width: 100%;
   display: flex;

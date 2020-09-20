@@ -2,7 +2,6 @@ import React from 'react'
 import SliderContent from '../../HomeIntroSlider'
 import Galery from '../../Gallery'
 import PropTypes from 'prop-types'
-import LocaleContext from '../../../context/LocaleProvider'
 import Text from '../../Utilities/Text'
 import Title from '../../Utilities/Title'
 import Quote from '../../Quote'
@@ -15,75 +14,66 @@ import {
   HomeIntroTitle,
   HomeIntroText,
   DesktopIntroContainer,
-  SilderContainerDes,
 } from './style'
 import LocalizedLink from '../../LocalizedLink'
 import { WidthLimiterContainer } from '../../Layout/styles'
+import Img from 'gatsby-image'
 
 const IndexLayout = ({ data }) => {
-  const lang = React.useContext(LocaleContext)
-  const i18n = lang.i18n[lang.locale]
+  const homePageQuery = data.homePage.nodes[0].data
 
-  const HomePageData = data.homepage.nodes
-    .filter((node) => node.locale.toLowerCase() === i18n.locale)
-    .map((r) => r.metadata)
-
-  const homePage = HomePageData[0]
-
-  const homeIntroGraphic = homePage?.intro_graphic?.local?.publicURL
-    ? homePage.intro_graphic.local.publicURL
+  const homeIntroGraphic = homePageQuery?.intro_graphic?.url
+    ? homePageQuery.intro_graphic.url
     : ''
 
-  const homeIntroTitle = homePage?.intro_title ? homePage.intro_title : ''
-  const homeIntroText = homePage?.intro_text ? homePage.intro_text : ''
-  const homeIntroLink = homePage?.intro_link ? homePage.intro_link : ''
-
-  const quoteText = data?.homePagequote?.nodes[0]?.metadata?.quote
-    ? data.homePagequote.nodes[0].metadata.quote
+  const homeIntroTitle = homePageQuery?.intro_title?.text
+    ? homePageQuery.intro_title.text
+    : ''
+  const homeIntroText = homePageQuery?.intro_text
+    ? homePageQuery.intro_text
+    : ''
+  const homeIntroLink = homePageQuery?.intro_link
+    ? homePageQuery.intro_link
     : ''
 
-  const quoteGraphic = data?.homePagequote?.nodes[0]?.metadata?.quote_graphic
-    ?.local?.publicURL
-    ? data.homePagequote.nodes[0].metadata.quote_graphic.local.publicURL
+  const quoteText = homePageQuery?.home_quote?.document?.data?.quote_text
+    ? homePageQuery.home_quote.document.data.quote_text
     : ''
 
-  const anchorTitle = data?.anchor?.nodes[0]?.metadata?.anchor_title
-    ? data.anchor.nodes[0].metadata.anchor_title
+  const quoteGraphic = homePageQuery?.home_quote?.document?.data?.quote_graphic
+    ?.url
+    ? homePageQuery.home_quote.document.data.quote_graphic.url
     : ''
 
-  const ministries = data?.anchor?.nodes[0]?.metadata?.youth_ministries
-    ? data.anchor.nodes[0].metadata.youth_ministries
+  const ministriesSectionTitle = homePageQuery?.ministries_section?.document
+    ?.data?.anchor_title
+    ? homePageQuery.ministries_section.document.data.anchor_title.text
     : ''
 
-  const anchorLinks = data?.anchor?.nodes[0]?.metadata?.anchor_list
-    ? data.anchor.nodes[0].metadata.anchor_list
+  const ministriesLinks = homePageQuery?.ministries_section?.document?.data
+    ?.body[0]?.items
+    ? homePageQuery.ministries_section.document.data.body[0].items
     : ''
 
-  const images = []
-  homePage?.slider_images
-    ? homePage.slider_images.map((info) => {
-        Object.values(info).map((img) => {
-          images.push(img.url)
-        })
-      })
-    : ''
-
-  const imagesMob = []
-  homePage?.slider_image_mob
-    ? homePage.slider_image_mob.map((info) => {
-        Object.values(info).map((img) => {
-          imagesMob.push(img.url)
-        })
-      })
+  const ministries = homePageQuery?.ministries_section?.document?.data?.body[1]
+    ?.items
+    ? homePageQuery.ministries_section.document.data.body[1].items
     : ''
 
   return (
     <HomePageContainer>
       <Tablet>
-        <SliderContent imgLength={images.length}>
-          {imagesMob?.length > 0
-            ? imagesMob.map((img, index) => {
-                return <img key={index} src={img} alt="slider-images" />
+        <SliderContent imgLength={homePageQuery.body[0].items.length}>
+          {homePageQuery.body[0].items?.length > 0
+            ? homePageQuery.body[0].items.map((img) => {
+                const sliderImage =
+                  img.slider_img.localFile.childImageSharp.fluid
+                return (
+                  <Img
+                    fluid={sliderImage}
+                    key={img.slider_img.localFile.childImageSharp.id}
+                  />
+                )
               })
             : ''}
         </SliderContent>
@@ -115,8 +105,8 @@ const IndexLayout = ({ data }) => {
         />
         <AnchorList
           anchorQuery={{
-            title: anchorTitle,
-            links: anchorLinks,
+            title: ministriesSectionTitle,
+            links: ministriesLinks,
             ministries: ministries,
           }}
         />
@@ -150,15 +140,23 @@ const IndexLayout = ({ data }) => {
                 </LocalizedLink>
               </Text>
             </HomeIntroContainer>
-            <SilderContainerDes>
-              <SliderContent imgLength={images.length}>
-                {images?.length > 0
-                  ? images.map((img, index) => {
-                      return <img src={img} alt="slider images" key={index} />
+
+            <div style={{ width: '50%' }}>
+              <SliderContent imgLength={homePageQuery.body[0].items.length}>
+                {homePageQuery.body[1].items?.length > 0
+                  ? homePageQuery.body[1].items.map((img) => {
+                      const sliderImage =
+                        img.slider_img.localFile.childImageSharp.fluid
+                      return (
+                        <Img
+                          fluid={sliderImage}
+                          key={img.slider_img.localFile.childImageSharp.id}
+                        />
+                      )
                     })
                   : ''}
               </SliderContent>
-            </SilderContainerDes>
+            </div>
           </DesktopIntroContainer>
         </WidthLimiterContainer>
         <Quote
@@ -169,8 +167,8 @@ const IndexLayout = ({ data }) => {
         />
         <AnchorList
           anchorQuery={{
-            title: anchorTitle,
-            links: anchorLinks,
+            title: ministriesSectionTitle,
+            links: ministriesLinks,
             ministries: ministries,
           }}
         />

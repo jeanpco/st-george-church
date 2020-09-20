@@ -1,0 +1,31 @@
+{
+  "Main": {
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "menu_links": []
+        },
+        "choices": {
+          "menu_links": {
+            "type": "Slice",
+            "fieldset": "Menu Links",
+            "description": "Menu Links",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "link": {
+                "type": "Text",
+                "config": {
+                  "label": "Link"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

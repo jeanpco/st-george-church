@@ -26,6 +26,15 @@ const Drawer = ({
   menuLinks,
   aboutData,
 }) => {
+  const menuLinksArray = []
+
+  menuLinks
+    ? menuLinks.map((info) => {
+        Object.values(info).map((values) => {
+          menuLinksArray.push(values)
+        })
+      })
+    : ''
   return (
     <ThemeProvider theme={theme}>
       <SwipeableDrawer
@@ -47,8 +56,8 @@ const Drawer = ({
               <Title as="h2" type="menuHeading" className="Drawer__Menu-Title">
                 {title ? title : ''}
               </Title>
-              {menuLinks?.length > 0
-                ? menuLinks.map((menuText, index) => {
+              {menuLinksArray?.length > 0
+                ? menuLinksArray.map((menuText, index) => {
                     return (
                       <DrawerMenuText key={index}>
                         <Title as="h2" type="heading4">
@@ -90,7 +99,7 @@ const Drawer = ({
             <DrawerSocialMedia>
               <About
                 query={{
-                  title: aboutData.about_title,
+                  title: aboutData.about_title.text,
                   text: aboutData.about_text,
                 }}
               />

@@ -19,6 +19,7 @@ import Icon from '~/components/Icon'
 import { WidthLimiterContainer } from '../Layout/styles'
 import { Tablet, Desktop } from '../Utilities/Media'
 import Text from '../Utilities/Text'
+import Img from 'gatsby-image'
 
 const AnchorList = ({ anchorQuery }) => {
   const [open, setOpen] = useState(false)
@@ -61,11 +62,22 @@ const AnchorList = ({ anchorQuery }) => {
 
   const anchorArray = []
 
-  anchorQuery.ministries.map((info) => {
-    if (info.anchor_title === stateQueury) {
-      anchorArray.push(info)
-    }
-  })
+  const anchorFirstImage = anchorQuery?.ministries[0]?.list_image?.localFile
+    ?.childImageSharp?.fluid
+    ? anchorQuery.ministries[0].list_image.localFile.childImageSharp.fluid
+    : ''
+
+  const anchorFirstText = anchorQuery?.ministries[0]?.list_text
+    ? anchorQuery.ministries[0].list_text
+    : ''
+
+  anchorQuery?.ministries
+    ? anchorQuery.ministries.map((info) => {
+        if (info.list_title.text === stateQueury) {
+          anchorArray.push(info)
+        }
+      })
+    : ''
 
   const anchorLinks = links.map((link, index) => {
     return (
@@ -126,28 +138,28 @@ const AnchorList = ({ anchorQuery }) => {
                   anchorArray.map((info, index) => {
                     return (
                       <AnchorItemsDes key={index}>
-                        <img src={info.anchor_image.url} alt="" />
+                        <Img
+                          fluid={
+                            info?.list_image?.localFile?.childImageSharp?.fluid
+                              ? info.list_image.localFile.childImageSharp.fluid
+                              : ''
+                          }
+                          alt="ministries image"
+                        />
                         <AnchorItemsText>
-                          <Text type="body">{info.anchor_text}</Text>
+                          <Text type="body">
+                            {info?.list_text ? info.list_text : ''}
+                          </Text>
                         </AnchorItemsText>
                       </AnchorItemsDes>
                     )
                   })
                 ) : (
                   <AnchorItemsDes>
-                    <img
-                      src={
-                        anchorQuery?.ministries[0]?.anchor_image?.url
-                          ? anchorQuery.ministries[0].anchor_image.url
-                          : ''
-                      }
-                      alt=""
-                    />
+                    <Img fluid={anchorFirstImage} alt="ministries image" />
                     <AnchorItemsText>
                       <Text type="body">
-                        {anchorQuery?.ministries[0]?.anchor_text
-                          ? anchorQuery.ministries[0].anchor_text
-                          : ''}
+                        {anchorFirstText ? anchorFirstText : ''}
                       </Text>
                     </AnchorItemsText>
                   </AnchorItemsDes>

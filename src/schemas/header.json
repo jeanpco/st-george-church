@@ -1,0 +1,55 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "Header"
+      }
+    },
+    "header_logo_mob": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Header Logo Mob"
+      }
+    },
+    "header_logo_des": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Header Logo Des"
+      }
+    },
+    "menu_text": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Menu Text"
+      }
+    },
+    "header_graphic": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Header Graphic"
+      }
+    },
+    "about_content": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "label": "About Content"
+      }
+    },
+    "menu_links": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "label": "Menu Links"
+      }
+    }
+  }
+}
