@@ -2,6 +2,7 @@ import React from 'react'
 import SliderContent from '../../HomeIntroSlider'
 import Galery from '../../Gallery'
 import PropTypes from 'prop-types'
+import Team from '../../Team'
 import Text from '../../Utilities/Text'
 import Title from '../../Utilities/Title'
 import Quote from '../../Quote'
@@ -68,6 +69,14 @@ const IndexLayout = ({ data }) => {
     ? homePageQuery.ministries_section.document.data.body[1].items
     : ''
 
+  const teamTtile = homePageQuery?.who_we_are?.document?.data?.team_title?.text
+    ? homePageQuery.who_we_are.document.data.team_title.text
+    : ''
+
+  const teamContent = homePageQuery?.who_we_are?.document?.data?.body[0]?.items
+    ? homePageQuery.who_we_are.document.data.body[0].items
+    : ''
+
   return (
     <HomePageContainer>
       <Tablet>
@@ -127,6 +136,12 @@ const IndexLayout = ({ data }) => {
           query={{
             title: photoGalleryTitle,
             content: photoGallerySliderContent,
+          }}
+        />
+        <Team
+          query={{
+            title: teamTtile,
+            content: teamContent,
           }}
         />
       </Tablet>
@@ -199,6 +214,12 @@ const IndexLayout = ({ data }) => {
           query={{
             title: photoGalleryTitle,
             content: photoGallerySliderContent,
+          }}
+        />
+        <Team
+          query={{
+            title: teamTtile,
+            content: teamContent,
           }}
         />
       </Desktop>

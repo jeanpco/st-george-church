@@ -34,6 +34,7 @@ import { HorizontalLineDes } from './assets/HorizontalLineDes'
 import { Cross } from './assets/Cross'
 import { CrossDes } from './assets/CrossDes'
 import { Flower } from './assets/Flower'
+import { Border } from './assets/Border'
 
 import { AddDes } from './assets/AddDes'
 
@@ -109,6 +110,8 @@ const Icon = ({ type }) => {
       return <AddDes />
     case 'flower':
       return <Flower />
+    case 'border':
+      return <Border />
     default:
       return ''
   }

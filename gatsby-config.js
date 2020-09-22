@@ -35,6 +35,7 @@ module.exports = {
           footer: require('./src/schemas/footer.json'),
           ministries: require('./src/schemas/ministries.json'),
           photo_gallery: require('./src/schemas/photo_gallery.json'),
+          who_we_are: require('./src/schemas/who_we_are.json'),
         },
       },
     },

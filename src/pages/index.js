@@ -111,11 +111,43 @@ export const query = graphql`
                               fluid {
                                 ...GatsbyImageSharpFluid
                               }
+                              id
                             }
                           }
                         }
                         gallery_section_text
                         gallery_section_title {
+                          text
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          who_we_are {
+            document {
+              ... on PrismicWhoWeAre {
+                data {
+                  team_title {
+                    text
+                  }
+                  body {
+                    ... on PrismicWhoWeAreBodyTeamContent {
+                      items {
+                        team_image {
+                          localFile {
+                            childImageSharp {
+                              fluid {
+                                ...GatsbyImageSharpFluid
+                              }
+                              id
+                            }
+                          }
+                        }
+                        team_position
+                        teammate_name {
                           text
                         }
                       }

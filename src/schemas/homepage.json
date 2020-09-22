@@ -54,6 +54,13 @@
         "label": "Photo Gallery Section"
       }
     },
+    "who_we_are": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "label": "Who We Are"
+      }
+    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",

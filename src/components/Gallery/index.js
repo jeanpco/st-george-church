@@ -2,6 +2,9 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import { WidthLimiterContainer } from '../Layout/styles'
+import Title from '../Utilities/Title'
+import Text from '../Utilities/Text'
+import Icon from '~/components/Icon'
 import GallerySliderContent from '../GallerySlider'
 import { Tablet, Desktop } from '../Utilities/Media'
 
@@ -16,9 +19,6 @@ import {
   GallerySliderIcon,
   GalleryItemContent,
 } from './styles'
-import Title from '../Utilities/Title'
-import Text from '../Utilities/Text'
-import Icon from '~/components/Icon'
 
 const Gallery = ({ query }) => {
   const galleryImageArray = []
@@ -44,20 +44,13 @@ const Gallery = ({ query }) => {
                 infinite={true}
               >
                 {query.content?.length > 0
-                  ? query.content.map((info) => {
+                  ? query.content.map((info, index) => {
                       const sliderImage = info?.gallery_img?.localFile
                         ?.childImageSharp?.fluid
                         ? info.gallery_img.localFile.childImageSharp.fluid
                         : ''
                       return (
-                        <Fragment
-                          className="test"
-                          key={
-                            info?.gallery_img?.localFile?.childImageSharp?.id
-                              ? info.gallery_img.localFile.childImageSharp.id
-                              : ''
-                          }
-                        >
+                        <Fragment key={index}>
                           <GalleryItemContent>
                             <GallerySliderItemsContainer>
                               <Img fluid={sliderImage} />
@@ -97,24 +90,17 @@ const Gallery = ({ query }) => {
               <GallerySliderContent
                 slidesToShow={1.4}
                 slidesToScroll={1}
-                className="Slider-Test"
                 galleryImageLength={galleryImageLength}
                 infinite={false}
               >
                 {query.content?.length > 0
-                  ? query.content.map((info) => {
+                  ? query.content.map((info, index) => {
                       const sliderImage = info?.gallery_img?.localFile
                         ?.childImageSharp?.fluid
                         ? info.gallery_img.localFile.childImageSharp.fluid
                         : ''
                       return (
-                        <Fragment
-                          key={
-                            info?.gallery_img?.localFile?.childImageSharp?.id
-                              ? info.gallery_img.localFile.childImageSharp.id
-                              : ''
-                          }
-                        >
+                        <Fragment key={index}>
                           <GallerySliderItemsContainer>
                             <Img
                               fluid={sliderImage}
