@@ -71,9 +71,13 @@ const AnchorList = ({ anchorQuery }) => {
     ? anchorQuery.ministries[0].list_text
     : ''
 
-  const anchorNextLink = anchorQuery.ministriesData.next_link_text
+  const anchorNextLink = anchorQuery?.ministriesData?.next_link_text
+    ? anchorQuery.ministriesData.next_link_text
+    : ''
 
-  const anchorPrevLink = anchorQuery.ministriesData.prev_link_text
+  const anchorPrevLink = anchorQuery?.ministriesData?.prev_link_text
+    ? anchorQuery.ministriesData.prev_link_text
+    : ''
 
   const anchorLinksMobile =
     links?.length > 0
@@ -83,9 +87,13 @@ const AnchorList = ({ anchorQuery }) => {
               <AnchorIconLink>
                 <Icon type="add" />
               </AnchorIconLink>
-              <div className="anchor_links" onClick={handelClickMobile}>
-                {link}
-              </div>
+              {link ? (
+                <div className="anchor_links" onClick={handelClickMobile}>
+                  {link}
+                </div>
+              ) : (
+                ''
+              )}
             </AnchorLinksMob>
           )
         })
@@ -99,32 +107,33 @@ const AnchorList = ({ anchorQuery }) => {
       })
     : ''
 
-  const anchorLinks = links?.length
-    ? links.map((link, index) => {
-        return (
-          <AnchorLinks key={` AnchorLinks -${index}`}>
-            <AnchorIconLink>
-              <Icon type="add-des" />
-            </AnchorIconLink>
-            {link ? (
-              <div
-                className="anchor_links"
-                style={
-                  ministerState === index
-                    ? { color: '#CC1D27' }
-                    : { color: 'black' }
-                }
-                onClick={handelClick}
-              >
-                {link}
-              </div>
-            ) : (
-              ''
-            )}
-          </AnchorLinks>
-        )
-      })
-    : ''
+  const anchorLinks =
+    links?.length > 0
+      ? links.map((link, index) => {
+          return (
+            <AnchorLinks key={` AnchorLinks -${index}`}>
+              <AnchorIconLink>
+                <Icon type="add-des" />
+              </AnchorIconLink>
+              {link ? (
+                <div
+                  className="anchor_links"
+                  style={
+                    ministerState === index
+                      ? { color: '#CC1D27' }
+                      : { color: 'black' }
+                  }
+                  onClick={handelClick}
+                >
+                  {link}
+                </div>
+              ) : (
+                ''
+              )}
+            </AnchorLinks>
+          )
+        })
+      : ''
 
   return (
     <AncherContainer>
@@ -160,7 +169,11 @@ const AnchorList = ({ anchorQuery }) => {
               </AnchorIconTitle>
             </AnchorTitle>
             <AnchorContainerDes>
-              <AnchorLinksContainerDes>{anchorLinks}</AnchorLinksContainerDes>
+              {anchorLinks ? (
+                <AnchorLinksContainerDes>{anchorLinks}</AnchorLinksContainerDes>
+              ) : (
+                ''
+              )}
               <AnchorContentDes>
                 {anchor?.length > 0 ? (
                   anchor.map((info, index) => {
@@ -170,7 +183,11 @@ const AnchorList = ({ anchorQuery }) => {
                       : ''
                     return (
                       <AnchorItemsDes key={index}>
-                        <Img fluid={AnchorImage} alt="ministries image" />
+                        {AnchorImage ? (
+                          <Img fluid={AnchorImage} alt="ministries image" />
+                        ) : (
+                          ''
+                        )}
                         <AnchorItemsText>
                           {info?.list_text ? (
                             <Text type="body">{info.list_text}</Text>
@@ -183,9 +200,17 @@ const AnchorList = ({ anchorQuery }) => {
                   })
                 ) : (
                   <AnchorItemsDes>
-                    <Img fluid={anchorFirstImage} alt="ministries image" />
+                    {anchorFirstImage ? (
+                      <Img fluid={anchorFirstImage} alt="ministries image" />
+                    ) : (
+                      ''
+                    )}
                     <AnchorItemsText>
-                      <Text type="body">{anchorFirstText}</Text>
+                      {anchorFirstText ? (
+                        <Text type="body">{anchorFirstText}</Text>
+                      ) : (
+                        ''
+                      )}
                     </AnchorItemsText>
                   </AnchorItemsDes>
                 )}
