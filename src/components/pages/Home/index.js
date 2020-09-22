@@ -22,6 +22,14 @@ import Img from 'gatsby-image'
 const IndexLayout = ({ data }) => {
   const homePageQuery = data.homePage.nodes[0].data
 
+  const photoGalleryTitle = homePageQuery?.photo_gallery_section?.document?.data
+    ?.gallery_title?.text
+    ? homePageQuery.photo_gallery_section.document.data.gallery_title.text
+    : ''
+
+  const photoGallerySliderContent =
+    homePageQuery.photo_gallery_section.document.data.body[0].items
+
   const homeIntroGraphic = homePageQuery?.intro_graphic?.url
     ? homePageQuery.intro_graphic.url
     : ''
@@ -63,7 +71,12 @@ const IndexLayout = ({ data }) => {
   return (
     <HomePageContainer>
       <Tablet>
-        <SliderContent imgLength={homePageQuery.body[0].items.length}>
+        <SliderContent
+          slidesToShow={1}
+          slidesToScroll={1}
+          autoplay={true}
+          imgLength={homePageQuery.body[0].items.length}
+        >
           {homePageQuery.body[0].items?.length > 0
             ? homePageQuery.body[0].items.map((img) => {
                 const sliderImage =
@@ -110,7 +123,12 @@ const IndexLayout = ({ data }) => {
             ministries: ministries,
           }}
         />
-        <Galery />
+        <Galery
+          query={{
+            title: photoGalleryTitle,
+            content: photoGallerySliderContent,
+          }}
+        />
       </Tablet>
       <Desktop>
         <WidthLimiterContainer className="HomePage__WidthLimiter">
@@ -142,7 +160,12 @@ const IndexLayout = ({ data }) => {
             </HomeIntroContainer>
 
             <div style={{ width: '50%' }}>
-              <SliderContent imgLength={homePageQuery.body[0].items.length}>
+              <SliderContent
+                slidesToShow={1}
+                slidesToScroll={1}
+                autoplay={true}
+                imgLength={homePageQuery.body[0].items.length}
+              >
                 {homePageQuery.body[1].items?.length > 0
                   ? homePageQuery.body[1].items.map((img) => {
                       const sliderImage =
@@ -172,7 +195,12 @@ const IndexLayout = ({ data }) => {
             ministries: ministries,
           }}
         />
-        <Galery />
+        <Galery
+          query={{
+            title: photoGalleryTitle,
+            content: photoGallerySliderContent,
+          }}
+        />
       </Desktop>
     </HomePageContainer>
   )

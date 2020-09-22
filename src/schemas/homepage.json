@@ -47,6 +47,13 @@
         "label": "Ministries Section"
       }
     },
+    "photo_gallery_section": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "label": "Photo Gallery Section"
+      }
+    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",

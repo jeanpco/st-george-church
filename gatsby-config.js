@@ -34,6 +34,7 @@ module.exports = {
           quote: require('./src/schemas/quote.json'),
           footer: require('./src/schemas/footer.json'),
           ministries: require('./src/schemas/ministries.json'),
+          photo_gallery: require('./src/schemas/photo_gallery.json'),
         },
       },
     },

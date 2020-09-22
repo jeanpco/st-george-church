@@ -1,22 +1,156 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
+import Img from 'gatsby-image'
 import { WidthLimiterContainer } from '../Layout/styles'
 import GallerySliderContent from '../GallerySlider'
-import { GalleryContainer } from './styles'
+import { Tablet, Desktop } from '../Utilities/Media'
 
-const Gallery = () => {
+import {
+  GalleryContainer,
+  GalleryContentContainer,
+  GallerSliderHeader,
+  GallerySliderContainer,
+  GallerySliderItemsContainer,
+  GallerSliderTitle,
+  GallerySliderText,
+  GallerySliderIcon,
+  GalleryItemContent,
+} from './styles'
+import Title from '../Utilities/Title'
+import Text from '../Utilities/Text'
+import Icon from '~/components/Icon'
+
+const Gallery = ({ query }) => {
+  const galleryImageArray = []
+  query.content.map((info) => {
+    galleryImageArray.push(info)
+  })
+
+  const galleryImageLength = galleryImageArray.length
+
   return (
     <GalleryContainer>
       <WidthLimiterContainer>
-        <h1>Hello</h1>
-        <GallerySliderContent>
-          <h1>Slide 1</h1>
-          <h1>Slide 2</h1>
-          <h1>Slide 3</h1>
-          <h1>Slide 4</h1>
-        </GallerySliderContent>
+        <GalleryContentContainer>
+          <Desktop>
+            <GallerSliderHeader>
+              <Title type="heading2">{query?.title ? query.title : ''}</Title>
+              <Icon type="cross-des" />
+            </GallerSliderHeader>
+            <GallerySliderContainer>
+              <GallerySliderContent
+                slidesToShow={3}
+                slidesToScroll={2}
+                infinite={true}
+              >
+                {query.content?.length > 0
+                  ? query.content.map((info) => {
+                      const sliderImage = info?.gallery_img?.localFile
+                        ?.childImageSharp?.fluid
+                        ? info.gallery_img.localFile.childImageSharp.fluid
+                        : ''
+                      return (
+                        <Fragment
+                          className="test"
+                          key={
+                            info?.gallery_img?.localFile?.childImageSharp?.id
+                              ? info.gallery_img.localFile.childImageSharp.id
+                              : ''
+                          }
+                        >
+                          <GalleryItemContent>
+                            <GallerySliderItemsContainer>
+                              <Img fluid={sliderImage} />
+                              <GallerSliderTitle>
+                                <Title as="h3" type="heading3">
+                                  {info.gallery_section_title.text
+                                    ? info.gallery_section_title.text
+                                    : ''}
+                                </Title>
+                              </GallerSliderTitle>
+                              <GallerySliderText>
+                                <Text type="smallText700">
+                                  {info?.gallery_section_text
+                                    ? info.gallery_section_text
+                                    : ''}
+                                </Text>
+                              </GallerySliderText>
+                            </GallerySliderItemsContainer>
+                            <GallerySliderIcon>
+                              <Icon type="flower" />
+                            </GallerySliderIcon>
+                          </GalleryItemContent>
+                        </Fragment>
+                      )
+                    })
+                  : ''}
+              </GallerySliderContent>
+            </GallerySliderContainer>
+          </Desktop>
+
+          <Tablet>
+            <GallerSliderHeader>
+              <Title type="heading2">{query?.title ? query.title : ''}</Title>
+              <Icon type="cross" />
+            </GallerSliderHeader>
+            <GallerySliderContainer>
+              <GallerySliderContent
+                slidesToShow={1.4}
+                slidesToScroll={1}
+                className="Slider-Test"
+                galleryImageLength={galleryImageLength}
+                infinite={false}
+              >
+                {query.content?.length > 0
+                  ? query.content.map((info) => {
+                      const sliderImage = info?.gallery_img?.localFile
+                        ?.childImageSharp?.fluid
+                        ? info.gallery_img.localFile.childImageSharp.fluid
+                        : ''
+                      return (
+                        <Fragment
+                          key={
+                            info?.gallery_img?.localFile?.childImageSharp?.id
+                              ? info.gallery_img.localFile.childImageSharp.id
+                              : ''
+                          }
+                        >
+                          <GallerySliderItemsContainer>
+                            <Img
+                              fluid={sliderImage}
+                              alt="photo gallery slider image"
+                            />
+                            <GallerSliderTitle>
+                              <Title as="h3" type="heading3">
+                                {info.gallery_section_title.text
+                                  ? info.gallery_section_title.text
+                                  : ''}
+                              </Title>
+                            </GallerSliderTitle>
+                            <GallerySliderText>
+                              <Text type="smallText700">
+                                {info.gallery_section_text}
+                              </Text>
+                            </GallerySliderText>
+                          </GallerySliderItemsContainer>
+                          <GallerySliderIcon>
+                            <Icon type="flower" />
+                          </GallerySliderIcon>
+                        </Fragment>
+                      )
+                    })
+                  : ''}
+              </GallerySliderContent>
+            </GallerySliderContainer>
+          </Tablet>
+        </GalleryContentContainer>
       </WidthLimiterContainer>
     </GalleryContainer>
   )
+}
+
+Gallery.propTypes = {
+  query: PropTypes.object,
 }
 
 export default Gallery

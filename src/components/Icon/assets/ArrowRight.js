@@ -3,28 +3,16 @@ import React from 'react'
 export const ArrowRight = () => {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      width="41"
+      height="40"
+      viewBox="0 0 41 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M16.01 11H4V13H16.01V16L20 12L16.01 8V11Z" fill="black" />
-      <mask
-        id="arrow-right"
-        mask-type="alpha"
-        maskUnits="userSpaceOnUse"
-        x="4"
-        y="8"
-        width="16"
-        height="8"
-      >
-        
-      </mask>
-      <path d="M16.01 11H4V13H16.01V16L20 12L16.01 8V11Z" fill="white" />
-      <g mask="url(#arrow-right)">
-        <rect width="24" height="24" fill="black" />
-      </g>
+      <path
+        d="M40.3858 18.6404L19.3406 0.219101C19.1791 0.0786513 18.973 0 18.7557 0H13.8259C13.4137 0 13.2243 0.516854 13.5362 0.786517L33.0439 17.8652H0.445636C0.200536 17.8652 0 18.0674 0 18.3146V21.6854C0 21.9326 0.200536 22.1348 0.445636 22.1348H33.0384L13.5306 39.2135C13.2187 39.4888 13.4081 40 13.8203 40H18.9173C19.0231 40 19.1289 39.9607 19.2069 39.8876L40.3858 21.3596C40.5786 21.1904 40.7333 20.9815 40.8392 20.747C40.9452 20.5125 41 20.2577 41 20C41 19.7423 40.9452 19.4875 40.8392 19.253C40.7333 19.0185 40.5786 18.8096 40.3858 18.6404Z"
+        fill="black"
+      />
     </svg>
   )
 }
