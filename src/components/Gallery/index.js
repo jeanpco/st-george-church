@@ -51,7 +51,6 @@ const Gallery = ({ query }) => {
                         : ''
                       return (
                         <Fragment
-                          className="test"
                           key={
                             info?.gallery_img?.localFile?.childImageSharp?.id
                               ? info.gallery_img.localFile.childImageSharp.id
@@ -97,7 +96,6 @@ const Gallery = ({ query }) => {
               <GallerySliderContent
                 slidesToShow={1.4}
                 slidesToScroll={1}
-                className="Slider-Test"
                 galleryImageLength={galleryImageLength}
                 infinite={false}
               >
