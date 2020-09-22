@@ -5,87 +5,87 @@ import { graphql } from 'gatsby'
 
 export const query = graphql`
   query HomePageQuery($locale: String) {
-    homePage: allPrismicHomepage(filter: { lang: { eq: $locale } }) {
-      nodes {
-        data {
-          body {
-            ... on PrismicHomepageBodySliderHomeDes {
-              items {
-                slider_img {
-                  localFile {
-                    childImageSharp {
-                      fluid {
-                        ...GatsbyImageSharpFluid
-                      }
-                      id
+    homePage: prismicHomepage(lang: { eq: $locale }) {
+      data {
+        body {
+          ... on PrismicHomepageBodySliderHomeDes {
+            items {
+              slider_img {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid
                     }
-                  }
-                }
-              }
-            }
-            ... on PrismicHomepageBodySliderHomeMob {
-              id
-              items {
-                slider_img {
-                  localFile {
-                    childImageSharp {
-                      fluid {
-                        ...GatsbyImageSharpFluid
-                      }
-                      id
-                    }
+                    id
                   }
                 }
               }
             }
           }
-          intro_graphic {
-            url
-          }
-          home_quote {
-            document {
-              ... on PrismicQuote {
-                data {
-                  quote_text
-                  quote_graphic {
-                    url
+          ... on PrismicHomepageBodySliderHomeMob {
+            id
+            items {
+              slider_img {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid
+                    }
+                    id
                   }
                 }
               }
             }
           }
-          intro_link
-          intro_text
-          intro_title {
-            text
+        }
+        intro_graphic {
+          url
+        }
+        home_quote {
+          document {
+            ... on PrismicQuote {
+              data {
+                quote_text
+                quote_graphic {
+                  url
+                }
+              }
+            }
           }
-          ministries_section {
-            document {
-              ... on PrismicMinistries {
-                data {
-                  anchor_title {
-                    text
-                  }
-                  body {
-                    ... on PrismicMinistriesBodyMinistriesLinks {
-                      items {
-                        link
-                      }
+        }
+        intro_link
+        intro_text
+        intro_title {
+          text
+        }
+        ministries_section {
+          document {
+            ... on PrismicMinistries {
+              data {
+                next_link_text
+                prev_link_text
+                anchor_title {
+                  text
+                }
+                body {
+                  ... on PrismicMinistriesBodyMinistriesLinks {
+                    items {
+                      link
                     }
-                    ... on PrismicMinistriesBodyYouthMinistriesList {
-                      items {
-                        list_text
-                        list_title {
-                          text
-                        }
-                        list_image {
-                          localFile {
-                            childImageSharp {
-                              fluid {
-                                ...GatsbyImageSharpFluid
-                              }
-                              id
+                  }
+                  ... on PrismicMinistriesBodyYouthMinistriesList {
+                    items {
+                      list_text
+                      list_title {
+                        text
+                      }
+                      list_image {
+                        localFile {
+                          childImageSharp {
+                            fluid {
+                              ...GatsbyImageSharpFluid
                             }
+                            id
                           }
                         }
                       }

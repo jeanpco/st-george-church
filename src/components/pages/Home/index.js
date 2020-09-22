@@ -19,7 +19,7 @@ import { WidthLimiterContainer } from '../../Layout/styles'
 import Img from 'gatsby-image'
 
 const IndexLayout = ({ data }) => {
-  const homePageQuery = data.homePage.nodes[0].data
+  const homePageQuery = data.homePage.data
 
   const homeIntroGraphic = homePageQuery?.intro_graphic?.url
     ? homePageQuery.intro_graphic.url
@@ -58,6 +58,8 @@ const IndexLayout = ({ data }) => {
     ?.items
     ? homePageQuery.ministries_section.document.data.body[1].items
     : ''
+
+  const ministriesData = homePageQuery.ministries_section.document.data
 
   return (
     <HomePageContainer>
@@ -107,6 +109,7 @@ const IndexLayout = ({ data }) => {
             title: ministriesSectionTitle,
             links: ministriesLinks,
             ministries: ministries,
+            ministriesData: ministriesData,
           }}
         />
       </Tablet>
@@ -168,6 +171,7 @@ const IndexLayout = ({ data }) => {
             title: ministriesSectionTitle,
             links: ministriesLinks,
             ministries: ministries,
+            ministriesData: ministriesData,
           }}
         />
       </Desktop>

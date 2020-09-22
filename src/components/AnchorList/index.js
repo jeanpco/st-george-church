@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../Modal'
 import {
@@ -24,14 +24,25 @@ import Img from 'gatsby-image'
 const AnchorList = ({ anchorQuery }) => {
   const [open, setOpen] = useState(false)
   const [ministerState, setMinisterState] = useState(0)
-  const [stateQueury, setStateQuery] = useState('')
+  const [stateQuery, setStateQuery] = useState('')
+  const [links, setLinks] = useState([])
 
-  const links = []
+  const [anchor, setAnchor] = useState([])
+
+  useEffect(() => {
+    setLinks(linksArray)
+  }, [])
+
+  useEffect(() => {
+    setAnchor(anchorArray)
+  }, [])
+
+  const linksArray = []
 
   anchorQuery?.links
     ? anchorQuery.links.map((info) => {
         Object.values(info).map((values) => {
-          links.push(values)
+          linksArray.push(values)
         })
       })
     : ''
@@ -47,18 +58,7 @@ const AnchorList = ({ anchorQuery }) => {
     setMinisterState(links.indexOf(e.target.innerText))
   }
 
-  const anchorLinksMobile = links.map((link, index) => {
-    return (
-      <AnchorLinksMob key={index}>
-        <AnchorIconLink>
-          <Icon type="add" />
-        </AnchorIconLink>
-        <div className="anchor_links" onClick={handelClickMobile}>
-          {link ? link : ''}
-        </div>
-      </AnchorLinksMob>
-    )
-  })
+  const anchorTitle = anchorQuery?.title ? anchorQuery.title : ''
 
   const anchorArray = []
 
@@ -71,32 +71,60 @@ const AnchorList = ({ anchorQuery }) => {
     ? anchorQuery.ministries[0].list_text
     : ''
 
-  anchorQuery?.ministries
+  const anchorNextLink = anchorQuery.ministriesData.next_link_text
+
+  const anchorPrevLink = anchorQuery.ministriesData.prev_link_text
+
+  const anchorLinksMobile =
+    links?.length > 0
+      ? links.map((link, index) => {
+          return (
+            <AnchorLinksMob key={index}>
+              <AnchorIconLink>
+                <Icon type="add" />
+              </AnchorIconLink>
+              <div className="anchor_links" onClick={handelClickMobile}>
+                {link}
+              </div>
+            </AnchorLinksMob>
+          )
+        })
+      : ''
+
+  anchorQuery?.ministries?.length > 0
     ? anchorQuery.ministries.map((info) => {
-        if (info.list_title.text === stateQueury) {
+        if (info.list_title.text === stateQuery) {
           anchorArray.push(info)
         }
       })
     : ''
 
-  const anchorLinks = links.map((link, index) => {
-    return (
-      <AnchorLinks key={index}>
-        <AnchorIconLink>
-          <Icon type="add-des" />
-        </AnchorIconLink>
-        <div
-          className="anchor_links"
-          style={
-            ministerState === index ? { color: '#CC1D27' } : { color: 'black' }
-          }
-          onClick={handelClick}
-        >
-          {link ? link : ''}
-        </div>
-      </AnchorLinks>
-    )
-  })
+  const anchorLinks = links?.length
+    ? links.map((link, index) => {
+        return (
+          <AnchorLinks key={` AnchorLinks -${index}`}>
+            <AnchorIconLink>
+              <Icon type="add-des" />
+            </AnchorIconLink>
+            {link ? (
+              <div
+                className="anchor_links"
+                style={
+                  ministerState === index
+                    ? { color: '#CC1D27' }
+                    : { color: 'black' }
+                }
+                onClick={handelClick}
+              >
+                {link}
+              </div>
+            ) : (
+              ''
+            )}
+          </AnchorLinks>
+        )
+      })
+    : ''
 
   return (
     <AncherContainer>
@@ -105,11 +133,11 @@ const AnchorList = ({ anchorQuery }) => {
           <Tablet>
             <AnchorTitle as="h2" type="heading2">
               <AnchorIconTitle>
-                {anchorQuery?.title ? anchorQuery.title : ''}
+                {anchorTitle}
                 <Icon type="cross" />
               </AnchorIconTitle>
             </AnchorTitle>
-            {anchorLinksMobile ? anchorLinksMobile : ''}
+            {anchorLinksMobile}
             <Modal
               open={open}
               setOpen={setOpen}
@@ -119,37 +147,36 @@ const AnchorList = ({ anchorQuery }) => {
                 currentLink: links[ministerState],
                 links: links,
                 linkIndex: ministerState,
+                nextLinkText: anchorNextLink,
+                prevLinkText: anchorPrevLink,
               }}
             />
           </Tablet>
           <Desktop>
             <AnchorTitle as="h2" type="heading2">
               <AnchorIconTitle>
-                {anchorQuery?.title ? anchorQuery.title : ''}
+                {anchorTitle}
                 <Icon type="cross-des" />
               </AnchorIconTitle>
             </AnchorTitle>
             <AnchorContainerDes>
-              <AnchorLinksContainerDes>
-                {anchorLinks ? anchorLinks : ''}
-              </AnchorLinksContainerDes>
+              <AnchorLinksContainerDes>{anchorLinks}</AnchorLinksContainerDes>
               <AnchorContentDes>
-                {anchorArray.length > 0 ? (
-                  anchorArray.map((info, index) => {
+                {anchor?.length > 0 ? (
+                  anchor.map((info, index) => {
+                    const AnchorImage = info?.list_image?.localFile
+                      ?.childImageSharp?.fluid
+                      ? info.list_image.localFile.childImageSharp.fluid
+                      : ''
                     return (
                       <AnchorItemsDes key={index}>
-                        <Img
-                          fluid={
-                            info?.list_image?.localFile?.childImageSharp?.fluid
-                              ? info.list_image.localFile.childImageSharp.fluid
-                              : ''
-                          }
-                          alt="ministries image"
-                        />
+                        <Img fluid={AnchorImage} alt="ministries image" />
                         <AnchorItemsText>
-                          <Text type="body">
-                            {info?.list_text ? info.list_text : ''}
-                          </Text>
+                          {info?.list_text ? (
+                            <Text type="body">{info.list_text}</Text>
+                          ) : (
+                            ''
+                          )}
                         </AnchorItemsText>
                       </AnchorItemsDes>
                     )
@@ -158,9 +185,7 @@ const AnchorList = ({ anchorQuery }) => {
                   <AnchorItemsDes>
                     <Img fluid={anchorFirstImage} alt="ministries image" />
                     <AnchorItemsText>
-                      <Text type="body">
-                        {anchorFirstText ? anchorFirstText : ''}
-                      </Text>
+                      <Text type="body">{anchorFirstText}</Text>
                     </AnchorItemsText>
                   </AnchorItemsDes>
                 )}

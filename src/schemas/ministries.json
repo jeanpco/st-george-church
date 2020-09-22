@@ -7,6 +7,18 @@
         "label": "Anchor Title"
       }
     },
+    "next_link_text": {
+      "type": "Text",
+      "config": {
+        "label": "Next Link Text"
+      }
+    },
+    "prev_link_text": {
+      "type": "Text",
+      "config": {
+        "label": "Prev Link Text"
+      }
+    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",
