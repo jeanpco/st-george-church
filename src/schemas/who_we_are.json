@@ -3,14 +3,39 @@
     "uid": {
       "type": "UID",
       "config": {
-        "label": "Who We Are"
+        "label": "Contact"
       }
     },
-    "team_title": {
+    "contact_title": {
       "type": "StructuredText",
       "config": {
         "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-        "label": "Team Title"
+        "label": "Contact Title"
+      }
+    },
+    "contact_flyout_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Contact Flyout Title"
+      }
+    },
+    "contact_flyout_address": {
+      "type": "Text",
+      "config": {
+        "label": "Contact Flyout Address"
+      }
+    },
+    "contact_flyout_number": {
+      "type": "Text",
+      "config": {
+        "label": "Contact Flyout Number"
+      }
+    },
+    "contact_form_title": {
+      "type": "Text",
+      "config": {
+        "label": "Contact Form Title"
       }
     },
     "body": {
@@ -29,25 +54,25 @@
             "display": "list",
             "non-repeat": {},
             "repeat": {
-              "team_image": {
+              "contact_image": {
                 "type": "Image",
                 "config": {
                   "constraint": {},
                   "thumbnails": [],
-                  "label": "Teammate Image"
+                  "label": "Contact Image"
                 }
               },
-              "team_position": {
+              "contact_position": {
                 "type": "Text",
                 "config": {
-                  "label": "Teammate Position"
+                  "label": "Contact Position"
                 }
               },
-              "teammate_name": {
+              "contact_name": {
                 "type": "StructuredText",
                 "config": {
                   "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-                  "label": "Teammate Name"
+                  "label": "Contact Name"
                 }
               }
             }

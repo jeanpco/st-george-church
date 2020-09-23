@@ -65,6 +65,20 @@ export const TitleStyled = styled.p`
       line-height: 1.3;
     }
   }
+
+  &.heading7 {
+    font-family: ${theme.fontFamily.primary};
+    font-size: ${theme.fonts.heading7};
+    color: ${theme.colors.secondary};
+    line-height: 1.3;
+    font-style: normal;
+    font-weight: normal;
+    @media (min-width: ${theme.breakpoints.md}) {
+      font-size: ${theme.fonts.heading4};
+      line-height: 1.3;
+    }
+  }
+
   &.overline {
     font-size: ${theme.fonts.overline};
     line-height: normal;

@@ -126,17 +126,23 @@ export const query = graphql`
               }
             }
           }
-          who_we_are {
+          contact {
             document {
               ... on PrismicWhoWeAre {
                 data {
-                  team_title {
+                  contact_flyout_address
+                  contact_flyout_number
+                  contact_flyout_title {
+                    text
+                  }
+                  contact_form_title
+                  contact_title {
                     text
                   }
                   body {
                     ... on PrismicWhoWeAreBodyTeamContent {
                       items {
-                        team_image {
+                        contact_image {
                           localFile {
                             childImageSharp {
                               fluid {
@@ -146,8 +152,8 @@ export const query = graphql`
                             }
                           }
                         }
-                        team_position
-                        teammate_name {
+                        contact_position
+                        contact_name {
                           text
                         }
                       }

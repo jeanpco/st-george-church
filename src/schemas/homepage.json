@@ -54,11 +54,11 @@
         "label": "Photo Gallery Section"
       }
     },
-    "who_we_are": {
+    "contact": {
       "type": "Link",
       "config": {
         "select": "document",
-        "label": "Who We Are"
+        "label": "contact"
       }
     },
     "body": {

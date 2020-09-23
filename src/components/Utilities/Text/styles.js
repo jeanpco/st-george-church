@@ -47,6 +47,17 @@ export const TextStyled = styled.p`
       font-size: ${(props) => props.theme.fonts.body};
     }
   }
+
+  &.smallText800 {
+    font-family: ${(props) => props.theme.fontFamily.secondary};
+    font-size: ${(props) => props.theme.fonts.smallText};
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: ${(props) => props.theme.fonts.bigText};
+    }
+  }
   &.bigText400 {
     font-family: ${(props) => props.theme.fontFamily.primary};
     font-size: ${(props) => props.theme.fonts.body};

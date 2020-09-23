@@ -4,7 +4,7 @@ import { SocialMediaContainer, LinkContainer, LogoContainer } from './styles'
 import PropTypes from 'prop-types'
 import LocaleContext from '../../context/LocaleProvider'
 
-const SocialMedia = ({ customClassName }) => {
+const SocialMedia = ({ customClassName, children }) => {
   const data = useStaticQuery(graphql`
     {
       social_media: allPrismicSocialMedia {
@@ -60,6 +60,8 @@ const SocialMedia = ({ customClassName }) => {
           className="SocialMedia__Logo"
         />
       </LogoContainer>
+      {children}
+
       <LinkContainer className="Social__Icon-Container">
         {logos?.length > 0
           ? logos.map((info, index) => {
@@ -89,6 +91,7 @@ const SocialMedia = ({ customClassName }) => {
 
 SocialMedia.propTypes = {
   customClassName: PropTypes.any,
+  children: PropTypes.any,
 }
 
 export default SocialMedia

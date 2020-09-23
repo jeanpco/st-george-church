@@ -2,7 +2,7 @@ import React from 'react'
 import SliderContent from '../../HomeIntroSlider'
 import Galery from '../../Gallery'
 import PropTypes from 'prop-types'
-import Team from '../../Team'
+import Contact from '../../Contact'
 import Text from '../../Utilities/Text'
 import Title from '../../Utilities/Title'
 import Quote from '../../Quote'
@@ -69,13 +69,36 @@ const IndexLayout = ({ data }) => {
     ? homePageQuery.ministries_section.document.data.body[1].items
     : ''
 
-  const teamTtile = homePageQuery?.who_we_are?.document?.data?.team_title?.text
-    ? homePageQuery.who_we_are.document.data.team_title.text
+  const contactTitle = homePageQuery?.contact.document?.data?.contact_title
+    ?.text
+    ? homePageQuery.contact.document.data.contact_title.text
     : ''
 
-  const teamContent = homePageQuery?.who_we_are?.document?.data?.body[0]?.items
-    ? homePageQuery.who_we_are.document.data.body[0].items
+  const contactContent = homePageQuery?.contact.document?.data?.body[0]?.items
+    ? homePageQuery.contact.document.data.body[0].items
     : ''
+
+  const contactFlyoutTitle = homePageQuery?.contact?.document?.data
+    ?.contact_flyout_title?.text
+    ? homePageQuery.contact.document.data.contact_flyout_title.text
+    : ''
+
+  const contactFlyoutAddress = homePageQuery?.contact?.document?.data
+    ?.contact_flyout_address
+    ? homePageQuery.contact.document.data.contact_flyout_address
+    : ''
+
+  const contactFlyoutNumber = homePageQuery?.contact?.document?.data
+    ?.contact_flyout_number
+    ? homePageQuery.contact.document.data.contact_flyout_number
+    : ''
+
+  const contactFormTitle = homePageQuery?.contact?.document?.data
+    ?.contact_form_title
+    ? homePageQuery.contact.document.data.contact_form_title
+    : ''
+
+  console.log(contactFormTitle)
 
   return (
     <HomePageContainer>
@@ -138,10 +161,14 @@ const IndexLayout = ({ data }) => {
             content: photoGallerySliderContent,
           }}
         />
-        <Team
+        <Contact
           query={{
-            title: teamTtile,
-            content: teamContent,
+            title: contactTitle,
+            content: contactContent,
+            contactFlyoutTitle: contactFlyoutTitle,
+            contactFlyoutAddress: contactFlyoutAddress,
+            contactFlyoutNumber: contactFlyoutNumber,
+            contactFormTitle: contactFormTitle,
           }}
         />
       </Tablet>
@@ -216,10 +243,14 @@ const IndexLayout = ({ data }) => {
             content: photoGallerySliderContent,
           }}
         />
-        <Team
+        <Contact
           query={{
-            title: teamTtile,
-            content: teamContent,
+            title: contactTitle,
+            content: contactContent,
+            contactFlyoutTitle: contactFlyoutTitle,
+            contactFlyoutAddress: contactFlyoutAddress,
+            contactFlyoutNumber: contactFlyoutNumber,
+            contactFormTitle: contactFormTitle,
           }}
         />
       </Desktop>
