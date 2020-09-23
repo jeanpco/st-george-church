@@ -27,14 +27,8 @@ const AnchorList = ({ anchorQuery }) => {
   const [stateQuery, setStateQuery] = useState('')
   const [links, setLinks] = useState([])
 
-  const [anchor, setAnchor] = useState([])
-
   useEffect(() => {
     setLinks(linksArray)
-  }, [])
-
-  useEffect(() => {
-    setAnchor(anchorArray)
   }, [])
 
   const linksArray = []
@@ -44,6 +38,16 @@ const AnchorList = ({ anchorQuery }) => {
         Object.values(info).map((values) => {
           linksArray.push(values)
         })
+      })
+    : ''
+
+  const anchorArray = []
+
+  anchorQuery?.ministries?.length > 0
+    ? anchorQuery.ministries.map((info) => {
+        if (info.list_title.text === stateQuery) {
+          anchorArray.push(info)
+        }
       })
     : ''
 
@@ -59,8 +63,6 @@ const AnchorList = ({ anchorQuery }) => {
   }
 
   const anchorTitle = anchorQuery?.title ? anchorQuery.title : ''
-
-  const anchorArray = []
 
   const anchorFirstImage = anchorQuery?.ministries[0]?.list_image?.localFile
     ?.childImageSharp?.fluid
@@ -98,14 +100,6 @@ const AnchorList = ({ anchorQuery }) => {
           )
         })
       : ''
-
-  anchorQuery?.ministries?.length > 0
-    ? anchorQuery.ministries.map((info) => {
-        if (info.list_title.text === stateQuery) {
-          anchorArray.push(info)
-        }
-      })
-    : ''
 
   const anchorLinks =
     links?.length > 0
@@ -175,8 +169,8 @@ const AnchorList = ({ anchorQuery }) => {
                 ''
               )}
               <AnchorContentDes>
-                {anchor?.length > 0 ? (
-                  anchor.map((info, index) => {
+                {anchorArray?.length > 0 ? (
+                  anchorArray.map((info, index) => {
                     const AnchorImage = info?.list_image?.localFile
                       ?.childImageSharp?.fluid
                       ? info.list_image.localFile.childImageSharp.fluid

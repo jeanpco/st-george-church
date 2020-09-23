@@ -23,11 +23,6 @@ const Modal = ({ open, setOpen, query }) => {
   const isFirstRun = useRef(true)
   const classes = useStylesMainModal()
   const [linkState, setLinkState] = useState(query.linkIndex)
-  const [ministerState, setMinisterState] = useState([])
-
-  useEffect(() => {
-    setMinisterState(ministriesContent)
-  }, [])
 
   const linksArray = query.links
   const currentLink = linksArray[linkState]
@@ -92,8 +87,8 @@ const Modal = ({ open, setOpen, query }) => {
         </ModalTitleContainer>
         <ModalDialogContainer>
           <ModalContent>
-            {ministerState?.length > 0
-              ? ministerState.map((info, index) => {
+            {ministriesContent?.length > 0
+              ? ministriesContent.map((info, index) => {
                   return (
                     <DialogContentContainer key={index}>
                       <div>
