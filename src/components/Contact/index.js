@@ -15,10 +15,22 @@ import {
   ContactBodyContainer,
   GalleryIconContainer,
   ContactItemContainer,
+  ContactImageTitle,
 } from './styles'
 
 const Contact = ({ query }) => {
   const [toggleDrawer, setToggleDrawer] = useState(false)
+
+  const [contactPerson, setContactPerson] = useState('')
+
+  const contactFormInformation = query?.content ? query.content : ''
+
+  const onClickHandler = (e) => {
+    setToggleDrawer(!toggleDrawer)
+    setContactPerson(
+      e.currentTarget.childNodes[0].lastElementChild.lastChild.innerText
+    )
+  }
 
   return (
     <WidthLimiterContainer>
@@ -42,17 +54,20 @@ const Contact = ({ query }) => {
                     : ''
                   return (
                     <Fragment key={index}>
-                      <div onClick={() => setToggleDrawer(!toggleDrawer)}>
+                      <div onClick={onClickHandler}>
                         <ContactBodyContainer>
                           <GalleryIconContainer>
                             <Icon type="border" />
+                            <ContactImageTitle className="test">
+                              <h1>Contact</h1>
+                            </ContactImageTitle>
                           </GalleryIconContainer>
-                          <Img fluid={contactImages} />
+                          <Img fluid={contactImages}></Img>
                           <ContactItemContainer>
                             <Title type="heading7">
                               {info.contact_position}
                             </Title>
-                            <Text type="smallText800">
+                            <Text type="smallText800" id="contact-name">
                               {info.contact_name.text}
                             </Text>
                           </ContactItemContainer>
@@ -71,10 +86,12 @@ const Contact = ({ query }) => {
         toggleDrawer={toggleDrawer}
         setToggleDrawer={setToggleDrawer}
         query={{
+          contactCurrent: contactPerson,
           title: query.contactFlyoutTitle,
           address: query.contactFlyoutAddress,
           number: query.contactFlyoutNumber,
           formTitle: query.contactFormTitle,
+          formContent: contactFormInformation,
         }}
       />
     </WidthLimiterContainer>

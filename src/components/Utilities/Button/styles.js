@@ -7,9 +7,9 @@ export const buttonUseStyles = makeStyles(() => ({
   },
   root: {
     color: localTheme.colors.secondary,
+    background: 'transparent',
     display: 'inline-flex',
     borderRadius: '0px',
-    padding: '8px 8.5px',
     width: 'auto',
     maxWidth: 160,
     letterSpacing: '1.14px',

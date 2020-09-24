@@ -15,13 +15,14 @@ export const TeamHeaderContainer = styled.div`
 `
 
 export const TeamContentContainer = styled.div`
+  cursor: pointer;
   display: grid;
   grid-template-columns: 1fr 1fr;
-
-  cursor: pointer;
+  grid-column-gap: 30px;
+  grid-row-gap: 34px;
   margin-top: 24px;
-  margin-bottom: 100px;
-  grid-row-gap: 109px;
+  margin-bottom: 35px;
+  margin-right: 30px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     display: grid;
@@ -29,6 +30,8 @@ export const TeamContentContainer = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     margin-top: 129px;
     grid-column-gap: 50px;
+    margin-bottom: 100px;
+    margin-right: 0;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
@@ -50,6 +53,9 @@ export const GalleryIconContainer = styled.div`
   z-index: 1;
 
   :hover {
+    .test {
+      display: block;
+    }
     svg {
       background: linear-gradient(
           0deg,
@@ -62,6 +68,14 @@ export const GalleryIconContainer = styled.div`
       color: ${(props) => props.theme.colors.secondary};
     }
   }
+`
+export const ContactImageTitle = styled.div`
+  position: relative;
+  bottom: 159px;
+  left: 82px;
+  color: white;
+  display: none;
+  z-index: 1;
 `
 
 export const ContactItemContainer = styled.div`

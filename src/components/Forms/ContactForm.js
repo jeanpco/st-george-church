@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { theme, ContactFormButton, Form } from './styles'
+import {
+  theme,
+  ContactFormStyled,
+  MessageContainerMain,
+  MessageContainer,
+  FormSelectLabel,
+} from './styles'
 import TextField from '@material-ui/core/TextField'
 import { ThemeProvider } from '@material-ui/core/styles'
-import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
-import { FormHelperText } from '@material-ui/core'
-import { useState } from 'react'
-
+import { validateInput, validateAll } from '../../utils/functions/validateForm'
+import { encode } from '../../utils/functions/encode'
+import axios from 'axios'
+import Button from '../Utilities/Button'
+import Text from '../Utilities/Text'
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 const ContactForm = ({
   query: {
     name_label,
@@ -16,25 +24,99 @@ const ContactForm = ({
     email_input_label,
     // email_input_placeholder,
     textarea_input_label,
-    button_text,
+    // button_text,
+    formInformation,
+    contactCurrent,
   },
-  isLoading,
-  submitHandler,
-  formState,
-  setFormState,
 }) => {
+  const [formSuccess, setFormSuccess] = useState(false)
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    text: '',
+  })
+  const [personName, setPersonName] = useState([])
+  const [open, setOpen] = useState(false)
+  const [formStatus, setFormStatus] = useState({
+    message: '',
+    state: '',
+  })
+
   const changeHandler = (e) => {
     setFormState({
       ...formState,
       [e.target.name]: e.target.value,
     })
-
-    setErrorText(e.target.value)
   }
 
-  const [errorText, setErrorText] = useState('')
-  const [personName, setPersonName] = React.useState([])
-  const [open, setOpen] = React.useState(false)
+  useEffect(() => {
+    if (formSuccess) {
+      setTimeout(() => {
+        setFormSuccess(false)
+        setFormStatus({
+          message: '',
+          state: '',
+        })
+        setFormState({
+          name: '',
+          email: '',
+          text: '',
+        })
+      }, 3000)
+    }
+  }, [formSuccess])
+
+  const formOnBlur = (e) => {
+    const validation = validateInput(e.target, formState)
+    if (!validation.state) {
+      setFormStatus({
+        message: validation.message,
+        state: validation.state,
+        error: !validation.state ? e.target.name : '',
+      })
+    } else {
+      setFormStatus({
+        message: '',
+        state: validation.state,
+        error: !validation.state ? e.target.name : '',
+      })
+    }
+  }
+
+  const submitHandler = async (e) => {
+    e.preventDefault()
+    const validationOnSubmit = validateAll(e.target, formState)
+
+    if (!validationOnSubmit.state) {
+      return setFormStatus({
+        message: validationOnSubmit.message,
+        state: validationOnSubmit.state,
+      })
+    }
+
+    const body = encode({ 'form-name': 'contact', ...formState })
+
+    try {
+      const form = await axios.post('/', body, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+
+      if (form.status === 200) {
+        // eslint-disable-next-line no-console
+        setFormSuccess(true)
+        setFormStatus({
+          message: validationOnSubmit.message,
+          state: validationOnSubmit.state,
+        })
+      }
+    } catch (err) {
+      if (err) {
+        console.log(err)
+      }
+    }
+  }
 
   const handleChange = (event) => {
     setPersonName(event.target.value)
@@ -47,99 +129,116 @@ const ContactForm = ({
   const handleOpen = () => {
     setOpen(true)
   }
-  const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
-  ]
+  const names = []
+
+  formInformation.map((contact) => {
+    names.push(contact.contact_name.text)
+  })
+
+  console.log(contactCurrent)
+
+  console.log(names)
+
+  console.log(names.includes(contactCurrent))
 
   return (
     <ThemeProvider theme={theme}>
-      <Form
-        required
+      <ContactFormStyled
         name="contact"
+        data-netlify-honeypot="bot-field"
         method="POST"
+        data-netlify="true"
+        noValidate
+        onBlur={formOnBlur}
         onSubmit={submitHandler}
-        validate
+        fullWidth
+        label=""
       >
-        <InputLabel id="open-select-label">To:</InputLabel>
-        <Select
-          labelId="option-select-label"
-          id="name-option"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={personName}
-          onChange={handleChange}
-        >
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
+        <FormSelectLabel>
+          <Text type="smallText700">To:</Text>
+
+          <Select
+            labelId="option-select-label"
+            id="name-option"
+            open={open}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            value={personName}
+            onChange={handleChange}
+            fullWidth
+            displayEmpty
+            IconComponent={ArrowDownwardIcon}
+          >
+            <MenuItem value="">{contactCurrent}</MenuItem>
+            {names.map((name, index) => (
+              <MenuItem key={index} value={name}>
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormSelectLabel>
 
         <TextField
           id="register-firstname"
-          label={name_label ? name_label : 'First name'}
-          placeholder={
-            name_placeholder ? name_placeholder : 'Enter your first name'
-          }
+          label={name_label ? name_label : 'Name'}
+          placeholder={name_placeholder ? name_placeholder : '*Name'}
           onChange={changeHandler}
           fullWidth
           variant="outlined"
-          name="firstName"
+          name="name"
+          error={formStatus.error === 'name'}
+          focused={false}
+          value={formState.name}
         />
         <TextField
           id="forgot-password-email"
-          type="email"
           name="email"
-          label={email_input_label ? email_input_label : 'Email'}
+          label={email_input_label ? email_input_label : '*Email'}
           onChange={changeHandler}
           placeholder={'Enter your email'}
           fullWidth
-          required
           variant="outlined"
+          error={formStatus.error === 'email'}
+          focused={false}
         />
         <TextField
           id="body"
           type="textarea"
-          name="body"
-          label={textarea_input_label ? textarea_input_label : 'Message'}
+          name="text"
+          label={textarea_input_label ? textarea_input_label : '*Text'}
           onChange={changeHandler}
           placeholder={'Enter your message'}
           fullWidth
           variant="outlined"
           multiline={true}
+          error={formStatus.error === 'text'}
+          focused={false}
         />
-        <ContactFormButton
-          type="submit"
-          isLoading={isLoading}
-          buttonStyle="tertiary"
-          style={{ backgroundColor: 'transparent' }}
-          id="button-submit"
-          helperText="Incorrect entry."
-        >
-          {button_text ? button_text : 'Submit'}
-        </ContactFormButton>
-        <FormHelperText error={errorText.length === 0 ? true : false}>
-          *Field Required
-        </FormHelperText>
-      </Form>
+        <MessageContainerMain>
+          <Button
+            type="submit"
+            customClassName="Form__SubmitButton"
+            style={{
+              backgroundColor: 'transparent',
+              textDecoration: 'underline',
+            }}
+          >
+            Send
+          </Button>
+
+          <MessageContainer
+            className={formStatus.state ? 'Success-Message' : 'Error-Message'}
+          >
+            {formStatus.message}
+          </MessageContainer>
+        </MessageContainerMain>
+      </ContactFormStyled>
     </ThemeProvider>
   )
 }
 
 ContactForm.propTypes = {
   query: PropTypes.object,
-  isLoading: PropTypes.bool,
   submitHandler: PropTypes.func,
   formState: PropTypes.any,
   setFormState: PropTypes.func,
