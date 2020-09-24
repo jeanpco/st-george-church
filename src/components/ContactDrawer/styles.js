@@ -16,6 +16,7 @@ export const DrawerSocialMedia = styled.div`
     flex-direction: column;
     align-items: normal;
     width: 100%;
+    margin-bottom: 47px;
 
     .SocialMedia__Logo {
       width: 147px;
@@ -101,17 +102,18 @@ export const ContactFlyoutContent = styled.div`
   max-width: 90%;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 25px;
 `
 
 export const ContactAddress = styled.div`
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    width: 200px;
+    width: 235px;
   }
 `
 
 export const ContactNumber = styled.div`
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    width: 110px;
+    width: 140px;
   }
 `
 

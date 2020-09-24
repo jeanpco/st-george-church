@@ -1,10 +1,10 @@
 import React from 'react'
 
-export const Border = () => {
+export const BorderMob = () => {
   return (
     <svg
-      width="100%"
-      height="100%"
+      width="125"
+      height="125"
       viewBox="0 0 258 258"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

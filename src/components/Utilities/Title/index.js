@@ -33,6 +33,7 @@ Title.propTypes = {
     'heading7',
     'overline',
     'menuHeading',
+    'contactHeading',
   ]),
   className: PropTypes.string,
   style: PropTypes.object,

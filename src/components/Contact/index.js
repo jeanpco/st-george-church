@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import ContactDrawer from '../ContactDrawer'
@@ -41,23 +41,24 @@ const Contact = ({ query }) => {
                     ? info.contact_image.localFile.childImageSharp.fluid
                     : ''
                   return (
-                    <div
-                      key={index}
-                      onClick={() => setToggleDrawer(!toggleDrawer)}
-                    >
-                      <GalleryIconContainer>
-                        <Icon type="border" />
-                      </GalleryIconContainer>
-                      <ContactBodyContainer>
-                        <Img fluid={contactImages} />
-                        <ContactItemContainer>
-                          <Title type="heading7">{info.contact_position}</Title>
-                          <Text type="smallText800">
-                            {info.contact_name.text}
-                          </Text>
-                        </ContactItemContainer>
-                      </ContactBodyContainer>
-                    </div>
+                    <Fragment key={index}>
+                      <div onClick={() => setToggleDrawer(!toggleDrawer)}>
+                        <ContactBodyContainer>
+                          <GalleryIconContainer>
+                            <Icon type="border" />
+                          </GalleryIconContainer>
+                          <Img fluid={contactImages} />
+                          <ContactItemContainer>
+                            <Title type="heading7">
+                              {info.contact_position}
+                            </Title>
+                            <Text type="smallText800">
+                              {info.contact_name.text}
+                            </Text>
+                          </ContactItemContainer>
+                        </ContactBodyContainer>
+                      </div>
+                    </Fragment>
                   )
                 })
               : ''}

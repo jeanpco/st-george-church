@@ -102,4 +102,18 @@ export const TitleStyled = styled.p`
       line-height: 1, 3;
     }
   }
+
+  &.contactHeading {
+    font-family: ${theme.fontFamily.secondary};
+    font-size: ${theme.fonts.heading6};
+    line-height: 1.3;
+    font-weight: normal;
+    font-style: normal;
+    color: ${theme.colors.primary};
+    text-decoration: underline;
+    @media (min-width: ${theme.breakpoints.md}) {
+      font-size: ${theme.fonts.heading5};
+      line-height: 1, 3;
+    }
+  }
 `

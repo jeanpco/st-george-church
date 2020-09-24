@@ -35,6 +35,7 @@ import { Cross } from './assets/Cross'
 import { CrossDes } from './assets/CrossDes'
 import { Flower } from './assets/Flower'
 import { Border } from './assets/Border'
+import { BorderMob } from './assets/BorderMob'
 
 import { AddDes } from './assets/AddDes'
 
@@ -112,6 +113,8 @@ const Icon = ({ type }) => {
       return <Flower />
     case 'border':
       return <Border />
+    case 'border-mob':
+      return <BorderMob />
     default:
       return ''
   }

@@ -98,8 +98,6 @@ const IndexLayout = ({ data }) => {
     ? homePageQuery.contact.document.data.contact_form_title
     : ''
 
-  console.log(contactFormTitle)
-
   return (
     <HomePageContainer>
       <Tablet>
