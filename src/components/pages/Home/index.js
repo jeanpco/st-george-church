@@ -23,13 +23,15 @@ import Img from 'gatsby-image'
 const IndexLayout = ({ data }) => {
   const homePageQuery = data.homePage.nodes[0].data
 
-  const photoGalleryTitle = homePageQuery?.photo_gallery_section?.document?.data
+  const photoGalleryTitle = homePageQuery?.photo_gallery?.document?.data
     ?.gallery_title?.text
-    ? homePageQuery.photo_gallery_section.document.data.gallery_title.text
+    ? homePageQuery.photo_gallery.document.data.gallery_title.text
     : ''
 
-  const photoGallerySliderContent =
-    homePageQuery.photo_gallery_section.document.data.body[0].items
+  const photoGallerySliderContent = homePageQuery?.photo_gallery?.document?.data
+    ?.body[0]?.items
+    ? homePageQuery.photo_gallery.document.data.body[0].items
+    : ''
 
   const homeIntroGraphic = homePageQuery?.intro_graphic?.url
     ? homePageQuery.intro_graphic.url

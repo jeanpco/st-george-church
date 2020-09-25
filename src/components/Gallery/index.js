@@ -22,9 +22,11 @@ import {
 
 const Gallery = ({ query }) => {
   const galleryImageArray = []
-  query.content.map((info) => {
-    galleryImageArray.push(info)
-  })
+  query?.content?.length > 0
+    ? query.content.map((info) => {
+        galleryImageArray.push(info)
+      })
+    : ''
 
   const galleryImageLength = galleryImageArray.length
 

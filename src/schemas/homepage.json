@@ -47,18 +47,11 @@
         "label": "Ministries Section"
       }
     },
-    "photo_gallery_section": {
+    "photo_gallery": {
       "type": "Link",
       "config": {
         "select": "document",
-        "label": "Photo Gallery Section"
-      }
-    },
-    "contact": {
-      "type": "Link",
-      "config": {
-        "select": "document",
-        "label": "contact"
+        "label": "Photo Gallery"
       }
     },
     "body": {

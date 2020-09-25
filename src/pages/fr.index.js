@@ -95,7 +95,7 @@ export const query = graphql`
               }
             }
           }
-          photo_gallery_section {
+          photo_gallery {
             document {
               ... on PrismicPhotoGallery {
                 data {
