@@ -23,8 +23,6 @@ import Img from 'gatsby-image'
 const IndexLayout = ({ data }) => {
   const homePageQuery = data?.homePage?.data ? data.homePage.data : ''
 
-  console.log(homePageQuery)
-
   const photoGalleryTitle = homePageQuery?.photo_gallery?.document?.data
     ?.gallery_title?.text
     ? homePageQuery.photo_gallery.document.data.gallery_title.text

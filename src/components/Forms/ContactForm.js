@@ -25,8 +25,6 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 const ContactForm = ({
   query: { formInformation, contactCurrent, contactFormInformation },
 }) => {
-  console.log(contactFormInformation)
-
   const [formSuccess, setFormSuccess] = useState(false)
   const [formState, setFormState] = useState({
     name: '',
@@ -113,8 +111,15 @@ const ContactForm = ({
         setFormState({ ...formState, done: formState.done === true })
       }
     } catch (err) {
-      if (err) {
-        console.log(err)
+      const errors = err.response.data.errors
+
+      if (errors) {
+        errors.forEach((error, index) => {
+          // eslint-disable-next-line no-console
+          console.error(`error.param ${index}`, error.param)
+          // eslint-disable-next-line no-console
+          console.error(`error.msg ${index}`, error.msg)
+        })
       }
     }
   }
@@ -135,8 +140,6 @@ const ContactForm = ({
   formInformation.map((contact) => {
     names.push(contact.contact_name.text)
   })
-
-  console.log(contactCurrent)
 
   return (
     <ThemeProvider theme={theme}>
