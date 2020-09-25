@@ -33,6 +33,8 @@ export const GallerySliderItemsContainer = styled.div`
   margin-bottom: 20px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    border-right: 5px solid white;
+    border-left: 5px solid white;
     :hover {
       color: ${(props) => props.theme.colors.secondary};
       border-right: 5px solid ${(props) => props.theme.colors.black};
@@ -66,6 +68,10 @@ export const GallerySliderText = styled.div`
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     height: 81px;
+  }
+
+  p {
+    padding: 0 40px;
   }
 `
 

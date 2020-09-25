@@ -56,6 +56,7 @@ export const GallerySliderStyling = styled.div`
     padding-top: 35px;
     min-width: 1px;
     padding-right: 20px;
+    cursor: pointer;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       padding-top: 0px;
@@ -78,9 +79,8 @@ export const GallerySliderStyling = styled.div`
 
 export const LinearProgressBarContainer = styled.div`
   margin-bottom: 30px;
-  margin-top: 40p;
-  padding-left: 22px;
-  padding-right: 22px;
+  margin-top: 25px;
+  padding-left: 10px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: none !important;

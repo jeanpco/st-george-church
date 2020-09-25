@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { makeStyles } from '@material-ui/core/styles'
-import { createMuiTheme } from '@material-ui/core/styles'
+// import { createMuiTheme } from '@material-ui/core/styles'
 
 export const useStylesMainModal = makeStyles(() => ({
   root: {
@@ -26,10 +26,10 @@ export const useStyles = makeStyles({
   },
 })
 
-export let theme = createMuiTheme({})
-theme = {
-  ...theme,
-}
+// export let theme = createMuiTheme({})
+// theme = {
+//   ...theme,
+// }
 
 export const DialogContentContainer = styled.div`
   padding-left: 18px;
@@ -73,7 +73,6 @@ export const ModalTextContent = styled.div`
 `
 export const ModalLinksFooter = styled.div`
   display: flex;
-  align-items: center;
   padding: 14px 14px 0 15px;
 
   .Modal__Footer-Links {

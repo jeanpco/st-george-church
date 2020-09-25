@@ -21,7 +21,9 @@ import { WidthLimiterContainer } from '../../Layout/styles'
 import Img from 'gatsby-image'
 
 const IndexLayout = ({ data }) => {
-  const homePageQuery = data.homePage.nodes[0].data
+  const homePageQuery = data?.homePage?.data ? data.homePage.data : ''
+
+  console.log(homePageQuery)
 
   const photoGalleryTitle = homePageQuery?.photo_gallery?.document?.data
     ?.gallery_title?.text
@@ -70,6 +72,8 @@ const IndexLayout = ({ data }) => {
     ?.items
     ? homePageQuery.ministries_section.document.data.body[1].items
     : ''
+
+  const ministriesData = homePageQuery.ministries_section.document.data
 
   return (
     <HomePageContainer>
@@ -124,6 +128,7 @@ const IndexLayout = ({ data }) => {
             title: ministriesSectionTitle,
             links: ministriesLinks,
             ministries: ministries,
+            ministriesData: ministriesData,
           }}
         />
         <Galery
@@ -197,6 +202,7 @@ const IndexLayout = ({ data }) => {
             title: ministriesSectionTitle,
             links: ministriesLinks,
             ministries: ministries,
+            ministriesData: ministriesData,
           }}
         />
         <Galery

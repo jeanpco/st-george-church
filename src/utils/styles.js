@@ -54,7 +54,7 @@ export const theme = {
     bigText: '24px',
     smallText: '12px',
     mediumText: '14px',
-    quote: '45px',
+    quote: '43px',
     links: '10px',
   },
   letterSpacing: {
