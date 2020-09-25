@@ -19,45 +19,50 @@ import { WidthLimiterContainer } from '../Layout/styles'
 const Header = ({ location }) => {
   const data = useStaticQuery(graphql`
     {
-      header: allCosmicjsHeaders {
+      header: allPrismicHeader {
         nodes {
-          locale
-          title
-          metadata {
-            site_sub_title
-            site_title
+          lang
+          data {
             menu_links {
-              link_1
-              link_2
-              link_3
-              link_4
-              link_5
-            }
-            graphic {
-              local {
-                publicURL
+              document {
+                ... on PrismicMenuLinks {
+                  data {
+                    body {
+                      ... on PrismicMenuLinksBodyMenuLinks {
+                        items {
+                          link
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
-            logo {
-              local {
-                publicURL
+            about_content {
+              document {
+                ... on PrismicAbout {
+                  data {
+                    about_text
+                    about_title {
+                      text
+                    }
+                  }
+                }
               }
             }
-            logo_desktop {
-              local {
-                publicURL
-              }
+            header_graphic {
+              url
+            }
+            header_logo_des {
+              url
+            }
+            header_logo_mob {
+              url
+            }
+            menu_text {
+              text
             }
           }
-        }
-      }
-      about: allCosmicjsAbouts {
-        nodes {
-          metadata {
-            about_text
-            about_title
-          }
-          locale
         }
       }
     }
@@ -70,56 +75,34 @@ const Header = ({ location }) => {
 
   const headerData = data?.header?.nodes
     ? data.header.nodes
-        .filter((node) => node.locale.toLowerCase() === i18n.locale)
-        .map((r) => r.metadata)
+        .filter((node) => node.lang === i18n.locale)
+        .map((r) => r.data)
     : ''
-
-  const aboutData = data?.about?.nodes
-    ? data.about.nodes
-        .filter((node) => node.locale.toLowerCase() === i18n.locale)
-        .map((r) => r.metadata)
-    : ''
-
-  const aboutLocal = aboutData[0]
 
   const headerLocal = headerData[0]
 
-  const logo =
-    headerLocal &&
-    headerLocal.logo &&
-    headerLocal.logo.local &&
-    headerLocal.logo.local.publicURL
-      ? headerLocal.logo.local.publicURL
-      : ''
-  const desktopLogo =
-    headerLocal &&
-    headerLocal.logo_desktop &&
-    headerLocal.logo_desktop.local &&
-    headerLocal.logo_desktop.local.publicURL
-      ? headerLocal.logo_desktop.local.publicURL
-      : ''
+  const menuLinks = headerLocal?.menu_links?.document?.data?.body[0]?.items
+    ? headerLocal.menu_links.document.data.body[0].items
+    : ''
 
-  const graphic =
-    headerLocal &&
-    headerLocal.graphic &&
-    headerLocal.graphic.local &&
-    headerLocal.graphic.local.publicURL
-      ? headerLocal.graphic.local.publicURL
-      : ''
+  const aboutContentQuery = headerLocal?.about_content?.document?.data
+    ? headerLocal.about_content.document.data
+    : ''
 
-  const menuTitle =
-    data.header && data.header.nodes[0] && data.header.nodes[0].title
-      ? data.header.nodes[0].title
-      : ''
+  const logo = headerLocal?.header_logo_mob?.url
+    ? headerLocal.header_logo_mob.url
+    : ''
 
-  let menuLinks = []
+  const desktopLogo = headerLocal.header_logo_des.url
+    ? headerLocal.header_logo_des.url
+    : ''
 
-  headerLocal && headerLocal.menu_links
-    ? headerLocal.menu_links.map((info) => {
-        Object.values(info).map((values) => {
-          menuLinks.push(values)
-        })
-      })
+  const graphic = headerLocal?.header_graphic?.url
+    ? headerLocal.header_graphic.url
+    : ''
+
+  const menuTitle = headerLocal?.menu_text?.text
+    ? headerLocal.menu_text.text
     : ''
 
   return (
@@ -128,16 +111,24 @@ const Header = ({ location }) => {
         <HeaderContainer>
           <Tablet>
             <div>
-              <img src={logo} alt="header logo" className="Header__Logo" />
+              <img
+                src={logo ? logo : ''}
+                alt="header logo"
+                className="Header__Logo"
+              />
             </div>
           </Tablet>
           <Desktop>
-            <img src={desktopLogo} alt="header logo" className="Header__Logo" />
+            <img
+              src={desktopLogo ? desktopLogo : ''}
+              alt="header logo"
+              className="Header__Logo"
+            />
             <MenuContainer>
               <TitleContainer>
                 <HeaderTitle>
                   <Title as="h3" type="heading6">
-                    {menuTitle}
+                    {menuTitle ? menuTitle : ''}
                   </Title>
                   <div
                     role="button"
@@ -155,7 +146,7 @@ const Header = ({ location }) => {
             </MenuContainer>
 
             <Drawer
-              aboutData={aboutLocal ? aboutLocal : ''}
+              aboutData={aboutContentQuery ? aboutContentQuery : ''}
               menuLinks={menuLinks ? menuLinks : ''}
               title={menuTitle ? menuTitle : ''}
               toggleDrawer={toggleDrawer}
@@ -167,7 +158,7 @@ const Header = ({ location }) => {
             <MenuContainer>
               <TitleContainer>
                 <Title as="h3" type="heading6">
-                  {menuTitle}
+                  {menuTitle ? menuTitle : ''}
                 </Title>
                 <div
                   className="Header__button"
@@ -184,7 +175,7 @@ const Header = ({ location }) => {
               />
             </MenuContainer>
             <Drawer
-              aboutData={aboutLocal ? aboutLocal : ''}
+              aboutData={aboutContentQuery ? aboutContentQuery : ''}
               menuLinks={menuLinks ? menuLinks : ''}
               title={menuTitle ? menuTitle : ''}
               toggleDrawer={toggleDrawer}

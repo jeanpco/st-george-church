@@ -4,28 +4,95 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
 export const query = graphql`
-  {
-    homepage: allCosmicjsHomes {
-      nodes {
-        locale
-        metadata {
-          intro_link
-          intro_text
-          intro_title
-          intro_graphic {
-            local {
-              publicURL
+  query HomeFrPageQuery($locale: String) {
+    homePage: prismicHomepage(lang: { eq: $locale }) {
+      data {
+        body {
+          ... on PrismicHomepageBodySliderHomeDes {
+            items {
+              slider_img {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid
+                    }
+                    id
+                  }
+                }
+              }
             }
           }
-          slider_images {
-            image_1 {
-              url
+          ... on PrismicHomepageBodySliderHomeMob {
+            id
+            items {
+              slider_img {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid
+                    }
+                    id
+                  }
+                }
+              }
             }
-            image_2 {
-              url
+          }
+        }
+        intro_graphic {
+          url
+        }
+        home_quote {
+          document {
+            ... on PrismicQuote {
+              data {
+                quote_text
+                quote_graphic {
+                  url
+                }
+              }
             }
-            image_3 {
-              url
+          }
+        }
+        intro_link
+        intro_text
+        intro_title {
+          text
+        }
+        ministries_section {
+          document {
+            ... on PrismicMinistries {
+              data {
+                next_link_text
+                prev_link_text
+                anchor_title {
+                  text
+                }
+                body {
+                  ... on PrismicMinistriesBodyMinistriesLinks {
+                    items {
+                      link
+                    }
+                  }
+                  ... on PrismicMinistriesBodyYouthMinistriesList {
+                    items {
+                      list_text
+                      list_title {
+                        text
+                      }
+                      list_image {
+                        localFile {
+                          childImageSharp {
+                            fluid {
+                              ...GatsbyImageSharpFluid
+                            }
+                            id
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

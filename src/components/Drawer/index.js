@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import LocalizedLink from '../../components/LocalizedLink'
 import {
@@ -26,6 +26,21 @@ const Drawer = ({
   menuLinks,
   aboutData,
 }) => {
+  const [menuLinksState, setMenuLinksState] = useState([])
+
+  useEffect(() => {
+    setMenuLinksState(menuLinksArray)
+  }, [])
+
+  const menuLinksArray = []
+
+  menuLinks
+    ? menuLinks.map((info) => {
+        Object.values(info).map((values) => {
+          menuLinksArray.push(values)
+        })
+      })
+    : ''
   return (
     <ThemeProvider theme={theme}>
       <SwipeableDrawer
@@ -44,44 +59,57 @@ const Drawer = ({
 
           <DrawerHeaderContent>
             <div>
-              <Title as="h2" type="menuHeading" className="Drawer__Menu-Title">
-                {title ? title : ''}
-              </Title>
-              {menuLinks?.length > 0
-                ? menuLinks.map((menuText, index) => {
+              {title ? (
+                <Title
+                  as="h2"
+                  type="menuHeading"
+                  className="Drawer__Menu-Title"
+                >
+                  {title}
+                </Title>
+              ) : (
+                ''
+              )}
+
+              {menuLinksState?.length > 0
+                ? menuLinksState.map((menuText, index) => {
                     return (
                       <DrawerMenuText key={index}>
-                        <Title as="h2" type="heading4">
-                          {index === 0 ? (
-                            <LocalizedLink
-                              to="/"
-                              className="Header__Menu-button current"
-                            >
-                              {menuText ? menuText : ''}
-                              {index === 0 ? (
-                                <IconArrowContainer>
-                                  <Icon type="arrow-forward" />
-                                </IconArrowContainer>
-                              ) : (
-                                ''
-                              )}
-                            </LocalizedLink>
-                          ) : (
-                            <LocalizedLink
-                              to="/"
-                              className="Header__Menu-button"
-                            >
-                              {menuText ? menuText : ''}
-                              {index === 0 ? (
-                                <IconArrowContainer>
-                                  <Icon type="arrow-forward" />
-                                </IconArrowContainer>
-                              ) : (
-                                ''
-                              )}
-                            </LocalizedLink>
-                          )}
-                        </Title>
+                        {menuText ? (
+                          <Title as="h2" type="heading4">
+                            {index === 0 ? (
+                              <LocalizedLink
+                                to="/"
+                                className="Header__Menu-button current"
+                              >
+                                {menuText ? menuText : ''}
+                                {index === 0 ? (
+                                  <IconArrowContainer>
+                                    <Icon type="arrow-forward" />
+                                  </IconArrowContainer>
+                                ) : (
+                                  ''
+                                )}
+                              </LocalizedLink>
+                            ) : (
+                              <LocalizedLink
+                                to="/"
+                                className="Header__Menu-button"
+                              >
+                                {menuText ? menuText : ''}
+                                {index === 0 ? (
+                                  <IconArrowContainer>
+                                    <Icon type="arrow-forward" />
+                                  </IconArrowContainer>
+                                ) : (
+                                  ''
+                                )}
+                              </LocalizedLink>
+                            )}
+                          </Title>
+                        ) : (
+                          ''
+                        )}
                       </DrawerMenuText>
                     )
                   })
@@ -90,7 +118,7 @@ const Drawer = ({
             <DrawerSocialMedia>
               <About
                 query={{
-                  title: aboutData.about_title,
+                  title: aboutData.about_title.text,
                   text: aboutData.about_text,
                 }}
               />

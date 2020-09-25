@@ -4,78 +4,96 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
 export const query = graphql`
-  {
-    homepage: allCosmicjsHomes {
-      nodes {
-        locale
-        metadata {
-          intro_link
-          intro_text
-          intro_title
-          intro_graphic {
-            local {
-              publicURL
+  query HomePageQuery($locale: String) {
+    homePage: prismicHomepage(lang: { eq: $locale }) {
+      data {
+        body {
+          ... on PrismicHomepageBodySliderHomeDes {
+            items {
+              slider_img {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid
+                    }
+                    id
+                  }
+                }
+              }
             }
           }
-          slider_image_mob {
-            image_1 {
-              url
-            }
-            image_2 {
-              url
-            }
-            image_3 {
-              url
-            }
-          }
-          slider_images {
-            image_1 {
-              url
-            }
-            image_2 {
-              url
-            }
-            image_3 {
-              url
+          ... on PrismicHomepageBodySliderHomeMob {
+            id
+            items {
+              slider_img {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid
+                    }
+                    id
+                  }
+                }
+              }
             }
           }
         }
-      }
-    }
-    homePagequote: allCosmicjsQuotes {
-      nodes {
-        metadata {
-          quote
-          quote_graphic {
-            local {
-              publicURL
+        intro_graphic {
+          url
+        }
+        home_quote {
+          document {
+            ... on PrismicQuote {
+              data {
+                quote_text
+                quote_graphic {
+                  url
+                }
+              }
             }
           }
         }
-      }
-    }
-    anchor: allCosmicjsAnchors {
-      nodes {
-        metadata {
-          anchor_title
-          youth_ministries {
-            anchor_image {
-              url
+        intro_link
+        intro_text
+        intro_title {
+          text
+        }
+        ministries_section {
+          document {
+            ... on PrismicMinistries {
+              data {
+                next_link_text
+                prev_link_text
+                anchor_title {
+                  text
+                }
+                body {
+                  ... on PrismicMinistriesBodyMinistriesLinks {
+                    items {
+                      link
+                    }
+                  }
+                  ... on PrismicMinistriesBodyYouthMinistriesList {
+                    items {
+                      list_text
+                      list_title {
+                        text
+                      }
+                      list_image {
+                        localFile {
+                          childImageSharp {
+                            fluid {
+                              ...GatsbyImageSharpFluid
+                            }
+                            id
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
-            anchor_text
-            anchor_title
-          }
-          anchor_list {
-            link_1
-            link_2
-            link_3
-            link_4
-            link_5
-            link_6
-            link_7
-            link_8
-            link_9
-            link_10
           }
         }
       }

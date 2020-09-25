@@ -4,17 +4,39 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+// const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer')
+const prismicLinkResolver = require('./src/gatsby/linkResolver')
+
 module.exports = {
   plugins: [
     'gatsby-plugin-material-ui',
     'gatsby-plugin-emotion',
     `gatsby-plugin-react-helmet`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     'gatsby-plugin-page-transitions',
-    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: 'gatsby-source-prismic',
+      options: {
+        repositoryName: 'saintgeorgeorthodoxchurch',
+        accessToken: `${process.env.API_KEY}`,
+        // Get the correct URLs in blog posts
+        linkResolver: () => prismicLinkResolver,
+        shouldDownloadImage: () => true,
 
+        // PrismJS highlighting for labels and slices
+        // htmlSerializer: () => prismicHtmlSerializer,
+        schemas: {
+          header: require('./src/schemas/header.json'),
+          menu_links: require('./src/schemas/menu_links.json'),
+          about: require('./src/schemas/about.json'),
+          homepage: require('./src/schemas/homepage.json'),
+          quote: require('./src/schemas/quote.json'),
+          footer: require('./src/schemas/footer.json'),
+          ministries: require('./src/schemas/ministries.json'),
+        },
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -28,25 +50,6 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: 'gatsby-source-cosmicjs',
-      options: {
-        bucketSlug: process.env.COSMIC_BUCKET,
-        objectTypes: [
-          'headers',
-          'footers',
-          'medias',
-          'abouts',
-          'homes',
-          'quotes',
-          'anchors',
-        ],
-        apiAccess: {
-          read_key: process.env.COSMIC_READ_KEY,
-        },
-        localMedia: true,
       },
     },
     {

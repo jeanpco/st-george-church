@@ -25,7 +25,7 @@ const LocaleComponent = ({ location }) => {
       ) : i18n.locale === 'fr-ca' ? (
         <>
           <Link
-            to={`/${
+            to={`${
               location.pathname.includes('/fr')
                 ? location.pathname.replace('/fr', '')
                 : location.pathname

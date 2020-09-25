@@ -2,7 +2,11 @@ import styled from '@emotion/styled'
 import Title from '../Utilities/Title'
 
 export const AncherContainer = styled.div`
-  margin-top: 102px;
+  margin-top: 45px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-top: 102px;
+  }
 `
 export const AnchorTitle = styled(Title)`
   padding-bottom: 16px;
@@ -27,7 +31,6 @@ export const AnchorLinksMob = styled.div`
 
   .anchor_links {
     display: flex;
-    color: ${(props) => props.theme.colors.black};
     font-family: ${(props) => props.theme.fontFamily.primary};
     font-size: ${(props) => props.theme.fonts.body};
     text-decoration: none;
@@ -39,6 +42,13 @@ export const AnchorLinks = styled.div`
   flex-direction: row;
   padding-bottom: 9px;
   align-items: center;
+
+  :hover {
+    .anchor_links {
+      color: ${(props) => props.theme.colors.secondary} !important;
+      cursor: pointer;
+    }
+  }
 
   .anchor_links {
     display: flex;
