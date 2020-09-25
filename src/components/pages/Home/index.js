@@ -69,35 +69,6 @@ const IndexLayout = ({ data }) => {
     ? homePageQuery.ministries_section.document.data.body[1].items
     : ''
 
-  const contactTitle = homePageQuery?.contact.document?.data?.contact_title
-    ?.text
-    ? homePageQuery.contact.document.data.contact_title.text
-    : ''
-
-  const contactContent = homePageQuery?.contact.document?.data?.body[0]?.items
-    ? homePageQuery.contact.document.data.body[0].items
-    : ''
-
-  const contactFlyoutTitle = homePageQuery?.contact?.document?.data
-    ?.contact_flyout_title?.text
-    ? homePageQuery.contact.document.data.contact_flyout_title.text
-    : ''
-
-  const contactFlyoutAddress = homePageQuery?.contact?.document?.data
-    ?.contact_flyout_address
-    ? homePageQuery.contact.document.data.contact_flyout_address
-    : ''
-
-  const contactFlyoutNumber = homePageQuery?.contact?.document?.data
-    ?.contact_flyout_number
-    ? homePageQuery.contact.document.data.contact_flyout_number
-    : ''
-
-  const contactFormTitle = homePageQuery?.contact?.document?.data
-    ?.contact_form_title
-    ? homePageQuery.contact.document.data.contact_form_title
-    : ''
-
   return (
     <HomePageContainer>
       <Tablet>
@@ -159,16 +130,7 @@ const IndexLayout = ({ data }) => {
             content: photoGallerySliderContent,
           }}
         />
-        <Contact
-          query={{
-            title: contactTitle,
-            content: contactContent,
-            contactFlyoutTitle: contactFlyoutTitle,
-            contactFlyoutAddress: contactFlyoutAddress,
-            contactFlyoutNumber: contactFlyoutNumber,
-            contactFormTitle: contactFormTitle,
-          }}
-        />
+        <Contact />
       </Tablet>
       <Desktop>
         <WidthLimiterContainer className="HomePage__WidthLimiter">
@@ -241,16 +203,7 @@ const IndexLayout = ({ data }) => {
             content: photoGallerySliderContent,
           }}
         />
-        <Contact
-          query={{
-            title: contactTitle,
-            content: contactContent,
-            contactFlyoutTitle: contactFlyoutTitle,
-            contactFlyoutAddress: contactFlyoutAddress,
-            contactFlyoutNumber: contactFlyoutNumber,
-            contactFormTitle: contactFormTitle,
-          }}
-        />
+        <Contact />
       </Desktop>
     </HomePageContainer>
   )

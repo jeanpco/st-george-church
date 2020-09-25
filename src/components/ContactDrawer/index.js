@@ -20,7 +20,12 @@ import Text from '../Utilities/Text'
 import ContactForm from '../Forms/ContactForm'
 
 const ContactDrawer = ({ toggleDrawer, setToggleDrawer, query }) => {
-  const formInformation = query.formContent
+  const formInformation = query?.formInformation ? query.formInformation : ''
+  const contactFormInformation = query?.contactFormInformation
+    ? query.contactFormInformation
+    : ''
+
+  const contactCurrent = query.contactCurrent
 
   return (
     <ThemeProvider theme={theme}>
@@ -38,11 +43,14 @@ const ContactDrawer = ({ toggleDrawer, setToggleDrawer, query }) => {
           </DrawerHeaderContainer>
 
           <DrawerHeaderContent>
-            <div>
+            {query?.contactFlyoutTitle ? (
               <Title as="h2" type="menuHeading" className="Drawer__Menu-Title">
-                Contact
+                {query.contactFlyoutTitle}
               </Title>
-            </div>
+            ) : (
+              ''
+            )}
+
             <DrawerSocialMedia>
               <SocialMedia customClassName="Social-Media-Container">
                 <ContactFlyoutContent>
@@ -74,15 +82,9 @@ const ContactDrawer = ({ toggleDrawer, setToggleDrawer, query }) => {
 
             <ContactForm
               query={{
-                contactCurrent: query.contactCurrent,
-                name_label: '*Name',
-                name_placeholder: '*Name',
-                email_input_label: '*Email',
-                email_input_placeholder: '*Email',
-                textarea_input_label: '*Text',
-                textarea_input_placeholder: '*Text',
-                button_text: 'Send',
                 formInformation: formInformation,
+                contactFormInformation: contactFormInformation,
+                contactCurrent: contactCurrent,
               }}
             />
           </DrawerHeaderContent>

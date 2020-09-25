@@ -23,17 +23,10 @@ import Text from '../Utilities/Text'
 
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 const ContactForm = ({
-  query: {
-    name_label,
-    name_placeholder,
-    email_input_label,
-    // email_input_placeholder,
-    textarea_input_label,
-    // button_text,
-    formInformation,
-    contactCurrent,
-  },
+  query: { formInformation, contactCurrent, contactFormInformation },
 }) => {
+  console.log(contactFormInformation)
+
   const [formSuccess, setFormSuccess] = useState(false)
   const [formState, setFormState] = useState({
     name: '',
@@ -145,10 +138,6 @@ const ContactForm = ({
 
   console.log(contactCurrent)
 
-  console.log(names)
-
-  console.log(names.includes(contactCurrent))
-
   return (
     <ThemeProvider theme={theme}>
       {formState.done === false ? (
@@ -164,7 +153,13 @@ const ContactForm = ({
           label=""
         >
           <FormSelectLabel>
-            <Text type="smallText700">To:</Text>
+            {contactFormInformation?.form_select_title.text ? (
+              <Text type="smallText700">
+                {contactFormInformation.form_select_title.text}:
+              </Text>
+            ) : (
+              ''
+            )}
 
             <Select
               labelId="option-select-label"
@@ -188,9 +183,18 @@ const ContactForm = ({
           </FormSelectLabel>
 
           <TextField
-            id="register-firstname"
-            label={name_label ? name_label : 'Name'}
-            placeholder={name_placeholder ? name_placeholder : '*Name'}
+            required
+            id="name"
+            label={
+              contactFormInformation?.form_field_name
+                ? contactFormInformation.form_field_name
+                : 'Name'
+            }
+            placeholder={
+              contactFormInformation.form_field_name
+                ? contactFormInformation.form_field_name
+                : 'Name'
+            }
             onChange={changeHandler}
             fullWidth
             variant="outlined"
@@ -200,21 +204,35 @@ const ContactForm = ({
             value={formState.name}
           />
           <TextField
+            required
             id="forgot-password-email"
             name="email"
-            label={email_input_label ? email_input_label : '*Email'}
+            label={
+              contactFormInformation?.form_field_email
+                ? contactFormInformation.form_field_email
+                : 'Email'
+            }
             onChange={changeHandler}
-            placeholder={'Enter your email'}
+            placeholder={
+              contactFormInformation?.form_field_email
+                ? contactFormInformation.form_field_email
+                : 'Email'
+            }
             fullWidth
             variant="outlined"
             error={formStatus.error === 'email'}
             focused={false}
           />
           <TextField
+            required
             id="body"
             type="textarea"
             name="text"
-            label={textarea_input_label ? textarea_input_label : '*Text'}
+            label={
+              contactFormInformation?.form_field_text
+                ? contactFormInformation.form_field_text
+                : 'Text'
+            }
             onChange={changeHandler}
             placeholder={'Enter your message'}
             fullWidth
@@ -224,16 +242,20 @@ const ContactForm = ({
             focused={false}
           />
           <MessageContainerMain>
-            <Button
-              type="submit"
-              customClassName="Form__SubmitButton"
-              style={{
-                backgroundColor: 'transparent',
-                textDecoration: 'underline',
-              }}
-            >
-              Send
-            </Button>
+            {contactFormInformation?.form_button_text ? (
+              <Button
+                type="submit"
+                customClassName="Form__SubmitButton"
+                style={{
+                  backgroundColor: 'transparent',
+                  textDecoration: 'underline',
+                }}
+              >
+                {contactFormInformation.form_button_text}
+              </Button>
+            ) : (
+              ''
+            )}
 
             <MessageContainer
               className={formStatus.state ? 'Success-Message' : 'Error-Message'}
@@ -245,19 +267,30 @@ const ContactForm = ({
       ) : (
         <SuccessContainer>
           <SuccesContent>
-            <SuccessTitle type="successTitle" as="h3">
-              Thank you!
-            </SuccessTitle>
-            <SuccessTitle type="successTitle" as="h3">
-              We will be in touch as soon as we can.
-            </SuccessTitle>
+            {contactFormInformation?.form_success_title?.text ? (
+              <SuccessTitle type="successTitle" as="h3">
+                {contactFormInformation.form_success_title.text}
+              </SuccessTitle>
+            ) : (
+              ''
+            )}
+
+            {contactFormInformation?.form_success_subtitle?.text ? (
+              <SuccessTitle type="successTitle" as="h3">
+                {contactFormInformation.form_success_subtitle.text}
+              </SuccessTitle>
+            ) : (
+              ''
+            )}
 
             <SuccessText>
-              <Text type="smallText700">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero,
-                odio exercitationem. Temporibus aspernatur illum ad illo.
-                Necessitatibus saepe, in quos consequuntur laborum modi cumque.
-              </Text>
+              {contactFormInformation?.form_success_message ? (
+                <Text type="smallText700">
+                  {contactFormInformation.form_success_message}
+                </Text>
+              ) : (
+                ''
+              )}
             </SuccessText>
           </SuccesContent>
         </SuccessContainer>

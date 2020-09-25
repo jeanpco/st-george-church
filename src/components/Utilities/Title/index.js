@@ -35,6 +35,7 @@ Title.propTypes = {
     'menuHeading',
     'contactHeading',
     'successTitle',
+    'contactImageHeading',
   ]),
   className: PropTypes.string,
   style: PropTypes.object,

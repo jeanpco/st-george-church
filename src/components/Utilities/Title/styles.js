@@ -103,6 +103,18 @@ export const TitleStyled = styled.p`
     }
   }
 
+  &.contactImageHeading {
+    font-family: ${theme.fontFamily.primary};
+    font-size: ${theme.fonts.heading6};
+    line-height: 1.3;
+    font-weight: normal;
+    font-style: normal;
+    color: white;
+    @media (min-width: ${theme.breakpoints.md}) {
+      font-size: ${theme.fonts.heading3};
+    }
+  }
+
   &.successTitle {
     font-family: ${theme.fontFamily.tertiary};
     font-size: ${theme.fonts.heading6};

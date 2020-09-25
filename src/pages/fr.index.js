@@ -126,43 +126,6 @@ export const query = graphql`
               }
             }
           }
-          contact {
-            document {
-              ... on PrismicWhoWeAre {
-                data {
-                  contact_flyout_address
-                  contact_flyout_number
-                  contact_flyout_title {
-                    text
-                  }
-                  contact_form_title
-                  contact_title {
-                    text
-                  }
-                  body {
-                    ... on PrismicWhoWeAreBodyTeamContent {
-                      items {
-                        contact_image {
-                          localFile {
-                            childImageSharp {
-                              fluid {
-                                ...GatsbyImageSharpFluid
-                              }
-                              id
-                            }
-                          }
-                        }
-                        contact_position
-                        contact_name {
-                          text
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
         }
       }
     }

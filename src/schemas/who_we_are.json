@@ -38,6 +38,13 @@
         "label": "Contact Form Title"
       }
     },
+    "contact_form": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "label": "Contact Form"
+      }
+    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",

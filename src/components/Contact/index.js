@@ -1,5 +1,6 @@
-import React, { useState, Fragment } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import LocaleContext from '../../context/LocaleProvider'
 
 import ContactDrawer from '../ContactDrawer'
 import { WidthLimiterContainer } from '../Layout/styles'
@@ -7,7 +8,7 @@ import { Tablet, Desktop } from '../Utilities/Media'
 import Icon from '~/components/Icon'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
-import Img from 'gatsby-image'
+import Img from 'gatsby-background-image'
 import {
   TeamContainer,
   TeamHeaderContainer,
@@ -15,15 +16,118 @@ import {
   ContactBodyContainer,
   GalleryIconContainer,
   ContactItemContainer,
-  ContactImageTitle,
+  ContactContainer,
 } from './styles'
 
-const Contact = ({ query }) => {
+const Contact = () => {
+  const data = useStaticQuery(graphql`
+    {
+      contact: allPrismicWhoWeAre {
+        nodes {
+          lang
+          data {
+            body {
+              ... on PrismicWhoWeAreBodyTeamContent {
+                id
+                items {
+                  contact_image {
+                    localFile {
+                      childImageSharp {
+                        fluid {
+                          ...GatsbyImageSharpFluid
+                        }
+                      }
+                    }
+                  }
+                  contact_position
+                  contact_name {
+                    text
+                  }
+                }
+              }
+            }
+            contact_flyout_address
+            contact_flyout_number
+            contact_flyout_title {
+              text
+            }
+            contact_form_title
+            contact_title {
+              text
+            }
+            contact_form {
+              document {
+                ... on PrismicContactForm {
+                  id
+                  data {
+                    form_button_text
+                    form_field_email
+                    form_field_name
+                    form_field_text
+                    form_select_title {
+                      text
+                    }
+                    form_success_message
+                    form_success_subtitle {
+                      text
+                    }
+                    form_success_title {
+                      text
+                    }
+                    form_title {
+                      text
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const lang = React.useContext(LocaleContext)
+  const i18n = lang.i18n[lang.locale]
+
+  const contactData = data?.contact?.nodes
+    ? data.contact.nodes
+        .filter((node) => node.lang === i18n.locale)
+        .map((r) => r.data)
+    : ''
+
+  const contactLocal = contactData[0]
+
   const [toggleDrawer, setToggleDrawer] = useState(false)
 
   const [contactPerson, setContactPerson] = useState('')
 
-  const contactFormInformation = query?.content ? query.content : ''
+  const contactFormInformation = contactLocal?.contact_form?.document?.data
+    ? contactLocal.contact_form.document.data
+    : ''
+
+  const contactSectionTitle = contactLocal?.contact_title?.text
+    ? contactLocal.contact_title.text
+    : ''
+
+  const contactBody = contactLocal?.body[0]?.items
+    ? contactLocal.body[0].items
+    : ''
+  const contactFlyoutTitle = contactLocal?.contact_flyout_title?.text
+    ? contactLocal.contact_flyout_title.text
+    : ''
+
+  const contactFlyoutAddress = contactLocal?.contact_flyout_address
+    ? contactLocal.contact_flyout_address
+    : ''
+
+  const contactFlyoutNumber = contactLocal?.contact_flyout_number
+    ? contactLocal.contact_flyout_number
+    : ''
+
+  const contactFormTitle = contactLocal?.contact_form_title
+    ? contactLocal.contact_form_title
+    : ''
 
   const onClickHandler = (e) => {
     setToggleDrawer(!toggleDrawer)
@@ -36,7 +140,11 @@ const Contact = ({ query }) => {
     <WidthLimiterContainer>
       <TeamContainer>
         <TeamHeaderContainer>
-          <Title type="heading2">{query.title}</Title>
+          {contactSectionTitle ? (
+            <Title type="heading2">{contactSectionTitle}</Title>
+          ) : (
+            ''
+          )}
           <Tablet>
             <Icon type="cross" />
           </Tablet>
@@ -44,41 +152,62 @@ const Contact = ({ query }) => {
             <Icon type="cross-des" />
           </Desktop>
         </TeamHeaderContainer>
-        {query?.content?.length > 0 ? (
+        {contactBody?.length > 0 ? (
           <TeamContentContainer>
-            {query?.content
-              ? query.content.map((info, index) => {
+            {contactBody
+              ? contactBody.map((info, index) => {
                   const contactImages = info?.contact_image?.localFile
                     ?.childImageSharp?.fluid
                     ? info.contact_image.localFile.childImageSharp.fluid
                     : ''
                   return (
-                    <Fragment key={index}>
+                    <ContactContainer key={index}>
                       <div onClick={onClickHandler}>
                         <ContactBodyContainer>
                           <GalleryIconContainer>
                             <Desktop>
                               <Icon type="border" />
-                              <ContactImageTitle className="contact-image">
-                                <h1>Contact</h1>
-                              </ContactImageTitle>
                             </Desktop>
                             <Tablet>
-                              <Icon type="border" />
+                              <Icon type="border-mob" />
                             </Tablet>
                           </GalleryIconContainer>
-                          <Img fluid={contactImages} className="test" />
+                          {contactImages && contactFlyoutTitle ? (
+                            <Img
+                              fluid={contactImages}
+                              className="Contact__Image-Circle"
+                            >
+                              {contactFlyoutTitle ? (
+                                <Title as="h2" type="contactImageHeading">
+                                  {contactFlyoutTitle}
+                                </Title>
+                              ) : (
+                                ''
+                              )}
+                            </Img>
+                          ) : (
+                            ''
+                          )}
+
                           <ContactItemContainer>
-                            <Title type="heading7">
-                              {info.contact_position}
-                            </Title>
-                            <Text type="smallText800" id="contact-name">
-                              {info.contact_name.text}
-                            </Text>
+                            {info?.contact_position ? (
+                              <Title type="heading7">
+                                {info.contact_position}
+                              </Title>
+                            ) : (
+                              ''
+                            )}
+                            {info?.contact_name.text ? (
+                              <Text type="smallText800" id="contact-name">
+                                {info.contact_name.text}
+                              </Text>
+                            ) : (
+                              ''
+                            )}
                           </ContactItemContainer>
                         </ContactBodyContainer>
                       </div>
-                    </Fragment>
+                    </ContactContainer>
                   )
                 })
               : ''}
@@ -92,18 +221,17 @@ const Contact = ({ query }) => {
         setToggleDrawer={setToggleDrawer}
         query={{
           contactCurrent: contactPerson,
-          title: query.contactFlyoutTitle,
-          address: query.contactFlyoutAddress,
-          number: query.contactFlyoutNumber,
-          formTitle: query.contactFormTitle,
-          formContent: contactFormInformation,
+          title: contactFlyoutTitle,
+          address: contactFlyoutAddress,
+          number: contactFlyoutNumber,
+          formTitle: contactFormTitle,
+          contactFormInformation: contactFormInformation,
+          formInformation: contactBody,
+          contactFlyoutTitle: contactFlyoutTitle,
         }}
       />
     </WidthLimiterContainer>
   )
 }
 
-Contact.propTypes = {
-  query: PropTypes.object.isRequired,
-}
 export default Contact
