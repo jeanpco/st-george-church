@@ -66,8 +66,7 @@ export const validateAll = (form, formState) => {
     }
   } else {
     return {
-      message:
-        'Thank you for sending a message.     Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, odio!',
+      message: 'Success !',
       state: true,
     }
   }

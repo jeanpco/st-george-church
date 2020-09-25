@@ -57,12 +57,17 @@ const Contact = ({ query }) => {
                       <div onClick={onClickHandler}>
                         <ContactBodyContainer>
                           <GalleryIconContainer>
-                            <Icon type="border" />
-                            <ContactImageTitle className="test">
-                              <h1>Contact</h1>
-                            </ContactImageTitle>
+                            <Desktop>
+                              <Icon type="border" />
+                              <ContactImageTitle className="contact-image">
+                                <h1>Contact</h1>
+                              </ContactImageTitle>
+                            </Desktop>
+                            <Tablet>
+                              <Icon type="border" />
+                            </Tablet>
                           </GalleryIconContainer>
-                          <Img fluid={contactImages}></Img>
+                          <Img fluid={contactImages} className="test" />
                           <ContactItemContainer>
                             <Title type="heading7">
                               {info.contact_position}

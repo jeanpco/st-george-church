@@ -47,7 +47,7 @@ export const DrawerSocialMedia = styled.div`
 `
 
 export const DrawerHeaderContent = styled.div`
-  padding-left: 34px;
+  padding-left: 20px;
 
   .Drawer__Menu-Title {
     margin-bottom: 14px;
@@ -99,21 +99,32 @@ export const DrawerMenuText = styled.div`
 `
 
 export const ContactFlyoutContent = styled.div`
-  max-width: 90%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding-bottom: 25px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    padding-right: 20px;
+  }
 `
 
 export const ContactAddress = styled.div`
+  margin-top: 15px;
+  padding-right: 20px;
+  max-width: 196px;
+
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    width: 235px;
+    max-width: 250px;
   }
 `
 
 export const ContactNumber = styled.div`
+  margin-top: 15px;
+  margin-right: 30px;
+
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    width: 140px;
+    max-width: 145px;
   }
 `
 

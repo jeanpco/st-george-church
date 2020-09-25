@@ -103,6 +103,15 @@ export const TitleStyled = styled.p`
     }
   }
 
+  &.successTitle {
+    font-family: ${theme.fontFamily.tertiary};
+    font-size: ${theme.fonts.heading6};
+    line-height: 1.4;
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: ${(props) => props.theme.fonts.heading6};
+    }
+  }
+
   &.contactHeading {
     font-family: ${theme.fontFamily.secondary};
     font-size: ${theme.fonts.heading6};

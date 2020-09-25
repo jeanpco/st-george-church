@@ -34,6 +34,7 @@ Title.propTypes = {
     'overline',
     'menuHeading',
     'contactHeading',
+    'successTitle',
   ]),
   className: PropTypes.string,
   style: PropTypes.object,

@@ -52,20 +52,21 @@ export const GalleryIconContainer = styled.div`
   position: absolute;
   z-index: 1;
 
-  :hover {
-    .test {
-      display: block;
-    }
-    svg {
-      background: linear-gradient(
-          0deg,
-          rgba(204, 29, 39, 0.8),
-          rgba(204, 29, 39, 0.8)
-        ),
-        url(.jpg);
-      border-radius: 50%;
-      /* filter: blur(1px); */
-      color: ${(props) => props.theme.colors.secondary};
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    :hover {
+      .contact-image {
+        display: block;
+      }
+      svg {
+        background: linear-gradient(
+            0deg,
+            rgba(204, 29, 39, 0.8),
+            rgba(204, 29, 39, 0.8)
+          ),
+          url(.jpg);
+        border-radius: 50%;
+        color: ${(props) => props.theme.colors.secondary};
+      }
     }
   }
 `

@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { theme as localTheme } from '~/utils/styles'
-import Text from '~/components/Utilities/Text'
 import Button from '../Utilities/Button'
 
 export const theme = createMuiTheme({
@@ -59,6 +58,7 @@ export const theme = createMuiTheme({
         color: localTheme.colors.primary,
         fontFamily: localTheme.fontFamily.tertiary,
         opacity: 1,
+        padding: 18,
       },
       notchedOutline: {
         borderColor: localTheme.colors.primary,
@@ -71,10 +71,13 @@ export const ContactFormButton = styled(Button)``
 
 export const ContactFormStyled = styled.form`
   padding: 18px;
-  margin-top: 18px;
-  padding-right: 30px;
+  padding-left: 0;
+  padding-right: 0;
 
+  @media(min-width: ${(props) => props.theme.breakpoints.md}) {
+    padding-right: 30px;
 
+  }
 
   .Mui-focused {
     color: ${(props) => props.theme.colors.primary} !important;
@@ -90,7 +93,7 @@ export const ContactFormStyled = styled.form`
   }
 
   #body {
-    height: 100px !important;
+    height: 80px !important;
   }
 
   #name-option {
@@ -126,13 +129,6 @@ export const FormActions = styled.div`
   margin-bottom: 18px;
 `
 
-export const FormText = styled(Text)`
-  color: red;
-  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
-    display: none;
-  }
-`
-
 export const MessageContainer = styled.div``
 
 export const MessageContainerMain = styled.div`
@@ -142,12 +138,7 @@ export const MessageContainerMain = styled.div`
   justify-content: space-between;
   flex-direction: column;
   padding-right: 20px;
-
-  @media (min-width: ${localTheme.breakpoints.md}) {
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-between;
-  }
+  flex-direction: row-reverse;
 
   .Error-Message {
     color: ${localTheme.colors.secondary};
@@ -171,4 +162,29 @@ export const FormSelectLabel = styled.div`
   p {
     padding-right: 30px;
   }
+`
+
+export const SuccessContainer = styled.div`
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 50px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-top: 150px;
+  }
+`
+export const SuccesContent = styled.div`
+  margin: 0 auto;
+  width: 250px;
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    width: 350px;
+  }
+`
+
+export const SuccessTitle = styled.div`
+  padding-top: 8px;
+`
+export const SuccessText = styled.div`
+  margin-top: 25px;
 `

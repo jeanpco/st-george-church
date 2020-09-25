@@ -6,6 +6,10 @@ import {
   MessageContainerMain,
   MessageContainer,
   FormSelectLabel,
+  SuccessTitle,
+  SuccessContainer,
+  SuccesContent,
+  SuccessText,
 } from './styles'
 import TextField from '@material-ui/core/TextField'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -16,6 +20,7 @@ import { encode } from '../../utils/functions/encode'
 import axios from 'axios'
 import Button from '../Utilities/Button'
 import Text from '../Utilities/Text'
+
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 const ContactForm = ({
   query: {
@@ -34,6 +39,7 @@ const ContactForm = ({
     name: '',
     email: '',
     text: '',
+    done: false,
   })
   const [personName, setPersonName] = useState([])
   const [open, setOpen] = useState(false)
@@ -62,7 +68,7 @@ const ContactForm = ({
           email: '',
           text: '',
         })
-      }, 3000)
+      }, 500)
     }
   }, [formSuccess])
 
@@ -110,6 +116,8 @@ const ContactForm = ({
           message: validationOnSubmit.message,
           state: validationOnSubmit.state,
         })
+
+        setFormState({ ...formState, done: formState.done === true })
       }
     } catch (err) {
       if (err) {
@@ -143,96 +151,117 @@ const ContactForm = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <ContactFormStyled
-        name="contact"
-        data-netlify-honeypot="bot-field"
-        method="POST"
-        data-netlify="true"
-        noValidate
-        onBlur={formOnBlur}
-        onSubmit={submitHandler}
-        fullWidth
-        label=""
-      >
-        <FormSelectLabel>
-          <Text type="smallText700">To:</Text>
+      {formState.done === false ? (
+        <ContactFormStyled
+          name="contact"
+          data-netlify-honeypot="bot-field"
+          method="POST"
+          data-netlify="true"
+          noValidate
+          onBlur={formOnBlur}
+          onSubmit={submitHandler}
+          fullWidth
+          label=""
+        >
+          <FormSelectLabel>
+            <Text type="smallText700">To:</Text>
 
-          <Select
-            labelId="option-select-label"
-            id="name-option"
-            open={open}
-            onClose={handleClose}
-            onOpen={handleOpen}
-            value={personName}
-            onChange={handleChange}
+            <Select
+              labelId="option-select-label"
+              id="name-option"
+              open={open}
+              onClose={handleClose}
+              onOpen={handleOpen}
+              value={personName}
+              onChange={handleChange}
+              fullWidth
+              displayEmpty
+              IconComponent={ArrowDownwardIcon}
+            >
+              <MenuItem value="">{contactCurrent}</MenuItem>
+              {names.map((name, index) => (
+                <MenuItem key={index} value={name}>
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormSelectLabel>
+
+          <TextField
+            id="register-firstname"
+            label={name_label ? name_label : 'Name'}
+            placeholder={name_placeholder ? name_placeholder : '*Name'}
+            onChange={changeHandler}
             fullWidth
-            displayEmpty
-            IconComponent={ArrowDownwardIcon}
-          >
-            <MenuItem value="">{contactCurrent}</MenuItem>
-            {names.map((name, index) => (
-              <MenuItem key={index} value={name}>
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormSelectLabel>
+            variant="outlined"
+            name="name"
+            error={formStatus.error === 'name'}
+            focused={false}
+            value={formState.name}
+          />
+          <TextField
+            id="forgot-password-email"
+            name="email"
+            label={email_input_label ? email_input_label : '*Email'}
+            onChange={changeHandler}
+            placeholder={'Enter your email'}
+            fullWidth
+            variant="outlined"
+            error={formStatus.error === 'email'}
+            focused={false}
+          />
+          <TextField
+            id="body"
+            type="textarea"
+            name="text"
+            label={textarea_input_label ? textarea_input_label : '*Text'}
+            onChange={changeHandler}
+            placeholder={'Enter your message'}
+            fullWidth
+            variant="outlined"
+            multiline={true}
+            error={formStatus.error === 'text'}
+            focused={false}
+          />
+          <MessageContainerMain>
+            <Button
+              type="submit"
+              customClassName="Form__SubmitButton"
+              style={{
+                backgroundColor: 'transparent',
+                textDecoration: 'underline',
+              }}
+            >
+              Send
+            </Button>
 
-        <TextField
-          id="register-firstname"
-          label={name_label ? name_label : 'Name'}
-          placeholder={name_placeholder ? name_placeholder : '*Name'}
-          onChange={changeHandler}
-          fullWidth
-          variant="outlined"
-          name="name"
-          error={formStatus.error === 'name'}
-          focused={false}
-          value={formState.name}
-        />
-        <TextField
-          id="forgot-password-email"
-          name="email"
-          label={email_input_label ? email_input_label : '*Email'}
-          onChange={changeHandler}
-          placeholder={'Enter your email'}
-          fullWidth
-          variant="outlined"
-          error={formStatus.error === 'email'}
-          focused={false}
-        />
-        <TextField
-          id="body"
-          type="textarea"
-          name="text"
-          label={textarea_input_label ? textarea_input_label : '*Text'}
-          onChange={changeHandler}
-          placeholder={'Enter your message'}
-          fullWidth
-          variant="outlined"
-          multiline={true}
-          error={formStatus.error === 'text'}
-          focused={false}
-        />
-        <MessageContainerMain>
-          <Button
-            type="submit"
-            customClassName="Form__SubmitButton"
-            style={{
-              backgroundColor: 'transparent',
-              textDecoration: 'underline',
-            }}
-          >
-            Send
-          </Button>
+            <MessageContainer
+              className={formStatus.state ? 'Success-Message' : 'Error-Message'}
+            >
+              {formStatus.message}
+            </MessageContainer>
+          </MessageContainerMain>
+        </ContactFormStyled>
+      ) : (
+        <SuccessContainer>
+          <SuccesContent>
+            <SuccessTitle type="successTitle" as="h3">
+              Thank you!
+            </SuccessTitle>
+            <SuccessTitle type="successTitle" as="h3">
+              We will be in touch as soon as we can.
+            </SuccessTitle>
 
-          <MessageContainer
-            className={formStatus.state ? 'Success-Message' : 'Error-Message'}
-          >
-            {formStatus.message}
-          </MessageContainer>
-        </MessageContainerMain>
-      </ContactFormStyled>
+            <SuccessText>
+              <Text type="smallText700">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero,
+                odio exercitationem. Temporibus aspernatur illum ad illo.
+                Necessitatibus saepe, in quos consequuntur laborum modi cumque.
+              </Text>
+            </SuccessText>
+          </SuccesContent>
+        </SuccessContainer>
+      )}
     </ThemeProvider>
   )
 }
