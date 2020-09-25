@@ -1,0 +1,60 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "Photo Gallery"
+      }
+    },
+    "gallery_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Gallery Title"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "gallery_section": [],
+          "gallery_section_mobile": []
+        },
+        "choices": {
+          "gallery_section": {
+            "type": "Slice",
+            "fieldset": "Gallery Section",
+            "description": "Gallery Section",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "gallery_img": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Gallery Img"
+                }
+              },
+              "gallery_section_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "label": "Gallery Section Title"
+                }
+              },
+              "gallery_section_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Gallery Section Text"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

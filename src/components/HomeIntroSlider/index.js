@@ -6,7 +6,14 @@ import 'slick-carousel/slick/slick-theme.css'
 import { SliderStyling, LinearProgressBarContainer } from './styles'
 import { LinearProgress } from '@material-ui/core'
 
-const SliderContent = ({ children, className, imgLength }) => {
+const SliderContent = ({
+  children,
+  className,
+  imgLength,
+  slidesToScroll,
+  slidesToShow,
+  autoplay,
+}) => {
   const [sliderStateIndex, setSliderStateIndex] = useState({
     index: 0,
   })
@@ -18,9 +25,9 @@ const SliderContent = ({ children, className, imgLength }) => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
+    slidesToShow: slidesToShow,
+    slidesToScroll: slidesToScroll,
+    autoplay: autoplay,
     autoplaySpeed: 5000,
     afterChange: () =>
       setsliderStateCount({
@@ -59,6 +66,9 @@ SliderContent.propTypes = {
   children: PropTypes.array.isRequired,
   className: PropTypes.string,
   imgLength: PropTypes.number,
+  slidesToScroll: PropTypes.number,
+  slidesToShow: PropTypes.number,
+  autoplay: PropTypes.bool,
 }
 
 export default SliderContent

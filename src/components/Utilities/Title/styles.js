@@ -26,12 +26,13 @@ export const TitleStyled = styled.p`
   }
   &.heading3 {
     font-family: ${theme.fontFamily.primary};
-    font-size: ${theme.fonts.heading5};
+    font-size: ${theme.fonts.heading6};
     font-weight: normal;
     font-style: normal;
     line-height: 1.3;
-    @media (min-width: ${theme.breakpoints.md}) {
-      font-size: ${theme.fonts.heading3};
+
+    @media (min-width: ${theme.breakpoints.l}) {
+      font-size: ${theme.fonts.heading4};
       line-height: 1.3;
     }
   }
