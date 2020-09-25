@@ -7,12 +7,10 @@ export const TextStyled = styled.p`
     font-weight: normal;
     font-style: normal;
     line-height: normal;
-
-    @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.bigText};
     }
   }
-
   &.smallText400 {
     font-family: ${(props) => props.theme.fontFamily.tertiary};
     font-size: ${(props) => props.theme.fonts.links};
@@ -20,57 +18,48 @@ export const TextStyled = styled.p`
     font-weight: normal;
     font-style: normal;
     line-height: normal;
-
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.mediumText};
       opacity: 0.4;
     }
   }
-
   &.smallText500 {
     font-family: ${(props) => props.theme.fontFamily.tertiary};
     font-size: ${(props) => props.theme.fonts.smallText};
     font-weight: normal;
     font-style: normal;
     line-height: normal;
-
     span {
       text-decoration: underline;
     }
 
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
       font-size: ${(props) => props.theme.fonts.mediumText};
     }
   }
-
   &.smallText700 {
     font-family: ${(props) => props.theme.fontFamily.tertiary};
     font-size: ${(props) => props.theme.fonts.smallText};
     font-weight: normal;
     font-style: normal;
     line-height: normal;
-
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: ${(props) => props.theme.fonts.bigText};
+      font-size: ${(props) => props.theme.fonts.body};
     }
   }
-
   &.bigText400 {
     font-family: ${(props) => props.theme.fontFamily.primary};
     font-size: ${(props) => props.theme.fonts.body};
     font-weight: normal;
     font-style: normal;
     line-height: normal;
-
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.quote};
     }
   }
-
   a {
     color: ${(props) => props.theme.colors.secondary};
   }
-
   &.link {
     color: ${(props) => props.theme.colors.black};
     font-family: ${(props) => props.theme.fontFamily.tertiary};
@@ -81,11 +70,9 @@ export const TextStyled = styled.p`
     opacity: 0.4;
     cursor: pointer;
     line-height: normal;
-
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.mediumText};
     }
-
     &::before,
     &::after {
       content: '';
@@ -97,70 +84,55 @@ export const TextStyled = styled.p`
       transition: transform 200ms linear;
       transform-origin: right;
     }
-
     &::after {
       transform: scaleX(0);
       transition-delay: 250ms;
       transform-origin: left;
     }
-
     &:hover {
       &::after {
         transform: scaleX(1);
       }
-
       &::before {
         transform: scaleX(0);
       }
     }
-
     &.primary {
       color: ${(props) => props.theme.colors.primary};
-
       &::before,
       &::after {
         background: ${(props) => props.theme.colors.primary};
       }
-
       &:hover {
         color: ${(props) => props.theme.colors.secondary};
-
         &::before,
         &::after {
           background: ${(props) => props.theme.colors.secondary};
         }
       }
     }
-
     &.secondary {
       color: ${(props) => props.theme.colors.black};
-
       &::before,
       &::after {
         background: ${(props) => props.theme.colors.secondary};
       }
-
       &:hover {
         color: ${(props) => props.theme.colors.primary};
-
         &::before,
         &::after {
           background: ${(props) => props.theme.colors.primary};
         }
       }
     }
-
     &.tertiary {
       color: ${(props) => props.theme.colors.tertiary};
-
       &::before,
       &::after {
         background: ${(props) => props.theme.colors.tertiary};
       }
-
       &:hover {
         color: ${(props) => props.theme.colors.secondary};
-
         &::before,
         &::after {
           background: ${(props) => props.theme.colors.secondary};

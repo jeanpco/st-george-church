@@ -1,17 +1,20 @@
-import React, { Fragment } from 'react'
-import SliderSection from '../../SliderSection/SliderSection'
+import React from 'react'
+import SliderContent from '../../HomeIntroSlider'
 import PropTypes from 'prop-types'
 import LocaleContext from '../../../context/LocaleProvider'
 import Text from '../../Utilities/Text'
 import Title from '../../Utilities/Title'
 import Quote from '../../Quote'
+import AnchorList from '../../AnchorList'
 import { Tablet, Desktop } from '../../Utilities/Media'
 import {
+  HomePageContainer,
   HomeIntroContainer,
   HomeIntroContentContainer,
   HomeIntroTitle,
   HomeIntroText,
   DesktopIntroContainer,
+  SilderContainerDes,
 } from './style'
 import LocalizedLink from '../../LocalizedLink'
 import { WidthLimiterContainer } from '../../Layout/styles'
@@ -43,6 +46,18 @@ const IndexLayout = ({ data }) => {
     ? data.homePagequote.nodes[0].metadata.quote_graphic.local.publicURL
     : ''
 
+  const anchorTitle = data?.anchor?.nodes[0]?.metadata?.anchor_title
+    ? data.anchor.nodes[0].metadata.anchor_title
+    : ''
+
+  const ministries = data?.anchor?.nodes[0]?.metadata?.youth_ministries
+    ? data.anchor.nodes[0].metadata.youth_ministries
+    : ''
+
+  const anchorLinks = data?.anchor?.nodes[0]?.metadata?.anchor_list
+    ? data.anchor.nodes[0].metadata.anchor_list
+    : ''
+
   const images = []
   homePage?.slider_images
     ? homePage.slider_images.map((info) => {
@@ -62,33 +77,32 @@ const IndexLayout = ({ data }) => {
     : ''
 
   return (
-    <Fragment>
+    <HomePageContainer>
       <Tablet>
-        <SliderSection imgLength={images.length}>
+        <SliderContent imgLength={images.length}>
           {imagesMob?.length > 0
             ? imagesMob.map((img, index) => {
                 return <img key={index} src={img} alt="slider-images" />
               })
             : ''}
-        </SliderSection>
+        </SliderContent>
         <HomeIntroContainer>
           <img src={homeIntroGraphic} alt="home__intro-graphic" />
-
           <HomeIntroContentContainer>
             <HomeIntroTitle>
-              <Title as="h3" type="heading2">
-                {homeIntroTitle}
+              <Title as="h1" type="heading1">
+                {homeIntroTitle ? homeIntroTitle : ''}
               </Title>
             </HomeIntroTitle>
             <HomeIntroText>
               <Text as="p" type="smallText700">
-                {homeIntroText}
+                {homeIntroText ? homeIntroText : ''}
               </Text>
             </HomeIntroText>
           </HomeIntroContentContainer>
           <Text as="p" type="smallText700">
             <LocalizedLink to="/" className="Home__Intro-link">
-              {homeIntroLink}
+              {homeIntroLink ? homeIntroLink : ''}
             </LocalizedLink>
           </Text>
         </HomeIntroContainer>
@@ -98,44 +112,51 @@ const IndexLayout = ({ data }) => {
             graphic: quoteGraphic,
           }}
         />
+        <AnchorList
+          anchorQuery={{
+            title: anchorTitle,
+            links: anchorLinks,
+            ministries: ministries,
+          }}
+        />
       </Tablet>
       <Desktop>
-        <WidthLimiterContainer>
+        <WidthLimiterContainer className="HomePage__WidthLimiter">
           <DesktopIntroContainer>
             <HomeIntroContainer>
               <img
-                src={homeIntroGraphic}
+                src={homeIntroGraphic ? homeIntroGraphic : ''}
                 alt="home intro graphic"
                 className="Home__Intro-Graphic"
               />
 
               <HomeIntroContentContainer>
                 <HomeIntroTitle>
-                  <Title as="h3" type="heading2">
-                    {homeIntroTitle}
+                  <Title as="h1" type="heading1">
+                    {homeIntroTitle ? homeIntroTitle : ''}
                   </Title>
                 </HomeIntroTitle>
                 <HomeIntroText>
                   <Text as="p" type="smallText700">
-                    {homeIntroText}
+                    {homeIntroText ? homeIntroText : ''}
                   </Text>
                 </HomeIntroText>
               </HomeIntroContentContainer>
               <Text as="p" type="smallText700">
                 <LocalizedLink to="/" className="Home__Intro-link">
-                  {homeIntroLink}
+                  {homeIntroLink ? homeIntroLink : ''}
                 </LocalizedLink>
               </Text>
             </HomeIntroContainer>
-            <div>
-              <SliderSection imgLength={images.length}>
+            <SilderContainerDes>
+              <SliderContent imgLength={images.length}>
                 {images?.length > 0
                   ? images.map((img, index) => {
                       return <img src={img} alt="slider images" key={index} />
                     })
                   : ''}
-              </SliderSection>
-            </div>
+              </SliderContent>
+            </SilderContainerDes>
           </DesktopIntroContainer>
         </WidthLimiterContainer>
         <Quote
@@ -144,8 +165,15 @@ const IndexLayout = ({ data }) => {
             graphic: quoteGraphic,
           }}
         />
+        <AnchorList
+          anchorQuery={{
+            title: anchorTitle,
+            links: anchorLinks,
+            ministries: ministries,
+          }}
+        />
       </Desktop>
-    </Fragment>
+    </HomePageContainer>
   )
 }
 
