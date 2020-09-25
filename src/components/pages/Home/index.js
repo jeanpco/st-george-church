@@ -6,6 +6,7 @@ import Contact from '../../Contact'
 import Text from '../../Utilities/Text'
 import Title from '../../Utilities/Title'
 import Quote from '../../Quote'
+import EventsCalendar from '../../EventsCalendar'
 import AnchorList from '../../AnchorList'
 import { Tablet, Desktop } from '../../Utilities/Media'
 import {
@@ -129,6 +130,7 @@ const IndexLayout = ({ data }) => {
             ministriesData: ministriesData,
           }}
         />
+        <EventsCalendar />
         <Galery
           query={{
             title: photoGalleryTitle,
@@ -203,6 +205,7 @@ const IndexLayout = ({ data }) => {
             ministriesData: ministriesData,
           }}
         />
+        <EventsCalendar />
         <Galery
           query={{
             title: photoGalleryTitle,

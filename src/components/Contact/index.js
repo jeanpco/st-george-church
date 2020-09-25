@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import LocaleContext from '../../context/LocaleProvider'
-
+import Icon from '~/components/Icon'
 import ContactDrawer from '../ContactDrawer'
 import { WidthLimiterContainer } from '../Layout/styles'
 import { Tablet, Desktop } from '../Utilities/Media'
-import Icon from '~/components/Icon'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
 import Img from 'gatsby-background-image'
