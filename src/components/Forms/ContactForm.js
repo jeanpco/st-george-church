@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from 'react'
+global.Promise = require('bluebird')
+
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 import PropTypes from 'prop-types'
 import {
   theme,
@@ -62,6 +67,43 @@ const ContactForm = ({
       }, 500)
     }
   }, [formSuccess])
+
+  useEffect(() => {
+    if (formSuccess) {
+      const client = require('@sendgrid/client')
+      client.setApiKey(process.env.SENDGRID_API_KEY)
+      const request = {
+        method: 'GET',
+        url: '/v3/api_keys',
+      }
+      client.request(request).then(([response, body]) => {
+        console.log(response.statusCode)
+        console.log(`key: ${body.api_key}`)
+      })
+
+      const sgMail = require('@sendgrid/mail')
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+      const msg = {
+        to: formState.email,
+        from: 'rom.penaruiz@gmail.com',
+        subject: 'Saint George Response',
+        text: formState.text,
+      }
+
+      sgMail.send(msg).then(
+        () => {
+          console.log('email send')
+        },
+        (error) => {
+          console.error(error)
+
+          if (error.response) {
+            console.error(error.response.body)
+          }
+        }
+      )
+    }
+  })
 
   const formOnBlur = (e) => {
     const validation = validateInput(e.target, formState)
