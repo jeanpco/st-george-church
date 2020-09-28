@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import SliderContent from '../../HomeIntroSlider'
 import Galery from '../../Gallery'
 import PropTypes from 'prop-types'
@@ -71,7 +71,9 @@ const IndexLayout = ({ data }) => {
     ? homePageQuery.ministries_section.document.data.body[1].items
     : ''
 
-  const ministriesData = homePageQuery.ministries_section.document.data
+  const ministriesData = homePageQuery?.ministries_section?.document.data
+    ? homePageQuery.ministries_section.document.data
+    : ''
 
   return (
     <HomePageContainer>
@@ -105,20 +107,32 @@ const IndexLayout = ({ data }) => {
 
           <HomeIntroContentContainer>
             <HomeIntroTitle>
-              <Title as="h1" type="heading1">
-                {homeIntroTitle ? homeIntroTitle : ''}
-              </Title>
+              {homeIntroTitle ? (
+                <Title as="h1" type="heading1">
+                  {homeIntroTitle}
+                </Title>
+              ) : (
+                ''
+              )}
             </HomeIntroTitle>
             <HomeIntroText>
-              <Text as="p" type="smallText700">
-                {homeIntroText ? homeIntroText : ''}
-              </Text>
+              {homeIntroText ? (
+                <Text as="p" type="smallText700">
+                  {homeIntroText}
+                </Text>
+              ) : (
+                ''
+              )}
             </HomeIntroText>
           </HomeIntroContentContainer>
           <Text as="p" type="smallText700">
-            <LocalizedLink to="/" className="Home__Intro-link">
-              {homeIntroLink ? homeIntroLink : ''}
-            </LocalizedLink>
+            {homeIntroLink ? (
+              <LocalizedLink to="/" className="Home__Intro-link">
+                {homeIntroLink}
+              </LocalizedLink>
+            ) : (
+              ''
+            )}
           </Text>
         </HomeIntroContainer>
         <Quote
@@ -147,51 +161,79 @@ const IndexLayout = ({ data }) => {
         <WidthLimiterContainer className="HomePage__WidthLimiter">
           <DesktopIntroContainer>
             <HomeIntroContainer>
-              <img
-                src={homeIntroGraphic ? homeIntroGraphic : ''}
-                alt="home intro graphic"
-                className="Home__Intro-Graphic"
-              />
+              {homeIntroGraphic ? (
+                <img
+                  src={homeIntroGraphic}
+                  alt="home intro graphic"
+                  className="Home__Intro-Graphic"
+                />
+              ) : (
+                ''
+              )}
 
               <HomeIntroContentContainer>
                 <HomeIntroTitle>
-                  <Title as="h1" type="heading1">
-                    {homeIntroTitle ? homeIntroTitle : ''}
-                  </Title>
+                  {homeIntroTitle ? (
+                    <Title as="h1" type="heading1">
+                      {homeIntroTitle}
+                    </Title>
+                  ) : (
+                    ' '
+                  )}
                 </HomeIntroTitle>
                 <HomeIntroText>
-                  <Text as="p" type="smallText700">
-                    {homeIntroText ? homeIntroText : ''}
-                  </Text>
+                  {homeIntroText ? (
+                    <Text as="p" type="smallText700">
+                      {homeIntroText}
+                    </Text>
+                  ) : (
+                    ''
+                  )}
                 </HomeIntroText>
               </HomeIntroContentContainer>
               <Text as="p" type="smallText700">
-                <LocalizedLink to="/" className="Home__Intro-link">
-                  {homeIntroLink ? homeIntroLink : ''}
-                </LocalizedLink>
+                {homeIntroLink ? (
+                  <LocalizedLink to="/" className="Home__Intro-link">
+                    {homeIntroLink}
+                  </LocalizedLink>
+                ) : (
+                  ''
+                )}
               </Text>
             </HomeIntroContainer>
 
             <div style={{ width: '50%' }}>
-              <SliderContent
-                slidesToShow={1}
-                slidesToScroll={1}
-                autoplay={true}
-                imgLength={homePageQuery.body[0].items.length}
-              >
-                {homePageQuery.body[1].items?.length > 0
-                  ? homePageQuery.body[1].items.map((img) => {
-                      const sliderImage =
-                        img.slider_img.localFile.childImageSharp.fluid
-                      return (
-                        <Img
-                          fluid={sliderImage}
-                          key={img.slider_img.localFile.childImageSharp.id}
-                        />
-                      )
-                    })
-                  : ''}
-              </SliderContent>
+              {homePageQuery.body[0].items.length > 0 ? (
+                <SliderContent
+                  slidesToShow={1}
+                  slidesToScroll={1}
+                  autoplay={true}
+                  imgLength={homePageQuery.body[0].items.length}
+                >
+                  {homePageQuery.body[1].items?.length > 0
+                    ? homePageQuery.body[1].items.map((img, index) => {
+                        const sliderImage = img?.slider_img?.localFile
+                          ?.childImageSharp?.fluid
+                          ? img.slider_img.localFile.childImageSharp.fluid
+                          : ''
+
+                        return (
+                          <Fragment
+                            key={
+                              img.slider_img.localFile.childImageSharp.id
+                                ? img.slider_img.localFile.childImageSharp.id
+                                : index
+                            }
+                          >
+                            {sliderImage ? <Img fluid={sliderImage} /> : ''}
+                          </Fragment>
+                        )
+                      })
+                    : ''}
+                </SliderContent>
+              ) : (
+                ''
+              )}
             </div>
           </DesktopIntroContainer>
         </WidthLimiterContainer>

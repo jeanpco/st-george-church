@@ -122,10 +122,10 @@ const ContactForm = ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          to: formState.email,
+          to: email[0],
           from: email[0], // Use the email address or domain you verified above
           subject: `${formState.email} sent you a message through your website contact form`,
-          text: 'and easy to do anywhere, even with Node.js',
+          text: formState.text,
         }),
       })
 
