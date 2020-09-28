@@ -3,7 +3,7 @@ import React from 'react'
 export const Line = () => {
   return (
     <svg
-      width="50"
+      width="30"
       height="1"
       viewBox="0 0 50 1"
       fill="none"

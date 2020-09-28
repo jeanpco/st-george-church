@@ -10,11 +10,19 @@ import {
   CalendarIconPrev,
   CalendarIconNext,
   CallendarItemsContainer,
+  CalendarEventsContainer,
+  CalendarEventHeader,
+  CalendarEvents,
+  CalendarEventsBodyHead,
+  CalenderEventsBodyText,
+  CalendarEventsIcon,
 } from './styles'
 import Icon from '~/components/Icon'
 import { Desktop, Tablet } from '../Utilities/Media'
 import DayPicker from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
+import Title from '../Utilities/Title'
+import Text from '../Utilities/Text'
 
 const EventsCalendar = () => {
   const [selectedDay, setSelectedDay] = useState(null)
@@ -25,7 +33,6 @@ const EventsCalendar = () => {
     })
     console.log('selected')
   }
-  console.log(selectedDay)
 
   const navbar = ({
     month,
@@ -42,30 +49,46 @@ const EventsCalendar = () => {
     const current = months[month.getMonth()]
     const styleLeft = {}
     const styleRight = {}
-    const currentMonth = new Date()
-    const currentDate = currentMonth.getFullYear()
 
-    console.log(currentDate)
     return (
       <CalendarNavbarEl className={className}>
-        <button style={styleLeft} onClick={() => onPreviousClick()}>
+        <button
+          className="Calender__Btn-Next"
+          style={styleLeft}
+          onClick={() => onPreviousClick()}
+        >
           {prev}
         </button>
         <CalendarIconPrev>
           <Icon type="line" />
         </CalendarIconPrev>
         <div>
-          <h3>
-            {current}, {currentDate}
-          </h3>
+          <h3>{current}</h3>
         </div>
         <CalendarIconNext>
           <Icon type="line" />
         </CalendarIconNext>
-        <button style={styleRight} onClick={() => onNextClick()}>
+        <button
+          className="Calender__Btn-Next"
+          style={styleRight}
+          onClick={() => onNextClick()}
+        >
           {next}
         </button>
       </CalendarNavbarEl>
+    )
+  }
+
+  const renderDay = (day) => {
+    const date = day.getDate()
+    const dateStyle = {}
+    const cellStyle = {}
+    return (
+      <div style={cellStyle} className="cell-style">
+        <div style={dateStyle} className="date-cell">
+          {date}
+        </div>
+      </div>
     )
   }
 
@@ -73,7 +96,9 @@ const EventsCalendar = () => {
     <WidthLimiterContainer>
       <CalendarContainer>
         <CalendarHeaderContainer>
-          <h1>Calendar</h1>
+          <Title as="h2" type="heading2">
+            Events Calendar
+          </Title>
           <Tablet>
             <Icon type="cross" />
           </Tablet>
@@ -89,23 +114,56 @@ const EventsCalendar = () => {
               onDayClick={handleDayClick}
               selectedDays={selectedDay ? selectedDay.selectedDay : selectedDay}
               navbarElement={navbar}
+              renderDay={renderDay}
             />
           </DayPickerContainer>
-          <div style={{ marginTop: '80px' }}>
-            <div>
-              <h3>Upcoming Events</h3>
-            </div>
-            <div>
-              <h4>July 12, 2020 @ 9:00 am – 10:00 am</h4>
-              <h2>Moms and Tots</h2>
-              <p>St. George Church 2455 Ch de la Côte-Sainte-Catherine</p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Fermentum nullam condimentum semper mauris, consequat
-                condimentum semper mauris.{' '}
-              </p>
-            </div>
-          </div>
+          <CalendarEventsContainer>
+            <CalendarEventHeader>
+              <Title type="calendarTitle">Upcoming Events</Title>
+            </CalendarEventHeader>
+            <CalendarEvents>
+              <Text>July 12, 2020 @ 9:00 am – 10:00 am</Text>
+              <CalendarEventsBodyHead>
+                <Title type="heading3">Moms & Tots</Title>
+                <Text>
+                  St. George Church 2455 Ch de la Côte-Sainte-Catherine
+                </Text>
+              </CalendarEventsBodyHead>
+              <CalenderEventsBodyText>
+                <Text>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Fermentum nullam condimentum semper mauris, consequat
+                  condimentum semper mauris.
+                </Text>
+              </CalenderEventsBodyText>
+              <CalendarEventsIcon>
+                <Icon type="calendar-line" />
+              </CalendarEventsIcon>
+            </CalendarEvents>
+
+            <CalendarEventHeader>
+              <Title type="calendarTitle">Upcoming Events</Title>
+            </CalendarEventHeader>
+            <CalendarEvents>
+              <Text>July 12, 2020 @ 9:00 am – 10:00 am</Text>
+              <CalendarEventsBodyHead>
+                <Title type="heading3">Moms & Tots</Title>
+                <Text>
+                  St. George Church 2455 Ch de la Côte-Sainte-Catherine
+                </Text>
+              </CalendarEventsBodyHead>
+              <CalenderEventsBodyText>
+                <Text>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Fermentum nullam condimentum semper mauris, consequat
+                  condimentum semper mauris.
+                </Text>
+              </CalenderEventsBodyText>
+              <CalendarEventsIcon>
+                <Icon type="calendar-line" />
+              </CalendarEventsIcon>
+            </CalendarEvents>
+          </CalendarEventsContainer>
         </CallendarItemsContainer>
       </CalendarContainer>
     </WidthLimiterContainer>

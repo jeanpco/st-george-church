@@ -89,6 +89,17 @@ export const TitleStyled = styled.p`
       font-size: ${theme.fonts.heading6};
     }
   }
+
+  &.calendarTitle {
+    font-family: ${theme.fontFamily.primary};
+    font-size: ${theme.fonts.heading5};
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+    @media (min-width: ${theme.breakpoints.md}) {
+      font-size: ${theme.fonts.heading3};
+    }
+  }
   &.menuHeading {
     font-family: ${theme.fontFamily.secondary};
     font-size: ${theme.fonts.heading6};

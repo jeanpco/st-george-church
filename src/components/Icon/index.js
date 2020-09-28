@@ -38,6 +38,7 @@ import { Border } from './assets/Border'
 import { BorderMob } from './assets/BorderMob'
 import { Line } from './assets/Line'
 import { AddDes } from './assets/AddDes'
+import { CalendarLine } from './assets/CalendarLine'
 
 const Icon = ({ type }) => {
   switch (type) {
@@ -117,6 +118,8 @@ const Icon = ({ type }) => {
       return <BorderMob />
     case 'line':
       return <Line />
+    case 'calendar-line':
+      return <CalendarLine />
     default:
       return ''
   }
