@@ -30,6 +30,7 @@ const Contact = () => {
               ... on PrismicWhoWeAreBodyTeamContent {
                 id
                 items {
+                  contact_email
                   contact_image {
                     localFile {
                       childImageSharp {

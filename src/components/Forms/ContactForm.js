@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-global.Promise = require('bluebird')
-
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
@@ -44,6 +42,17 @@ const ContactForm = ({
     state: '',
   })
 
+  const names = []
+  const email = []
+
+  formInformation.map((contact) => {
+    names.push(contact.contact_name.text)
+
+    if (contact.contact_name.text === contactCurrent) {
+      email.push(contact.contact_email)
+    }
+  })
+
   const changeHandler = (e) => {
     setFormState({
       ...formState,
@@ -67,43 +76,6 @@ const ContactForm = ({
       }, 500)
     }
   }, [formSuccess])
-
-  useEffect(() => {
-    if (formSuccess) {
-      const client = require('@sendgrid/client')
-      client.setApiKey(process.env.SENDGRID_API_KEY)
-      const request = {
-        method: 'GET',
-        url: '/v3/api_keys',
-      }
-      client.request(request).then(([response, body]) => {
-        console.log(response.statusCode)
-        console.log(`key: ${body.api_key}`)
-      })
-
-      const sgMail = require('@sendgrid/mail')
-      sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-      const msg = {
-        to: formState.email,
-        from: 'rom.penaruiz@gmail.com',
-        subject: 'Saint George Response',
-        text: formState.text,
-      }
-
-      sgMail.send(msg).then(
-        () => {
-          console.log('email send')
-        },
-        (error) => {
-          console.error(error)
-
-          if (error.response) {
-            console.error(error.response.body)
-          }
-        }
-      )
-    }
-  })
 
   const formOnBlur = (e) => {
     const validation = validateInput(e.target, formState)
@@ -142,7 +114,22 @@ const ContactForm = ({
         },
       })
 
-      if (form.status === 200) {
+      const response = await fetch('/.netlify/functions/email', {
+        method: 'POST',
+        credentials: 'same-origin',
+        mode: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: formState.email,
+          from: email[0], // Use the email address or domain you verified above
+          subject: `${formState.email} sent you a message through your website contact form`,
+          text: 'and easy to do anywhere, even with Node.js',
+        }),
+      })
+
+      if (form.status === 200 && response.status === 200) {
         // eslint-disable-next-line no-console
         setFormSuccess(true)
         setFormStatus({
@@ -177,11 +164,6 @@ const ContactForm = ({
   const handleOpen = () => {
     setOpen(true)
   }
-  const names = []
-
-  formInformation.map((contact) => {
-    names.push(contact.contact_name.text)
-  })
 
   return (
     <ThemeProvider theme={theme}>

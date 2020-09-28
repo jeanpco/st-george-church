@@ -76,27 +76,33 @@ const IndexLayout = ({ data }) => {
   return (
     <HomePageContainer>
       <Tablet>
-        <SliderContent
-          slidesToShow={1}
-          slidesToScroll={1}
-          autoplay={true}
-          imgLength={homePageQuery.body[0].items.length}
-        >
-          {homePageQuery.body[0].items?.length > 0
-            ? homePageQuery.body[0].items.map((img) => {
-                const sliderImage =
-                  img.slider_img.localFile.childImageSharp.fluid
-                return (
-                  <Img
-                    fluid={sliderImage}
-                    key={img.slider_img.localFile.childImageSharp.id}
-                  />
-                )
-              })
-            : ''}
-        </SliderContent>
+        {homePageQuery?.body[0].items.length > 0 ? (
+          <SliderContent
+            slidesToShow={1}
+            slidesToScroll={1}
+            autoplay={true}
+            imgLength={homePageQuery.body[0].items.length}
+          >
+            {homePageQuery.body[0].items?.length > 0
+              ? homePageQuery.body[0].items.map((img, index) => {
+                  const sliderImage = img?.slider_img?.localFile
+                    ?.childImageSharp?.fluid
+                    ? img.slider_img.localFile.childImageSharp.fluid
+                    : ''
+                  return <Img fluid={sliderImage} key={index} />
+                })
+              : ''}
+          </SliderContent>
+        ) : (
+          ''
+        )}
         <HomeIntroContainer>
-          <img src={homeIntroGraphic} alt="home__intro-graphic" />
+          {homeIntroGraphic ? (
+            <img src={homeIntroGraphic} alt="home__intro-graphic" />
+          ) : (
+            ''
+          )}
+
           <HomeIntroContentContainer>
             <HomeIntroTitle>
               <Title as="h1" type="heading1">
