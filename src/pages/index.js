@@ -95,36 +95,6 @@ export const query = graphql`
               }
             }
           }
-          photo_gallery_section {
-            document {
-              ... on PrismicPhotoGallery {
-                data {
-                  gallery_title {
-                    text
-                  }
-                  body {
-                    ... on PrismicPhotoGalleryBodyGallerySection {
-                      items {
-                        gallery_img {
-                          localFile {
-                            childImageSharp {
-                              fluid {
-                                ...GatsbyImageSharpFluid
-                              }
-                            }
-                          }
-                        }
-                        gallery_section_text
-                        gallery_section_title {
-                          text
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
         }
       }
     }

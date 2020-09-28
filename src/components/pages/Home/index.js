@@ -20,15 +20,15 @@ import { WidthLimiterContainer } from '../../Layout/styles'
 import Img from 'gatsby-image'
 
 const IndexLayout = ({ data }) => {
-  const homePageQuery = data.homePage.data
+  const homePageQuery = data?.homePage?.data
 
   const photoGalleryTitle = homePageQuery?.photo_gallery_section?.document?.data
     ?.gallery_title?.text
-    ? homePageQuery.photo_gallery_section.document.data.gallery_title.text
+    ? homePageQuery?.photo_gallery_section?.document?.data?.gallery_title?.text
     : ''
 
   const photoGallerySliderContent =
-    homePageQuery.photo_gallery_section.document.data.body[0].items
+    homePageQuery?.photo_gallery_section?.document?.data?.body?.[0]?.items
 
   const homeIntroGraphic = homePageQuery?.intro_graphic?.url
     ? homePageQuery.intro_graphic.url
@@ -63,12 +63,12 @@ const IndexLayout = ({ data }) => {
     ? homePageQuery.ministries_section.document.data.body[0].items
     : ''
 
-  const ministries = homePageQuery?.ministries_section?.document?.data?.body[1]
-    ?.items
+  const ministries = homePageQuery?.ministries_section?.document?.data
+    ?.body?.[1]?.items
     ? homePageQuery.ministries_section.document.data.body[1].items
     : ''
 
-  const ministriesData = homePageQuery.ministries_section.document.data
+  const ministriesData = homePageQuery?.ministries_section?.document?.data
 
   return (
     <HomePageContainer>
@@ -77,9 +77,9 @@ const IndexLayout = ({ data }) => {
           slidesToShow={1}
           slidesToScroll={1}
           autoplay={true}
-          imgLength={homePageQuery.body[0].items.length}
+          imgLength={homePageQuery?.body?.[0]?.items?.length}
         >
-          {homePageQuery.body[0].items?.length > 0
+          {homePageQuery?.body?.[0]?.items?.length > 0
             ? homePageQuery.body[0].items.map((img) => {
                 const sliderImage =
                   img.slider_img.localFile.childImageSharp.fluid
