@@ -28,7 +28,7 @@ const Gallery = ({ query }) => {
   }, [])
 
   const galleryImageArray = []
-  query.content.map((info) => {
+  query?.content?.map((info) => {
     galleryImageArray.push(info)
   })
 

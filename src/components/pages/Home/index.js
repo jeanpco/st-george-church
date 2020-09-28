@@ -18,6 +18,8 @@ import {
 import LocalizedLink from '../../LocalizedLink'
 import { WidthLimiterContainer } from '../../Layout/styles'
 import Img from 'gatsby-image'
+import AnimatedImage from '../../AnimatedImage'
+import Fade from 'react-reveal/Fade'
 
 const IndexLayout = ({ data }) => {
   const homePageQuery = data?.homePage?.data
@@ -84,33 +86,36 @@ const IndexLayout = ({ data }) => {
                 const sliderImage =
                   img.slider_img.localFile.childImageSharp.fluid
                 return (
-                  <Img
-                    fluid={sliderImage}
+                  <AnimatedImage
                     key={img.slider_img.localFile.childImageSharp.id}
-                  />
+                  >
+                    <Img fluid={sliderImage} />
+                  </AnimatedImage>
                 )
               })
             : ''}
         </SliderContent>
         <HomeIntroContainer>
-          <img src={homeIntroGraphic} alt="home__intro-graphic" />
-          <HomeIntroContentContainer>
-            <HomeIntroTitle>
-              <Title as="h1" type="heading1">
-                {homeIntroTitle ? homeIntroTitle : ''}
-              </Title>
-            </HomeIntroTitle>
-            <HomeIntroText>
-              <Text as="p" type="smallText700">
-                {homeIntroText ? homeIntroText : ''}
-              </Text>
-            </HomeIntroText>
-          </HomeIntroContentContainer>
-          <Text as="p" type="smallText700">
-            <LocalizedLink to="/" className="Home__Intro-link">
-              {homeIntroLink ? homeIntroLink : ''}
-            </LocalizedLink>
-          </Text>
+          <Fade distance="30px" bottom>
+            <img src={homeIntroGraphic} alt="home__intro-graphic" />
+            <HomeIntroContentContainer>
+              <HomeIntroTitle>
+                <Title as="h1" type="heading1">
+                  {homeIntroTitle ? homeIntroTitle : ''}
+                </Title>
+              </HomeIntroTitle>
+              <HomeIntroText>
+                <Text as="p" type="smallText700">
+                  {homeIntroText ? homeIntroText : ''}
+                </Text>
+              </HomeIntroText>
+            </HomeIntroContentContainer>
+            <Text as="p" type="smallText700">
+              <LocalizedLink to="/" className="Home__Intro-link">
+                {homeIntroLink ? homeIntroLink : ''}
+              </LocalizedLink>
+            </Text>
+          </Fade>
         </HomeIntroContainer>
         <Quote
           query={{
@@ -137,29 +142,30 @@ const IndexLayout = ({ data }) => {
         <WidthLimiterContainer className="HomePage__WidthLimiter">
           <DesktopIntroContainer>
             <HomeIntroContainer>
-              <img
-                src={homeIntroGraphic ? homeIntroGraphic : ''}
-                alt="home intro graphic"
-                className="Home__Intro-Graphic"
-              />
-
-              <HomeIntroContentContainer>
-                <HomeIntroTitle>
-                  <Title as="h1" type="heading1">
-                    {homeIntroTitle ? homeIntroTitle : ''}
-                  </Title>
-                </HomeIntroTitle>
-                <HomeIntroText>
-                  <Text as="p" type="smallText700">
-                    {homeIntroText ? homeIntroText : ''}
-                  </Text>
-                </HomeIntroText>
-              </HomeIntroContentContainer>
-              <Text as="p" type="smallText700">
-                <LocalizedLink to="/" className="Home__Intro-link">
-                  {homeIntroLink ? homeIntroLink : ''}
-                </LocalizedLink>
-              </Text>
+              <Fade distance="30px" bottom>
+                <img
+                  src={homeIntroGraphic ? homeIntroGraphic : ''}
+                  alt="home intro graphic"
+                  className="Home__Intro-Graphic"
+                />
+                <HomeIntroContentContainer>
+                  <HomeIntroTitle>
+                    <Title as="h1" type="heading1">
+                      {homeIntroTitle ? homeIntroTitle : ''}
+                    </Title>
+                  </HomeIntroTitle>
+                  <HomeIntroText>
+                    <Text as="p" type="smallText700">
+                      {homeIntroText ? homeIntroText : ''}
+                    </Text>
+                  </HomeIntroText>
+                </HomeIntroContentContainer>
+                <Text as="p" type="smallText700">
+                  <LocalizedLink to="/" className="Home__Intro-link">
+                    {homeIntroLink ? homeIntroLink : ''}
+                  </LocalizedLink>
+                </Text>
+              </Fade>
             </HomeIntroContainer>
 
             <div style={{ width: '50%' }}>
@@ -174,10 +180,11 @@ const IndexLayout = ({ data }) => {
                       const sliderImage =
                         img.slider_img.localFile.childImageSharp.fluid
                       return (
-                        <Img
-                          fluid={sliderImage}
+                        <AnimatedImage
                           key={img.slider_img.localFile.childImageSharp.id}
-                        />
+                        >
+                          <Img fluid={sliderImage} />
+                        </AnimatedImage>
                       )
                     })
                   : ''}

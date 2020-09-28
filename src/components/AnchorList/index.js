@@ -20,6 +20,8 @@ import { WidthLimiterContainer } from '../Layout/styles'
 import { Tablet, Desktop } from '../Utilities/Media'
 import Text from '../Utilities/Text'
 import Img from 'gatsby-image'
+import Fade from 'react-reveal/Fade'
+import AnimatedImage from '../AnimatedImage'
 
 const AnchorList = ({ anchorQuery }) => {
   const [open, setOpen] = useState(false)
@@ -86,16 +88,18 @@ const AnchorList = ({ anchorQuery }) => {
       ? links.map((link, index) => {
           return (
             <AnchorLinksMob key={index}>
-              <AnchorIconLink>
-                <Icon type="add" />
-              </AnchorIconLink>
-              {link ? (
-                <div className="anchor_links" onClick={handelClickMobile}>
-                  {link}
-                </div>
-              ) : (
-                ''
-              )}
+              <Fade bottom distance="30px">
+                <AnchorIconLink>
+                  <Icon type="add" />
+                </AnchorIconLink>
+                {link ? (
+                  <div className="anchor_links" onClick={handelClickMobile}>
+                    {link}
+                  </div>
+                ) : (
+                  ''
+                )}
+              </Fade>
             </AnchorLinksMob>
           )
         })
@@ -106,24 +110,26 @@ const AnchorList = ({ anchorQuery }) => {
       ? links.map((link, index) => {
           return (
             <AnchorLinks key={` AnchorLinks -${index}`}>
-              <AnchorIconLink>
-                <Icon type="add-des" />
-              </AnchorIconLink>
-              {link ? (
-                <div
-                  className="anchor_links"
-                  style={
-                    ministerState === index
-                      ? { color: '#CC1D27' }
-                      : { color: 'black' }
-                  }
-                  onClick={handelClick}
-                >
-                  {link}
-                </div>
-              ) : (
-                ''
-              )}
+              <Fade bottom distance="30px">
+                <AnchorIconLink>
+                  <Icon type="add-des" />
+                </AnchorIconLink>
+                {link ? (
+                  <div
+                    className="anchor_links"
+                    style={
+                      ministerState === index
+                        ? { color: '#CC1D27' }
+                        : { color: 'black' }
+                    }
+                    onClick={handelClick}
+                  >
+                    {link}
+                  </div>
+                ) : (
+                  ''
+                )}
+              </Fade>
             </AnchorLinks>
           )
         })
@@ -134,12 +140,14 @@ const AnchorList = ({ anchorQuery }) => {
       <WidthLimiterContainer>
         <AnchorContent>
           <Tablet>
-            <AnchorTitle as="h2" type="heading2">
-              <AnchorIconTitle>
-                {anchorTitle}
-                <Icon type="cross" />
-              </AnchorIconTitle>
-            </AnchorTitle>
+            <Fade bottom distance="30px">
+              <AnchorTitle as="h2" type="heading2">
+                <AnchorIconTitle>
+                  {anchorTitle}
+                  <Icon type="cross" />
+                </AnchorIconTitle>
+              </AnchorTitle>
+            </Fade>
             {anchorLinksMobile}
             <Modal
               open={open}
@@ -156,12 +164,14 @@ const AnchorList = ({ anchorQuery }) => {
             />
           </Tablet>
           <Desktop>
-            <AnchorTitle as="h2" type="heading2">
-              <AnchorIconTitle>
-                {anchorTitle}
-                <Icon type="cross-des" />
-              </AnchorIconTitle>
-            </AnchorTitle>
+            <Fade bottom distance="30px">
+              <AnchorTitle as="h2" type="heading2">
+                <AnchorIconTitle>
+                  {anchorTitle}
+                  <Icon type="cross-des" />
+                </AnchorIconTitle>
+              </AnchorTitle>
+            </Fade>
             <AnchorContainerDes>
               {anchorLinks ? (
                 <AnchorLinksContainerDes>{anchorLinks}</AnchorLinksContainerDes>
@@ -169,45 +179,54 @@ const AnchorList = ({ anchorQuery }) => {
                 ''
               )}
               <AnchorContentDes>
-                {anchorArray?.length > 0 ? (
-                  anchorArray.map((info, index) => {
-                    const AnchorImage = info?.list_image?.localFile
-                      ?.childImageSharp?.fluid
-                      ? info.list_image.localFile.childImageSharp.fluid
-                      : ''
-                    return (
-                      <AnchorItemsDes key={index}>
-                        {AnchorImage ? (
-                          <Img fluid={AnchorImage} alt="ministries image" />
-                        ) : (
-                          ''
-                        )}
-                        <AnchorItemsText>
-                          {info?.list_text ? (
-                            <Text type="body">{info.list_text}</Text>
+                <Fade bottom distance="30px">
+                  {anchorArray?.length > 0 ? (
+                    anchorArray.map((info, index) => {
+                      const AnchorImage = info?.list_image?.localFile
+                        ?.childImageSharp?.fluid
+                        ? info.list_image.localFile.childImageSharp.fluid
+                        : ''
+                      return (
+                        <AnchorItemsDes key={index}>
+                          {AnchorImage ? (
+                            <AnimatedImage>
+                              <Img fluid={AnchorImage} alt="ministries image" />
+                            </AnimatedImage>
                           ) : (
                             ''
                           )}
-                        </AnchorItemsText>
-                      </AnchorItemsDes>
-                    )
-                  })
-                ) : (
-                  <AnchorItemsDes>
-                    {anchorFirstImage ? (
-                      <Img fluid={anchorFirstImage} alt="ministries image" />
-                    ) : (
-                      ''
-                    )}
-                    <AnchorItemsText>
-                      {anchorFirstText ? (
-                        <Text type="body">{anchorFirstText}</Text>
+                          <AnchorItemsText>
+                            {info?.list_text ? (
+                              <Text type="body">{info.list_text}</Text>
+                            ) : (
+                              ''
+                            )}
+                          </AnchorItemsText>
+                        </AnchorItemsDes>
+                      )
+                    })
+                  ) : (
+                    <AnchorItemsDes>
+                      {anchorFirstImage ? (
+                        <AnimatedImage>
+                          <Img
+                            fluid={anchorFirstImage}
+                            alt="ministries image"
+                          />
+                        </AnimatedImage>
                       ) : (
                         ''
                       )}
-                    </AnchorItemsText>
-                  </AnchorItemsDes>
-                )}
+                      <AnchorItemsText>
+                        {anchorFirstText ? (
+                          <Text type="body">{anchorFirstText}</Text>
+                        ) : (
+                          ''
+                        )}
+                      </AnchorItemsText>
+                    </AnchorItemsDes>
+                  )}
+                </Fade>
               </AnchorContentDes>
             </AnchorContainerDes>
           </Desktop>

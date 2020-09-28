@@ -35,7 +35,7 @@ export const DialogContentContainer = styled.div`
   padding-left: 18px;
 
   .Modal_Anchor-Img {
-    width: 92%;
+    width: 100%;
   }
 `
 
