@@ -4,13 +4,6 @@ const {
   replaceBoth,
 } = require('./src/utils/gatsby-node-helpers')
 
-exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
-  const config = getConfig()
-  config.node = {
-    fs: 'empty',
-  }
-}
-
 // Take the pages from src/pages and generate pages for all locales, e.g. /index and /en/index
 exports.onCreatePage = ({ page, actions }) => {
   const { createPage, deletePage } = actions
