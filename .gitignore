@@ -7,4 +7,5 @@ public
 yarn.lock
 .env.development
 .env
+.env.production
 
