@@ -1,13 +1,10 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import SliderContent from '../../HomeIntroSlider'
-import Galery from '../../Gallery'
+import Gallery from '../../Gallery'
 import PropTypes from 'prop-types'
 import Contact from '../../Contact'
-import Text from '../../Utilities/Text'
-import Title from '../../Utilities/Title'
 import Quote from '../../Quote'
 import AnchorList from '../../AnchorList'
-import { Tablet, Desktop } from '../../Utilities/Media'
 import {
   HomePageContainer,
   HomeIntroContainer,
@@ -15,250 +12,129 @@ import {
   HomeIntroTitle,
   HomeIntroText,
   DesktopIntroContainer,
+  SliderContainer,
+  HomeIntroLink,
 } from './style'
-import LocalizedLink from '../../LocalizedLink'
 import { WidthLimiterContainer } from '../../Layout/styles'
 import Img from 'gatsby-image'
+import AnimatedImage from '../../AnimatedImage'
+import Fade from 'react-reveal/Fade'
 
-const IndexLayout = ({ data }) => {
-  const homePageQuery = data?.homePage?.data ? data.homePage.data : ''
-
-  const photoGalleryTitle = homePageQuery?.photo_gallery?.document?.data
-    ?.gallery_title?.text
-    ? homePageQuery.photo_gallery.document.data.gallery_title.text
-    : ''
-
-  const photoGallerySliderContent = homePageQuery?.photo_gallery?.document?.data
-    ?.body[0]?.items
-    ? homePageQuery.photo_gallery.document.data.body[0].items
-    : ''
-
-  const homeIntroGraphic = homePageQuery?.intro_graphic?.url
-    ? homePageQuery.intro_graphic.url
-    : ''
-
-  const homeIntroTitle = homePageQuery?.intro_title?.text
-    ? homePageQuery.intro_title.text
-    : ''
-  const homeIntroText = homePageQuery?.intro_text
-    ? homePageQuery.intro_text
-    : ''
-  const homeIntroLink = homePageQuery?.intro_link
-    ? homePageQuery.intro_link
-    : ''
-
-  const quoteText = homePageQuery?.home_quote?.document?.data?.quote_text
-    ? homePageQuery.home_quote.document.data.quote_text
-    : ''
-
-  const quoteGraphic = homePageQuery?.home_quote?.document?.data?.quote_graphic
-    ?.url
-    ? homePageQuery.home_quote.document.data.quote_graphic.url
-    : ''
-
-  const ministriesSectionTitle = homePageQuery?.ministries_section?.document
-    ?.data?.anchor_title
-    ? homePageQuery.ministries_section.document.data.anchor_title.text
-    : ''
-
-  const ministriesLinks = homePageQuery?.ministries_section?.document?.data
-    ?.body[0]?.items
-    ? homePageQuery.ministries_section.document.data.body[0].items
-    : ''
-
-  const ministries = homePageQuery?.ministries_section?.document?.data?.body[1]
-    ?.items
-    ? homePageQuery.ministries_section.document.data.body[1].items
-    : ''
-
-  const ministriesData = homePageQuery?.ministries_section?.document.data
-    ? homePageQuery.ministries_section.document.data
-    : ''
+const IndexLayout = ({
+  data: {
+    homePage: { data: query },
+  },
+}) => {
+  const photoGalleryTitle =
+    query?.photo_gallery?.document?.data?.gallery_title?.text
+  const photoGallerySliderContent =
+    query?.photo_gallery_section?.document?.data?.body?.[0]?.items
+  const homeIntroGraphic = query?.intro_graphic?.url
+  const homeIntroTitle = query?.intro_title?.text
+  const homeIntroText = query?.intro_text
+  const homeIntroLink = query?.intro_link
+  const quoteText = query?.home_quote?.document?.data?.quote_text
+  const quoteGraphic = query?.home_quote?.document?.data?.quote_graphic?.url
+  const ministriesSectionTitle =
+    query?.ministries_section?.document?.data?.anchor_title?.text
+  const ministriesLinks =
+    query?.ministries_section?.document?.data?.body[0]?.items
+  const ministries = query?.ministries_section?.document?.data?.body?.[1]?.items
+  const ministriesData = query?.ministries_section?.document?.data
 
   return (
     <HomePageContainer>
-      <Tablet>
-        {homePageQuery?.body[0].items.length > 0 ? (
-          <SliderContent
-            slidesToShow={1}
-            slidesToScroll={1}
-            autoplay={true}
-            imgLength={homePageQuery.body[0].items.length}
-          >
-            {homePageQuery.body[0].items?.length > 0
-              ? homePageQuery.body[0].items.map((img, index) => {
-                  const sliderImage = img?.slider_img?.localFile
-                    ?.childImageSharp?.fluid
-                    ? img.slider_img.localFile.childImageSharp.fluid
-                    : ''
-                  return <Img fluid={sliderImage} key={index} />
-                })
-              : ''}
-          </SliderContent>
-        ) : (
-          ''
-        )}
-        <HomeIntroContainer>
-          {homeIntroGraphic ? (
-            <img src={homeIntroGraphic} alt="home__intro-graphic" />
-          ) : (
-            ''
-          )}
-
-          <HomeIntroContentContainer>
-            <HomeIntroTitle>
-              {homeIntroTitle ? (
-                <Title as="h1" type="heading1">
-                  {homeIntroTitle}
-                </Title>
-              ) : (
-                ''
-              )}
-            </HomeIntroTitle>
-            <HomeIntroText>
-              {homeIntroText ? (
-                <Text as="p" type="smallText700">
-                  {homeIntroText}
-                </Text>
-              ) : (
-                ''
-              )}
-            </HomeIntroText>
-          </HomeIntroContentContainer>
-          <Text as="p" type="smallText700">
-            {homeIntroLink ? (
-              <LocalizedLink to="/" className="Home__Intro-link">
-                {homeIntroLink}
-              </LocalizedLink>
-            ) : (
-              ''
-            )}
-          </Text>
-        </HomeIntroContainer>
-        <Quote
-          query={{
-            text: quoteText,
-            graphic: quoteGraphic,
-          }}
-        />
-        <AnchorList
-          anchorQuery={{
-            title: ministriesSectionTitle,
-            links: ministriesLinks,
-            ministries: ministries,
-            ministriesData: ministriesData,
-          }}
-        />
-        <Galery
-          query={{
-            title: photoGalleryTitle,
-            content: photoGallerySliderContent,
-          }}
-        />
-        <Contact />
-      </Tablet>
-      <Desktop>
-        <WidthLimiterContainer className="HomePage__WidthLimiter">
-          <DesktopIntroContainer>
-            <HomeIntroContainer>
-              {homeIntroGraphic ? (
-                <img
-                  src={homeIntroGraphic}
-                  alt="home intro graphic"
-                  className="Home__Intro-Graphic"
-                />
-              ) : (
-                ''
-              )}
-
-              <HomeIntroContentContainer>
-                <HomeIntroTitle>
-                  {homeIntroTitle ? (
-                    <Title as="h1" type="heading1">
-                      {homeIntroTitle}
-                    </Title>
-                  ) : (
-                    ' '
-                  )}
-                </HomeIntroTitle>
-                <HomeIntroText>
-                  {homeIntroText ? (
-                    <Text as="p" type="smallText700">
-                      {homeIntroText}
-                    </Text>
-                  ) : (
-                    ''
-                  )}
-                </HomeIntroText>
-              </HomeIntroContentContainer>
-              <Text as="p" type="smallText700">
-                {homeIntroLink ? (
-                  <LocalizedLink to="/" className="Home__Intro-link">
-                    {homeIntroLink}
-                  </LocalizedLink>
+      <WidthLimiterContainer className="HomePage__WidthLimiter">
+        <DesktopIntroContainer>
+          <HomeIntroContainer>
+            <HomeIntroContentContainer>
+              <Fade bottom distance="30px">
+                {homeIntroGraphic ? (
+                  <img
+                    src={homeIntroGraphic}
+                    alt="home intro graphic"
+                    className="Home__Intro-Graphic"
+                  />
                 ) : (
                   ''
                 )}
-              </Text>
-            </HomeIntroContainer>
-
-            <div style={{ width: '50%' }}>
-              {homePageQuery.body[0].items.length > 0 ? (
-                <SliderContent
-                  slidesToShow={1}
-                  slidesToScroll={1}
-                  autoplay={true}
-                  imgLength={homePageQuery.body[0].items.length}
-                >
-                  {homePageQuery.body[1].items?.length > 0
-                    ? homePageQuery.body[1].items.map((img, index) => {
-                        const sliderImage = img?.slider_img?.localFile
-                          ?.childImageSharp?.fluid
-                          ? img.slider_img.localFile.childImageSharp.fluid
-                          : ''
-
-                        return (
-                          <Fragment
-                            key={
-                              img.slider_img.localFile.childImageSharp.id
-                                ? img.slider_img.localFile.childImageSharp.id
-                                : index
-                            }
-                          >
-                            {sliderImage ? <Img fluid={sliderImage} /> : ''}
-                          </Fragment>
-                        )
-                      })
-                    : ''}
-                </SliderContent>
-              ) : (
-                ''
-              )}
-            </div>
-          </DesktopIntroContainer>
-        </WidthLimiterContainer>
-        <Quote
-          query={{
-            text: quoteText,
-            graphic: quoteGraphic,
-          }}
-        />
-        <AnchorList
-          anchorQuery={{
-            title: ministriesSectionTitle,
-            links: ministriesLinks,
-            ministries: ministries,
-            ministriesData: ministriesData,
-          }}
-        />
-        <Galery
+                {homeIntroTitle ? (
+                  <HomeIntroTitle as="h1" type="heading1">
+                    {homeIntroTitle}
+                  </HomeIntroTitle>
+                ) : (
+                  ' '
+                )}
+                {homeIntroText ? (
+                  <HomeIntroText as="p" type="smallText700">
+                    {homeIntroText}
+                  </HomeIntroText>
+                ) : (
+                  ''
+                )}
+                {homeIntroLink ? (
+                  <HomeIntroLink to="/" className="Home__Intro-link">
+                    {homeIntroLink}
+                  </HomeIntroLink>
+                ) : (
+                  ''
+                )}
+              </Fade>
+            </HomeIntroContentContainer>
+          </HomeIntroContainer>
+          <SliderContainer>
+            {query?.body[0].items.length > 0 ? (
+              <SliderContent
+                slidesToShow={1}
+                slidesToScroll={1}
+                autoplay={true}
+                imgLength={query.body[0].items.length}
+              >
+                {query.body[0].items?.length > 0
+                  ? query.body[0].items.map((img, index) => {
+                      const sliderImage = img?.slider_img?.localFile
+                        ?.childImageSharp?.fluid
+                        ? img.slider_img.localFile.childImageSharp.fluid
+                        : ''
+                      return (
+                        <AnimatedImage key={index}>
+                          <Img fluid={sliderImage} />
+                        </AnimatedImage>
+                      )
+                    })
+                  : ''}
+              </SliderContent>
+            ) : (
+              ''
+            )}
+          </SliderContainer>
+        </DesktopIntroContainer>
+      </WidthLimiterContainer>
+      <Quote
+        query={{
+          text: quoteText,
+          graphic: quoteGraphic,
+        }}
+      />
+      <AnchorList
+        anchorQuery={{
+          title: ministriesSectionTitle,
+          links: ministriesLinks,
+          ministries: ministries,
+          ministriesData: ministriesData,
+        }}
+      />
+      {photoGalleryTitle && photoGallerySliderContent ? (
+        <Gallery
           query={{
             title: photoGalleryTitle,
             content: photoGallerySliderContent,
           }}
         />
-        <Contact />
-      </Desktop>
+      ) : (
+        ''
+      )}
+      <Contact />
     </HomePageContainer>
   )
 }

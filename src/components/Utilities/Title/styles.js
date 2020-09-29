@@ -11,7 +11,6 @@ export const TitleStyled = styled.p`
 
     @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
       font-size: ${(props) => props.theme.fonts.heading2};
-      width: 416px;
     }
   }
   &.heading2 {

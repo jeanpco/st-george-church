@@ -12,6 +12,14 @@ export const HomeQuoteContainer = styled.div`
 export const HomeQuoteContentContainer = styled.div`
   display: flex;
   justify-content: center;
+  width: calc(100% - 40px);
+  margin: 0 auto;
+  max-width: 440px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    width: 100%;
+    max-width: initial;
+  }
 
   .Home__Quote-Graphic {
     width: 151px;
@@ -20,24 +28,18 @@ export const HomeQuoteContentContainer = styled.div`
 export const HomeQuoteContent = styled.div`
   padding-right: 22px;
   padding-left: 22px;
+  position: relative;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    width: 100%;
     padding-right: 73px;
     padding-left: 73px;
   }
 
   p {
-    width: 210px;
     padding-top: 20px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      width: 540px;
-      padding-top: 0;
-      padding-bottom: 56px;
-    }
-
-    @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
-      width: 898px;
       padding-top: 0;
       padding-bottom: 56px;
     }

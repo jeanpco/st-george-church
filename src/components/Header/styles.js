@@ -5,12 +5,10 @@ export const HeaderBg = styled.div`
   width: 100%;
 
   .Header__WidthContainer {
-    padding-left: 0;
-    padding-right: 0;
-    @media (min-width: ${theme.breakpoints.md}) {
-      padding-right: 0;
-      padding-left: 0;
-    }
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
   }
 `
 
@@ -29,17 +27,6 @@ export const HeaderTitle = styled.div`
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  padding-right: 12px;
-  h3 {
-    margin-right: 10px;
-  }
-
-  @media (min-width: ${theme.breakpoints.xs}) {
-    margin-right: 22px;
-  }
-
-  @media (min-width: ${theme.breakpoints.md}) {
-  }
 `
 
 export const MenuContainer = styled.div`
@@ -49,7 +36,6 @@ export const MenuContainer = styled.div`
 
   @media (min-width: ${theme.breakpoints.xs}) {
     justify-content: flex-end;
-    padding-right: 14px;
   }
 
   .Header__button {
@@ -95,6 +81,7 @@ export const MenuContainer = styled.div`
 export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
+  width: 100%;
 
   .Header__LanguageSwitcher-button {
     display: none;

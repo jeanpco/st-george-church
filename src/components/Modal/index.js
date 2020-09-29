@@ -18,6 +18,8 @@ import {
 } from './styles'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
+import Fade from 'react-reveal/Fade'
+import AnimatedImage from '../AnimatedImage'
 
 const Modal = ({ open, setOpen, query }) => {
   const isFirstRun = useRef(true)
@@ -72,18 +74,20 @@ const Modal = ({ open, setOpen, query }) => {
     <Dialog fullScreen onClose={() => setOpen(false)} open={open}>
       <div className={classes.root}>
         <ModalTitleContainer>
-          <ModalTitleContent>
-            {currentLink ? (
-              <Title as="h2" type="heading4">
-                {currentLink}
-              </Title>
-            ) : (
-              ''
-            )}
-          </ModalTitleContent>
-          <ModalCloseIncon onClick={() => setOpen(false)}>
-            <Icon type="clear" />
-          </ModalCloseIncon>
+          <Fade bottom distance="30px">
+            <ModalTitleContent>
+              {currentLink ? (
+                <Title as="h2" type="heading4">
+                  {currentLink}
+                </Title>
+              ) : (
+                ''
+              )}
+            </ModalTitleContent>
+            <ModalCloseIncon onClick={() => setOpen(false)}>
+              <Icon type="clear" />
+            </ModalCloseIncon>
+          </Fade>
         </ModalTitleContainer>
         <ModalDialogContainer>
           <ModalContent>
@@ -93,24 +97,28 @@ const Modal = ({ open, setOpen, query }) => {
                     <DialogContentContainer key={index}>
                       <div>
                         {info?.list_image?.localFile?.childImageSharp?.fluid ? (
-                          <Img
-                            fluid={
-                              info.list_image.localFile.childImageSharp.fluid
-                            }
-                            alt="Ministries Image"
-                            className="Modal_Anchor-Img"
-                          />
+                          <AnimatedImage>
+                            <Img
+                              fluid={
+                                info.list_image.localFile.childImageSharp.fluid
+                              }
+                              alt="Ministries Image"
+                              className="Modal_Anchor-Img"
+                            />
+                          </AnimatedImage>
                         ) : (
                           ''
                         )}
                       </div>
-                      <ModalTextContent>
-                        {info?.list_text ? (
-                          <Text type="body">{info.list_text}</Text>
-                        ) : (
-                          ''
-                        )}
-                      </ModalTextContent>
+                      <Fade bottom distance="30px">
+                        <ModalTextContent>
+                          {info?.list_text ? (
+                            <Text type="body">{info.list_text}</Text>
+                          ) : (
+                            ''
+                          )}
+                        </ModalTextContent>
+                      </Fade>
                     </DialogContentContainer>
                   )
                 })
