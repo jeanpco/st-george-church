@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { GlobalStyle } from './src/utils/styles'
 import Layout from './src/components/Layout'
+import ClientOnly from './src/components/ClientOnly'
 import './src/utils/app.css'
 import { ThemeProvider } from 'emotion-theming'
 import { theme } from './src/utils/styles'
@@ -12,7 +13,9 @@ const wrapPageElement = ({ element, props }) => {
     <LocaleProvider locale={props.pageContext.locale}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Layout {...props}>{element}</Layout>
+        <ClientOnly>
+          <Layout {...props}>{element}</Layout>
+        </ClientOnly>
       </ThemeProvider>
     </LocaleProvider>
   )
