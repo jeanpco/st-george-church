@@ -37,6 +37,7 @@ module.exports = {
           photo_gallery: require('./src/schemas/photo_gallery.json'),
           who_we_are: require('./src/schemas/who_we_are.json'),
           contact_form: require('./src/schemas/contact_form.json'),
+          events_calendar: require('./src/schemas/events_calendar.json'),
         },
       },
     },
