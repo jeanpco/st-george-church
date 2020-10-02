@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react'
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 import PropTypes from 'prop-types'
 import {
   theme,
@@ -37,6 +40,17 @@ const ContactForm = ({
   const [formStatus, setFormStatus] = useState({
     message: '',
     state: '',
+  })
+
+  const names = []
+  const email = []
+
+  formInformation.map((contact) => {
+    names.push(contact.contact_name.text)
+
+    if (contact.contact_name.text === contactCurrent) {
+      email.push(contact.contact_email)
+    }
   })
 
   const changeHandler = (e) => {
@@ -100,7 +114,22 @@ const ContactForm = ({
         },
       })
 
-      if (form.status === 200) {
+      const response = await fetch('/.netlify/functions/email', {
+        method: 'POST',
+        credentials: 'same-origin',
+        mode: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: email[0],
+          from: email[0], // Use the email address or domain you verified above
+          subject: `${formState.email} sent you a message through your website contact form`,
+          text: formState.text,
+        }),
+      })
+
+      if (form.status === 200 && response.status === 200) {
         // eslint-disable-next-line no-console
         setFormSuccess(true)
         setFormStatus({
@@ -135,11 +164,6 @@ const ContactForm = ({
   const handleOpen = () => {
     setOpen(true)
   }
-  const names = []
-
-  formInformation.map((contact) => {
-    names.push(contact.contact_name.text)
-  })
 
   return (
     <ThemeProvider theme={theme}>

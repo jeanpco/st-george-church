@@ -79,7 +79,7 @@ export const AnchorLinksContainerDes = styled.div`
   padding-right: 15px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
-    width: 30%;
+    width: 370px;
     padding-right: 30px;
   }
 `
@@ -99,7 +99,6 @@ export const AnchorContentDes = styled.div`
 export const AnchorItemsDes = styled.div`
   height: calc(100% - 50px);
   overflow: auto;
-  padding-right: 47px;
   img {
     width: 100%;
   }

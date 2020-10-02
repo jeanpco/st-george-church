@@ -16,46 +16,40 @@ export const TeamHeaderContainer = styled.div`
 
 export const TeamContentContainer = styled.div`
   cursor: pointer;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 30px;
   margin-top: 24px;
   margin-bottom: 35px;
-  grid-row-gap: 31px;
-  padding-left: 7px;
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    width: 50%;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+      width: 33.33%;
+    }
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     margin-top: 50px;
     margin-bottom: 100px;
     margin-right: 0;
     padding: 20px;
-    grid-row-gap: 100px;
     margin-right: 30px;
-    grid-column-gap: 44px;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     margin-top: 129px;
     margin-bottom: 100px;
     margin-right: 0;
   }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
 `
 
 export const ContactBodyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     :hover {
       .Contact__Image-Circle {
@@ -69,9 +63,14 @@ export const ContactBodyContainer = styled.div`
         border-radius: 50%;
         opacity: 1 !important;
 
-        h2 {
-          display: inline;
+        .ContactImageTitle {
+          top: 53%;
+          opacity: 1;
         }
+      }
+
+      svg, p {
+        color: ${(props) => props.theme.colors.secondary};
       }
     }
   }
@@ -79,36 +78,48 @@ export const ContactBodyContainer = styled.div`
   .Contact__Image-Circle {
     width: 115px;
     height: 115px;
+    margin: 0 auto;
     position: relative;
     display: flex;
     align-items: center;
 
-    h2 {
+    .ContactImageTitle {
       color: white;
-      display: none;
-      padding-left: 65px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition-property: opacity, transform;
+      transition 300ms ease-in-out;
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       width: 241px;
       height: 241px;
+      margin-top: -35px;
     }
   }
 `
 export const GalleryIconContainer = styled.div`
   position: absolute;
   z-index: 1;
-  transform: translate(-8px, -8px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    top: 43%;
+
     :hover {
-      svg {
-        color: ${(props) => props.theme.colors.secondary};
-      }
     }
   }
 `
 export const ContactImageTitle = styled.div``
+
+export const ContactImageContainer = styled.div`
+  position: relative;
+`
 
 export const ContactItemContainer = styled.div`
   padding-top: 20px;
@@ -125,5 +136,9 @@ export const ContactItemContainer = styled.div`
 `
 
 export const ContactContainer = styled.div`
-  margin: 0 auto;
+  margin: 0 auto 40px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin: 0 0 95px;
+  }
 `

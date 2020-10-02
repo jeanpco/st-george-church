@@ -16,6 +16,7 @@ import {
   GalleryIconContainer,
   ContactItemContainer,
   ContactContainer,
+  ContactImageContainer,
 } from './styles'
 
 const Contact = () => {
@@ -29,6 +30,7 @@ const Contact = () => {
               ... on PrismicWhoWeAreBodyTeamContent {
                 id
                 items {
+                  contact_email
                   contact_image {
                     localFile {
                       childImageSharp {
@@ -140,7 +142,9 @@ const Contact = () => {
       <TeamContainer>
         <TeamHeaderContainer>
           {contactSectionTitle ? (
-            <Title type="heading2">{contactSectionTitle}</Title>
+            <Title as="h2" type="heading2">
+              {contactSectionTitle}
+            </Title>
           ) : (
             ''
           )}
@@ -153,63 +157,69 @@ const Contact = () => {
         </TeamHeaderContainer>
         {contactBody?.length > 0 ? (
           <TeamContentContainer>
-            {contactBody
-              ? contactBody.map((info, index) => {
-                  const contactImages = info?.contact_image?.localFile
-                    ?.childImageSharp?.fluid
-                    ? info.contact_image.localFile.childImageSharp.fluid
-                    : ''
-                  return (
-                    <ContactContainer key={index}>
-                      <div onClick={onClickHandler}>
-                        <ContactBodyContainer>
-                          <GalleryIconContainer>
+            {contactBody?.map((info, index) => {
+              const contactImages = info?.contact_image?.localFile
+                ?.childImageSharp?.fluid
+                ? info.contact_image.localFile.childImageSharp.fluid
+                : ''
+              return (
+                <ContactContainer key={index}>
+                  <ContactBodyContainer onClick={onClickHandler}>
+                    <ContactImageContainer>
+                      <GalleryIconContainer>
+                        <Desktop>
+                          <Icon type="border" />
+                        </Desktop>
+                        <Tablet>
+                          <Icon type="border-mob" />
+                        </Tablet>
+                      </GalleryIconContainer>
+                      {contactImages && contactFlyoutTitle ? (
+                        <>
+                          <Img
+                            fluid={contactImages}
+                            className="Contact__Image-Circle"
+                          >
                             <Desktop>
-                              <Icon type="border" />
-                            </Desktop>
-                            <Tablet>
-                              <Icon type="border-mob" />
-                            </Tablet>
-                          </GalleryIconContainer>
-                          {contactImages && contactFlyoutTitle ? (
-                            <Img
-                              fluid={contactImages}
-                              className="Contact__Image-Circle"
-                            >
                               {contactFlyoutTitle ? (
-                                <Title as="h2" type="contactImageHeading">
+                                <Title
+                                  as="h4"
+                                  className={'ContactImageTitle'}
+                                  type="contactImageHeading"
+                                >
                                   {contactFlyoutTitle}
                                 </Title>
                               ) : (
                                 ''
                               )}
-                            </Img>
-                          ) : (
-                            ''
-                          )}
+                            </Desktop>
+                          </Img>
+                        </>
+                      ) : (
+                        ''
+                      )}
+                    </ContactImageContainer>
 
-                          <ContactItemContainer>
-                            {info?.contact_position ? (
-                              <Title type="heading7">
-                                {info.contact_position}
-                              </Title>
-                            ) : (
-                              ''
-                            )}
-                            {info?.contact_name.text ? (
-                              <Text type="smallText800" id="contact-name">
-                                {info.contact_name.text}
-                              </Text>
-                            ) : (
-                              ''
-                            )}
-                          </ContactItemContainer>
-                        </ContactBodyContainer>
-                      </div>
-                    </ContactContainer>
-                  )
-                })
-              : ''}
+                    <ContactItemContainer>
+                      {info?.contact_position ? (
+                        <Title as="h3" type="heading7">
+                          {info.contact_position}
+                        </Title>
+                      ) : (
+                        ''
+                      )}
+                      {info?.contact_name?.text ? (
+                        <Text type="smallText800" id="contact-name">
+                          {info.contact_name.text}
+                        </Text>
+                      ) : (
+                        ''
+                      )}
+                    </ContactItemContainer>
+                  </ContactBodyContainer>
+                </ContactContainer>
+              )
+            })}
           </TeamContentContainer>
         ) : (
           ''

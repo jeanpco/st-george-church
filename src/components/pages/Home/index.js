@@ -1,14 +1,11 @@
 import React from 'react'
 import SliderContent from '../../HomeIntroSlider'
-import Galery from '../../Gallery'
+import Gallery from '../../Gallery'
 import PropTypes from 'prop-types'
 import Contact from '../../Contact'
-import Text from '../../Utilities/Text'
-import Title from '../../Utilities/Title'
 import Quote from '../../Quote'
 import EventsCalendar from '../../EventsCalendar'
 import AnchorList from '../../AnchorList'
-import { Tablet, Desktop } from '../../Utilities/Media'
 import {
   HomePageContainer,
   HomeIntroContainer,
@@ -16,247 +13,149 @@ import {
   HomeIntroTitle,
   HomeIntroText,
   DesktopIntroContainer,
+  SliderContainer,
+  HomeIntroLink,
 } from './style'
-import LocalizedLink from '../../LocalizedLink'
 import { WidthLimiterContainer } from '../../Layout/styles'
 import Img from 'gatsby-image'
 import AnimatedImage from '../../AnimatedImage'
 import Fade from 'react-reveal/Fade'
 
-const IndexLayout = ({ data }) => {
-  const homePageQuery = data?.homePage?.data ? data.homePage.data : ''
+const IndexLayout = ({
+  data: {
+    homePage: { data: query },
+  },
+}) => {
+  const photoGalleryTitle =
+    query?.photo_gallery?.document?.data?.gallery_title?.text
+  const photoGallerySliderContent =
+    query?.photo_gallery_section?.document?.data?.body?.[0]?.items
+  const homeIntroGraphic = query?.intro_graphic?.url
+  const homeIntroTitle = query?.intro_title?.text
+  const homeIntroText = query?.intro_text
+  const homeIntroLink = query?.intro_link
+  const quoteText = query?.home_quote?.document?.data?.quote_text
+  const quoteGraphic = query?.home_quote?.document?.data?.quote_graphic?.url
+  const ministriesSectionTitle =
+    query?.ministries_section?.document?.data?.anchor_title?.text
+  const ministriesLinks =
+    query?.ministries_section?.document?.data?.body[0]?.items
+  const ministries = query?.ministries_section?.document?.data?.body?.[1]?.items
+  const ministriesData = query?.ministries_section?.document?.data
 
-  const photoGalleryTitle = homePageQuery?.photo_gallery?.document?.data
-    ?.gallery_title?.text
-    ? homePageQuery.photo_gallery.document.data.gallery_title.text
-    : ''
+  const eventSectionTitle =
+    query?.events_calendar?.document?.data?.event_calendar_title?.text
 
-  const photoGallerySliderContent = homePageQuery?.photo_gallery?.document?.data
-    ?.body[0]?.items
-    ? homePageQuery.photo_gallery.document.data.body[0].items
-    : ''
+  const eventCalendarTitle =
+    query?.events_calendar?.document?.data?.events_title?.text
 
-  const homeIntroGraphic = homePageQuery?.intro_graphic?.url
-    ? homePageQuery.intro_graphic.url
-    : ''
+  const eventAddress =
+    query?.events_calendar?.document?.data?.event_address?.text
 
-  const homeIntroTitle = homePageQuery?.intro_title?.text
-    ? homePageQuery.intro_title.text
-    : ''
-  const homeIntroText = homePageQuery?.intro_text
-    ? homePageQuery.intro_text
-    : ''
-  const homeIntroLink = homePageQuery?.intro_link
-    ? homePageQuery.intro_link
-    : ''
-
-  const quoteText = homePageQuery?.home_quote?.document?.data?.quote_text
-    ? homePageQuery.home_quote.document.data.quote_text
-    : ''
-
-  const quoteGraphic = homePageQuery?.home_quote?.document?.data?.quote_graphic
-    ?.url
-    ? homePageQuery.home_quote.document.data.quote_graphic.url
-    : ''
-
-  const ministriesSectionTitle = homePageQuery?.ministries_section?.document
-    ?.data?.anchor_title
-    ? homePageQuery.ministries_section.document.data.anchor_title.text
-    : ''
-
-  const ministriesLinks = homePageQuery?.ministries_section?.document?.data
-    ?.body[0]?.items
-    ? homePageQuery.ministries_section.document.data.body[0].items
-    : ''
-
-  const ministries = homePageQuery?.ministries_section?.document?.data
-    ?.body?.[1]?.items
-    ? homePageQuery.ministries_section.document.data.body[1].items
-    : ''
-
-  const ministriesData = homePageQuery?.ministries_section?.document?.data
-    ? homePageQuery.ministries_section.document.data
-    : ''
-
-  const eventSectionTitle = homePageQuery?.events_calendar?.document?.data
-    ?.event_calendar_title?.text
-    ? homePageQuery.events_calendar.document.data.event_calendar_title.text
-    : ''
-
-  const eventCalendarTitle = homePageQuery?.events_calendar?.document?.data
-    ?.events_title?.text
-    ? homePageQuery.events_calendar.document.data.events_title.text
-    : ''
-
-  const eventAddress = homePageQuery?.events_calendar?.document?.data
-    ?.event_address?.text
-    ? homePageQuery.events_calendar.document.data.event_address.text
-    : ''
-
-  const eventDescription = homePageQuery?.events_calendar?.document?.data
-    ?.event_description
-    ? homePageQuery.events_calendar.document.data.event_description
-    : ''
+  const eventDescription =
+    query?.events_calendar?.document?.data?.event_description
 
   return (
     <HomePageContainer>
-      <Tablet>
-        <SliderContent
-          slidesToShow={1}
-          slidesToScroll={1}
-          autoplay={true}
-          imgLength={homePageQuery?.body?.[0]?.items?.length}
-        >
-          {homePageQuery?.body?.[0]?.items?.length > 0
-            ? homePageQuery.body[0].items.map((img) => {
-                const sliderImage =
-                  img.slider_img.localFile.childImageSharp.fluid
-                return (
-                  <AnimatedImage
-                    key={img.slider_img.localFile.childImageSharp.id}
-                  >
-                    <Img fluid={sliderImage} />
-                  </AnimatedImage>
-                )
-              })
-            : ''}
-        </SliderContent>
-        <HomeIntroContainer>
-          <Fade distance="30px" bottom>
-            <img src={homeIntroGraphic} alt="home__intro-graphic" />
+      <WidthLimiterContainer className="HomePage__WidthLimiter">
+        <DesktopIntroContainer>
+          <HomeIntroContainer>
             <HomeIntroContentContainer>
-              <HomeIntroTitle>
-                <Title as="h1" type="heading1">
-                  {homeIntroTitle ? homeIntroTitle : ''}
-                </Title>
-              </HomeIntroTitle>
-              <HomeIntroText>
-                <Text as="p" type="smallText700">
-                  {homeIntroText ? homeIntroText : ''}
-                </Text>
-              </HomeIntroText>
-            </HomeIntroContentContainer>
-            <Text as="p" type="smallText700">
-              <LocalizedLink to="/" className="Home__Intro-link">
-                {homeIntroLink ? homeIntroLink : ''}
-              </LocalizedLink>
-            </Text>
-          </Fade>
-        </HomeIntroContainer>
-        <Quote
-          query={{
-            text: quoteText,
-            graphic: quoteGraphic,
-          }}
-        />
-        <AnchorList
-          anchorQuery={{
-            title: ministriesSectionTitle,
-            links: ministriesLinks,
-            ministries: ministries,
-            ministriesData: ministriesData,
-          }}
-        />
-        <EventsCalendar
-          query={{
-            eventSectionTitle: eventSectionTitle,
-            calendarTitle: eventCalendarTitle,
-            eventAddress: eventAddress,
-            eventDescription: eventDescription,
-          }}
-        />
-        <Galery
-          query={{
-            title: photoGalleryTitle,
-            content: photoGallerySliderContent,
-          }}
-        />
-        <Contact />
-      </Tablet>
-      <Desktop>
-        <WidthLimiterContainer className="HomePage__WidthLimiter">
-          <DesktopIntroContainer>
-            <HomeIntroContainer>
-              <Fade distance="30px" bottom>
-                <img
-                  src={homeIntroGraphic ? homeIntroGraphic : ''}
-                  alt="home intro graphic"
-                  className="Home__Intro-Graphic"
-                />
-                <HomeIntroContentContainer>
-                  <HomeIntroTitle>
-                    <Title as="h1" type="heading1">
-                      {homeIntroTitle ? homeIntroTitle : ''}
-                    </Title>
+              <Fade bottom distance="30px">
+                {homeIntroGraphic ? (
+                  <img
+                    src={homeIntroGraphic}
+                    alt="home intro graphic"
+                    className="Home__Intro-Graphic"
+                  />
+                ) : (
+                  ''
+                )}
+                {homeIntroTitle ? (
+                  <HomeIntroTitle as="h1" type="heading1">
+                    {homeIntroTitle}
                   </HomeIntroTitle>
-                  <HomeIntroText>
-                    <Text as="p" type="smallText700">
-                      {homeIntroText ? homeIntroText : ''}
-                    </Text>
+                ) : (
+                  ' '
+                )}
+                {homeIntroText ? (
+                  <HomeIntroText as="p" type="smallText700">
+                    {homeIntroText}
                   </HomeIntroText>
-                </HomeIntroContentContainer>
-                <Text as="p" type="smallText700">
-                  <LocalizedLink to="/" className="Home__Intro-link">
-                    {homeIntroLink ? homeIntroLink : ''}
-                  </LocalizedLink>
-                </Text>
+                ) : (
+                  ''
+                )}
+                {homeIntroLink ? (
+                  <HomeIntroLink to="/" className="Home__Intro-link">
+                    {homeIntroLink}
+                  </HomeIntroLink>
+                ) : (
+                  ''
+                )}
               </Fade>
-            </HomeIntroContainer>
-
-            <div style={{ width: '50%' }}>
+            </HomeIntroContentContainer>
+          </HomeIntroContainer>
+          <SliderContainer>
+            {query?.body[0].items.length > 0 ? (
               <SliderContent
                 slidesToShow={1}
                 slidesToScroll={1}
                 autoplay={true}
-                imgLength={homePageQuery.body[0].items.length}
+                imgLength={query.body[0].items.length}
               >
-                {homePageQuery.body[1].items?.length > 0
-                  ? homePageQuery.body[1].items.map((img) => {
-                      const sliderImage =
-                        img.slider_img.localFile.childImageSharp.fluid
+                {query.body[0].items?.length > 0
+                  ? query.body[0].items.map((img, index) => {
+                      const sliderImage = img?.slider_img?.localFile
+                        ?.childImageSharp?.fluid
+                        ? img.slider_img.localFile.childImageSharp.fluid
+                        : ''
                       return (
-                        <AnimatedImage
-                          key={img.slider_img.localFile.childImageSharp.id}
-                        >
+                        <AnimatedImage key={index}>
                           <Img fluid={sliderImage} />
                         </AnimatedImage>
                       )
                     })
                   : ''}
               </SliderContent>
-            </div>
-          </DesktopIntroContainer>
-        </WidthLimiterContainer>
-        <Quote
-          query={{
-            text: quoteText,
-            graphic: quoteGraphic,
-          }}
-        />
-        <AnchorList
-          anchorQuery={{
-            title: ministriesSectionTitle,
-            links: ministriesLinks,
-            ministries: ministries,
-            ministriesData: ministriesData,
-          }}
-        />
-        <EventsCalendar
-          query={{
-            eventSectionTitle: eventSectionTitle,
-            calendarTitle: eventCalendarTitle,
-            eventAddress: eventAddress,
-            eventDescription: eventDescription,
-          }}
-        />
-        <Galery
+            ) : (
+              ''
+            )}
+          </SliderContainer>
+        </DesktopIntroContainer>
+      </WidthLimiterContainer>
+      <Quote
+        query={{
+          text: quoteText,
+          graphic: quoteGraphic,
+        }}
+      />
+      <AnchorList
+        anchorQuery={{
+          title: ministriesSectionTitle,
+          links: ministriesLinks,
+          ministries: ministries,
+          ministriesData: ministriesData,
+        }}
+      />
+      <EventsCalendar
+        query={{
+          eventSectionTitle: eventSectionTitle,
+          calendarTitle: eventCalendarTitle,
+          eventAddress: eventAddress,
+          eventDescription: eventDescription,
+        }}
+      />
+      {photoGalleryTitle && photoGallerySliderContent ? (
+        <Gallery
           query={{
             title: photoGalleryTitle,
             content: photoGallerySliderContent,
           }}
         />
-        <Contact />
-      </Desktop>
+      ) : (
+        ''
+      )}
+      <Contact />
     </HomePageContainer>
   )
 }
