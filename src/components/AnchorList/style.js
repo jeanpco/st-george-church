@@ -21,6 +21,7 @@ export const AnchorContent = styled.div`
     border-top: 12px solid ${(props) => props.theme.colors.black};
     border-bottom: 12px solid ${(props) => props.theme.colors.black};
     padding-bottom: 109px;
+    padding-top: 24px;
   }
 `
 

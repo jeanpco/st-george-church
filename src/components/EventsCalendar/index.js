@@ -1,83 +1,89 @@
 import React, { useState } from 'react'
-import { WidthLimiterContainer } from '../Layout/styles'
+import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
+import Moment from 'react-moment'
+import Navbar from './NavbarElement/NavBarElement'
+import LocaleContext from '../../context/LocaleProvider'
+import MomentLocaleUtils from 'react-day-picker/moment'
+import 'moment/locale/fr'
 
-import {
-  CalendarContainer,
-  CalendarHeaderContainer,
-  DayPickerContainer,
-  CalendarNavbarEl,
-  CalendarIconPrev,
-  CalendarIconNext,
-  CallendarItemsContainer,
-  CalendarEventsContainer,
-  CalendarEventHeader,
-  CalendarEvents,
-  CalendarEventsBodyHead,
-  CalenderEventsBodyText,
-  CalendarEventsIcon,
-} from './styles'
-import Icon from '~/components/Icon'
-import { Desktop, Tablet } from '../Utilities/Media'
-import DayPicker from 'react-day-picker'
-import 'react-day-picker/lib/style.css'
+import { WidthLimiterContainer } from '../Layout/styles'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
 
-const EventsCalendar = () => {
-  const [selectedDay, setSelectedDay] = useState(null)
+import Icon from '~/components/Icon'
+import { Desktop, Tablet } from '../Utilities/Media'
+
+import DayPicker from 'react-day-picker'
+import 'react-day-picker/lib/style.css'
+import { useStaticQuery, graphql } from 'gatsby'
+import {
+  CalendarContainer,
+  CalendarHeaderContainer,
+  CallendarItemsContainer,
+  DayPickerContainer,
+  CalendarEventsContainer,
+  CalendarEvents,
+  CalendarEventsBodyHead,
+  CalenderEventsBodyText,
+  CalendarEventDates,
+  CalendarEventsIcon,
+  EventItemsContainer,
+} from './styles'
+import { useEffect } from 'react'
+
+const EventsCalendar = ({
+  query: { eventSectionTitle, calendarTitle, eventAddress, eventDescription },
+}) => {
+  const googleApiData = useStaticQuery(graphql`
+    {
+      calendarEvents: allGoogleCalendarEvent {
+        nodes {
+          start {
+            dateTime(formatString: "M/D/YYYY")
+          }
+          end {
+            dateTime(formatString: "h:mm a")
+          }
+          summary
+          description
+        }
+      }
+    }
+  `)
+
+  const [selectedDay, setSelectedDay] = useState([])
+  const [date, setDate] = useState(new Date())
+
+  const arrayEvents = []
+
+  const eventDates = []
+  const modifiers = {
+    event: eventDates,
+  }
+
+  const lang = React.useContext(LocaleContext)
+  const i18n = lang.i18n[lang.locale]
+
+  const [locale, setLocale] = useState('')
+
+  useEffect(() => {
+    setLocale(i18n.path)
+  })
 
   const handleDayClick = (day, { selected }) => {
     setSelectedDay({
       selectedDay: selected ? undefined : day,
     })
-    console.log('selected')
+    setDate(day)
   }
 
-  const navbar = ({
-    month,
-    nextMonth,
-    previousMonth,
-    onPreviousClick,
-    onNextClick,
-    className,
-    localeUtils,
-  }) => {
-    const months = localeUtils.getMonths()
-    const prev = months[previousMonth.getMonth()]
-    const next = months[nextMonth.getMonth()]
-    const current = months[month.getMonth()]
-    const styleLeft = {}
-    const styleRight = {}
-
-    return (
-      <CalendarNavbarEl className={className}>
-        <button
-          className="Calender__Btn-Next"
-          style={styleLeft}
-          onClick={() => onPreviousClick()}
-        >
-          {prev}
-        </button>
-        <CalendarIconPrev>
-          <Icon type="line" />
-        </CalendarIconPrev>
-        <div>
-          <h3>{current}</h3>
-        </div>
-        <CalendarIconNext>
-          <Icon type="line" />
-        </CalendarIconNext>
-        <button
-          className="Calender__Btn-Next"
-          style={styleRight}
-          onClick={() => onNextClick()}
-        >
-          {next}
-        </button>
-      </CalendarNavbarEl>
-    )
-  }
+  googleApiData.calendarEvents.nodes.map((info) => {
+    eventDates.push(new Date(info.start.dateTime))
+    if (date.toLocaleDateString() === info.start.dateTime) {
+      arrayEvents.push(info)
+    }
+  })
 
   const renderDay = (day) => {
     const date = day.getDate()
@@ -97,7 +103,7 @@ const EventsCalendar = () => {
       <CalendarContainer>
         <CalendarHeaderContainer>
           <Title as="h2" type="heading2">
-            Events Calendar
+            {eventSectionTitle}
           </Title>
           <Tablet>
             <Icon type="cross" />
@@ -108,61 +114,66 @@ const EventsCalendar = () => {
         </CalendarHeaderContainer>
         <CallendarItemsContainer>
           <DayPickerContainer>
+            <Helmet>
+              <style>{`
+          .DayPicker-Day--event {
+            color: #CC1D27;
+          }`}</style>
+            </Helmet>
             <DayPicker
+              modifiers={modifiers}
               showOutsideDays
               firstDayOfWeek={1}
               onDayClick={handleDayClick}
-              selectedDays={selectedDay ? selectedDay.selectedDay : selectedDay}
-              navbarElement={navbar}
+              selectedDays={selectedDay ? selectedDay.selectedDay : ''}
               renderDay={renderDay}
+              navbarElement={<Navbar />}
+              localeUtils={MomentLocaleUtils}
+              locale={locale}
             />
           </DayPickerContainer>
           <CalendarEventsContainer>
-            <CalendarEventHeader>
-              <Title type="calendarTitle">Upcoming Events</Title>
-            </CalendarEventHeader>
-            <CalendarEvents>
-              <Text>July 12, 2020 @ 9:00 am – 10:00 am</Text>
-              <CalendarEventsBodyHead>
-                <Title type="heading3">Moms & Tots</Title>
-                <Text>
-                  St. George Church 2455 Ch de la Côte-Sainte-Catherine
-                </Text>
-              </CalendarEventsBodyHead>
-              <CalenderEventsBodyText>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Fermentum nullam condimentum semper mauris, consequat
-                  condimentum semper mauris.
-                </Text>
-              </CalenderEventsBodyText>
-              <CalendarEventsIcon>
-                <Icon type="calendar-line" />
-              </CalendarEventsIcon>
-            </CalendarEvents>
+            {arrayEvents.length > 0 ? (
+              <Title as="h3" type="calendarTitle">
+                {calendarTitle}
+              </Title>
+            ) : (
+              <Title as="h3" type="calendarTitle">
+                No Events
+              </Title>
+            )}
+            {arrayEvents.length > 0
+              ? arrayEvents.map((info, index) => {
+                  // const newDt = Moment(info.start.dateTime,"MMMM DD, YYYY @ h:mm a")
 
-            <CalendarEventHeader>
-              <Title type="calendarTitle">Upcoming Events</Title>
-            </CalendarEventHeader>
-            <CalendarEvents>
-              <Text>July 12, 2020 @ 9:00 am – 10:00 am</Text>
-              <CalendarEventsBodyHead>
-                <Title type="heading3">Moms & Tots</Title>
-                <Text>
-                  St. George Church 2455 Ch de la Côte-Sainte-Catherine
-                </Text>
-              </CalendarEventsBodyHead>
-              <CalenderEventsBodyText>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Fermentum nullam condimentum semper mauris, consequat
-                  condimentum semper mauris.
-                </Text>
-              </CalenderEventsBodyText>
-              <CalendarEventsIcon>
-                <Icon type="calendar-line" />
-              </CalendarEventsIcon>
-            </CalendarEvents>
+                  return (
+                    <EventItemsContainer key={`Google Events -- ${index}`}>
+                      <CalendarEvents>
+                        <CalendarEventDates>
+                          <Moment
+                            date={info.start.dateTime}
+                            format="MMMM DD, YYYY @ h:mm a"
+                            className="Formated-Date"
+                          />
+                          <Text> - {info.end.dateTime}</Text>
+                        </CalendarEventDates>
+                        <CalendarEventsBodyHead>
+                          <Title as="h4" type="heading3">
+                            {info.summary}
+                          </Title>
+                          <Text type="body">{eventAddress}</Text>
+                        </CalendarEventsBodyHead>
+                        <CalenderEventsBodyText>
+                          <Text type="body">{eventDescription}</Text>
+                        </CalenderEventsBodyText>
+                        <CalendarEventsIcon>
+                          <Icon type="calendar-line" />
+                        </CalendarEventsIcon>
+                      </CalendarEvents>
+                    </EventItemsContainer>
+                  )
+                })
+              : ''}
           </CalendarEventsContainer>
         </CallendarItemsContainer>
       </CalendarContainer>
@@ -171,11 +182,7 @@ const EventsCalendar = () => {
 }
 
 EventsCalendar.propTypes = {
-  month: PropTypes.any,
-  nextMonth: PropTypes.any,
-  previousMonth: PropTypes.any,
-  onPreviousClick: PropTypes.any,
-  onNextClick: PropTypes.any,
+  query: PropTypes.object,
   className: PropTypes.any,
   localeUtils: PropTypes.any,
 }

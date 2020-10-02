@@ -7,78 +7,78 @@ export const CalendarContainer = styled.div`
     border-bottom: 12px solid ${(props) => props.theme.colors.primary};
   }
 `
-export const DayPickerContainer = styled.div`
-  .cell-style {
-    width: 32px;
-    height: 32px;
 
-    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      height: 51px;
-      width: 51px;
+export const CalendarHeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+`
+
+export const DayPickerContainer = styled.div`
+  min-height: 430px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    min-height: 580px;
+    width: 60% !important;
+    margin-right: 20px;
+    max-width: 447px;
+  }
+
+  .DayPicker {
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      width: 100% !important;
     }
   }
 
   .date-cell {
-    border: 3px solid transparent;
     padding: 8px;
-    height: 32px;
-    width: 32px;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      height: 51px;
-      width: 51px;
-    }
+    border: 3px solid transparent;
+    border-radius: 50%;
   }
-  .DayPicker {
-    font-size: 12px !important;
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
 
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: 20px !important;
-      padding-left: 30px;
-    }
+  .DayPicker * {
+    outline: none;
   }
+
   .DayPicker-wrapper {
     outline: none;
   }
-  .DayPicker-Day {
-    color: ${(props) => props.theme.colors.primary};
-    font-family: ${(props) => props.theme.fontFamily.primary};
-    border: 3px solid transparent;
-    padding: 3px;
+
+  .DayPicker-Body {
+    font-size: 12px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: 20px;
     }
   }
 
+  .DayPicker-Month {
+    margin: 0;
+    width: 100%;
+  }
   .DayPicker-Day--today {
-    color: ${(props) => props.theme.colors.secondary};
     font-weight: normal;
   }
 
+  .DayPicker-Day--today:focus {
+    outline: none;
+  }
+
   .DayPicker-Day--selected {
-    background-color: white !important;
+    background-color: transparent !important;
     color: ${(props) => props.theme.colors.secondary} !important;
 
     .date-cell {
+      padding: 8px;
       border: 3px solid ${(props) => props.theme.colors.secondary};
       border-radius: 50%;
-      padding: 8px;
     }
   }
+
   .DayPicker:not(.DayPicker--interactionDisabled)
     .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-    background-color: white;
-
-    .date-cell {
-      color: ${(props) => props.theme.colors.secondary} !important;
-
-      border: 3px solid ${(props) => props.theme.colors.secondary};
-      border-radius: 50%;
-      padding: 8px;
-    }
+    background-color: transparent;
   }
 
   .DayPicker-Day--outside {
@@ -88,122 +88,68 @@ export const DayPickerContainer = styled.div`
   .DayPicker-Weekday {
     font-family: ${(props) => props.theme.fontFamily.primary};
     color: ${(props) => props.theme.colors.primary};
-    font-size: 1rem !important;
+    font-size: 16px !important;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: 1.5rem !important;
+      font-size: 20px !important;
     }
-  }
-
-  .DayPicker-Day--day {
-    width: 50px;
-    height: 50px;
-  }
-
-  .DayPicker-Month {
-    border-collapse: separate;
-    margin: 0;
   }
 
   .DayPicker-Caption {
     text-align: center;
+    font-size: 12px;
+    width: 47%;
+    margin: 0 auto;
+    background: #f0e290;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    margin-top: 20px;
+    padding: 5px;
+    text-transform: capitalize;
     font-family: ${(props) => props.theme.fontFamily.secondary};
-    font-weight: normal;
-    background-color: ${(props) => props.theme.colors.yellow};
-    border-radius: 10px;
-    font-size: 20px;
-    display: none;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      font-size: 20px;
+      padding: 10px;
+      border-radius: 25px;
+    }
   }
 `
 
-export const CalendarNavbarEl = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+export const CalendarNavMonth = styled.div`
+  width: 35%;
   margin: 0 auto;
-  margin-bottom: 20px;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    /* width: 500px; */
-  }
-
-  h3 {
-    font-size: 12px;
-    background: ${(props) => props.theme.colors.yellow};
-    font-family: ${(props) => props.theme.fontFamily.secondary};
-    border-radius: 29px;
-    text-align: center;
-    font-weight: normal;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: 20px;
-    }
-  }
-
-  .Calender__Btn-Next {
-    display: flex;
-    background-color: transparent;
-    border: none;
-    font-family: ${(props) => props.theme.fontFamily.secondary};
-    font-size: 12px;
-    opacity: 0.4;
-    padding-left: 10px;
-    cursor: pointer;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: 20px;
-    }
-  }
-
-  .Calender__Btn-Prev {
-    display: flex;
-    background-color: transparent;
-    border: none;
-    font-family: ${(props) => props.theme.fontFamily.secondary};
-    font-size: 12px;
-    opacity: 0.4;
-    padding-right: 10px;
-    cursor: pointer;
-  }
-
-  button:focus {
-    outline: none;
-  }
-`
-
-export const CalendarIconPrev = styled.div``
-
-export const CalendarIconNext = styled.div``
-
-export const CalendarHeaderContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `
 
 export const CallendarItemsContainer = styled.div`
+  margin-bottom: 37px;
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: flex;
+    margin-bottom: 150px;
   }
 `
 
 export const CalendarEventsContainer = styled.div`
-  margin-top: 62px;
+  margin-top: 30px;
   overflow: auto;
-  height: 300px;
-  padding-right: 60px;
-  margin-bottom: 60px;
+  max-height: 307px;
+  min-height: 307px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin-left: 110px;
+    max-height: 545px;
+    min-height: 545px;
+    margin-left: 30px;
+
+    margin-top: 28px;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    margin-left: 70px;
+    margin-top: 46px;
   }
 `
-export const CalendarEventHeader = styled.div`
-  margin-bottom: 33px;
-`
-
 export const CalendarEvents = styled.div`
-  padding-bottom: 30px;
+  width: 91%;
 `
 
 export const CalendarEventsBodyHead = styled.div`
@@ -212,9 +158,50 @@ export const CalendarEventsBodyHead = styled.div`
 
 export const CalenderEventsBodyText = styled.div`
   margin-top: 14px;
-  padding-bottom: 57px;
+  padding-bottom: 14px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    padding-bottom: 57px;
+  }
 `
 
 export const CalendarEventsIcon = styled.div`
-  padding-left: 60px;
+  padding-left: 50px;
+
+  svg {
+    width: 95%;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    padding-left: 160px;
+  }
+`
+
+export const CalendarEventDates = styled.div`
+  display: flex;
+  align-items: center;
+  padding-top: 16px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    padding-top: 57px;
+  }
+
+  .Formated-Date {
+    font-family: ${(props) => props.theme.fontFamily.tertiary};
+    font-size: 12px;
+    padding-right: 10px;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: 18px;
+    }
+  }
+`
+
+export const EventItemsContainer = styled.div`
+  &:last-child {
+    /* padding-bottom: 0; */
+    svg {
+      display: none;
+    }
+  }
 `

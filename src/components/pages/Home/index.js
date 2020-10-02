@@ -72,8 +72,33 @@ const IndexLayout = ({ data }) => {
     ? homePageQuery.ministries_section.document.data.body[1].items
     : ''
 
-  const ministriesData = homePageQuery.ministries_section.document.data
+  const ministriesData = homePageQuery?.ministries_section?.document?.data
+    ? homePageQuery.ministries_section.document.data
+    : ''
 
+  const eventSectionTitle = homePageQuery?.events_calendar?.document?.data
+    ?.event_calendar_title?.text
+    ? homePageQuery.events_calendar.document.data.event_calendar_title.text
+    : ''
+
+  const eventCalendarTitle = homePageQuery?.events_calendar?.document?.data
+    ?.events_title?.text
+    ? homePageQuery.events_calendar.document.data.events_title.text
+    : ''
+
+  const eventAddress = homePageQuery?.events_calendar?.document?.data
+    ?.event_address?.text
+    ? homePageQuery.events_calendar.document.data.event_address.text
+    : ''
+
+  console.log(eventAddress)
+
+  const eventDescription = homePageQuery?.events_calendar?.document?.data
+    ?.event_description
+    ? homePageQuery.events_calendar.document.data.event_description
+    : ''
+
+  console.log(homePageQuery)
   return (
     <HomePageContainer>
       <Tablet>
@@ -130,7 +155,14 @@ const IndexLayout = ({ data }) => {
             ministriesData: ministriesData,
           }}
         />
-        <EventsCalendar />
+        <EventsCalendar
+          query={{
+            eventSectionTitle: eventSectionTitle,
+            calendarTitle: eventCalendarTitle,
+            eventAddress: eventAddress,
+            eventDescription: eventDescription,
+          }}
+        />
         <Galery
           query={{
             title: photoGalleryTitle,
@@ -205,7 +237,14 @@ const IndexLayout = ({ data }) => {
             ministriesData: ministriesData,
           }}
         />
-        <EventsCalendar />
+        <EventsCalendar
+          query={{
+            eventSectionTitle: eventSectionTitle,
+            calendarTitle: eventCalendarTitle,
+            eventAddress: eventAddress,
+            eventDescription: eventDescription,
+          }}
+        />
         <Galery
           query={{
             title: photoGalleryTitle,
