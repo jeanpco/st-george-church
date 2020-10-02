@@ -20,6 +20,8 @@ import {
 import LocalizedLink from '../../LocalizedLink'
 import { WidthLimiterContainer } from '../../Layout/styles'
 import Img from 'gatsby-image'
+import AnimatedImage from '../../AnimatedImage'
+import Fade from 'react-reveal/Fade'
 
 const IndexLayout = ({ data }) => {
   const homePageQuery = data?.homePage?.data ? data.homePage.data : ''
@@ -67,8 +69,8 @@ const IndexLayout = ({ data }) => {
     ? homePageQuery.ministries_section.document.data.body[0].items
     : ''
 
-  const ministries = homePageQuery?.ministries_section?.document?.data?.body[1]
-    ?.items
+  const ministries = homePageQuery?.ministries_section?.document?.data
+    ?.body?.[1]?.items
     ? homePageQuery.ministries_section.document.data.body[1].items
     : ''
 
@@ -91,14 +93,11 @@ const IndexLayout = ({ data }) => {
     ? homePageQuery.events_calendar.document.data.event_address.text
     : ''
 
-  console.log(eventAddress)
-
   const eventDescription = homePageQuery?.events_calendar?.document?.data
     ?.event_description
     ? homePageQuery.events_calendar.document.data.event_description
     : ''
 
-  console.log(homePageQuery)
   return (
     <HomePageContainer>
       <Tablet>
@@ -106,40 +105,43 @@ const IndexLayout = ({ data }) => {
           slidesToShow={1}
           slidesToScroll={1}
           autoplay={true}
-          imgLength={homePageQuery.body[0].items.length}
+          imgLength={homePageQuery?.body?.[0]?.items?.length}
         >
-          {homePageQuery.body[0].items?.length > 0
+          {homePageQuery?.body?.[0]?.items?.length > 0
             ? homePageQuery.body[0].items.map((img) => {
                 const sliderImage =
                   img.slider_img.localFile.childImageSharp.fluid
                 return (
-                  <Img
-                    fluid={sliderImage}
+                  <AnimatedImage
                     key={img.slider_img.localFile.childImageSharp.id}
-                  />
+                  >
+                    <Img fluid={sliderImage} />
+                  </AnimatedImage>
                 )
               })
             : ''}
         </SliderContent>
         <HomeIntroContainer>
-          <img src={homeIntroGraphic} alt="home__intro-graphic" />
-          <HomeIntroContentContainer>
-            <HomeIntroTitle>
-              <Title as="h1" type="heading1">
-                {homeIntroTitle ? homeIntroTitle : ''}
-              </Title>
-            </HomeIntroTitle>
-            <HomeIntroText>
-              <Text as="p" type="smallText700">
-                {homeIntroText ? homeIntroText : ''}
-              </Text>
-            </HomeIntroText>
-          </HomeIntroContentContainer>
-          <Text as="p" type="smallText700">
-            <LocalizedLink to="/" className="Home__Intro-link">
-              {homeIntroLink ? homeIntroLink : ''}
-            </LocalizedLink>
-          </Text>
+          <Fade distance="30px" bottom>
+            <img src={homeIntroGraphic} alt="home__intro-graphic" />
+            <HomeIntroContentContainer>
+              <HomeIntroTitle>
+                <Title as="h1" type="heading1">
+                  {homeIntroTitle ? homeIntroTitle : ''}
+                </Title>
+              </HomeIntroTitle>
+              <HomeIntroText>
+                <Text as="p" type="smallText700">
+                  {homeIntroText ? homeIntroText : ''}
+                </Text>
+              </HomeIntroText>
+            </HomeIntroContentContainer>
+            <Text as="p" type="smallText700">
+              <LocalizedLink to="/" className="Home__Intro-link">
+                {homeIntroLink ? homeIntroLink : ''}
+              </LocalizedLink>
+            </Text>
+          </Fade>
         </HomeIntroContainer>
         <Quote
           query={{
@@ -175,29 +177,30 @@ const IndexLayout = ({ data }) => {
         <WidthLimiterContainer className="HomePage__WidthLimiter">
           <DesktopIntroContainer>
             <HomeIntroContainer>
-              <img
-                src={homeIntroGraphic ? homeIntroGraphic : ''}
-                alt="home intro graphic"
-                className="Home__Intro-Graphic"
-              />
-
-              <HomeIntroContentContainer>
-                <HomeIntroTitle>
-                  <Title as="h1" type="heading1">
-                    {homeIntroTitle ? homeIntroTitle : ''}
-                  </Title>
-                </HomeIntroTitle>
-                <HomeIntroText>
-                  <Text as="p" type="smallText700">
-                    {homeIntroText ? homeIntroText : ''}
-                  </Text>
-                </HomeIntroText>
-              </HomeIntroContentContainer>
-              <Text as="p" type="smallText700">
-                <LocalizedLink to="/" className="Home__Intro-link">
-                  {homeIntroLink ? homeIntroLink : ''}
-                </LocalizedLink>
-              </Text>
+              <Fade distance="30px" bottom>
+                <img
+                  src={homeIntroGraphic ? homeIntroGraphic : ''}
+                  alt="home intro graphic"
+                  className="Home__Intro-Graphic"
+                />
+                <HomeIntroContentContainer>
+                  <HomeIntroTitle>
+                    <Title as="h1" type="heading1">
+                      {homeIntroTitle ? homeIntroTitle : ''}
+                    </Title>
+                  </HomeIntroTitle>
+                  <HomeIntroText>
+                    <Text as="p" type="smallText700">
+                      {homeIntroText ? homeIntroText : ''}
+                    </Text>
+                  </HomeIntroText>
+                </HomeIntroContentContainer>
+                <Text as="p" type="smallText700">
+                  <LocalizedLink to="/" className="Home__Intro-link">
+                    {homeIntroLink ? homeIntroLink : ''}
+                  </LocalizedLink>
+                </Text>
+              </Fade>
             </HomeIntroContainer>
 
             <div style={{ width: '50%' }}>
@@ -212,10 +215,11 @@ const IndexLayout = ({ data }) => {
                       const sliderImage =
                         img.slider_img.localFile.childImageSharp.fluid
                       return (
-                        <Img
-                          fluid={sliderImage}
+                        <AnimatedImage
                           key={img.slider_img.localFile.childImageSharp.id}
-                        />
+                        >
+                          <Img fluid={sliderImage} />
+                        </AnimatedImage>
                       )
                     })
                   : ''}
