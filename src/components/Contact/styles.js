@@ -1,10 +1,15 @@
 import styled from '@emotion/styled'
 
+export const ContactSectionContainer = styled.div`
+  padding-top: 20px;
+`
+
 export const TeamContainer = styled.div`
-  margin-top: 13px;
+  margin-top: 24px;
+  border-top: 6px solid ${(props) => props.theme.colors.primary};
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin-top: 27px;
+    border-top: 12px solid ${(props) => props.theme.colors.black};
   }
 `
 
@@ -12,6 +17,7 @@ export const TeamHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 24px;
 `
 
 export const TeamContentContainer = styled.div`
@@ -69,7 +75,8 @@ export const ContactBodyContainer = styled.div`
         }
       }
 
-      svg, p {
+      svg,
+      p {
         color: ${(props) => props.theme.colors.secondary};
       }
     }
@@ -91,7 +98,7 @@ export const ContactBodyContainer = styled.div`
       transform: translate(-50%, -50%);
       opacity: 0;
       transition-property: opacity, transform;
-      transition 300ms ease-in-out;
+      transition: 300ms ease-in-out;
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
@@ -109,10 +116,7 @@ export const GalleryIconContainer = styled.div`
   transform: translate(-50%, -50%);
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    top: 43%;
-
-    :hover {
-    }
+    top: 41%;
   }
 `
 export const ContactImageTitle = styled.div``

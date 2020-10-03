@@ -1,5 +1,11 @@
 {
   "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "ministries"
+      }
+    },
     "anchor_title": {
       "type": "StructuredText",
       "config": {

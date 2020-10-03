@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import LocalizedLink from '../../components/LocalizedLink'
 import {
@@ -8,7 +8,6 @@ import {
   DrawerHeaderContainer,
   DrawerMenuText,
   DrawerSocialMedia,
-  IconArrowContainer,
   DrawerContainer,
 } from './styles'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
@@ -26,21 +25,6 @@ const Drawer = ({
   menuLinks,
   aboutData,
 }) => {
-  const [menuLinksState, setMenuLinksState] = useState([])
-
-  useEffect(() => {
-    setMenuLinksState(menuLinksArray)
-  }, [])
-
-  const menuLinksArray = []
-
-  menuLinks
-    ? menuLinks.map((info) => {
-        Object.values(info).map((values) => {
-          menuLinksArray.push(values)
-        })
-      })
-    : ''
   return (
     <ThemeProvider theme={theme}>
       <SwipeableDrawer
@@ -71,44 +55,52 @@ const Drawer = ({
                 ''
               )}
 
-              {menuLinksState?.length > 0
-                ? menuLinksState.map((menuText, index) => {
+              {menuLinks?.length > 0
+                ? menuLinks.map((info, index) => {
+                    // Logic in case we want to add more external links
+                    const linksWithNoUid = []
+
+                    if (info.link_test.uid === null) {
+                      linksWithNoUid.push(info)
+                    }
+
+                    // end
+
                     return (
                       <DrawerMenuText key={index}>
-                        {menuText ? (
-                          <Title as="h2" type="heading4">
-                            {index === 0 ? (
-                              <LocalizedLink
-                                to="/"
-                                className="Header__Menu-button current"
-                              >
-                                {menuText ? menuText : ''}
-                                {index === 0 ? (
-                                  <IconArrowContainer>
-                                    <Icon type="arrow-forward" />
-                                  </IconArrowContainer>
-                                ) : (
-                                  ''
-                                )}
-                              </LocalizedLink>
-                            ) : (
-                              <LocalizedLink
-                                to="/"
-                                className="Header__Menu-button"
-                              >
-                                {menuText ? menuText : ''}
-                                {index === 0 ? (
-                                  <IconArrowContainer>
-                                    <Icon type="arrow-forward" />
-                                  </IconArrowContainer>
-                                ) : (
-                                  ''
-                                )}
-                              </LocalizedLink>
-                            )}
-                          </Title>
+                        {info.link_test.uid ? (
+                          <LocalizedLink
+                            to={`#${info.link_test.uid}`}
+                            className="Header__Menu-button"
+                            onClick={() => setToggleDrawer(false)}
+                          >
+                            {info.link ? info.link : ''}
+                            <span className="Menu__Icon-Arrow">
+                              <Icon type="arrow-forward" className="hello" />
+                            </span>
+                          </LocalizedLink>
                         ) : (
-                          ''
+                          <>
+                            {linksWithNoUid.map((values, index) => {
+                              return (
+                                <a
+                                  href={values.link_test.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="Header__Menu-button"
+                                  key={`Menu-External-Links - ${index}`}
+                                >
+                                  {values.link}
+                                  <span className="Menu__Icon-Arrow">
+                                    <Icon
+                                      type="arrow-forward"
+                                      className="hello"
+                                    />
+                                  </span>
+                                </a>
+                              )
+                            })}
+                          </>
                         )}
                       </DrawerMenuText>
                     )

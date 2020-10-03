@@ -39,6 +39,7 @@ import { BorderMob } from './assets/BorderMob'
 import { Line } from './assets/Line'
 import { AddDes } from './assets/AddDes'
 import { CalendarLine } from './assets/CalendarLine'
+import { BigArrowForwoard } from './assets/BigArrowForwoard'
 
 const Icon = ({ type }) => {
   switch (type) {
@@ -54,6 +55,8 @@ const Icon = ({ type }) => {
       return <ArrowBack />
     case 'arrow-forward':
       return <ArrowForward />
+    case 'big-arrow-forward':
+      return <BigArrowForwoard />
     case 'arrow-right':
       return <ArrowRight />
     case 'call':

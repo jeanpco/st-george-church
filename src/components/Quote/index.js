@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import {
@@ -15,7 +15,7 @@ import Fade from 'react-reveal/Fade'
 
 const Quote = ({ query }) => {
   return (
-    <Fragment>
+    <>
       <Tablet>
         <HomeQuoteContainer>
           <HomeQuoteContentContainer>
@@ -60,7 +60,7 @@ const Quote = ({ query }) => {
           </HomeQuoteContainer>
         </WidthLimiterContainer>
       </Desktop>
-    </Fragment>
+    </>
   )
 }
 

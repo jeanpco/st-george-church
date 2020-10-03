@@ -5,16 +5,18 @@ export const GalleryContainer = styled.div`
 `
 
 export const GalleryContentContainer = styled.div`
-  border-bottom: 6px solid ${(props) => props.theme.colors.black};
+  border-top: 6px solid ${(props) => props.theme.colors.primary};
+  margin-top: 24px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    border-bottom: 12px solid ${(props) => props.theme.colors.black};
+    border-top: 12px solid ${(props) => props.theme.colors.black};
   }
 `
 export const GallerSliderHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 24px;
 `
 
 export const GallerySliderContainer = styled.div`

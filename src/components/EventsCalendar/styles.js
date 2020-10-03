@@ -1,10 +1,14 @@
 import styled from '@emotion/styled'
 
+export const CallendarSectionContainer = styled.div`
+  padding-top: 20px;
+`
+
 export const CalendarContainer = styled.div`
-  border-bottom: 6px solid ${(props) => props.theme.colors.primary};
+  border-top: 6px solid ${(props) => props.theme.colors.primary};
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    border-bottom: 12px solid ${(props) => props.theme.colors.primary};
+    border-top: 12px solid ${(props) => props.theme.colors.primary};
   }
 `
 
@@ -12,12 +16,16 @@ export const CalendarHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 24px;
+  margin-top: 13px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-top: 24px;
+  }
 `
 
 export const DayPickerContainer = styled.div`
-  min-height: 430px;
-
+  min-height: 400px;
+  max-width: 290px;
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     min-height: 580px;
     width: 60% !important;
@@ -26,9 +34,7 @@ export const DayPickerContainer = styled.div`
   }
 
   .DayPicker {
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      width: 100% !important;
-    }
+    width: 100% !important;
   }
 
   .date-cell {
@@ -42,6 +48,8 @@ export const DayPickerContainer = styled.div`
   }
 
   .DayPicker-wrapper {
+    width: 100%;
+
     outline: none;
   }
 
@@ -50,6 +58,14 @@ export const DayPickerContainer = styled.div`
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: 20px;
+    }
+  }
+
+  .DayPicker-Day {
+    padding: 0.3em;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      padding: 0.5em;
     }
   }
 
@@ -79,6 +95,12 @@ export const DayPickerContainer = styled.div`
   .DayPicker:not(.DayPicker--interactionDisabled)
     .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
     background-color: transparent;
+
+    .date-cell::after {
+      padding: 8px;
+      border: 3px solid ${(props) => props.theme.colors.secondary};
+      border-radius: 50%;
+    }
   }
 
   .DayPicker-Day--outside {
@@ -125,7 +147,6 @@ export const CallendarItemsContainer = styled.div`
   margin-bottom: 37px;
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: flex;
-    margin-bottom: 150px;
   }
 `
 

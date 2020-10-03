@@ -71,20 +71,10 @@ export const DrawerHeaderContainer = styled.div`
   }
 `
 
-export const IconArrowContainer = styled.div`
-  display: none;
-
-  @media (min-width: ${localTheme.breakpoints.md}) {
-    padding-left: 15px;
-    position: relative;
-    bottom: 6px;
-    display: inline;
-  }
-`
-
 export const DrawerMenuText = styled.div`
   margin-bottom: 5px;
-
+  display: flex;
+  align-items: center;
   @media (min-width: ${localTheme.breakpoints.md}) {
     margin-bottom: 0;
     padding-bottom: 10px;
@@ -94,13 +84,62 @@ export const DrawerMenuText = styled.div`
     text-decoration: none;
     color: ${localTheme.colors.black};
     font-family: ${localTheme.fontFamily.secondary};
-  }
+    font-size: ${localTheme.fonts.heading6};
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1.3;
+    align-items: center;
+    display: inline-block;
+    position: relative;
+    svg {
+      display: none;
+    }
 
-  .Header__Menu-button.current {
     @media (min-width: ${localTheme.breakpoints.md}) {
-      text-decoration: underline;
+      font-size: ${localTheme.fonts.heading4};
+      line-height: 1.3;
+      .Menu__Icon-Arrow {
+        position: absolute;
+        padding-left: 25px;
+      }
+
+      svg {
+        visibility: hidden;
+        display: inline;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s linear;
+      }
+
+      &:hover {
+        svg {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: black;
+        bottom: 0;
+        left: 0;
+        display: inline-block;
+        transform: scaleX(0);
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+        transition: transform 0.5s linear;
+        transform-origin: bottom left;
+      }
     }
   }
+`
+
+export const IconArrowContainer = styled.div`
+  padding-left: 20px;
 `
 
 export let theme = createMuiTheme({})

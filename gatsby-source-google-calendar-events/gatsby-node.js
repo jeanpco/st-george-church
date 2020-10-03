@@ -61,7 +61,6 @@ const processEvents = (event, fieldsToInclude) => {
 }
 
 const getAuth = (options) => {
-  console.log(options.envVar)
   if (options.envVar) return JSON.parse(options.envVar)
   if (fs.existsSync(options.pemFilePath)) {
     return require(options.pemFilePath)
