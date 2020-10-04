@@ -64,8 +64,6 @@ const IndexLayout = ({
 
   const eventUid = query?.events_calendar?.uid
 
-  console.log(query)
-
   return (
     <HomePageContainer>
       <WidthLimiterContainer className="HomePage__WidthLimiter">

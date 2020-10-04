@@ -47,7 +47,7 @@ const EventsCalendar = ({
       calendarEvents: allGoogleCalendarEvent {
         nodes {
           start {
-            dateTime(formatString: "M/D/YYYY")
+            dateTime
           }
           end {
             dateTime(formatString: "h:mm a")
@@ -59,45 +59,35 @@ const EventsCalendar = ({
     }
   `)
 
-  console.log(googleApiData)
-
-  const [locale, setLocale] = useState('')
   const [selectedDay, setSelectedDay] = useState([])
-  const [date, setDate] = useState(new Date())
-
-  const [test, setTest] = useState()
+  const [filterDate, setfilterDate] = useState(new Date().toLocaleDateString())
+  const [locale, setLocale] = useState('')
 
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
-
-  useEffect(() => {
-    setLocale(i18n.path)
-  })
-
-  useEffect(() => {
-    setTest(arrayEvents)
-  }, [])
-
-  console.log('THSI SIS THE TES', test)
-  const arrayEvents = []
-
+  const dayFilteredEvents = []
   const eventDates = []
   const modifiers = {
     event: eventDates,
   }
 
+  useEffect(() => {
+    setLocale(i18n.path)
+  }, [])
+
   const handleDayClick = (day, { selected }) => {
     setSelectedDay({
       selectedDay: selected ? undefined : day,
     })
-    setDate(day)
+
+    setfilterDate(day.toLocaleDateString())
   }
 
-  console.log(googleApiData.calendarEvents)
-  googleApiData.calendarEvents.nodes.map((info) => {
-    eventDates.push(new Date(info.start.dateTime))
-    if (date.toLocaleDateString() === info.start.dateTime) {
-      arrayEvents.push(info)
+  googleApiData.calendarEvents.nodes.map((event) => {
+    eventDates.push(new Date(event.start.dateTime))
+
+    if (filterDate === new Date(event.start.dateTime).toLocaleDateString()) {
+      dayFilteredEvents.push(event)
     }
   })
 
@@ -116,7 +106,7 @@ const EventsCalendar = ({
 
   return (
     <CallendarSectionContainer id={uid}>
-      <WidthLimiterContainer>
+      <WidthLimiterContainer id={uid}>
         <CalendarContainer>
           <CalendarHeaderContainer>
             <Title as="h2" type="heading2">
@@ -150,7 +140,7 @@ const EventsCalendar = ({
               />
             </DayPickerContainer>
             <CalendarEventsContainer>
-              {arrayEvents.length > 0 ? (
+              {dayFilteredEvents.length > 0 ? (
                 <Title as="h3" type="calendarTitle">
                   {calendarTitle}
                 </Title>
@@ -159,10 +149,8 @@ const EventsCalendar = ({
                   No Events
                 </Title>
               )}
-              {arrayEvents.length > 0
-                ? arrayEvents.map((info, index) => {
-                    console.log(info)
-
+              {dayFilteredEvents.length > 0
+                ? dayFilteredEvents.map((info, index) => {
                     return (
                       <EventItemsContainer key={`Google Events -- ${index}`}>
                         <CalendarEvents>
