@@ -75,6 +75,7 @@ export const DayPickerContainer = styled.div`
   }
   .DayPicker-Day--today {
     font-weight: normal;
+    color: ${(props) => props.theme.colors.primary};
   }
 
   .DayPicker-Day--today:focus {
@@ -86,7 +87,6 @@ export const DayPickerContainer = styled.div`
     color: ${(props) => props.theme.colors.secondary} !important;
 
     .date-cell {
-      padding: 8px;
       border: 3px solid ${(props) => props.theme.colors.secondary};
       border-radius: 50%;
     }
@@ -96,13 +96,11 @@ export const DayPickerContainer = styled.div`
     .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
     background-color: transparent;
 
-    .date-cell::after {
-      padding: 8px;
+    .date-cell {
       border: 3px solid ${(props) => props.theme.colors.secondary};
       border-radius: 50%;
     }
   }
-
   .DayPicker-Day--outside {
     opacity: 0.4;
   }

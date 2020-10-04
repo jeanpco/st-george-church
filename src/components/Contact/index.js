@@ -142,8 +142,6 @@ const Contact = () => {
     setContactPerson(e.currentTarget.childNodes[1].childNodes[1].innerText)
   }
 
-  console.log(contactPerson)
-
   return (
     <ContactSectionContainer id={contactUid}>
       <WidthLimiterContainer>
