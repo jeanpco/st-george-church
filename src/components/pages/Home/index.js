@@ -64,6 +64,8 @@ const IndexLayout = ({
 
   const eventUid = query?.events_calendar?.uid
 
+  const noEventTitle = query?.events_calendar?.document?.data?.no_events_title
+
   return (
     <HomePageContainer>
       <WidthLimiterContainer className="HomePage__WidthLimiter">
@@ -154,6 +156,7 @@ const IndexLayout = ({
           eventAddress: eventAddress,
           eventDescription: eventDescription,
           uid: eventUid,
+          noEventTitle: noEventTitle,
         }}
       />
       {photoGalleryTitle && photoGallerySliderContent ? (

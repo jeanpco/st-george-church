@@ -32,6 +32,12 @@
       "config": {
         "label": "Event description"
       }
+    },
+    "no_events_title": {
+      "type": "Text",
+      "config": {
+        "label": "No Events Title"
+      }
     }
   }
 }

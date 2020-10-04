@@ -75,7 +75,6 @@ export const DayPickerContainer = styled.div`
   }
   .DayPicker-Day--today {
     font-weight: normal;
-    color: ${(props) => props.theme.colors.primary};
   }
 
   .DayPicker-Day--today:focus {
@@ -209,6 +208,7 @@ export const CalendarEventDates = styled.div`
     font-family: ${(props) => props.theme.fontFamily.tertiary};
     font-size: 12px;
     padding-right: 10px;
+    text-transform: capitalize;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: 18px;

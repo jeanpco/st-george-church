@@ -19,6 +19,7 @@ export const query = graphql`
                 event_calendar_title {
                   text
                 }
+                no_events_title
                 events_title {
                   text
                 }

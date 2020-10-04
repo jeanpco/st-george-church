@@ -40,6 +40,7 @@ const EventsCalendar = ({
     eventAddress,
     eventDescription,
     uid,
+    noEventTitle,
   },
 }) => {
   const googleApiData = useStaticQuery(graphql`
@@ -106,12 +107,16 @@ const EventsCalendar = ({
 
   return (
     <CallendarSectionContainer id={uid}>
-      <WidthLimiterContainer id={uid}>
+      <WidthLimiterContainer>
         <CalendarContainer>
           <CalendarHeaderContainer>
-            <Title as="h2" type="heading2">
-              {eventSectionTitle}
-            </Title>
+            {eventSectionTitle ? (
+              <Title as="h2" type="heading2">
+                {eventSectionTitle}
+              </Title>
+            ) : (
+              ''
+            )}
             <Tablet>
               <Icon type="cross" />
             </Tablet>
@@ -140,36 +145,58 @@ const EventsCalendar = ({
               />
             </DayPickerContainer>
             <CalendarEventsContainer>
-              {dayFilteredEvents.length > 0 ? (
+              {dayFilteredEvents?.length > 0 &&
+              calendarTitle &&
+              noEventTitle ? (
                 <Title as="h3" type="calendarTitle">
                   {calendarTitle}
                 </Title>
               ) : (
                 <Title as="h3" type="calendarTitle">
-                  No Events
+                  {noEventTitle}
                 </Title>
               )}
-              {dayFilteredEvents.length > 0
+              {dayFilteredEvents?.length > 0
                 ? dayFilteredEvents.map((info, index) => {
                     return (
                       <EventItemsContainer key={`Google Events -- ${index}`}>
                         <CalendarEvents>
                           <CalendarEventDates>
-                            <Moment
-                              date={info.start.dateTime}
-                              format="MMMM DD, YYYY @ h:mm a"
-                              className="Formated-Date"
-                            />
-                            <Text> - {info.end.dateTime}</Text>
+                            {info?.start?.dateTime ? (
+                              <Moment
+                                date={info.start.dateTime}
+                                format="MMMM DD, YYYY @ h:mm a"
+                                className="Formated-Date"
+                              />
+                            ) : (
+                              ''
+                            )}
+                            {info?.end?.dateTime ? (
+                              <Text> - {info.end.dateTime}</Text>
+                            ) : (
+                              ''
+                            )}
                           </CalendarEventDates>
                           <CalendarEventsBodyHead>
-                            <Title as="h4" type="heading3">
-                              {info.summary}
-                            </Title>
-                            <Text type="body">{eventAddress}</Text>
+                            {info?.summary ? (
+                              <Title as="h4" type="heading3">
+                                {info.summary}
+                              </Title>
+                            ) : (
+                              ''
+                            )}
+                            {eventAddress ? (
+                              <Text type="body">{eventAddress}</Text>
+                            ) : (
+                              ''
+                            )}
                           </CalendarEventsBodyHead>
                           <CalenderEventsBodyText>
-                            <Text type="body">{eventDescription}</Text>
+                            {eventDescription ? (
+                              <Text type="body">{eventDescription}</Text>
+                            ) : (
+                              ''
+                            )}
                           </CalenderEventsBodyText>
                           <CalendarEventsIcon>
                             <Icon type="calendar-line" />
