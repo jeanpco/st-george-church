@@ -45,7 +45,6 @@ module.exports = {
     {
       resolve: `./gatsby-source-google-calendar-events`,
       options: {
-        envVar: process.env.GOOGLE_CALENDAR_SERVICE_ACCOUNT_KEY,
         calendarId: 'jp@field-office.ca',
         assumedUser: 'jp@field-office.ca',
       },
