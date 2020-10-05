@@ -15,38 +15,22 @@
 
 @font-face {
   font-family: 'francesco-italic';
-  src: url('../../fonts/francescoweb-italic-TRIAL.eot');
-  src: url('../../fonts/francescoweb-italic-TRIAL.eot?#iefix')
-    format('embedded-opentype');
+  src: url('../../static/fonts/francesco/francescoweb-italic.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../static/fonts/francesco/francescoweb-italic.woff') format('woff');
 }
 @font-face {
   font-family: 'francesco-regular';
-  src: url('../../fonts/francescoweb-regular-TRIAL.eot');
-  src: url('../../fonts/francescoweb-regular-TRIAL.eot?#iefix')
-    format('embedded-opentype');
+  src: url('../../static/fonts/francesco/francescoweb-regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../static/fonts/francesco/francescoweb-regular.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'protogrotesk-bold';
-  src: url('../../fonts/protogroteskweb-bold-TRIAL.eot');
-  src: url('../../fonts/protogroteskweb-bold-TRIAL.eot?#iefix')
-    format('embedded-opentype');
-}
-@font-face {
-  font-family: 'protogrotesk-extralight';
-  src: url('../../fonts/protogroteskweb-extralight-TRIAL.eot');
-  src: url('../../fonts/protogroteskweb-extralight-TRIAL.eot?#iefix')
-    format('embedded-opentype');
-}
-@font-face {
-  font-family: 'protogrotesk-light';
-  src: url('../../fonts/protogroteskweb-light-TRIAL.eot');
-  src: url('../../fonts/protogroteskweb-light-TRIAL.eot?#iefix')
-    format('embedded-opentype');
-}
-@font-face {
   font-family: 'protogrotesk-regular';
-  src: url('../../fonts/protogroteskweb-regular-TRIAL.eot');
-  src: url('../../fonts/protogroteskweb-regular-TRIAL.eot?#iefix')
-    format('embedded-opentype');
+  src: url('../../static/fonts/proto-grotesk/protogroteskweb-regular.eot');
+  src: url('../../static/fonts/proto-grotesk/protogroteskweb-regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../static/fonts/proto-grotesk/protogroteskweb-regular.woff')
+      format('woff');
 }

@@ -226,6 +226,7 @@ export const CalendarEventsIcon = styled.div`
 export const CalendarEventDates = styled.div`
   display: flex;
   align-items: center;
+  white-space: nowrap;
 
   .Formated-Date {
     font-family: ${(props) => props.theme.fontFamily.tertiary};
