@@ -5,7 +5,7 @@ import Moment from 'react-moment'
 import Navbar from './NavbarElement/NavBarElement'
 import LocaleContext from '../../context/LocaleProvider'
 import MomentLocaleUtils from 'react-day-picker/moment'
-import 'moment/locale/fr'
+import 'moment/min/locales'
 
 import { WidthLimiterContainer } from '../Layout/styles'
 import Title from '../Utilities/Title'
@@ -24,7 +24,6 @@ import {
   CallendarItemsContainer,
   DayPickerContainer,
   CalendarEventsContainer,
-  CalendarEvents,
   CalendarEventsBodyHead,
   CalenderEventsBodyText,
   CalendarEventDates,
@@ -51,7 +50,7 @@ const EventsCalendar = ({
             dateTime
           }
           end {
-            dateTime(formatString: "h:mm a")
+            dateTime(formatString: "h:mm A")
           }
           summary
           description
@@ -83,6 +82,8 @@ const EventsCalendar = ({
 
     setfilterDate(day.toLocaleDateString())
   }
+
+  console.log(eventDates)
 
   googleApiData.calendarEvents.nodes.map((event) => {
     eventDates.push(new Date(event.start.dateTime))
@@ -142,6 +143,7 @@ const EventsCalendar = ({
                 navbarElement={<Navbar />}
                 localeUtils={MomentLocaleUtils}
                 locale={locale}
+                fixedWeeks
               />
             </DayPickerContainer>
             <CalendarEventsContainer>
@@ -158,50 +160,55 @@ const EventsCalendar = ({
               )}
               {dayFilteredEvents?.length > 0
                 ? dayFilteredEvents.map((info, index) => {
+                    console.log(info.start.dateTime)
                     return (
                       <EventItemsContainer key={`Google Events -- ${index}`}>
-                        <CalendarEvents>
-                          <CalendarEventDates>
-                            {info?.start?.dateTime ? (
-                              <Moment
-                                date={info.start.dateTime}
-                                format="MMMM DD, YYYY @ h:mm a"
-                                className="Formated-Date"
-                              />
-                            ) : (
-                              ''
-                            )}
-                            {info?.end?.dateTime ? (
-                              <Text> - {info.end.dateTime}</Text>
-                            ) : (
-                              ''
-                            )}
-                          </CalendarEventDates>
-                          <CalendarEventsBodyHead>
-                            {info?.summary ? (
-                              <Title as="h4" type="heading3">
-                                {info.summary}
-                              </Title>
-                            ) : (
-                              ''
-                            )}
-                            {eventAddress ? (
-                              <Text type="body">{eventAddress}</Text>
-                            ) : (
-                              ''
-                            )}
-                          </CalendarEventsBodyHead>
-                          <CalenderEventsBodyText>
-                            {eventDescription ? (
-                              <Text type="body">{eventDescription}</Text>
-                            ) : (
-                              ''
-                            )}
-                          </CalenderEventsBodyText>
-                          <CalendarEventsIcon>
-                            <Icon type="calendar-line" />
-                          </CalendarEventsIcon>
-                        </CalendarEvents>
+                        <CalendarEventDates>
+                          {info?.start?.dateTime ? (
+                            <Moment
+                              locale={locale}
+                              date={info.start.dateTime}
+                              format="MMMM DD, YYYY @ h:mm A"
+                              className="Formated-Date"
+                            ></Moment>
+                          ) : (
+                            ''
+                          )}
+                          {info?.end?.dateTime ? (
+                            <Text> - {info.end.dateTime}</Text>
+                          ) : (
+                            ''
+                          )}
+                        </CalendarEventDates>
+                        <CalendarEventsBodyHead>
+                          {info?.summary ? (
+                            <Title as="h3" type="heading3">
+                              {info.summary}
+                            </Title>
+                          ) : (
+                            ''
+                          )}
+                          {eventAddress ? (
+                            <Text type="body">{eventAddress}</Text>
+                          ) : (
+                            ''
+                          )}
+                        </CalendarEventsBodyHead>
+                        <CalenderEventsBodyText>
+                          {eventDescription ? (
+                            <Text
+                              type="body"
+                              className="Event__Description-Text"
+                            >
+                              {eventDescription}
+                            </Text>
+                          ) : (
+                            ''
+                          )}
+                        </CalenderEventsBodyText>
+                        <CalendarEventsIcon>
+                          <Icon type="calendar-line" />
+                        </CalendarEventsIcon>
                       </EventItemsContainer>
                     )
                   })

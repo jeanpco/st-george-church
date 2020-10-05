@@ -24,11 +24,9 @@ export const CalendarHeaderContainer = styled.div`
 `
 
 export const DayPickerContainer = styled.div`
-  min-height: 400px;
   max-width: 290px;
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    min-height: 580px;
-    width: 60% !important;
+    /* width: 60% !important; */
     margin-right: 20px;
     max-width: 447px;
   }
@@ -49,6 +47,7 @@ export const DayPickerContainer = styled.div`
 
   .DayPicker-wrapper {
     width: 100%;
+    padding-bottom: 0;
 
     outline: none;
   }
@@ -126,6 +125,7 @@ export const DayPickerContainer = styled.div`
     padding: 5px;
     text-transform: capitalize;
     font-family: ${(props) => props.theme.fontFamily.secondary};
+    white-space: nowrap;
 
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
       font-size: 20px;
@@ -141,24 +141,21 @@ export const CalendarNavMonth = styled.div`
 `
 
 export const CallendarItemsContainer = styled.div`
-  margin-bottom: 37px;
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: flex;
   }
 `
 
 export const CalendarEventsContainer = styled.div`
-  margin-top: 30px;
   overflow: auto;
   max-height: 307px;
-  min-height: 307px;
+  margin: 38px 0 10px 0;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     max-height: 545px;
     min-height: 545px;
-    margin-left: 30px;
 
-    margin-top: 28px;
+    margin: 28px 0 100px 0;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
@@ -166,43 +163,69 @@ export const CalendarEventsContainer = styled.div`
     margin-top: 46px;
   }
 `
-export const CalendarEvents = styled.div`
-  width: 91%;
+
+export const EventItemsContainer = styled.div`
+  width: 80%;
+  margin-top: 24px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-top: 33px;
+    width: 91%;
+  }
+
+  &:not(:first-of-type) {
+    margin-top: 16px;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      margin-top: 60px;
+    }
+  }
+
+  &:last-child {
+    svg {
+      display: none;
+    }
+  }
 `
 
 export const CalendarEventsBodyHead = styled.div`
   margin-top: 14px;
+
+  p {
+    margin-top: 10px;
+  }
 `
 
 export const CalenderEventsBodyText = styled.div`
-  margin-top: 14px;
-  padding-bottom: 14px;
+  margin: 10px 0 10px 0;
 
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    padding-bottom: 57px;
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin: 20px 0 45px 0;
+  }
+
+  .Event__Description-Text {
+    font-style: italic;
   }
 `
 
 export const CalendarEventsIcon = styled.div`
-  padding-left: 50px;
-
+  margin-left: 30px;
   svg {
-    width: 95%;
+    width: 190px;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    padding-left: 160px;
+    margin-left: 50px;
+
+    svg {
+      width: 400px;
+    }
   }
 `
 
 export const CalendarEventDates = styled.div`
   display: flex;
   align-items: center;
-  padding-top: 16px;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    padding-top: 57px;
-  }
 
   .Formated-Date {
     font-family: ${(props) => props.theme.fontFamily.tertiary};
@@ -212,15 +235,6 @@ export const CalendarEventDates = styled.div`
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: 18px;
-    }
-  }
-`
-
-export const EventItemsContainer = styled.div`
-  &:last-child {
-    /* padding-bottom: 0; */
-    svg {
-      display: none;
     }
   }
 `

@@ -1,12 +1,11 @@
 import styled from '@emotion/styled'
 
 export const GalleryContainer = styled.div`
-  padding-top: 24px;
+  padding-top: 20px;
 `
 
 export const GalleryContentContainer = styled.div`
   border-top: 6px solid ${(props) => props.theme.colors.primary};
-  margin-top: 24px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     border-top: 12px solid ${(props) => props.theme.colors.black};

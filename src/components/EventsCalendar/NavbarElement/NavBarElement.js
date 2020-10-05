@@ -7,7 +7,7 @@ import {
   CalendarNavIconPrev,
 } from './styles'
 import MomentLocaleUtils from 'react-day-picker/moment'
-import 'moment/locale/fr'
+import 'moment/min/locales'
 
 const Navbar = ({
   nextMonth,

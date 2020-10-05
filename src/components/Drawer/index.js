@@ -59,13 +59,9 @@ const Drawer = ({
                 ? menuLinks.map((info, index) => {
                     // Logic in case we want to add more external links
                     const linksWithNoUid = []
-
                     if (info.link_test.uid === null) {
                       linksWithNoUid.push(info)
                     }
-
-                    // end
-
                     return (
                       <DrawerMenuText key={index}>
                         {info.link_test.uid ? (
@@ -81,25 +77,27 @@ const Drawer = ({
                           </LocalizedLink>
                         ) : (
                           <>
-                            {linksWithNoUid.map((values, index) => {
-                              return (
-                                <a
-                                  href={values.link_test.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="Header__Menu-button"
-                                  key={`Menu-External-Links - ${index}`}
-                                >
-                                  {values.link}
-                                  <span className="Menu__Icon-Arrow">
-                                    <Icon
-                                      type="arrow-forward"
-                                      className="hello"
-                                    />
-                                  </span>
-                                </a>
-                              )
-                            })}
+                            {linksWithNoUid?.length > 0
+                              ? linksWithNoUid.map((values, index) => {
+                                  return (
+                                    <a
+                                      href={values.link_test.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="Header__Menu-button"
+                                      key={`Menu-External-Links - ${index}`}
+                                    >
+                                      {values.link}
+                                      <span className="Menu__Icon-Arrow">
+                                        <Icon
+                                          type="arrow-forward"
+                                          className="hello"
+                                        />
+                                      </span>
+                                    </a>
+                                  )
+                                })
+                              : ''}
                           </>
                         )}
                       </DrawerMenuText>

@@ -74,7 +74,8 @@ const Gallery = ({ query }) => {
                                   )}
                                   <GallerSliderTitle>
                                     {info?.gallery_section_title?.text ? (
-                                      <Title as="h3" type="heading3">
+                                      //CHANGE TITLE
+                                      <Title as="h3" type="heading8">
                                         {info.gallery_section_title.text}
                                       </Title>
                                     ) : (
@@ -109,7 +110,9 @@ const Gallery = ({ query }) => {
             <Tablet>
               <GallerSliderHeader>
                 {query?.title ? (
-                  <Title type="heading2">{query.title}</Title>
+                  <Title as="h2" type="heading2">
+                    {query.title}
+                  </Title>
                 ) : (
                   ''
                 )}
@@ -142,7 +145,7 @@ const Gallery = ({ query }) => {
 
                               <GallerSliderTitle>
                                 {info.gallery_section_title.text ? (
-                                  <Title as="h3" type="heading3">
+                                  <Title as="h3" type="heading8">
                                     {info.gallery_section_title.text}
                                   </Title>
                                 ) : (

@@ -5,20 +5,21 @@ export const TitleStyled = styled.p`
   &.heading1 {
     font-size: ${theme.fonts.heading5};
     font-weight: normal;
+    font-family: ${theme.fontFamily.secondary};
     font-style: normal;
     line-height: 1.3;
-    font-family: ${theme.fontFamily.secondary};
 
     @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
       font-size: ${(props) => props.theme.fonts.heading2};
     }
   }
   &.heading2 {
+    font-size: ${theme.fonts.heading6};
     font-family: ${theme.fontFamily.secondary};
-    font-size: ${theme.fonts.heading5};
     font-weight: normal;
     font-style: normal;
     line-height: normal;
+    text-transform: capitalize;
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading2};
     }
@@ -31,7 +32,7 @@ export const TitleStyled = styled.p`
     line-height: 1.3;
 
     @media (min-width: ${theme.breakpoints.l}) {
-      font-size: ${theme.fonts.heading4};
+      font-size: ${theme.fonts.heading3};
       line-height: 1.3;
     }
   }
@@ -78,6 +79,18 @@ export const TitleStyled = styled.p`
     }
   }
 
+  &.heading8 {
+    font-family: ${theme.fontFamily.secondary};
+    font-size: ${theme.fonts.heading7};
+    line-height: 1.3;
+    font-style: normal;
+    font-weight: normal;
+    @media (min-width: ${theme.breakpoints.md}) {
+      font-size: ${theme.fonts.heading6};
+      line-height: 1.3;
+    }
+  }
+
   &.overline {
     font-size: ${theme.fonts.overline};
     line-height: normal;
@@ -113,7 +126,7 @@ export const TitleStyled = styled.p`
     }
   }
 
-  &.contactImageHeading {
+  &.backgroundHeading {
     font-family: ${theme.fontFamily.primary};
     font-size: ${theme.fonts.heading6};
     line-height: 1.3;

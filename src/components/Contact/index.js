@@ -191,7 +191,7 @@ const Contact = () => {
                                   <Title
                                     as="h4"
                                     className={'ContactImageTitle'}
-                                    type="contactImageHeading"
+                                    type="backgroundHeading"
                                   >
                                     {contactFlyoutTitle}
                                   </Title>
