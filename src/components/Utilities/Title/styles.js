@@ -31,7 +31,7 @@ export const TitleStyled = styled.p`
     font-style: normal;
     line-height: 1.3;
 
-    @media (min-width: ${theme.breakpoints.l}) {
+    @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading3};
       line-height: 1.3;
     }
