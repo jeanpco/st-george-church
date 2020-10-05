@@ -36,8 +36,10 @@ import { CrossDes } from './assets/CrossDes'
 import { Flower } from './assets/Flower'
 import { Border } from './assets/Border'
 import { BorderMob } from './assets/BorderMob'
-
+import { Line } from './assets/Line'
 import { AddDes } from './assets/AddDes'
+import { CalendarLine } from './assets/CalendarLine'
+import { BigArrowForwoard } from './assets/BigArrowForwoard'
 
 const Icon = ({ type }) => {
   switch (type) {
@@ -53,6 +55,8 @@ const Icon = ({ type }) => {
       return <ArrowBack />
     case 'arrow-forward':
       return <ArrowForward />
+    case 'big-arrow-forward':
+      return <BigArrowForwoard />
     case 'arrow-right':
       return <ArrowRight />
     case 'call':
@@ -115,6 +119,10 @@ const Icon = ({ type }) => {
       return <Border />
     case 'border-mob':
       return <BorderMob />
+    case 'line':
+      return <Line />
+    case 'calendar-line':
+      return <CalendarLine />
     default:
       return ''
   }

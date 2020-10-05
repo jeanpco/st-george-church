@@ -4,6 +4,7 @@ import Gallery from '../../Gallery'
 import PropTypes from 'prop-types'
 import Contact from '../../Contact'
 import Quote from '../../Quote'
+import EventsCalendar from '../../EventsCalendar'
 import AnchorList from '../../AnchorList'
 import {
   HomePageContainer,
@@ -27,8 +28,10 @@ const IndexLayout = ({
 }) => {
   const photoGalleryTitle =
     query?.photo_gallery?.document?.data?.gallery_title?.text
+
   const photoGallerySliderContent =
-    query?.photo_gallery_section?.document?.data?.body?.[0]?.items
+    query?.photo_gallery.document?.data?.body?.[0]?.items
+
   const homeIntroGraphic = query?.intro_graphic?.url
   const homeIntroTitle = query?.intro_title?.text
   const homeIntroText = query?.intro_text
@@ -39,8 +42,29 @@ const IndexLayout = ({
     query?.ministries_section?.document?.data?.anchor_title?.text
   const ministriesLinks =
     query?.ministries_section?.document?.data?.body[0]?.items
+
   const ministries = query?.ministries_section?.document?.data?.body?.[1]?.items
   const ministriesData = query?.ministries_section?.document?.data
+
+  const eventSectionTitle =
+    query?.events_calendar?.document?.data?.event_calendar_title?.text
+
+  const eventCalendarTitle =
+    query?.events_calendar?.document?.data?.events_title?.text
+
+  const eventAddress =
+    query?.events_calendar?.document?.data?.event_address?.text
+
+  const eventDescription =
+    query?.events_calendar?.document?.data?.event_description
+
+  const ministriesUid = query?.ministries_section?.uid
+
+  const galleryUid = query?.photo_gallery?.uid
+
+  const eventUid = query?.events_calendar?.uid
+
+  const noEventTitle = query?.events_calendar?.document?.data?.no_events_title
 
   return (
     <HomePageContainer>
@@ -119,9 +143,20 @@ const IndexLayout = ({
       <AnchorList
         anchorQuery={{
           title: ministriesSectionTitle,
-          links: ministriesLinks,
+          ministriesLinks: ministriesLinks,
           ministries: ministries,
           ministriesData: ministriesData,
+          uid: ministriesUid,
+        }}
+      />
+      <EventsCalendar
+        query={{
+          eventSectionTitle: eventSectionTitle,
+          calendarTitle: eventCalendarTitle,
+          eventAddress: eventAddress,
+          eventDescription: eventDescription,
+          uid: eventUid,
+          noEventTitle: noEventTitle,
         }}
       />
       {photoGalleryTitle && photoGallerySliderContent ? (
@@ -129,6 +164,7 @@ const IndexLayout = ({
           query={{
             title: photoGalleryTitle,
             content: photoGallerySliderContent,
+            uid: galleryUid,
           }}
         />
       ) : (

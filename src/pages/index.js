@@ -7,7 +7,28 @@ export const query = graphql`
   query HomePageQuery($locale: String) {
     homePage: prismicHomepage(lang: { eq: $locale }) {
       data {
+        events_calendar {
+          uid
+          document {
+            ... on PrismicEventsCalendar {
+              data {
+                event_address {
+                  text
+                }
+                event_description
+                event_calendar_title {
+                  text
+                }
+                no_events_title
+                events_title {
+                  text
+                }
+              }
+            }
+          }
+        }
         photo_gallery {
+          uid
           document {
             ... on PrismicPhotoGallery {
               data {
@@ -90,6 +111,7 @@ export const query = graphql`
           text
         }
         ministries_section {
+          uid
           document {
             ... on PrismicMinistries {
               data {

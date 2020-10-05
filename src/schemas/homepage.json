@@ -54,6 +54,13 @@
         "label": "Photo Gallery"
       }
     },
+    "events_calendar": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "label": "Events Calendar"
+      }
+    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",

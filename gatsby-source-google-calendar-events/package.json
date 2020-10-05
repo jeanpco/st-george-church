@@ -1,0 +1,58 @@
+{
+  "_from": "gatsby-source-google-calendar-events",
+  "_id": "gatsby-source-google-calendar-events@0.2.3",
+  "_inBundle": false,
+  "_integrity": "sha512-NdGi+gm5EPE+D2EW5ssVALKhub7W96luNjRYfK5Dau2TTmjPWUuJJkUWtv5nSPQAeVA2aseN6CPQhAsipfoVOw==",
+  "_location": "/gatsby-source-google-calendar-events",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "gatsby-source-google-calendar-events",
+    "name": "gatsby-source-google-calendar-events",
+    "escapedName": "gatsby-source-google-calendar-events",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/gatsby-source-google-calendar-events/-/gatsby-source-google-calendar-events-0.2.3.tgz",
+  "_shasum": "5b414261c2c6e8f52d7f720e3c211ac1abd76f13",
+  "_spec": "gatsby-source-google-calendar-events",
+  "_where": "/Users/romainpenaruiz/Desktop/Field Office/st-george-church",
+  "author": {
+    "name": "Maxwell Kendall"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "googleapis": "^46.0.0",
+    "moment": "^2.24.0"
+  },
+  "deprecated": false,
+  "description": "Provides data for an Upcoming Events page in a static website",
+  "homepage": "https://github.com/MaxwellKendall/gatsby-source-google-calendar",
+  "keywords": [
+    "google calendar",
+    "events",
+    "calendar",
+    "gatsbyjs",
+    "gatsby",
+    "gatsby-source",
+    "gatsby calendar",
+    "gatsby events",
+    "google",
+    "googleapi",
+    "google-api",
+    "gatsby-plugin"
+  ],
+  "license": "ISC",
+  "main": "gatsby-node.js",
+  "name": "gatsby-source-google-calendar-events",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.2.3"
+}

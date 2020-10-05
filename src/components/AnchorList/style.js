@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import Title from '../Utilities/Title'
 
 export const AncherContainer = styled.div`
-  margin-top: 45px;
+  padding-top: 45px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin-top: 102px;
@@ -13,14 +13,13 @@ export const AnchorTitle = styled(Title)`
 `
 export const AnchorContent = styled.div`
   border-top: 6px solid ${(props) => props.theme.colors.black};
-  border-bottom: 6px solid ${(props) => props.theme.colors.black};
   padding-top: 13px;
   padding-bottom: 30px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     border-top: 12px solid ${(props) => props.theme.colors.black};
-    border-bottom: 12px solid ${(props) => props.theme.colors.black};
     padding-bottom: 109px;
+    padding-top: 24px;
   }
 `
 

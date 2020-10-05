@@ -8,7 +8,7 @@ import Text from '~/components/Utilities/Text'
 const About = ({ query }) => {
   return (
     <AboutContainer>
-      <Title as="h2" type="heading4" className="About__Drawer-Title">
+      <Title as="h4" type="heading4" className="About__Drawer-Title">
         {query.title}
       </Title>
       <AboutText>

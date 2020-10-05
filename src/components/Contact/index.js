@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import LocaleContext from '../../context/LocaleProvider'
-
+import Icon from '~/components/Icon'
 import ContactDrawer from '../ContactDrawer'
 import { WidthLimiterContainer } from '../Layout/styles'
 import { Tablet, Desktop } from '../Utilities/Media'
-import Icon from '~/components/Icon'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
 import Img from 'gatsby-background-image'
 import {
+  ContactSectionContainer,
   TeamContainer,
   TeamHeaderContainer,
   TeamContentContainer,
@@ -25,6 +25,7 @@ const Contact = () => {
     {
       contact: allPrismicWhoWeAre {
         nodes {
+          uid
           lang
           data {
             body {
@@ -98,6 +99,10 @@ const Contact = () => {
         .map((r) => r.data)
     : ''
 
+  const contactUid = data?.contact?.nodes[0]?.uid
+    ? data.contact.nodes[0].uid
+    : ''
+
   const contactLocal = contactData[0]
 
   const [toggleDrawer, setToggleDrawer] = useState(false)
@@ -133,114 +138,114 @@ const Contact = () => {
 
   const onClickHandler = (e) => {
     setToggleDrawer(!toggleDrawer)
-    setContactPerson(
-      e.currentTarget.childNodes[0].lastElementChild.lastChild.innerText
-    )
+
+    setContactPerson(e.currentTarget.childNodes[1].childNodes[1].innerText)
   }
 
   return (
-    <WidthLimiterContainer>
-      <TeamContainer>
-        <TeamHeaderContainer>
-          {contactSectionTitle ? (
-            <Title as="h2" type="heading2">
-              {contactSectionTitle}
-            </Title>
+    <ContactSectionContainer id={contactUid}>
+      <WidthLimiterContainer>
+        <TeamContainer>
+          <TeamHeaderContainer>
+            {contactSectionTitle ? (
+              <Title as="h2" type="heading2">
+                {contactSectionTitle}
+              </Title>
+            ) : (
+              ''
+            )}
+            <Tablet>
+              <Icon type="cross" />
+            </Tablet>
+            <Desktop>
+              <Icon type="cross-des" />
+            </Desktop>
+          </TeamHeaderContainer>
+          {contactBody?.length > 0 ? (
+            <TeamContentContainer>
+              {contactBody?.map((info, index) => {
+                const contactImages = info?.contact_image?.localFile
+                  ?.childImageSharp?.fluid
+                  ? info.contact_image.localFile.childImageSharp.fluid
+                  : ''
+                return (
+                  <ContactContainer key={index}>
+                    <ContactBodyContainer onClick={onClickHandler}>
+                      <ContactImageContainer>
+                        <GalleryIconContainer>
+                          <Desktop>
+                            <Icon type="border" />
+                          </Desktop>
+                          <Tablet>
+                            <Icon type="border-mob" />
+                          </Tablet>
+                        </GalleryIconContainer>
+                        {contactImages && contactFlyoutTitle ? (
+                          <>
+                            <Img
+                              fluid={contactImages}
+                              className="Contact__Image-Circle"
+                            >
+                              <Desktop>
+                                {contactFlyoutTitle ? (
+                                  <Title
+                                    as="h4"
+                                    className={'ContactImageTitle'}
+                                    type="backgroundHeading"
+                                  >
+                                    {contactFlyoutTitle}
+                                  </Title>
+                                ) : (
+                                  ''
+                                )}
+                              </Desktop>
+                            </Img>
+                          </>
+                        ) : (
+                          ''
+                        )}
+                      </ContactImageContainer>
+                      <ContactItemContainer>
+                        {info?.contact_position ? (
+                          <Title as="h3" type="heading7">
+                            {info.contact_position}
+                          </Title>
+                        ) : (
+                          ''
+                        )}
+                        {info?.contact_name?.text ? (
+                          <Text type="smallText800" id="contact-name">
+                            {info.contact_name.text}
+                          </Text>
+                        ) : (
+                          ''
+                        )}
+                      </ContactItemContainer>
+                    </ContactBodyContainer>
+                  </ContactContainer>
+                )
+              })}
+            </TeamContentContainer>
           ) : (
             ''
           )}
-          <Tablet>
-            <Icon type="cross" />
-          </Tablet>
-          <Desktop>
-            <Icon type="cross-des" />
-          </Desktop>
-        </TeamHeaderContainer>
-        {contactBody?.length > 0 ? (
-          <TeamContentContainer>
-            {contactBody?.map((info, index) => {
-              const contactImages = info?.contact_image?.localFile
-                ?.childImageSharp?.fluid
-                ? info.contact_image.localFile.childImageSharp.fluid
-                : ''
-              return (
-                <ContactContainer key={index}>
-                  <ContactBodyContainer onClick={onClickHandler}>
-                    <ContactImageContainer>
-                      <GalleryIconContainer>
-                        <Desktop>
-                          <Icon type="border" />
-                        </Desktop>
-                        <Tablet>
-                          <Icon type="border-mob" />
-                        </Tablet>
-                      </GalleryIconContainer>
-                      {contactImages && contactFlyoutTitle ? (
-                        <>
-                          <Img
-                            fluid={contactImages}
-                            className="Contact__Image-Circle"
-                          >
-                            <Desktop>
-                              {contactFlyoutTitle ? (
-                                <Title
-                                  as="h4"
-                                  className={'ContactImageTitle'}
-                                  type="contactImageHeading"
-                                >
-                                  {contactFlyoutTitle}
-                                </Title>
-                              ) : (
-                                ''
-                              )}
-                            </Desktop>
-                          </Img>
-                        </>
-                      ) : (
-                        ''
-                      )}
-                    </ContactImageContainer>
-
-                    <ContactItemContainer>
-                      {info?.contact_position ? (
-                        <Title as="h3" type="heading7">
-                          {info.contact_position}
-                        </Title>
-                      ) : (
-                        ''
-                      )}
-                      {info?.contact_name?.text ? (
-                        <Text type="smallText800" id="contact-name">
-                          {info.contact_name.text}
-                        </Text>
-                      ) : (
-                        ''
-                      )}
-                    </ContactItemContainer>
-                  </ContactBodyContainer>
-                </ContactContainer>
-              )
-            })}
-          </TeamContentContainer>
-        ) : (
-          ''
-        )}
-      </TeamContainer>
-      <ContactDrawer
-        toggleDrawer={toggleDrawer}
-        setToggleDrawer={setToggleDrawer}
-        query={{
-          contactCurrent: contactPerson,
-          title: contactFlyoutTitle,
-          address: contactFlyoutAddress,
-          number: contactFlyoutNumber,
-          formTitle: contactFormTitle,
-          contactFormInformation: contactFormInformation,
-          formInformation: contactBody,
-          contactFlyoutTitle: contactFlyoutTitle,
-        }}
-      />
-    </WidthLimiterContainer>
+        </TeamContainer>
+        <ContactDrawer
+          toggleDrawer={toggleDrawer}
+          setToggleDrawer={setToggleDrawer}
+          query={{
+            contactCurrent: contactPerson,
+            title: contactFlyoutTitle,
+            address: contactFlyoutAddress,
+            number: contactFlyoutNumber,
+            formTitle: contactFormTitle,
+            contactFormInformation: contactFormInformation,
+            formInformation: contactBody,
+            contactFlyoutTitle: contactFlyoutTitle,
+          }}
+        />
+      </WidthLimiterContainer>
+    </ContactSectionContainer>
   )
 }
 

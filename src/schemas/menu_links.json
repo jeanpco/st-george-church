@@ -21,6 +21,12 @@
                 "config": {
                   "label": "Link"
                 }
+              },
+              "link_test": {
+                "type": "Link",
+                "config": {
+                  "label": "Link_Test"
+                }
               }
             }
           }

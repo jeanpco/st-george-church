@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 const ArrowRight = (props) => {
   return (
     <div className={'slick-next'} onClick={props.onClick}>
-      <Icon type="arrow-forward" />
+      <Icon type="big-arrow-forward" />
     </div>
   )
 }
