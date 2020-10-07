@@ -35,30 +35,11 @@ export const query = graphql`
                 gallery_title {
                   text
                 }
-                body {
-                  ... on PrismicPhotoGalleryBodyGallerySection {
-                    items {
-                      gallery_img {
-                        localFile {
-                          childImageSharp {
-                            fluid {
-                              ...GatsbyImageSharpFluid
-                            }
-                            id
-                          }
-                        }
-                      }
-                      gallery_section_text
-                      gallery_section_title {
-                        text
-                      }
-                    }
-                  }
-                }
               }
             }
           }
         }
+
         body {
           ... on PrismicHomepageBodySliderHomeDes {
             items {
@@ -149,6 +130,25 @@ export const query = graphql`
             }
           }
         }
+      }
+    }
+
+    allGhostPost(filter: { tags: { elemMatch: { slug: { eq: $locale } } } }) {
+      nodes {
+        tags {
+          slug
+        }
+        slug
+        title
+        localFeatureImage {
+          childImageSharp {
+            fluid(maxWidth: 359, maxHeight: 252) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+        html
+        excerpt
       }
     }
   }

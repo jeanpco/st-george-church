@@ -83,8 +83,6 @@ const EventsCalendar = ({
     setfilterDate(day.toLocaleDateString())
   }
 
-  console.log(eventDates)
-
   googleApiData.calendarEvents.nodes.map((event) => {
     eventDates.push(new Date(event.start.dateTime))
 
@@ -160,7 +158,6 @@ const EventsCalendar = ({
               )}
               {dayFilteredEvents?.length > 0
                 ? dayFilteredEvents.map((info, index) => {
-                    console.log(info.start.dateTime)
                     return (
                       <EventItemsContainer key={`Google Events -- ${index}`}>
                         <CalendarEventDates>

@@ -66,7 +66,7 @@ const Drawer = ({
                       <DrawerMenuText key={index}>
                         {info.link_test.uid ? (
                           <LocalizedLink
-                            to={`#${info.link_test.uid}`}
+                            to={`/#${info.link_test.uid}`}
                             className="Header__Menu-button"
                             onClick={() => setToggleDrawer(false)}
                           >

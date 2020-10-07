@@ -23,14 +23,14 @@ import Fade from 'react-reveal/Fade'
 
 const IndexLayout = ({
   data: {
+    allGhostPost: { nodes: ghostQuery },
+  },
+  data: {
     homePage: { data: query },
   },
 }) => {
   const photoGalleryTitle =
     query?.photo_gallery?.document?.data?.gallery_title?.text
-
-  const photoGallerySliderContent =
-    query?.photo_gallery.document?.data?.body?.[0]?.items
 
   const homeIntroGraphic = query?.intro_graphic?.url
   const homeIntroTitle = query?.intro_title?.text
@@ -159,12 +159,12 @@ const IndexLayout = ({
           noEventTitle: noEventTitle,
         }}
       />
-      {photoGalleryTitle && photoGallerySliderContent ? (
+      {photoGalleryTitle ? (
         <Gallery
           query={{
             title: photoGalleryTitle,
-            content: photoGallerySliderContent,
             uid: galleryUid,
+            ghostData: ghostQuery,
           }}
         />
       ) : (
@@ -177,5 +177,6 @@ const IndexLayout = ({
 
 IndexLayout.propTypes = {
   data: PropTypes.object,
+  ghostData: PropTypes.object,
 }
 export default IndexLayout

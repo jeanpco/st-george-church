@@ -22,8 +22,12 @@ export const GallerySliderContainer = styled.div`
   margin-top: 0;
   margin-bottom: 50px;
 
+  .Gallery__Slider_Link {
+    text-decoration: none;
+    color: ${(props) => props.theme.colors.primary};
+  }
+
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    width: 100%;
     margin-bottom: 180px;
     margin-top: 70px;
   }
