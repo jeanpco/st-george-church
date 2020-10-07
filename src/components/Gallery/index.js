@@ -72,18 +72,28 @@ const Gallery = ({ query: { title, uid, ghostData } }) => {
                           <Fragment key={index}>
                             <GalleryItemContent key={index}>
                               <GallerySliderItemsContainer>
-                                <Link
-                                  to={info.slug}
-                                  className="Gallery__Slider_Link"
-                                >
-                                  <Img
-                                    fluid={
-                                      info.localFeatureImage.childImageSharp
-                                        .fluid
-                                    }
-                                    alt=""
-                                  />
-                                </Link>
+                                {info?.slug ? (
+                                  <Link
+                                    to={info.slug}
+                                    className="Gallery__Slider_Link"
+                                  >
+                                    {info?.localFeatureImage?.childImageSharp
+                                      ?.fluid ? (
+                                      <Img
+                                        fluid={
+                                          info.localFeatureImage.childImageSharp
+                                            .fluid
+                                        }
+                                        alt=""
+                                      />
+                                    ) : (
+                                      ''
+                                    )}
+                                  </Link>
+                                ) : (
+                                  ''
+                                )}
+
                                 <GallerSliderTitle>
                                   {info?.title ? (
                                     <Title as="h3" type="heading8">

@@ -164,7 +164,7 @@ const IndexLayout = ({
           query={{
             title: photoGalleryTitle,
             uid: galleryUid,
-            ghostData: ghostQuery,
+            ghostData: ghostQuery ? ghostQuery : '',
           }}
         />
       ) : (
