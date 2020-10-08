@@ -25,6 +25,12 @@ export const GallerySliderContainer = styled.div`
   .Gallery__Slider_Link {
     text-decoration: none;
     color: ${(props) => props.theme.colors.primary};
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      &:hover {
+        color: ${(props) => props.theme.colors.secondary};
+      }
+    }
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {

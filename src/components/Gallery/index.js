@@ -89,29 +89,29 @@ const Gallery = ({ query: { title, uid, ghostData } }) => {
                                     ) : (
                                       ''
                                     )}
+
+                                    <GallerSliderTitle>
+                                      {info?.title ? (
+                                        <Title as="h3" type="heading8">
+                                          {info.title}
+                                        </Title>
+                                      ) : (
+                                        ''
+                                      )}
+                                    </GallerSliderTitle>
+                                    <GallerySliderText>
+                                      {info?.excerpt ? (
+                                        <Text type="smallText700">
+                                          {info?.excerpt}
+                                        </Text>
+                                      ) : (
+                                        ''
+                                      )}
+                                    </GallerySliderText>
                                   </Link>
                                 ) : (
                                   ''
                                 )}
-
-                                <GallerSliderTitle>
-                                  {info?.title ? (
-                                    <Title as="h3" type="heading8">
-                                      {info.title}
-                                    </Title>
-                                  ) : (
-                                    ''
-                                  )}
-                                </GallerSliderTitle>
-                                <GallerySliderText>
-                                  {info?.excerpt ? (
-                                    <Text type="smallText700">
-                                      {info?.excerpt}
-                                    </Text>
-                                  ) : (
-                                    ''
-                                  )}
-                                </GallerySliderText>
                               </GallerySliderItemsContainer>
                               <GallerySliderIcon>
                                 <Icon type="flower" />
