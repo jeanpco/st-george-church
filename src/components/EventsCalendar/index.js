@@ -186,7 +186,10 @@ const EventsCalendar = ({
                             ''
                           )}
                           {eventAddress ? (
-                            <Text type="body">{eventAddress}</Text>
+                            <Text
+                              type="body"
+                              dangerouslySetInnerHTML={{ __html: eventAddress }}
+                            />
                           ) : (
                             ''
                           )}

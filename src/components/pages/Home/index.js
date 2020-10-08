@@ -53,7 +53,7 @@ const IndexLayout = ({
     query?.events_calendar?.document?.data?.events_title?.text
 
   const eventAddress =
-    query?.events_calendar?.document?.data?.event_address?.text
+    query?.events_calendar?.document?.data?.event_address?.html
 
   const eventDescription =
     query?.events_calendar?.document?.data?.event_description

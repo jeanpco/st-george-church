@@ -13,7 +13,7 @@ export const query = graphql`
             ... on PrismicEventsCalendar {
               data {
                 event_address {
-                  text
+                  html
                 }
                 event_description
                 event_calendar_title {
