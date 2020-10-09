@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../Modal'
 import ContactDrawer from '../ContactDrawer'
@@ -23,12 +23,14 @@ import {
   MinistriesContactImg,
   MinistriesContactIcon,
   MinistriesContactInfo,
+  MinistriesContactTitle,
+  MinistriesPostionTitle,
+  MinistriesFullName,
 } from '../Modal/styles'
 import Icon from '~/components/Icon'
 import { WidthLimiterContainer } from '../Layout/styles'
 import { Tablet, Desktop } from '../Utilities/Media'
 import Text from '../Utilities/Text'
-import Title from '../Utilities/Title'
 
 import Img from 'gatsby-image'
 import Fade from 'react-reveal/Fade'
@@ -136,7 +138,7 @@ const AnchorList = ({
     statelinks?.length > 0
       ? statelinks.map((link, index) => {
           return (
-            <AnchorLinksMob key={index}>
+            <AnchorLinksMob key={` AnchorLinksMob -${index}`}>
               <Fade bottom distance="30px">
                 <AnchorIconLink>
                   <Icon type="add" />
@@ -247,8 +249,8 @@ const AnchorList = ({
                             ? info.list_image.localFile.childImageSharp.fluid
                             : ''
                           return (
-                            <>
-                              <AnchorItemsDes key={index}>
+                            <Fragment key={` AnchorItemsDes -${index}`}>
+                              <AnchorItemsDes>
                                 {AnchorImage ? (
                                   <AnimatedImage>
                                     <Img
@@ -267,9 +269,12 @@ const AnchorList = ({
                                   )}
                                 </AnchorItemsText>
                                 <MinistriesContactSection>
-                                  <Title as="h5" type="contactHeading">
+                                  <MinistriesContactTitle
+                                    as="h5"
+                                    type="contactHeading"
+                                  >
                                     Contact
-                                  </Title>
+                                  </MinistriesContactTitle>
                                   {info.ministries_group_contact.document.data.body.map(
                                     (values) => {
                                       return values.items.map(
@@ -297,20 +302,20 @@ const AnchorList = ({
                                                 />
                                               </MinistriesContactImg>
                                               <MinistriesContactInfo>
-                                                <Text type="bigText400">
+                                                <MinistriesPostionTitle as="h5">
                                                   {
                                                     contact.single_contact_link
                                                       .document.data
                                                       .contact_position
                                                   }
-                                                </Text>
-                                                <Title as="h4" type="heading4">
+                                                </MinistriesPostionTitle>
+                                                <MinistriesFullName as="h6">
                                                   {
                                                     contact.single_contact_link
                                                       .document.data
                                                       .contact_name.text
                                                   }
-                                                </Title>
+                                                </MinistriesFullName>
                                               </MinistriesContactInfo>
                                             </MinisterContactContainer>
                                           )
@@ -320,7 +325,7 @@ const AnchorList = ({
                                   )}
                                 </MinistriesContactSection>
                               </AnchorItemsDes>
-                            </>
+                            </Fragment>
                           )
                         })
                       : ''}

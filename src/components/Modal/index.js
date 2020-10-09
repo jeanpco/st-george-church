@@ -22,6 +22,9 @@ import {
   MinistriesContactIcon,
   MinistriesContactSection,
   MinistriesContactInfo,
+  MinistriesPostionTitle,
+  MinistriesFullName,
+  MinistriesContactTitle,
 } from './styles'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
@@ -124,82 +127,84 @@ const Modal = ({
               ? ministriesContent.map((info, index) => {
                   return (
                     <Fragment key={index}>
-                      <DialogContentContainer>
-                        <div>
-                          {info?.list_image?.localFile?.childImageSharp
-                            ?.fluid ? (
-                            <AnimatedImage>
-                              <Img
-                                fluid={
-                                  info.list_image.localFile.childImageSharp
-                                    .fluid
-                                }
-                                alt="Ministries Image"
-                                className="Modal_Anchor-Img"
-                              />
-                            </AnimatedImage>
-                          ) : (
-                            ''
-                          )}
-                        </div>
-                        <Fade bottom distance="30px">
-                          <ModalTextContent>
-                            {info?.list_text ? (
-                              <Text type="body">{info.list_text}</Text>
+                      <Fade bottom distance="30px">
+                        <DialogContentContainer>
+                          <div>
+                            {info?.list_image?.localFile?.childImageSharp
+                              ?.fluid ? (
+                              <AnimatedImage>
+                                <Img
+                                  fluid={
+                                    info.list_image.localFile.childImageSharp
+                                      .fluid
+                                  }
+                                  alt="Ministries Image"
+                                  className="Modal_Anchor-Img"
+                                />
+                              </AnimatedImage>
                             ) : (
                               ''
                             )}
-                          </ModalTextContent>
-                        </Fade>
-                      </DialogContentContainer>
-                      <MinistriesContactSection>
-                        <Title as="h5" type="contactHeading">
-                          Contact
-                        </Title>
-                        {info.ministries_group_contact.document.data.body.map(
-                          (info) => {
-                            return info.items.map((contact, index) => {
-                              return (
-                                <MinisterContactContainer
-                                  key={index}
-                                  onClick={onClickHandler}
-                                >
-                                  <MinistriesContactImg
-                                    style={{ width: '117px' }}
+                          </div>
+                          <Fade bottom distance="30px">
+                            <ModalTextContent>
+                              {info?.list_text ? (
+                                <Text type="body">{info.list_text}</Text>
+                              ) : (
+                                ''
+                              )}
+                            </ModalTextContent>
+                          </Fade>
+                        </DialogContentContainer>
+                        <MinistriesContactSection>
+                          <MinistriesContactTitle as="h5">
+                            Contact
+                          </MinistriesContactTitle>
+                          {info.ministries_group_contact.document.data.body.map(
+                            (info) => {
+                              return info.items.map((contact, index) => {
+                                return (
+                                  <MinisterContactContainer
+                                    key={index}
+                                    onClick={onClickHandler}
                                   >
-                                    <MinistriesContactIcon>
-                                      <Icon type="border-mob" />
-                                    </MinistriesContactIcon>
-                                    <Img
-                                      fluid={
-                                        contact.single_contact_link.document
-                                          .data.contact_img.localFile
-                                          .childImageSharp.fluid
-                                      }
-                                      alt="Minister Section Contact Image"
-                                      className="Ministries__Contact-Img"
-                                    />
-                                  </MinistriesContactImg>
-                                  <MinistriesContactInfo>
-                                    <Text type="bigText400">
-                                      {
-                                        contact.single_contact_link.document
-                                          .data.contact_position
-                                      }
-                                    </Text>
-                                    <Title as="h4" type="heading4">
-                                      {
-                                        contact.single_contact_link.document
-                                          .data.contact_name.text
-                                      }
-                                    </Title>
-                                  </MinistriesContactInfo>
-                                </MinisterContactContainer>
-                              )
-                            })
-                          }
-                        )}
-                      </MinistriesContactSection>
+                                    <MinistriesContactImg
+                                      style={{ width: '117px' }}
+                                    >
+                                      <MinistriesContactIcon>
+                                        <Icon type="border-mob" />
+                                      </MinistriesContactIcon>
+                                      <Img
+                                        fluid={
+                                          contact.single_contact_link.document
+                                            .data.contact_img.localFile
+                                            .childImageSharp.fluid
+                                        }
+                                        alt="Minister Section Contact Image"
+                                        className="Ministries__Contact-Img"
+                                      />
+                                    </MinistriesContactImg>
+                                    <MinistriesContactInfo>
+                                      <MinistriesPostionTitle as="h5">
+                                        {
+                                          contact.single_contact_link.document
+                                            .data.contact_position
+                                        }
+                                      </MinistriesPostionTitle>
+                                      <MinistriesFullName as="h4">
+                                        {
+                                          contact.single_contact_link.document
+                                            .data.contact_name.text
+                                        }
+                                      </MinistriesFullName>
+                                    </MinistriesContactInfo>
+                                  </MinisterContactContainer>
+                                )
+                              })
+                            }
+                          )}
+                        </MinistriesContactSection>
+                      </Fade>
                     </Fragment>
                   )
                 })

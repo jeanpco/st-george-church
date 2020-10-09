@@ -7,7 +7,7 @@ import { WidthLimiterContainer } from '../Layout/styles'
 import { Tablet, Desktop } from '../Utilities/Media'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
-import Img from 'gatsby-background-image'
+import BackgroundImage from 'gatsby-background-image'
 import {
   ContactSectionContainer,
   TeamContainer,
@@ -100,7 +100,7 @@ const Contact = ({ query: { contactData, contactUid } }) => {
                         </GalleryIconContainer>
                         {contactImages && contactFlyoutTitle ? (
                           <>
-                            <Img
+                            <BackgroundImage
                               fluid={contactImages}
                               className="Contact__Image-Circle"
                             >
@@ -117,7 +117,7 @@ const Contact = ({ query: { contactData, contactUid } }) => {
                                   ''
                                 )}
                               </Desktop>
-                            </Img>
+                            </BackgroundImage>
                           </>
                         ) : (
                           ''

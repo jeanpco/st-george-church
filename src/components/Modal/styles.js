@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { makeStyles } from '@material-ui/core/styles'
-// import { createMuiTheme } from '@material-ui/core/styles'
-
+import Title from '../Utilities/Title'
+import Text from '../Utilities/Text'
 export const useStylesMainModal = makeStyles(() => ({
   root: {
     height: '100%',
@@ -28,11 +28,6 @@ export const useStyles = makeStyles({
     transform: 'rotate(90deg)',
   },
 })
-
-// export let theme = createMuiTheme({})
-// theme = {
-//   ...theme,
-// }
 
 export const DialogContentContainer = styled.div`
   padding-left: 18px;
@@ -90,8 +85,8 @@ export const ModalLinksFooter = styled.div`
 export const MinistriesContactSection = styled.div`
   margin: 0 0 50px 30px;
 
-  h5 {
-    font-family: ${(props) => props.theme.fontFamily.primary} !important;
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin: 50px 0 50px 30px;
   }
 `
 
@@ -112,6 +107,10 @@ export const MinistriesContactImg = styled.div`
   position: relative;
   .Ministries__Contact-Img {
     width: 86px;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      width: 120px;
+    }
   }
 `
 
@@ -122,9 +121,50 @@ export const MinistriesContactIcon = styled.div`
   svg {
     width: 96px;
     height: 102px;
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      width: 135px;
+      height: 135px;
+    }
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    transform: translate(-8px, -9px);
   }
 `
 
 export const MinistriesContactInfo = styled.div`
   width: 50%;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-left: 40px;
+    width: 100%;
+  }
+`
+
+export const MinistriesContactTitle = styled(Title)`
+  font-family: ${(props) => props.theme.fontFamily.primary} !important;
+  font-size: ${(props) => props.theme.fonts.heading5};
+  text-decoration: underline;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    font-size: ${(props) => props.theme.fonts.heading4} !important;
+  }
+`
+
+export const MinistriesPostionTitle = styled(Title)`
+  font-family: ${(props) => props.theme.fontFamily.primary} !important;
+  font-size: ${(props) => props.theme.fonts.heading5} !important;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    font-size: ${(props) => props.theme.fonts.heading4} !important;
+  }
+`
+
+export const MinistriesFullName = styled(Text)`
+  font-family: ${(props) => props.theme.fontFamily.secondary} !important;
+  font-size: ${(props) => props.theme.fonts.mediumText} !important;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    font-size: ${(props) => props.theme.fonts.bigText} !important;
+  }
 `
