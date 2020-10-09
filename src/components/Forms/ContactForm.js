@@ -35,25 +35,39 @@ const ContactForm = ({
     text: '',
     done: false,
   })
+
+  const [hasError, setHasError] = useState({
+    state: false,
+    message: '',
+  })
+
   const [personName, setPersonName] = useState([])
+  const [emailState, setEmail] = useState([])
   const [open, setOpen] = useState(false)
   const [formStatus, setFormStatus] = useState({
     message: '',
     state: '',
   })
 
+  useEffect(() => {
+    getContactEmail(contactCurrent)
+  }, [])
+
   const names = []
-  const email = []
+
+  const getContactEmail = (contactTarget) => {
+    formInformation.map((contact) => {
+      if (
+        contact.single_contact_link.document.data.contact_name.text ===
+        contactTarget
+      ) {
+        return setEmail(contact.single_contact_link.document.data.contact_email)
+      }
+    })
+  }
 
   formInformation.map((contact) => {
     names.push(contact.single_contact_link.document.data.contact_name.text)
-
-    if (
-      contact.single_contact_link.document.data.contact_name.text ===
-      contactCurrent
-    ) {
-      email.push(contact.single_contact_link.document.data.contact_email)
-    }
   })
 
   const changeHandler = (e) => {
@@ -125,12 +139,20 @@ const ContactForm = ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          to: email[0],
-          from: email[0], // Use the email address or domain you verified above
+          to: emailState,
+          from: emailState, // Use the email address or domain you verified above
           subject: `${formState.email} sent you a message through your website contact form`,
           text: formState.text,
         }),
       })
+
+      if (response.status != 200) {
+        setHasError({
+          state: true,
+          message:
+            'There was an error in submitting your email. Please try again later.',
+        })
+      }
 
       if (form.status === 200 && response.status === 200) {
         // eslint-disable-next-line no-console
@@ -158,6 +180,8 @@ const ContactForm = ({
 
   const handleChange = (event) => {
     setPersonName(event.target.value)
+
+    getContactEmail(event.target.value)
   }
 
   const handleClose = () => {
@@ -293,6 +317,11 @@ const ContactForm = ({
               {formStatus.message}
             </MessageContainer>
           </MessageContainerMain>
+          {hasError.message ? (
+            <p className="Error-Message">{hasError.message}</p>
+          ) : (
+            ''
+          )}
         </ContactFormStyled>
       ) : (
         <SuccessContainer>

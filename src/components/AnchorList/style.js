@@ -91,12 +91,10 @@ export const AnchorContentDes = styled.div`
   padding-left: 43px;
   border-left: 2px solid ${(props) => props.theme.colors.black};
   width: 75%;
-  max-height: 643px;
-  min-height: 643px;
 `
 export const AnchorItemsDes = styled.div`
-  height: 588px;
   padding-right: 47px;
+  height: calc(100% - 20px);
 
   overflow: auto;
   img {
@@ -118,4 +116,8 @@ export const AnchorItemsText = styled.div`
     line-height: 0.6;
     padding-top: 16px;
   }
+`
+
+export const AnchorBodyContainer = styled.div`
+  height: 630px;
 `

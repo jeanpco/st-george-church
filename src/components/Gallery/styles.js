@@ -64,7 +64,7 @@ export const GalleryItemContent = styled.div`
   }
 `
 
-export const GallerSliderTitle = styled.div`
+export const GallerySliderTitle = styled.div`
   border-top: 2px solid black;
   border-bottom: 1px solid black;
   padding-top: 10px;

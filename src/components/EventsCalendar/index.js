@@ -75,6 +75,16 @@ const EventsCalendar = ({
     setLocale(i18n.path)
   }, [])
 
+  useEffect(() => {
+    eventDates.map((event) => {
+      if (event.toLocaleDateString() === filterDate) {
+        setSelectedDay({
+          selectedDay: new Date(),
+        })
+      }
+    })
+  }, [])
+
   const handleDayClick = (day, { selected }) => {
     setSelectedDay({
       selectedDay: selected ? undefined : day,

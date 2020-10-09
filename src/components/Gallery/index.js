@@ -18,7 +18,7 @@ import {
   GallerSliderHeader,
   GallerySliderContainer,
   GallerySliderItemsContainer,
-  GallerSliderTitle,
+  GallerySliderTitle,
   GallerySliderText,
   GallerySliderIcon,
   GalleryItemContent,
@@ -84,30 +84,30 @@ const Gallery = ({ query: { title, uid, ghostData } }) => {
                                           info.localFeatureImage.childImageSharp
                                             .fluid
                                         }
-                                        alt=""
+                                        alt="Gallery Slider Image"
                                       />
                                     ) : (
                                       ''
                                     )}
 
-                                    <GallerSliderTitle>
-                                      {info?.title ? (
+                                    {info?.title ? (
+                                      <GallerySliderTitle>
                                         <Title as="h3" type="heading8">
                                           {info.title}
                                         </Title>
-                                      ) : (
-                                        ''
-                                      )}
-                                    </GallerSliderTitle>
-                                    <GallerySliderText>
-                                      {info?.excerpt ? (
+                                      </GallerySliderTitle>
+                                    ) : (
+                                      ''
+                                    )}
+                                    {info?.excerpt ? (
+                                      <GallerySliderText>
                                         <Text type="smallText700">
                                           {info?.excerpt}
                                         </Text>
-                                      ) : (
-                                        ''
-                                      )}
-                                    </GallerySliderText>
+                                      </GallerySliderText>
+                                    ) : (
+                                      ''
+                                    )}
                                   </Link>
                                 ) : (
                                   ''
