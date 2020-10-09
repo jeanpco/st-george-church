@@ -50,8 +50,6 @@ const AnchorList = ({
   const [toggleDrawer, setToggleDrawer] = useState(false)
   const [contactPerson, setContactPerson] = useState('')
 
-  const contactFormData = contactData.contact_form.document.data
-
   const contactBody = contactData?.body[0]?.items
     ? contactData.body[0].items
     : ''
@@ -76,7 +74,6 @@ const AnchorList = ({
     ? contactData.contact_form.document.data
     : ''
 
-  console.log(contactFormData)
   useEffect(() => {
     setStateLinks(linksArray)
   }, [])
