@@ -101,6 +101,61 @@ export const MinisterContactContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 30px;
+  cursor: pointer;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    :hover {
+      .Ministries__Contact__Image-Circle {
+        background: linear-gradient(
+            0deg,
+            rgba(204, 29, 39, 0.8),
+            rgba(204, 29, 39, 0.8)
+          ),
+          url(.jpg);
+
+        border-radius: 50%;
+        opacity: 1 !important;
+
+        .Ministries__ContactImageTitle {
+          top: 53%;
+          opacity: 1;
+        }
+      }
+
+      svg,
+      p,
+      h5,
+      h6 {
+        color: ${(props) => props.theme.colors.secondary};
+      }
+    }
+  }
+
+  .Ministries__Contact__Image-Circle {
+    width: 115px;
+    height: 115px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .Ministries__ContactImageTitle {
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition-property: opacity, transform;
+      transition: 300ms ease-in-out;
+      font-size: ${(props) => props.theme.fonts.heading5};
+    }
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      width: 125px;
+      height: 125px;
+    }
+  }
 `
 
 export const MinistriesContactImg = styled.div`
@@ -128,7 +183,7 @@ export const MinistriesContactIcon = styled.div`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    transform: translate(-8px, -9px);
+    transform: translate(-5px, -5px);
   }
 `
 

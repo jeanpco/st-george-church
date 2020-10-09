@@ -98,7 +98,7 @@ const Contact = ({ query: { contactData, contactUid } }) => {
                             <Icon type="border-mob" />
                           </Tablet>
                         </GalleryIconContainer>
-                        {contactImages && contactFlyoutTitle ? (
+                        {contactFlyoutTitle ? (
                           <>
                             <BackgroundImage
                               fluid={contactImages}

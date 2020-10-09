@@ -31,8 +31,11 @@ import Icon from '~/components/Icon'
 import { WidthLimiterContainer } from '../Layout/styles'
 import { Tablet, Desktop } from '../Utilities/Media'
 import Text from '../Utilities/Text'
+import Title from '../Utilities/Title'
 
 import Img from 'gatsby-image'
+import BackgroundImage from 'gatsby-background-image'
+
 import Fade from 'react-reveal/Fade'
 import AnimatedImage from '../AnimatedImage'
 
@@ -273,7 +276,7 @@ const AnchorList = ({
                                     as="h5"
                                     type="contactHeading"
                                   >
-                                    Contact
+                                    {contactFlyoutTitle}
                                   </MinistriesContactTitle>
                                   {info.ministries_group_contact.document.data.body.map(
                                     (values) => {
@@ -284,22 +287,36 @@ const AnchorList = ({
                                               key={index}
                                               onClick={onClickHandler}
                                             >
-                                              <MinistriesContactImg
-                                                style={{ width: '117px' }}
-                                              >
+                                              <MinistriesContactImg>
                                                 <MinistriesContactIcon>
                                                   <Icon type="border-mob" />
                                                 </MinistriesContactIcon>
-                                                <Img
+
+                                                <BackgroundImage
                                                   fluid={
                                                     contact.single_contact_link
                                                       .document.data.contact_img
                                                       .localFile.childImageSharp
                                                       .fluid
                                                   }
-                                                  alt="Minister Section Contact Image"
-                                                  className="Ministries__Contact-Img"
-                                                />
+                                                  className="Ministries__Contact__Image-Circle"
+                                                >
+                                                  <Desktop>
+                                                    {contactFlyoutTitle ? (
+                                                      <Title
+                                                        as="h4"
+                                                        className={
+                                                          'Ministries__ContactImageTitle'
+                                                        }
+                                                        type="backgroundHeading"
+                                                      >
+                                                        {contactFlyoutTitle}
+                                                      </Title>
+                                                    ) : (
+                                                      ''
+                                                    )}
+                                                  </Desktop>
+                                                </BackgroundImage>
                                               </MinistriesContactImg>
                                               <MinistriesContactInfo>
                                                 <MinistriesPostionTitle as="h5">

@@ -158,7 +158,7 @@ const Modal = ({
                         </DialogContentContainer>
                         <MinistriesContactSection>
                           <MinistriesContactTitle as="h5">
-                            Contact
+                            {contactFlyoutTitle}
                           </MinistriesContactTitle>
                           {info.ministries_group_contact.document.data.body.map(
                             (info) => {
