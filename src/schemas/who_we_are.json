@@ -61,31 +61,12 @@
             "display": "list",
             "non-repeat": {},
             "repeat": {
-              "contact_image": {
-                "type": "Image",
+              "single_contact_link": {
+                "type": "Link",
                 "config": {
-                  "constraint": {},
-                  "thumbnails": [],
-                  "label": "Contact Image"
-                }
-              },
-              "contact_position": {
-                "type": "Text",
-                "config": {
-                  "label": "Contact Position"
-                }
-              },
-              "contact_name": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-                  "label": "Contact Name"
-                }
-              },
-              "contact_email": {
-                "type": "Text",
-                "config": {
-                  "label": "Contact Email"
+                  "select": "document",
+                  "label": "Single Contact Link",
+                  "placeholder": "This is to add all the single contact created"
                 }
               }
             }

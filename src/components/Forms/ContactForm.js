@@ -23,8 +23,8 @@ import { encode } from '../../utils/functions/encode'
 import axios from 'axios'
 import Button from '../Utilities/Button'
 import Text from '../Utilities/Text'
-
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+
 const ContactForm = ({
   query: { formInformation, contactCurrent, contactFormInformation },
 }) => {
@@ -46,10 +46,13 @@ const ContactForm = ({
   const email = []
 
   formInformation.map((contact) => {
-    names.push(contact.contact_name.text)
+    names.push(contact.single_contact_link.document.data.contact_name.text)
 
-    if (contact.contact_name.text === contactCurrent) {
-      email.push(contact.contact_email)
+    if (
+      contact.single_contact_link.document.data.contact_name.text ===
+      contactCurrent
+    ) {
+      email.push(contact.single_contact_link.document.data.contact_email)
     }
   })
 

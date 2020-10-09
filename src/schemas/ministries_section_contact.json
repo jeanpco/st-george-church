@@ -1,0 +1,41 @@
+{
+  "Main": {
+    "section_contact_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Section Contact Title",
+        "placeholder": "This is for the section contact title: EX: Alter Boys and Acolytes"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "ministries_single_contact": []
+        },
+        "choices": {
+          "ministries_single_contact": {
+            "type": "Slice",
+            "fieldset": "Ministries Single Contact",
+            "description": "This is to link all the contact needed for a section",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "single_contact_link": {
+                "type": "Link",
+                "config": {
+                  "select": "document",
+                  "customtypes": ["single_contact"],
+                  "label": "Single Contact Link"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

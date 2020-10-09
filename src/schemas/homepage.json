@@ -37,6 +37,7 @@
       "type": "Link",
       "config": {
         "select": "document",
+        "customtypes": ["quote"],
         "label": "Home quote"
       }
     },
@@ -44,6 +45,7 @@
       "type": "Link",
       "config": {
         "select": "document",
+        "customtypes": ["ministries"],
         "label": "Ministries Section"
       }
     },
@@ -51,6 +53,7 @@
       "type": "Link",
       "config": {
         "select": "document",
+        "customtypes": ["photo_gallery"],
         "label": "Photo Gallery"
       }
     },
@@ -58,7 +61,17 @@
       "type": "Link",
       "config": {
         "select": "document",
+        "customtypes": ["events_calendar"],
         "label": "Events Calendar"
+      }
+    },
+    "contact_section": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["who_we_are"],
+        "label": "contact section",
+        "placeholder": "This links the contact section and form"
       }
     },
     "body": {

@@ -29,6 +29,9 @@ const IndexLayout = ({
     homePage: { data: query },
   },
 }) => {
+  const contactData = query?.contact_section?.document?.data
+  const contactUid = query?.contact_section?.document?.uid
+
   const photoGalleryTitle =
     query?.photo_gallery?.document?.data?.gallery_title?.text
 
@@ -40,10 +43,10 @@ const IndexLayout = ({
   const quoteGraphic = query?.home_quote?.document?.data?.quote_graphic?.url
   const ministriesSectionTitle =
     query?.ministries_section?.document?.data?.anchor_title?.text
-  const ministriesLinks =
+
+  const ministriesInfo =
     query?.ministries_section?.document?.data?.body[0]?.items
 
-  const ministries = query?.ministries_section?.document?.data?.body?.[1]?.items
   const ministriesData = query?.ministries_section?.document?.data
 
   const eventSectionTitle =
@@ -143,10 +146,10 @@ const IndexLayout = ({
       <AnchorList
         anchorQuery={{
           title: ministriesSectionTitle,
-          ministriesLinks: ministriesLinks,
-          ministries: ministries,
+          ministries: ministriesInfo,
           ministriesData: ministriesData,
           uid: ministriesUid,
+          contactData: contactData,
         }}
       />
       <EventsCalendar
@@ -170,7 +173,12 @@ const IndexLayout = ({
       ) : (
         ''
       )}
-      <Contact />
+      <Contact
+        query={{
+          contactData: contactData,
+          contactUid: contactUid,
+        }}
+      />
     </HomePageContainer>
   )
 }

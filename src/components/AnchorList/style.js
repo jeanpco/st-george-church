@@ -95,7 +95,9 @@ export const AnchorContentDes = styled.div`
   min-height: 643px;
 `
 export const AnchorItemsDes = styled.div`
-  height: calc(100% - 50px);
+  height: 588px;
+  padding-right: 47px;
+
   overflow: auto;
   img {
     width: 100%;

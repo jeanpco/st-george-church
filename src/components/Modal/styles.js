@@ -17,6 +17,9 @@ export const ModalContent = styled.div`
   border-left: 1px solid ${(props) => props.theme.colors.black};
   height: 100%;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 export const useStyles = makeStyles({
@@ -84,9 +87,44 @@ export const ModalLinksFooter = styled.div`
   }
 `
 
+export const MinistriesContactSection = styled.div`
+  margin: 0 0 50px 30px;
+
+  h5 {
+    font-family: ${(props) => props.theme.fontFamily.primary} !important;
+  }
+`
+
 export const ModalTitleFooter = styled.div`
   padding-left: 8px;
   padding-right: 15px;
   width: 100%;
   text-align: right;
+`
+
+export const MinisterContactContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+`
+
+export const MinistriesContactImg = styled.div`
+  position: relative;
+  .Ministries__Contact-Img {
+    width: 86px;
+  }
+`
+
+export const MinistriesContactIcon = styled.div`
+  position: absolute;
+  transform: translate(-5px, -9px);
+
+  svg {
+    width: 96px;
+    height: 102px;
+  }
+`
+
+export const MinistriesContactInfo = styled.div`
+  width: 50%;
 `
