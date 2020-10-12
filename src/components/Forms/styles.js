@@ -110,7 +110,9 @@ export const FormActions = styled.div`
   margin-bottom: 18px;
 `
 
-export const MessageContainer = styled.div``
+export const MessageContainer = styled.div`
+  padding-top: 6px;
+`
 
 export const MessageContainerMain = styled.div`
   display: flex;
