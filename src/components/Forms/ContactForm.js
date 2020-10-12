@@ -314,14 +314,16 @@ const ContactForm = ({
             <MessageContainer
               className={formStatus.state ? 'Success-Message' : 'Error-Message'}
             >
-              {formStatus.message}
+              <Text type="body">{formStatus.message}</Text>
+              {hasError.message ? (
+                <Text type="body" className="Error-Message">
+                  {hasError.message}
+                </Text>
+              ) : (
+                ''
+              )}
             </MessageContainer>
           </MessageContainerMain>
-          {hasError.message ? (
-            <p className="Error-Message">{hasError.message}</p>
-          ) : (
-            ''
-          )}
         </ContactFormStyled>
       ) : (
         <SuccessContainer>
