@@ -100,7 +100,10 @@ const IndexLayout = ({
                   ''
                 )}
                 {homeIntroLink ? (
-                  <HomeIntroLink to="/" className="Home__Intro-link">
+                  <HomeIntroLink
+                    to={`#${ministriesUid}`}
+                    className="Home__Intro-link"
+                  >
                     {homeIntroLink}
                   </HomeIntroLink>
                 ) : (
