@@ -23,8 +23,8 @@ import { encode } from '../../utils/functions/encode'
 import axios from 'axios'
 import Button from '../Utilities/Button'
 import Text from '../Utilities/Text'
-
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+
 const ContactForm = ({
   query: { formInformation, contactCurrent, contactFormInformation },
 }) => {
@@ -35,22 +35,39 @@ const ContactForm = ({
     text: '',
     done: false,
   })
+
+  const [hasError, setHasError] = useState({
+    state: false,
+    message: '',
+  })
+
   const [personName, setPersonName] = useState([])
+  const [emailState, setEmail] = useState([])
   const [open, setOpen] = useState(false)
   const [formStatus, setFormStatus] = useState({
     message: '',
     state: '',
   })
 
+  useEffect(() => {
+    getContactEmail(contactCurrent)
+  }, [])
+
   const names = []
-  const email = []
+
+  const getContactEmail = (contactTarget) => {
+    formInformation.map((contact) => {
+      if (
+        contact.single_contact_link.document.data.contact_name.text ===
+        contactTarget
+      ) {
+        return setEmail(contact.single_contact_link.document.data.contact_email)
+      }
+    })
+  }
 
   formInformation.map((contact) => {
-    names.push(contact.contact_name.text)
-
-    if (contact.contact_name.text === contactCurrent) {
-      email.push(contact.contact_email)
-    }
+    names.push(contact.single_contact_link.document.data.contact_name.text)
   })
 
   const changeHandler = (e) => {
@@ -122,12 +139,20 @@ const ContactForm = ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          to: email[0],
-          from: email[0], // Use the email address or domain you verified above
+          to: emailState,
+          from: emailState, // Use the email address or domain you verified above
           subject: `${formState.email} sent you a message through your website contact form`,
           text: formState.text,
         }),
       })
+
+      if (response.status != 200) {
+        setHasError({
+          state: true,
+          message:
+            'There was an error in submitting your email. Please try again later.',
+        })
+      }
 
       if (form.status === 200 && response.status === 200) {
         // eslint-disable-next-line no-console
@@ -155,6 +180,8 @@ const ContactForm = ({
 
   const handleChange = (event) => {
     setPersonName(event.target.value)
+
+    getContactEmail(event.target.value)
   }
 
   const handleClose = () => {
@@ -287,7 +314,14 @@ const ContactForm = ({
             <MessageContainer
               className={formStatus.state ? 'Success-Message' : 'Error-Message'}
             >
-              {formStatus.message}
+              <Text type="body">{formStatus.message}</Text>
+              {hasError.message ? (
+                <Text type="body" className="Error-Message">
+                  {hasError.message}
+                </Text>
+              ) : (
+                ''
+              )}
             </MessageContainer>
           </MessageContainerMain>
         </ContactFormStyled>

@@ -21,3 +21,8 @@ exports.localizedSlug = (node) =>
   locales[node.lang].default
     ? `/${node.uid}`
     : `/${locales[node.lang].path}/${node.uid}`
+
+exports.localizedSlugGhost = (node) =>
+  locales[node.lang]
+    ? `/${node.uid}`
+    : `/${locales[node.lang].path}/${node.uid}`

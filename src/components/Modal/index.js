@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, Fragment } from 'react'
 
 import { Dialog } from '@material-ui/core'
 import Icon from '~/components/Icon'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
+import ContactDrawer from '../ContactDrawer'
+
 import {
   useStylesMainModal,
   DialogContentContainer,
@@ -15,23 +17,50 @@ import {
   ModalLinksFooter,
   ModalTitleFooter,
   ModalDialogContainer,
+  MinisterContactContainer,
+  MinistriesContactImg,
+  MinistriesContactIcon,
+  MinistriesContactSection,
+  MinistriesContactInfo,
+  MinistriesPostionTitle,
+  MinistriesFullName,
+  MinistriesContactTitle,
 } from './styles'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
 import Fade from 'react-reveal/Fade'
 import AnimatedImage from '../AnimatedImage'
 
-const Modal = ({ open, setOpen, query }) => {
+const Modal = ({
+  open,
+  setOpen,
+  query: {
+    ministries,
+    links,
+    linkIndex,
+    nextLinkText,
+    prevLinkText,
+    contactBody,
+    contactFlyoutTitle,
+    contactFlyoutAddress,
+    contactFlyoutNumber,
+    contactFormTitle,
+    contactFormInformation,
+  },
+}) => {
   const isFirstRun = useRef(true)
   const classes = useStylesMainModal()
-  const [linkState, setLinkState] = useState(query.linkIndex)
+  const [linkState, setLinkState] = useState(linkIndex)
 
-  const linksArray = query.links
+  const linksArray = links
   const currentLink = linksArray[linkState]
   const nextLink = linksArray[linkState + 1]
 
-  const ministriesArray = query.ministries
+  const ministriesArray = ministries
   const ministriesContent = []
+
+  const [toggleDrawer, setToggleDrawer] = useState(false)
+  const [contactPerson, setContactPerson] = useState('')
 
   ministriesArray?.length > 0
     ? ministriesArray.map((info) => {
@@ -46,8 +75,8 @@ const Modal = ({ open, setOpen, query }) => {
       isFirstRun.current = false
       return
     }
-    setLinkState(query.linkIndex)
-  }, [query.linkIndex])
+    setLinkState(linkIndex)
+  }, [linkIndex])
 
   const handleClickNext = () => {
     let i = linkState
@@ -67,8 +96,11 @@ const Modal = ({ open, setOpen, query }) => {
     }
   }
 
-  const nextLinkText = query.nextLinkText
-  const prevLinkText = query.prevLinkText
+  const onClickHandler = (e) => {
+    setToggleDrawer(!toggleDrawer)
+
+    setContactPerson(e.currentTarget.childNodes[1].childNodes[1].innerText)
+  }
 
   return (
     <Dialog fullScreen onClose={() => setOpen(false)} open={open}>
@@ -94,39 +126,93 @@ const Modal = ({ open, setOpen, query }) => {
             {ministriesContent?.length > 0
               ? ministriesContent.map((info, index) => {
                   return (
-                    <DialogContentContainer key={index}>
-                      <div>
-                        {info?.list_image?.localFile?.childImageSharp?.fluid ? (
-                          <AnimatedImage>
-                            <Img
-                              fluid={
-                                info.list_image.localFile.childImageSharp.fluid
-                              }
-                              alt="Ministries Image"
-                              className="Modal_Anchor-Img"
-                            />
-                          </AnimatedImage>
-                        ) : (
-                          ''
-                        )}
-                      </div>
+                    <Fragment key={index}>
                       <Fade bottom distance="30px">
-                        <ModalTextContent>
-                          {info?.list_text ? (
-                            <Text type="body">{info.list_text}</Text>
-                          ) : (
-                            ''
+                        <DialogContentContainer>
+                          <div>
+                            {info?.list_image?.localFile?.childImageSharp
+                              ?.fluid ? (
+                              <AnimatedImage>
+                                <Img
+                                  fluid={
+                                    info.list_image.localFile.childImageSharp
+                                      .fluid
+                                  }
+                                  alt="Ministries Image"
+                                  className="Modal_Anchor-Img"
+                                />
+                              </AnimatedImage>
+                            ) : (
+                              ''
+                            )}
+                          </div>
+                          <Fade bottom distance="30px">
+                            <ModalTextContent>
+                              {info?.list_text ? (
+                                <Text type="body">{info.list_text}</Text>
+                              ) : (
+                                ''
+                              )}
+                            </ModalTextContent>
+                          </Fade>
+                        </DialogContentContainer>
+                        <MinistriesContactSection>
+                          <MinistriesContactTitle as="h5">
+                            {contactFlyoutTitle}
+                          </MinistriesContactTitle>
+                          {info.ministries_group_contact.document.data.body.map(
+                            (info) => {
+                              return info.items.map((contact, index) => {
+                                return (
+                                  <MinisterContactContainer
+                                    key={index}
+                                    onClick={onClickHandler}
+                                  >
+                                    <MinistriesContactImg
+                                      style={{ width: '117px' }}
+                                    >
+                                      <MinistriesContactIcon>
+                                        <Icon type="border-mob" />
+                                      </MinistriesContactIcon>
+                                      <Img
+                                        fluid={
+                                          contact.single_contact_link.document
+                                            .data.contact_img.localFile
+                                            .childImageSharp.fluid
+                                        }
+                                        alt="Minister Section Contact Image"
+                                        className="Ministries__Contact-Img"
+                                      />
+                                    </MinistriesContactImg>
+                                    <MinistriesContactInfo>
+                                      <MinistriesPostionTitle as="h5">
+                                        {
+                                          contact.single_contact_link.document
+                                            .data.contact_position
+                                        }
+                                      </MinistriesPostionTitle>
+                                      <MinistriesFullName as="h4">
+                                        {
+                                          contact.single_contact_link.document
+                                            .data.contact_name.text
+                                        }
+                                      </MinistriesFullName>
+                                    </MinistriesContactInfo>
+                                  </MinisterContactContainer>
+                                )
+                              })
+                            }
                           )}
-                        </ModalTextContent>
+                        </MinistriesContactSection>
                       </Fade>
-                    </DialogContentContainer>
+                    </Fragment>
                   )
                 })
               : ''}
           </ModalContent>
         </ModalDialogContainer>
         <ModalLinksFooter>
-          {query.links[0] && currentLink ? (
+          {links[0] && currentLink ? (
             <div className="Modal__Footer-Links" onClick={handleClickPrev}>
               {prevLinkText}
             </div>
@@ -148,6 +234,20 @@ const Modal = ({ open, setOpen, query }) => {
           </div>
         </ModalLinksFooter>
       </div>
+      <ContactDrawer
+        toggleDrawer={toggleDrawer}
+        setToggleDrawer={setToggleDrawer}
+        query={{
+          contactCurrent: contactPerson,
+          title: contactFlyoutTitle,
+          address: contactFlyoutAddress,
+          number: contactFlyoutNumber,
+          formTitle: contactFormTitle,
+          contactFormInformation: contactFormInformation,
+          formInformation: contactBody,
+          contactFlyoutTitle: contactFlyoutTitle,
+        }}
+      />
     </Dialog>
   )
 }

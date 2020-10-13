@@ -1,12 +1,16 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+
 import Img from 'gatsby-image'
+
 import { WidthLimiterContainer } from '../Layout/styles'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
 import Icon from '~/components/Icon'
 import GallerySliderContent from '../GallerySlider'
-import { Tablet, Desktop } from '../Utilities/Media'
+import { Link } from 'gatsby'
+import { useTheme } from '@material-ui/core/styles'
+import { useMediaQuery } from '@material-ui/core'
 
 import {
   GalleryContainer,
@@ -14,164 +18,114 @@ import {
   GallerSliderHeader,
   GallerySliderContainer,
   GallerySliderItemsContainer,
-  GallerSliderTitle,
+  GallerySliderTitle,
   GallerySliderText,
   GallerySliderIcon,
   GalleryItemContent,
 } from './styles'
 
-const Gallery = ({ query }) => {
-  const [galleryState, setGalleryState] = useState([])
+const Gallery = ({ query: { title, uid, ghostData } }) => {
+  const theme = useTheme()
+  const isTablet = useMediaQuery(theme.breakpoints.down('960'))
+  const isDesktop = useMediaQuery(theme.breakpoints.up('960'))
 
-  useEffect(() => {
-    setGalleryState(galleryImageArray)
-  }, [])
+  let slideToShow = 1
 
-  const galleryImageArray = []
-  query?.content?.length > 0
-    ? query.content.map((info) => {
-        galleryImageArray.push(info)
-      })
-    : ''
+  let infinite = false
+
+  if (isDesktop) {
+    slideToShow = ghostData.length < 3 ? ghostData.length : 3
+    infinite = true
+  }
+
+  if (isTablet) {
+    slideToShow = 1.4
+    infinite = false
+  }
 
   return (
     <div>
-      <GalleryContainer id={query.uid}>
+      <GalleryContainer id={uid}>
         <WidthLimiterContainer>
           <GalleryContentContainer>
-            <Desktop>
-              <GallerSliderHeader>
-                {query?.title ? (
-                  <Title as="h2" type="heading2">
-                    {query.title}
-                  </Title>
-                ) : (
-                  ''
-                )}
-                <Icon type="cross-des" />
-              </GallerSliderHeader>
-              {query?.content?.length > 0 ? (
-                <GallerySliderContainer>
-                  <GallerySliderContent
-                    slidesToShow={3}
-                    slidesToScroll={2}
-                    infinite={true}
-                  >
-                    {query?.content
-                      ? query.content.map((info, index) => {
-                          const sliderImage = info?.gallery_img?.localFile
-                            ?.childImageSharp?.fluid
-                            ? info.gallery_img.localFile.childImageSharp.fluid
-                            : ''
-                          return (
-                            <Fragment key={index}>
-                              <GalleryItemContent>
-                                <GallerySliderItemsContainer>
-                                  {sliderImage ? (
-                                    <Img fluid={sliderImage} />
-                                  ) : (
-                                    ''
-                                  )}
-                                  <GallerSliderTitle>
-                                    {info?.gallery_section_title?.text ? (
-                                      //CHANGE TITLE
-                                      <Title as="h3" type="heading8">
-                                        {info.gallery_section_title.text}
-                                      </Title>
-                                    ) : (
-                                      ''
-                                    )}
-                                  </GallerSliderTitle>
-                                  <GallerySliderText>
-                                    {info?.gallery_section_text ? (
-                                      <Text type="smallText700">
-                                        {info.gallery_section_text}
-                                      </Text>
-                                    ) : (
-                                      ''
-                                    )}
-                                  </GallerySliderText>
-                                </GallerySliderItemsContainer>
-                                <GallerySliderIcon>
-                                  <Icon type="flower" />
-                                </GallerySliderIcon>
-                              </GalleryItemContent>
-                            </Fragment>
-                          )
-                        })
-                      : ''}
-                  </GallerySliderContent>
-                </GallerySliderContainer>
+            <GallerSliderHeader>
+              {title ? (
+                <Title as="h2" type="heading2">
+                  {title}
+                </Title>
               ) : (
                 ''
               )}
-            </Desktop>
-
-            <Tablet>
-              <GallerSliderHeader>
-                {query?.title ? (
-                  <Title as="h2" type="heading2">
-                    {query.title}
-                  </Title>
-                ) : (
-                  ''
-                )}
-                <Icon type="cross" />
-              </GallerSliderHeader>
+              <Icon type="cross-des" />
+            </GallerSliderHeader>
+            {ghostData?.length > 0 ? (
               <GallerySliderContainer>
                 <GallerySliderContent
-                  slidesToShow={1.4}
+                  slidesToShow={slideToShow}
                   slidesToScroll={1}
-                  galleryImageLength={galleryState.length}
-                  infinite={false}
+                  infinite={infinite}
+                  galleryImageLength={ghostData.length}
                 >
-                  {query.content?.length > 0
-                    ? query.content.map((info, index) => {
-                        const sliderImage = info?.gallery_img?.localFile
-                          ?.childImageSharp?.fluid
-                          ? info.gallery_img.localFile.childImageSharp.fluid
-                          : ''
+                  {ghostData
+                    ? ghostData.map((info, index) => {
                         return (
                           <Fragment key={index}>
-                            <GallerySliderItemsContainer>
-                              {sliderImage ? (
-                                <Img
-                                  fluid={sliderImage}
-                                  alt="photo gallery slider image"
-                                />
-                              ) : (
-                                ''
-                              )}
+                            <GalleryItemContent key={index}>
+                              <GallerySliderItemsContainer>
+                                {info?.slug ? (
+                                  <Link
+                                    to={info.slug}
+                                    className="Gallery__Slider_Link"
+                                  >
+                                    {info?.localFeatureImage?.childImageSharp
+                                      ?.fluid ? (
+                                      <Img
+                                        fluid={
+                                          info.localFeatureImage.childImageSharp
+                                            .fluid
+                                        }
+                                        alt="Gallery Slider Image"
+                                      />
+                                    ) : (
+                                      ''
+                                    )}
 
-                              <GallerSliderTitle>
-                                {info.gallery_section_title.text ? (
-                                  <Title as="h3" type="heading8">
-                                    {info.gallery_section_title.text}
-                                  </Title>
+                                    {info?.title ? (
+                                      <GallerySliderTitle>
+                                        <Title as="h3" type="heading8">
+                                          {info.title}
+                                        </Title>
+                                      </GallerySliderTitle>
+                                    ) : (
+                                      ''
+                                    )}
+                                    {info?.excerpt ? (
+                                      <GallerySliderText>
+                                        <Text type="smallText700">
+                                          {info?.excerpt}
+                                        </Text>
+                                      </GallerySliderText>
+                                    ) : (
+                                      ''
+                                    )}
+                                  </Link>
                                 ) : (
                                   ''
                                 )}
-                              </GallerSliderTitle>
-                              <GallerySliderText>
-                                {info?.gallery_section_text ? (
-                                  <Text type="smallText700">
-                                    {info.gallery_section_text}
-                                  </Text>
-                                ) : (
-                                  ''
-                                )}
-                              </GallerySliderText>
-                            </GallerySliderItemsContainer>
-                            <GallerySliderIcon>
-                              <Icon type="flower" />
-                            </GallerySliderIcon>
+                              </GallerySliderItemsContainer>
+                              <GallerySliderIcon>
+                                <Icon type="flower" />
+                              </GallerySliderIcon>
+                            </GalleryItemContent>
                           </Fragment>
                         )
                       })
                     : ''}
                 </GallerySliderContent>
               </GallerySliderContainer>
-            </Tablet>
+            ) : (
+              ''
+            )}
           </GalleryContentContainer>
         </WidthLimiterContainer>
       </GalleryContainer>
@@ -181,6 +135,8 @@ const Gallery = ({ query }) => {
 
 Gallery.propTypes = {
   query: PropTypes.object,
+  uid: PropTypes.string,
+  ghostData: PropTypes.object,
 }
 
 export default Gallery

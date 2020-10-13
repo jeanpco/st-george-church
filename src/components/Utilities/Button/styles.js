@@ -14,10 +14,13 @@ export const buttonUseStyles = makeStyles(() => ({
     maxWidth: 160,
     letterSpacing: '1.14px',
     textDecoration: 'underline',
-    fontSize: localTheme.fonts.heading5,
+    fontSize: localTheme.fonts.heading6,
     fontFamily: localTheme.fontFamily.secondary,
     textTransform: 'capitalize',
     fontWeight: 500,
+    ['@media (min-width:780px)']: {
+      fontSize: localTheme.fonts.heading5,
+    },
     '$:hover': {
       background: 'transparent',
     },

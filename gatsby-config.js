@@ -39,7 +39,46 @@ module.exports = {
           who_we_are: require('./src/schemas/who_we_are.json'),
           contact_form: require('./src/schemas/contact_form.json'),
           events_calendar: require('./src/schemas/events_calendar.json'),
+          single_contact: require('./src/schemas/single_contact.json'),
+          ministries_section_contact: require('./src/schemas/ministries_section_contact.json'),
         },
+      },
+    },
+    {
+      resolve: `gatsby-source-ghost`,
+      options: {
+        apiUrl: process.env.GHOST_API_URL,
+        contentApiKey: process.env.GHOST_CONTENT_API_KEY,
+        version: `v3`, // Ghost API version, optional, defaults to "v3".
+        // Pass in "v2" if your Ghost install is not on 3.0 yet!!!
+      },
+    },
+    {
+      resolve: `gatsby-plugin-ghost-images`,
+      options: {
+        // An array of node types and image fields per node
+        // Image fields must contain a valid absolute path to the image to be downloaded
+        lookup: [
+          {
+            type: `GhostPost`,
+            imgTags: [`feature_image`],
+          },
+          {
+            type: `GhostPage`,
+            imgTags: [`feature_image`],
+          },
+          {
+            type: `GhostSettings`,
+            imgTags: [`cover_image`],
+          },
+        ],
+        // Additional condition to exclude nodes
+        // Takes precedence over lookup
+        // exclude: (node) => node.ghostId === undefined,
+        // Additional information messages useful for debugging
+        verbose: true,
+        // Option to disable the module (default: false)
+        disable: false,
       },
     },
     {

@@ -75,6 +75,16 @@ const EventsCalendar = ({
     setLocale(i18n.path)
   }, [])
 
+  useEffect(() => {
+    eventDates.map((event) => {
+      if (event.toLocaleDateString() === filterDate) {
+        setSelectedDay({
+          selectedDay: new Date(),
+        })
+      }
+    })
+  }, [])
+
   const handleDayClick = (day, { selected }) => {
     setSelectedDay({
       selectedDay: selected ? undefined : day,
@@ -82,8 +92,6 @@ const EventsCalendar = ({
 
     setfilterDate(day.toLocaleDateString())
   }
-
-  console.log(eventDates)
 
   googleApiData.calendarEvents.nodes.map((event) => {
     eventDates.push(new Date(event.start.dateTime))
@@ -160,7 +168,6 @@ const EventsCalendar = ({
               )}
               {dayFilteredEvents?.length > 0
                 ? dayFilteredEvents.map((info, index) => {
-                    console.log(info.start.dateTime)
                     return (
                       <EventItemsContainer key={`Google Events -- ${index}`}>
                         <CalendarEventDates>
@@ -189,7 +196,10 @@ const EventsCalendar = ({
                             ''
                           )}
                           {eventAddress ? (
-                            <Text type="body">{eventAddress}</Text>
+                            <Text
+                              type="body"
+                              dangerouslySetInnerHTML={{ __html: eventAddress }}
+                            />
                           ) : (
                             ''
                           )}

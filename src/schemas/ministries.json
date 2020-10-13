@@ -34,22 +34,6 @@
           "youth_ministries_list": []
         },
         "choices": {
-          "ministries_links": {
-            "type": "Slice",
-            "fieldset": "Ministries Links",
-            "description": "Youth Ministries",
-            "icon": "face",
-            "display": "list",
-            "non-repeat": {},
-            "repeat": {
-              "link": {
-                "type": "Text",
-                "config": {
-                  "label": "Link"
-                }
-              }
-            }
-          },
           "youth_ministries_list": {
             "type": "Slice",
             "fieldset": "Youth Ministries List",
@@ -77,6 +61,15 @@
                 "type": "Text",
                 "config": {
                   "label": "List Text"
+                }
+              },
+              "ministries_group_contact": {
+                "type": "Link",
+                "config": {
+                  "select": "document",
+                  "customtypes": ["ministries_section_contact"],
+                  "label": "ministries_group_contact",
+                  "placeholder": "This is to ling the contact for each section: ex:Alter Boys and Acolytes"
                 }
               }
             }

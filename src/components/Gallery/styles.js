@@ -22,8 +22,18 @@ export const GallerySliderContainer = styled.div`
   margin-top: 0;
   margin-bottom: 50px;
 
+  .Gallery__Slider_Link {
+    text-decoration: none;
+    color: ${(props) => props.theme.colors.primary};
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      &:hover {
+        color: ${(props) => props.theme.colors.secondary};
+      }
+    }
+  }
+
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    width: 100%;
     margin-bottom: 180px;
     margin-top: 70px;
   }
@@ -54,7 +64,7 @@ export const GalleryItemContent = styled.div`
   }
 `
 
-export const GallerSliderTitle = styled.div`
+export const GallerySliderTitle = styled.div`
   border-top: 2px solid black;
   border-bottom: 1px solid black;
   padding-top: 10px;

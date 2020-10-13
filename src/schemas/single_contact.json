@@ -1,0 +1,31 @@
+{
+  "Main": {
+    "contact_img": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Contact Img"
+      }
+    },
+    "contact_name": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Contact Name"
+      }
+    },
+    "contact_position": {
+      "type": "Text",
+      "config": {
+        "label": "Contact Position"
+      }
+    },
+    "contact_email": {
+      "type": "Text",
+      "config": {
+        "label": "Contact Email"
+      }
+    }
+  }
+}

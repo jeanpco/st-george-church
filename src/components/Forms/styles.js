@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { theme as localTheme } from '~/utils/styles'
-import Button from '../Utilities/Button'
 
 export const theme = createMuiTheme({
   overrides: {
@@ -67,16 +66,13 @@ export const theme = createMuiTheme({
   },
 })
 
-export const ContactFormButton = styled(Button)``
-
 export const ContactFormStyled = styled.form`
   padding: 18px;
   padding-left: 0;
   padding-right: 0;
 
-  @media(min-width: ${(props) => props.theme.breakpoints.md}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     padding-right: 30px;
-
   }
 
   .Mui-focused {
@@ -85,7 +81,6 @@ export const ContactFormStyled = styled.form`
     .MuiOutlinedInput-notchedOutline {
       border-color: ${(props) => props.theme.colors.secondary} !important;
     }
-    
   }
 
   .Mui-checked {
@@ -100,27 +95,13 @@ export const ContactFormStyled = styled.form`
     padding-left: 14px;
   }
 
-  
-
- 
-
   .Success-Message {
     color: ${localTheme.colors.secondary};
   }
   .Error-Message {
     color: ${localTheme.colors.secondary};
-    font-size: ${localTheme.fonts.m_small};
     max-width: 300px;
-
-    @media (max-width: ${localTheme.breakpoints.md}) {
-      font-size: ${localTheme.fonts.s};
-    }
   }
-
-  /* .has-error,
-  .Mui-error {
-    border: ${localTheme.colors.secondary} !important;
-  } */
 `
 
 export const FormActions = styled.div`
@@ -129,7 +110,9 @@ export const FormActions = styled.div`
   margin-bottom: 18px;
 `
 
-export const MessageContainer = styled.div``
+export const MessageContainer = styled.div`
+  padding-top: 6px;
+`
 
 export const MessageContainerMain = styled.div`
   display: flex;
@@ -140,11 +123,18 @@ export const MessageContainerMain = styled.div`
   padding-right: 20px;
   flex-direction: row-reverse;
 
+  .Form__SubmitButton {
+    border: 2px solid red;
+  }
+
   .Error-Message {
     color: ${localTheme.colors.secondary};
+    font-family: ${(props) => props.theme.fonts.tertiary};
   }
   .Success-Message {
     color: green;
+    font-family: ${(props) => props.theme.fonts.tertiary};
+
     @media (max-width: ${localTheme.breakpoints.md}) {
       width: 100%;
     }

@@ -23,14 +23,17 @@ import Fade from 'react-reveal/Fade'
 
 const IndexLayout = ({
   data: {
+    allGhostPost: { nodes: ghostQuery },
+  },
+  data: {
     homePage: { data: query },
   },
 }) => {
+  const contactData = query?.contact_section?.document?.data
+  const contactUid = query?.contact_section?.document?.uid
+
   const photoGalleryTitle =
     query?.photo_gallery?.document?.data?.gallery_title?.text
-
-  const photoGallerySliderContent =
-    query?.photo_gallery.document?.data?.body?.[0]?.items
 
   const homeIntroGraphic = query?.intro_graphic?.url
   const homeIntroTitle = query?.intro_title?.text
@@ -40,10 +43,10 @@ const IndexLayout = ({
   const quoteGraphic = query?.home_quote?.document?.data?.quote_graphic?.url
   const ministriesSectionTitle =
     query?.ministries_section?.document?.data?.anchor_title?.text
-  const ministriesLinks =
+
+  const ministriesInfo =
     query?.ministries_section?.document?.data?.body[0]?.items
 
-  const ministries = query?.ministries_section?.document?.data?.body?.[1]?.items
   const ministriesData = query?.ministries_section?.document?.data
 
   const eventSectionTitle =
@@ -53,7 +56,7 @@ const IndexLayout = ({
     query?.events_calendar?.document?.data?.events_title?.text
 
   const eventAddress =
-    query?.events_calendar?.document?.data?.event_address?.text
+    query?.events_calendar?.document?.data?.event_address?.html
 
   const eventDescription =
     query?.events_calendar?.document?.data?.event_description
@@ -97,7 +100,10 @@ const IndexLayout = ({
                   ''
                 )}
                 {homeIntroLink ? (
-                  <HomeIntroLink to="/" className="Home__Intro-link">
+                  <HomeIntroLink
+                    to={`#${ministriesUid}`}
+                    className="Home__Intro-link"
+                  >
                     {homeIntroLink}
                   </HomeIntroLink>
                 ) : (
@@ -143,10 +149,10 @@ const IndexLayout = ({
       <AnchorList
         anchorQuery={{
           title: ministriesSectionTitle,
-          ministriesLinks: ministriesLinks,
-          ministries: ministries,
+          ministries: ministriesInfo,
           ministriesData: ministriesData,
           uid: ministriesUid,
+          contactData: contactData,
         }}
       />
       <EventsCalendar
@@ -159,23 +165,29 @@ const IndexLayout = ({
           noEventTitle: noEventTitle,
         }}
       />
-      {photoGalleryTitle && photoGallerySliderContent ? (
+      {photoGalleryTitle ? (
         <Gallery
           query={{
             title: photoGalleryTitle,
-            content: photoGallerySliderContent,
             uid: galleryUid,
+            ghostData: ghostQuery ? ghostQuery : '',
           }}
         />
       ) : (
         ''
       )}
-      <Contact />
+      <Contact
+        query={{
+          contactData: contactData,
+          contactUid: contactUid,
+        }}
+      />
     </HomePageContainer>
   )
 }
 
 IndexLayout.propTypes = {
   data: PropTypes.object,
+  ghostData: PropTypes.object,
 }
 export default IndexLayout
