@@ -11,7 +11,7 @@ export const ContactDrawerContent = styled.div`
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     padding-left: 50px;
     padding-right: 70px;
-    padding-top: 62px;
+    padding-top: 55px;
   }
 `
 
