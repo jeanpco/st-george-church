@@ -195,26 +195,25 @@ export const CalendarEventsContainer = styled.div`
 `
 
 export const UpcomingEventDiv = styled.div`
+  h3 {
+    width: fit-content;
+    position: relative;
+  }
+
+  h3::after {
+    content: '';
+    position: absolute;
+    top: 33px;
+    height: 2px;
+    width: 100%;
+    left: 0;
+    background-color: black;
+  }
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     position: sticky;
     top: 0;
     background: white;
     padding-bottom: 15px;
-
-    h3 {
-      width: fit-content;
-      position: relative;
-    }
-
-    h3::after {
-      content: '';
-      position: absolute;
-      top: 33px;
-      height: 2px;
-      width: 100%;
-      left: 0;
-      background-color: black;
-    }
   }
 `
 

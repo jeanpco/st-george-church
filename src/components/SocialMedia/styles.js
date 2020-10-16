@@ -18,7 +18,7 @@ export const SocialMediaContainer = styled.div`
 `
 
 export const SocialContentContainer = styled.div`
-  padding-top: 40px;
+  padding-top: 36px;
   border-top: 1px solid ${theme.colors.secondary};
 
   @media (min-width: ${theme.breakpoints.s}) {
@@ -45,6 +45,8 @@ export const LinkContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: flex-end;
+  margin-top: 10px;
+
   @media (min-width: ${theme.breakpoints.s}) {
     position: relative;
     top: 0;
@@ -56,8 +58,8 @@ export const LinkContainer = styled.div`
   }
 
   .SocialMedia__Icon {
-    width: 20px;
-    height: 20px;
+    width: 23px;
+    height: 23px;
     margin-left: 10px;
 
     @media (min-width: ${theme.breakpoints.md}) {

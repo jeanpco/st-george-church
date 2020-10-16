@@ -161,7 +161,7 @@ const EventsCalendar = ({
               {dayFilteredEvents?.length > 0 &&
               calendarTitle &&
               noEventTitle ? (
-                <UpcomingEventDiv className="test">
+                <UpcomingEventDiv>
                   <Title as="h3" type="calendarTitle">
                     {calendarTitle}
                   </Title>

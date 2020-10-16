@@ -7,9 +7,7 @@ export const ContactDrawerContainer = styled.div`
 `
 
 export const ContactDrawerContent = styled.div`
-  padding-left: 30px;
-  padding-right: 20px;
-  padding-top: 30px;
+  padding: 30px 20px 30px 30px;
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     padding-left: 50px;
     padding-right: 70px;
@@ -186,6 +184,9 @@ theme = {
         [theme.breakpoints.up('600')]: {
           borderLeft: '10px solid #CC1D27',
           maxWidth: '632px',
+          width: '50%',
+        },
+        [theme.breakpoints.up('947')]: {
           width: '43.6%',
         },
       },

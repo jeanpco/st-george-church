@@ -36,7 +36,7 @@ export const HomeQuoteContentContainer = styled.div`
 `
 export const HomeQuoteContent = styled.div`
   position: relative;
-  width: 76%;
+  width: 90%;
   margin: 0 auto;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {

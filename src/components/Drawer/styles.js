@@ -22,14 +22,19 @@ export const DrawerSocialMedia = styled.div`
     margin-bottom: 30px;
 
     .SocialMedia__Logo {
-      width: 100%;
       min-width: 147px;
+
+      @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+        width: 100%;
+      }
+
+      @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+        width: 286px;
+      }
     }
 
     .Social__Icon-Container {
-      padding-right: 20px;
       justify-content: flex-end;
-      padding-top: 5px;
 
       @media (min-width: ${(props) => props.theme.breakpoints.md}) {
         padding-top: 14px;
@@ -38,12 +43,20 @@ export const DrawerSocialMedia = styled.div`
   }
 
   .SocialMedia__Icon {
-    width: 100%;
-    height: 22px;
+    width: 27px;
     margin-right: 0;
+    margin-left: 5px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      height: 34px;
+      height: 30px;
+      margin-right: 0;
+      width: 100%;
+    }
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      height: 36px;
+      margin-right: 14px;
+      width: 100%;
     }
   }
 
