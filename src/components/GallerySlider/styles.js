@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 // import Icon from '~/components/Icon'
 
 export const GallerySliderStyling = styled.div`
+  margin-right: -22px;
   .slick-arrow,
   .slick-prev,
   .slick-next {
@@ -23,7 +24,7 @@ export const GallerySliderStyling = styled.div`
       height: 44px;
       bottom: -44px;
       top: unset;
-      right: 130px;
+      right: 101px;
       transform: translate(0, 100%);
       z-index: 1;
     }
@@ -77,13 +78,15 @@ export const GallerySliderStyling = styled.div`
   }
 `
 
-export const LinearProgressBarContainer = styled.div`
-  margin-bottom: 30px;
+export const GalleryLinearProgressBarContainer = styled.div`
+  margin-bottom: 26px;
   margin-top: 25px;
   padding-left: 10px;
+  margin-right: 18px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: none !important;
+    margin-right: 0;
   }
 
   .MuiLinearProgress-colorPrimary {

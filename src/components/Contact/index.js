@@ -99,26 +99,24 @@ const Contact = ({ query: { contactData, contactUid } }) => {
                           </Tablet>
                         </GalleryIconContainer>
                         {contactFlyoutTitle ? (
-                          <>
-                            <BackgroundImage
-                              fluid={contactImages}
-                              className="Contact__Image-Circle"
-                            >
-                              <Desktop>
-                                {contactFlyoutTitle ? (
-                                  <Title
-                                    as="h4"
-                                    className={'ContactImageTitle'}
-                                    type="backgroundHeading"
-                                  >
-                                    {contactFlyoutTitle}
-                                  </Title>
-                                ) : (
-                                  ''
-                                )}
-                              </Desktop>
-                            </BackgroundImage>
-                          </>
+                          <BackgroundImage
+                            fluid={contactImages}
+                            className="Contact__Image-Circle"
+                          >
+                            <Desktop>
+                              {contactFlyoutTitle ? (
+                                <Title
+                                  as="h4"
+                                  className={'ContactImageTitle'}
+                                  type="backgroundHeading"
+                                >
+                                  {contactFlyoutTitle}
+                                </Title>
+                              ) : (
+                                ''
+                              )}
+                            </Desktop>
+                          </BackgroundImage>
                         ) : (
                           ''
                         )}

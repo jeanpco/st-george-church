@@ -15,6 +15,7 @@ export const HomeQuoteContentContainer = styled.div`
   width: calc(100% - 40px);
   margin: 0 auto;
   max-width: 440px;
+  animation: 2s ease-out 0s 1 slideInFromLeft;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     width: 100%;
@@ -24,14 +25,25 @@ export const HomeQuoteContentContainer = styled.div`
   .Home__Quote-Graphic {
     width: 151px;
   }
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateY(-50%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
 `
 export const HomeQuoteContent = styled.div`
-  padding-right: 22px;
-  padding-left: 22px;
   position: relative;
+  width: 76%;
+  margin: 0 auto;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     width: 100%;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     padding-right: 73px;
     padding-left: 73px;
   }

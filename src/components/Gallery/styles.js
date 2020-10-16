@@ -20,7 +20,6 @@ export const GallerSliderHeader = styled.div`
 
 export const GallerySliderContainer = styled.div`
   margin-top: 0;
-  margin-bottom: 50px;
 
   .Gallery__Slider_Link {
     text-decoration: none;
@@ -34,7 +33,7 @@ export const GallerySliderContainer = styled.div`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin-bottom: 180px;
+    margin-bottom: 159px;
     margin-top: 70px;
   }
 `
@@ -47,19 +46,13 @@ export const GallerySliderItemsContainer = styled.div`
     border-right: 5px solid white;
     border-left: 5px solid white;
     :hover {
-      color: ${(props) => props.theme.colors.secondary};
       border-right: 5px solid ${(props) => props.theme.colors.black};
       border-left: 5px solid ${(props) => props.theme.colors.black};
     }
-  }
-`
 
-export const GalleryItemContent = styled.div`
-  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    :hover {
-      svg {
-        color: ${(props) => props.theme.colors.secondary};
-      }
+    &:hover + .Gallery__Flower-Icon svg {
+      color: ${(props) => props.theme.colors.secondary};
+      transform: rotate(180deg) scale(0.85);
     }
   }
 `
@@ -70,6 +63,10 @@ export const GallerySliderTitle = styled.div`
   padding-top: 10px;
   margin-top: 25px;
   padding-bottom: 7px;
+
+  h3 {
+    white-space: nowrap;
+  }
 `
 
 export const GallerySliderText = styled.div`
@@ -90,10 +87,12 @@ export const GallerySliderIcon = styled.div`
   text-align: center;
 
   svg {
-    width: 21px;
+    width: 19px;
     color: black;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      transition: transform 600ms ease 0s;
+      will-change: transform;
       width: 36px;
     }
   }

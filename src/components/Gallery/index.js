@@ -11,6 +11,7 @@ import GallerySliderContent from '../GallerySlider'
 import { Link } from 'gatsby'
 import { useTheme } from '@material-ui/core/styles'
 import { useMediaQuery } from '@material-ui/core'
+import { Tablet, Desktop } from '../Utilities/Media'
 
 import {
   GalleryContainer,
@@ -21,7 +22,6 @@ import {
   GallerySliderTitle,
   GallerySliderText,
   GallerySliderIcon,
-  GalleryItemContent,
 } from './styles'
 
 const Gallery = ({ query: { title, uid, ghostData } }) => {
@@ -56,7 +56,12 @@ const Gallery = ({ query: { title, uid, ghostData } }) => {
               ) : (
                 ''
               )}
-              <Icon type="cross-des" />
+              <Tablet>
+                <Icon type="cross" />
+              </Tablet>
+              <Desktop>
+                <Icon type="cross-des" />
+              </Desktop>
             </GallerSliderHeader>
             {ghostData?.length > 0 ? (
               <GallerySliderContainer>
@@ -69,54 +74,52 @@ const Gallery = ({ query: { title, uid, ghostData } }) => {
                   {ghostData
                     ? ghostData.map((info, index) => {
                         return (
-                          <Fragment key={index}>
-                            <GalleryItemContent key={index}>
-                              <GallerySliderItemsContainer>
-                                {info?.slug ? (
-                                  <Link
-                                    to={info.slug}
-                                    className="Gallery__Slider_Link"
-                                  >
-                                    {info?.localFeatureImage?.childImageSharp
-                                      ?.fluid ? (
-                                      <Img
-                                        fluid={
-                                          info.localFeatureImage.childImageSharp
-                                            .fluid
-                                        }
-                                        alt="Gallery Slider Image"
-                                      />
-                                    ) : (
-                                      ''
-                                    )}
+                          <Fragment key={`Gallery__Slider - ${index}`}>
+                            <GallerySliderItemsContainer>
+                              {info?.slug ? (
+                                <Link
+                                  to={info.slug}
+                                  className="Gallery__Slider_Link"
+                                >
+                                  {info?.localFeatureImage?.childImageSharp
+                                    ?.fluid ? (
+                                    <Img
+                                      fluid={
+                                        info.localFeatureImage.childImageSharp
+                                          .fluid
+                                      }
+                                      alt="Gallery Slider Image"
+                                    />
+                                  ) : (
+                                    ''
+                                  )}
 
-                                    {info?.title ? (
-                                      <GallerySliderTitle>
-                                        <Title as="h3" type="heading8">
-                                          {info.title}
-                                        </Title>
-                                      </GallerySliderTitle>
-                                    ) : (
-                                      ''
-                                    )}
-                                    {info?.excerpt ? (
-                                      <GallerySliderText>
-                                        <Text type="smallText700">
-                                          {info?.excerpt}
-                                        </Text>
-                                      </GallerySliderText>
-                                    ) : (
-                                      ''
-                                    )}
-                                  </Link>
-                                ) : (
-                                  ''
-                                )}
-                              </GallerySliderItemsContainer>
-                              <GallerySliderIcon>
-                                <Icon type="flower" />
-                              </GallerySliderIcon>
-                            </GalleryItemContent>
+                                  {info?.title ? (
+                                    <GallerySliderTitle>
+                                      <Title as="h3" type="heading8">
+                                        {info.title}
+                                      </Title>
+                                    </GallerySliderTitle>
+                                  ) : (
+                                    ''
+                                  )}
+                                  {info?.excerpt ? (
+                                    <GallerySliderText>
+                                      <Text type="smallText700">
+                                        {info?.excerpt}
+                                      </Text>
+                                    </GallerySliderText>
+                                  ) : (
+                                    ''
+                                  )}
+                                </Link>
+                              ) : (
+                                ''
+                              )}
+                            </GallerySliderItemsContainer>
+                            <GallerySliderIcon className="Gallery__Flower-Icon">
+                              <Icon type="flower" />
+                            </GallerySliderIcon>
                           </Fragment>
                         )
                       })

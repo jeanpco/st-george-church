@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import Title from '../Utilities/Title'
 
 export const CallendarSectionContainer = styled.div`
   padding-top: 20px;
@@ -36,9 +37,13 @@ export const DayPickerContainer = styled.div`
   }
 
   .date-cell {
-    padding: 8px;
+    padding: 7px;
     border: 3px solid transparent;
     border-radius: 50%;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      padding: 8px;
+    }
   }
 
   .DayPicker * {
@@ -55,7 +60,7 @@ export const DayPickerContainer = styled.div`
   .DayPicker-Body {
     font-size: 12px;
 
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
       font-size: 20px;
     }
   }
@@ -74,6 +79,7 @@ export const DayPickerContainer = styled.div`
   }
   .DayPicker-Day--today {
     font-weight: normal;
+    color: ${(props) => props.theme.colors.primary};
   }
 
   .DayPicker-Day--today:focus {
@@ -90,6 +96,11 @@ export const DayPickerContainer = styled.div`
     }
   }
 
+  .DayPicker-Day--disabled {
+    color: ${(props) => props.theme.colors.primary};
+    opacity: 0.6;
+  }
+
   .DayPicker:not(.DayPicker--interactionDisabled)
     .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
     background-color: transparent;
@@ -100,7 +111,7 @@ export const DayPickerContainer = styled.div`
     }
   }
   .DayPicker-Day--outside {
-    opacity: 0.4;
+    color: ${(props) => props.theme.colors.primary};
   }
 
   .DayPicker-Weekday {
@@ -115,7 +126,7 @@ export const DayPickerContainer = styled.div`
 
   .DayPicker-Caption {
     text-align: center;
-    font-size: 12px;
+    font-size: ${(props) => props.theme.fonts.smallText};
     width: 47%;
     margin: 0 auto;
     background: #f0e290;
@@ -143,6 +154,12 @@ export const CalendarNavMonth = styled.div`
 export const CallendarItemsContainer = styled.div`
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: flex;
+    justify-content: space-between;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    display: flex;
+    justify-content: flex-start;
   }
 `
 
@@ -150,6 +167,19 @@ export const CalendarEventsContainer = styled.div`
   overflow: auto;
   max-height: 307px;
   margin: 38px 0 10px 0;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.24);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: black;
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     max-height: 545px;
@@ -164,16 +194,50 @@ export const CalendarEventsContainer = styled.div`
   }
 `
 
+export const UpcomingEventDiv = styled.div`
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding-bottom: 15px;
+
+    h3 {
+      width: fit-content;
+      position: relative;
+    }
+
+    h3::after {
+      content: '';
+      position: absolute;
+      top: 33px;
+      height: 2px;
+      width: 100%;
+      left: 0;
+      background-color: black;
+    }
+  }
+`
+
+export const CalendarEventSubTitle = styled(Title)`
+  font-family: ${(props) => props.theme.fontFamily.primary} !important;
+  font-size: ${(props) => props.theme.fonts.heading6} !important;
+  font-weight: normal;
+  font-style: normal;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    font-size: ${(props) => props.theme.fonts.heading4} !important;
+  }
+`
+
 export const EventItemsContainer = styled.div`
-  width: 80%;
+  width: 100%;
   margin-top: 24px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin-top: 33px;
-    width: 91%;
+    margin-top: 18px;
   }
 
-  &:not(:first-of-type) {
+  &:not(:nth-of-type(2)) {
     margin-top: 16px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
@@ -191,8 +255,9 @@ export const EventItemsContainer = styled.div`
 export const CalendarEventsBodyHead = styled.div`
   margin-top: 14px;
 
-  p {
+  .Event__Address-Text {
     margin-top: 10px;
+    font-size: ${(props) => props.theme.fonts.smallText};
   }
 `
 
@@ -214,7 +279,7 @@ export const CalendarEventsIcon = styled.div`
     width: 190px;
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
     margin-left: 50px;
 
     svg {
@@ -229,7 +294,7 @@ export const CalendarEventDates = styled.div`
 
   .Formated-Date {
     font-family: ${(props) => props.theme.fontFamily.tertiary};
-    font-size: 12px;
+    font-size: ${(props) => props.theme.fonts.smallText};
     padding-right: 10px;
     text-transform: capitalize;
 

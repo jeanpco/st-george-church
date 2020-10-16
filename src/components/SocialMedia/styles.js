@@ -13,7 +13,7 @@ export const SocialMediaContainer = styled.div`
   }
 
   @media (min-width: ${theme.breakpoints.md}) {
-    margin-bottom: 0;
+    margin-bottom: 15px;
   }
 `
 
@@ -34,6 +34,10 @@ export const LogoContainer = styled.div`
 
   .SocialMedia__Logo {
     width: 166px;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      width: 286px;
+    }
   }
 `
 
@@ -54,12 +58,12 @@ export const LinkContainer = styled.div`
   .SocialMedia__Icon {
     width: 20px;
     height: 20px;
-    margin-right: 5px;
+    margin-left: 10px;
 
     @media (min-width: ${theme.breakpoints.md}) {
-      width: 30px;
-      height: 30px;
-      margin-right: 15px;
+      width: 43px;
+      height: 43px;
+      margin-left: 15px;
     }
   }
 `

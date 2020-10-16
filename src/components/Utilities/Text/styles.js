@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 export const TextStyled = styled.p`
   &.body {
     font-family: ${(props) => props.theme.fontFamily.tertiary};
-    font-size: ${(props) => props.theme.fonts.smallText};
+    font-size: ${(props) => props.theme.fonts.mediumText};
     font-weight: normal;
     font-style: normal;
     line-height: normal;
@@ -26,21 +26,18 @@ export const TextStyled = styled.p`
   }
   &.smallText500 {
     font-family: ${(props) => props.theme.fontFamily.tertiary};
-    font-size: ${(props) => props.theme.fonts.smallText};
+    font-size: ${(props) => props.theme.fonts.mediumText};
     font-weight: normal;
     font-style: normal;
-    line-height: normal;
-    span {
-      text-decoration: underline;
-    }
 
     @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
       font-size: ${(props) => props.theme.fonts.mediumText};
+      line-height: 1.7;
     }
   }
   &.smallText700 {
     font-family: ${(props) => props.theme.fontFamily.tertiary};
-    font-size: ${(props) => props.theme.fonts.smallText};
+    font-size: ${(props) => props.theme.fonts.mediumText};
     font-weight: normal;
     font-style: normal;
     line-height: normal;
@@ -50,13 +47,24 @@ export const TextStyled = styled.p`
   }
 
   &.smallText800 {
-    font-family: ${(props) => props.theme.fontFamily.secondary};
+    font-family: ${(props) => props.theme.fontFamily.primary};
     font-size: ${(props) => props.theme.fonts.smallText};
     font-weight: normal;
     font-style: normal;
     line-height: normal;
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: ${(props) => props.theme.fonts.bigText};
+    }
+  }
+
+  &.smallText900 {
+    font-family: ${(props) => props.theme.fontFamily.tertiary};
+    font-size: ${(props) => props.theme.fonts.smallText};
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: ${(props) => props.theme.fonts.body};
     }
   }
   &.bigText400 {

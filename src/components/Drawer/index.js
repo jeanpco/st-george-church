@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import LocalizedLink from '../../components/LocalizedLink'
 import {
   theme,
+  // DrawerHeaderTitle,
+  DrawerHeaderLinks,
   IconContainer,
   DrawerHeaderContent,
   DrawerHeaderContainer,
@@ -31,30 +33,26 @@ const Drawer = ({
         onClose={() => setToggleDrawer(false)}
         onOpen={() => setToggleDrawer(true)}
         open={toggleDrawer}
+        transitionDuration={{ enter: 500, exit: 500 }}
       >
         <DrawerContainer>
           <DrawerHeaderContainer>
-            <LanguageSwitcherContainer location={location} />
-
-            <IconContainer onClick={() => setToggleDrawer(false)}>
-              <Icon type="clear" />
-            </IconContainer>
+            {title ? (
+              <Title as="h2" type="menuHeading" className="Drawer__Menu-Title">
+                {title}
+              </Title>
+            ) : (
+              ''
+            )}
+            <DrawerHeaderLinks>
+              <LanguageSwitcherContainer location={location} />
+              <IconContainer onClick={() => setToggleDrawer(false)}>
+                <Icon type="clear" />
+              </IconContainer>
+            </DrawerHeaderLinks>
           </DrawerHeaderContainer>
-
           <DrawerHeaderContent>
             <div>
-              {title ? (
-                <Title
-                  as="h2"
-                  type="menuHeading"
-                  className="Drawer__Menu-Title"
-                >
-                  {title}
-                </Title>
-              ) : (
-                ''
-              )}
-
               {menuLinks?.length > 0
                 ? menuLinks.map((info, index) => {
                     // Logic in case we want to add more external links

@@ -5,7 +5,6 @@ export const ContactSectionContainer = styled.div`
 `
 
 export const TeamContainer = styled.div`
-  margin-top: 24px;
   border-top: 6px solid ${(props) => props.theme.colors.primary};
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
@@ -22,31 +21,30 @@ export const TeamHeaderContainer = styled.div`
 
 export const TeamContentContainer = styled.div`
   cursor: pointer;
-  margin-top: 24px;
-  margin-bottom: 35px;
-  display: flex;
-  flex-wrap: wrap;
+  margin-top: 50px;
 
-  > * {
-    width: 50%;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-      width: 33.33%;
-    }
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    margin-top: 50px;
-    margin-bottom: 100px;
     margin-right: 0;
-    padding: 20px;
     margin-right: 30px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 80px;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin-top: 129px;
-    margin-bottom: 100px;
+    margin-top: 137px;
     margin-right: 0;
+    padding: 0;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+    margin-top: 170px;
+    margin-right: 0;
+    padding: 0;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-row-gap: 110px;
   }
 `
 
@@ -57,6 +55,23 @@ export const ContactBodyContainer = styled.div`
   justify-content: center;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    p {
+      position: relative;
+      margin-top: 10px;
+    }
+
+    p::after {
+      content: '';
+      width: 24px;
+      height: 6px;
+      top: 111%;
+      left: 42%;
+      right: 50%;
+      position: absolute;
+      background: #cc1d27;
+      opacity: 0;
+      transform: translateY(0);
+    }
     :hover {
       .Contact__Image-Circle {
         background: linear-gradient(
@@ -78,6 +93,20 @@ export const ContactBodyContainer = styled.div`
       svg,
       p {
         color: ${(props) => props.theme.colors.secondary};
+
+        &::after {
+          content: '';
+          width: 24px;
+          height: 6px;
+          top: 111%;
+          left: 42%;
+          right: 50%;
+          position: absolute;
+          background: #cc1d27;
+          transform: translateY(5px);
+          transition: transform 0.3s ease-in, opacity 0.3s ease;
+          opacity: 1;
+        }
       }
     }
   }
@@ -102,6 +131,12 @@ export const ContactBodyContainer = styled.div`
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      width: 200px;
+      height: 200px;
+      margin-top: -35px;
+    }
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
       width: 241px;
       height: 241px;
       margin-top: -35px;
@@ -110,10 +145,14 @@ export const ContactBodyContainer = styled.div`
 `
 export const GalleryIconContainer = styled.div`
   position: absolute;
+  width: 100%;
   z-index: 1;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  svg {
+    width: 100%;
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     top: 41%;
@@ -135,14 +174,10 @@ export const ContactItemContainer = styled.div`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    max-width: 243px;
+    max-width: 174px;
   }
 `
 
 export const ContactContainer = styled.div`
-  margin: 0 auto 40px;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin: 0 0 95px;
-  }
+  margin-bottom: 40px;
 `

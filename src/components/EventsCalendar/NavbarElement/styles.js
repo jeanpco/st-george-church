@@ -26,7 +26,7 @@ export const CalendarNavbarEl = styled.div`
   }
 
   .Calendar__Btn-Prev {
-    font-size: 12px;
+    font-size: ${(props) => props.theme.fonts.smallText};
     background: transparent;
     border: none;
     display: flex;
@@ -39,7 +39,7 @@ export const CalendarNavbarEl = styled.div`
   }
 
   .Calendar__Btn-Next {
-    font-size: 12px;
+    font-size: ${(props) => props.theme.fonts.smallText};
     background: transparent;
     border: none;
     display: flex;

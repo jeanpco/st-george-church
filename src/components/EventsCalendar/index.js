@@ -29,6 +29,8 @@ import {
   CalendarEventDates,
   CalendarEventsIcon,
   EventItemsContainer,
+  CalendarEventSubTitle,
+  UpcomingEventDiv,
 } from './styles'
 import { useEffect } from 'react'
 
@@ -138,7 +140,7 @@ const EventsCalendar = ({
               <Helmet>
                 <style>{`
           .DayPicker-Day--event {
-            color: #CC1D27;
+            font-weight: bold;
           }`}</style>
               </Helmet>
               <DayPicker
@@ -152,15 +154,18 @@ const EventsCalendar = ({
                 localeUtils={MomentLocaleUtils}
                 locale={locale}
                 fixedWeeks
+                disabledDays={{ before: new Date() }}
               />
             </DayPickerContainer>
             <CalendarEventsContainer>
               {dayFilteredEvents?.length > 0 &&
               calendarTitle &&
               noEventTitle ? (
-                <Title as="h3" type="calendarTitle">
-                  {calendarTitle}
-                </Title>
+                <UpcomingEventDiv className="test">
+                  <Title as="h3" type="calendarTitle">
+                    {calendarTitle}
+                  </Title>
+                </UpcomingEventDiv>
               ) : (
                 <Title as="h3" type="calendarTitle">
                   {noEventTitle}
@@ -189,31 +194,37 @@ const EventsCalendar = ({
                         </CalendarEventDates>
                         <CalendarEventsBodyHead>
                           {info?.summary ? (
-                            <Title as="h3" type="heading3">
+                            <CalendarEventSubTitle as="h4">
                               {info.summary}
-                            </Title>
+                            </CalendarEventSubTitle>
                           ) : (
                             ''
                           )}
                           {eventAddress ? (
                             <Text
-                              type="body"
+                              type="smallText900"
                               dangerouslySetInnerHTML={{ __html: eventAddress }}
+                              className="Event__Address-Text"
                             />
                           ) : (
                             ''
                           )}
                         </CalendarEventsBodyHead>
                         <CalenderEventsBodyText>
-                          {eventDescription ? (
+                          {info.description && eventDescription ? (
                             <Text
-                              type="body"
+                              type="smallText900"
+                              className="Event__Description-Text"
+                            >
+                              {info.description}
+                            </Text>
+                          ) : (
+                            <Text
+                              type="smallText900"
                               className="Event__Description-Text"
                             >
                               {eventDescription}
                             </Text>
-                          ) : (
-                            ''
                           )}
                         </CalenderEventsBodyText>
                         <CalendarEventsIcon>

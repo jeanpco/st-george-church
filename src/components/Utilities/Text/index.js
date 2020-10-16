@@ -38,6 +38,7 @@ Text.propTypes = {
     'smallText400',
     'smallText700',
     'smallText800',
+    'smallText900',
     'bigText400',
     'link',
     'link primary',
