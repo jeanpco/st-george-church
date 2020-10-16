@@ -80,8 +80,12 @@ const AnchorList = ({
   }, [])
 
   useEffect(() => {
-    setanchorInfo([ministries[0]])
+    if (ministries) {
+      setanchorInfo([ministries[0]])
+    }
   }, [])
+
+  console.log(ministries)
 
   const linksArray = []
 
