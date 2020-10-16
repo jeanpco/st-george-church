@@ -23,7 +23,7 @@ export const DrawerSocialMedia = styled.div`
 
     .SocialMedia__Logo {
       width: 100%;
-      min-width: 141px;
+      min-width: 147px;
     }
 
     .Social__Icon-Container {
