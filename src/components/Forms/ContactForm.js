@@ -23,7 +23,8 @@ import { encode } from '../../utils/functions/encode'
 import axios from 'axios'
 import Button from '../Utilities/Button'
 import Text from '../Utilities/Text'
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+import Icon from '~/components/Icon'
 
 const ContactForm = ({
   query: { formInformation, contactCurrent, contactFormInformation },
@@ -90,7 +91,7 @@ const ContactForm = ({
           email: '',
           text: '',
         })
-      }, 500)
+      }, 100)
     }
   }, [formSuccess])
 
@@ -162,7 +163,9 @@ const ContactForm = ({
           state: validationOnSubmit.state,
         })
 
-        setFormState({ ...formState, done: formState.done === true })
+        setTimeout(() => {
+          setFormState({ ...formState, done: formState.done === true })
+        }, 3000)
       }
     } catch (err) {
       const errors = err.response.data.errors
@@ -225,7 +228,11 @@ const ContactForm = ({
               onChange={handleChange}
               fullWidth
               displayEmpty
-              IconComponent={ArrowDownwardIcon}
+              IconComponent={() => (
+                <div className="MuiSvgIcon-root-42 MuiSelect-icon-11">
+                  <Icon type="arrow-select" />
+                </div>
+              )}
             >
               <MenuItem value="">{contactCurrent}</MenuItem>
               {names.map((name, index) => (
@@ -285,7 +292,7 @@ const ContactForm = ({
             label={
               contactFormInformation?.form_field_text
                 ? contactFormInformation.form_field_text
-                : 'Text'
+                : 'Message'
             }
             onChange={changeHandler}
             placeholder={'Enter your message'}

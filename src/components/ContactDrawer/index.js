@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   theme,
-  IconContainer,
-  DrawerHeaderContent,
-  DrawerHeaderContainer,
-  DrawerSocialMedia,
-  DrawerContainer,
+  ContactDrawerContent,
+  ContactIconContainer,
+  ContactDrawerHeaderContent,
+  ContactDrawerHeaderContainer,
+  ContactDrawerSocialMedia,
+  ContactDrawerContainer,
   ContactFlyoutContent,
   ContactAddress,
   ContactNumber,
@@ -25,7 +26,7 @@ const ContactDrawer = ({ toggleDrawer, setToggleDrawer, query }) => {
     ? query.contactFormInformation
     : ''
 
-  const contactCurrent = query.contactCurrent
+  const contactCurrent = query?.contactCurrent ? query.contactCurrent : ''
 
   return (
     <ThemeProvider theme={theme}>
@@ -34,61 +35,66 @@ const ContactDrawer = ({ toggleDrawer, setToggleDrawer, query }) => {
         onOpen={() => setToggleDrawer(true)}
         open={toggleDrawer}
         anchor={'right'}
+        transitionDuration={{ enter: 500, exit: 500 }}
       >
-        <DrawerContainer>
-          <DrawerHeaderContainer>
-            <IconContainer onClick={() => setToggleDrawer(false)}>
-              <Icon type="clear" />
-            </IconContainer>
-          </DrawerHeaderContainer>
-
-          <DrawerHeaderContent>
-            {query?.contactFlyoutTitle ? (
-              <Title as="h2" type="menuHeading" className="Drawer__Menu-Title">
-                {query.contactFlyoutTitle}
-              </Title>
-            ) : (
-              ''
-            )}
-
-            <DrawerSocialMedia>
-              <SocialMedia customClassName="Social-Media-Container">
-                <ContactFlyoutContent>
-                  <ContactAddress>
-                    {query?.address ? (
-                      <Text type="smallText700">{query.address}</Text>
-                    ) : (
-                      ''
-                    )}
-                  </ContactAddress>
-                  <ContactNumber>
-                    {query?.number ? (
-                      <Text type="smallText700">{query.number}</Text>
-                    ) : (
-                      ''
-                    )}
-                  </ContactNumber>
-                </ContactFlyoutContent>
-              </SocialMedia>
-
-              {query?.formTitle ? (
-                <Title as="h3" type="contactHeading">
-                  {query.formTitle}
+        <ContactDrawerContainer>
+          <ContactDrawerContent>
+            <ContactDrawerHeaderContainer>
+              {query?.contactFlyoutTitle ? (
+                <Title
+                  as="h2"
+                  type="menuHeading"
+                  className="Drawer__Menu-Title"
+                >
+                  {query.contactFlyoutTitle}
                 </Title>
               ) : (
                 ''
               )}
-            </DrawerSocialMedia>
+              <ContactIconContainer onClick={() => setToggleDrawer(false)}>
+                <Icon type="clear" />
+              </ContactIconContainer>
+            </ContactDrawerHeaderContainer>
 
-            <ContactForm
-              query={{
-                formInformation: formInformation,
-                contactFormInformation: contactFormInformation,
-                contactCurrent: contactCurrent,
-              }}
-            />
-          </DrawerHeaderContent>
-        </DrawerContainer>
+            <ContactDrawerHeaderContent>
+              <ContactDrawerSocialMedia>
+                <SocialMedia customClassName="Contact-Social-Media-Container">
+                  <ContactFlyoutContent>
+                    <ContactAddress>
+                      {query?.address ? (
+                        <Text type="smallText700">{query.address}</Text>
+                      ) : (
+                        ''
+                      )}
+                    </ContactAddress>
+                    <ContactNumber>
+                      {query?.number ? (
+                        <Text type="smallText700">{query.number}</Text>
+                      ) : (
+                        ''
+                      )}
+                    </ContactNumber>
+                  </ContactFlyoutContent>
+                </SocialMedia>
+                {query?.formTitle ? (
+                  <Title as="h3" type="contactHeading">
+                    {query.formTitle}
+                  </Title>
+                ) : (
+                  ''
+                )}
+              </ContactDrawerSocialMedia>
+
+              <ContactForm
+                query={{
+                  formInformation: formInformation,
+                  contactFormInformation: contactFormInformation,
+                  contactCurrent: contactCurrent,
+                }}
+              />
+            </ContactDrawerHeaderContent>
+          </ContactDrawerContent>
+        </ContactDrawerContainer>
       </SwipeableDrawer>
     </ThemeProvider>
   )

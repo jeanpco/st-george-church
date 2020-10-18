@@ -4,6 +4,13 @@ import { theme as localTheme } from '~/utils/styles'
 
 export const DrawerContainer = styled.div`
   height: 100%;
+  padding-left: 30px;
+  padding-right: 31px;
+
+  @media (min-width: ${localTheme.breakpoints.lg}) {
+    margin-left: 70px;
+    padding-right: 35px;
+  }
 `
 
 export const IconContainer = styled.div`
@@ -11,38 +18,52 @@ export const IconContainer = styled.div`
 `
 
 export const DrawerSocialMedia = styled.div`
-  @media (min-width: ${localTheme.breakpoints.md}) {
-    max-width: 400px;
-  }
-
   .Social-Media-Container {
-    margin-bottom: 0;
+    margin-bottom: 30px;
 
     .SocialMedia__Logo {
-      width: 147px;
+      min-width: 147px;
 
-      @media (min-width: ${localTheme.breakpoints.s}) {
-        width: 127px;
+      @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+        width: 100%;
       }
 
-      @media (min-width: ${localTheme.breakpoints.md}) {
-        width: 219px;
-        margin-bottom: 15px;
+      @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+        width: 286px;
       }
     }
 
     .Social__Icon-Container {
-      justify-content: flex-start;
+      justify-content: flex-end;
+
+      @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+        padding-top: 14px;
+      }
+    }
+  }
+
+  .SocialMedia__Icon {
+    width: 27px;
+    margin-right: 0;
+    margin-left: 5px;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      height: 30px;
+      margin-right: 0;
+      width: 100%;
+    }
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      height: 36px;
+      margin-right: 14px;
+      width: 100%;
     }
   }
 
   .Social__Logo-Container {
     margin-left: 0;
-    margin-right: 16px;
-
-    @media (min-width: ${localTheme.breakpoints.md}) {
-      margin-right: 27px;
-    }
+    width: 100%;
+    padding-right: 5px;
   }
 `
 
@@ -50,25 +71,55 @@ export const DrawerHeaderContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100% - 68px);
-  padding-left: 34px;
-  margin-top: -13px;
+  height: calc(100% - 70px);
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    height: calc(100% - 126px);
+  }
 
   .Drawer__Menu-Title {
     margin-bottom: 14px;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      margin-bottom: 24px;
+    }
   }
 `
 export const DrawerHeaderContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 31px;
   padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+
+  h2 {
+    position: relative;
+    width: fit-content;
+  }
+
+  h2::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #cc1d27;
+    top: 20px;
+    position: absolute;
+    left: 0;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      top: 40px;
+      height: 3px;
+    }
+  }
 
   @media (min-width: ${localTheme.breakpoints.md}) {
-    padding-right: 45;
-    padding-top: 47;
+    padding-top: 40px;
+    margin-bottom: 28px;
   }
+`
+
+export const DrawerHeaderLinks = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 export const DrawerMenuText = styled.div`
@@ -88,6 +139,7 @@ export const DrawerMenuText = styled.div`
     font-weight: normal;
     font-style: normal;
     line-height: 1.3;
+    letter-spacing: -1px;
     align-items: center;
     display: inline-block;
     position: relative;
@@ -95,9 +147,10 @@ export const DrawerMenuText = styled.div`
       display: none;
     }
 
-    @media (min-width: ${localTheme.breakpoints.md}) {
-      font-size: ${localTheme.fonts.heading4};
+    @media (min-width: ${localTheme.breakpoints.l}) {
+      font-size: ${localTheme.fonts.heading3};
       line-height: 1.3;
+
       .Menu__Icon-Arrow {
         position: absolute;
         padding-left: 25px;
@@ -107,13 +160,15 @@ export const DrawerMenuText = styled.div`
         visibility: hidden;
         display: inline;
         opacity: 0;
-        transition: visibility 0s, opacity 0.5s linear;
+        transition: visibility 0s, opacity 0.5s linear, transform 0.3s ease-out;
+        transform: translateX(-10px);
       }
 
       &:hover {
         svg {
           visibility: visible;
           opacity: 1;
+          transform: translateX(0);
         }
       }
 
@@ -150,16 +205,19 @@ theme = {
       root: {
         width: '100%',
         [theme.breakpoints.up('600')]: {
+          borderRight: '10px solid #CC1D27',
           maxWidth: '632px',
-          width: '43%',
+          width: '50%',
+        },
+        [theme.breakpoints.up('900')]: {
+          maxWidth: '632px',
+          width: '43.6%',
         },
       },
     },
     MuiDrawer: {
       paper: {
-        [theme.breakpoints.up('600')]: {
-          borderRight: `3px solid ${localTheme.colors.secondary}`,
-        },
+        boxShadow: 'none',
       },
     },
     MuiBackdrop: {

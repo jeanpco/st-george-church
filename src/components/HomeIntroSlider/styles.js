@@ -13,7 +13,6 @@ export const SliderStyling = styled.div`
 
   .slick-prev {
     display: none !important;
-    /* display: block; */
     position: absolute;
     margin: 0px;
     padding: 0px;
@@ -39,7 +38,6 @@ export const SliderStyling = styled.div`
 
   .slick-next {
     display: none !important;
-    /* display: block; */
     position: absolute;
     margin: 0px;
     padding: 0px;
@@ -72,7 +70,6 @@ export const SliderStyling = styled.div`
   }
 
   .slick-slide {
-    padding-top: 35px;
     min-width: 1px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {

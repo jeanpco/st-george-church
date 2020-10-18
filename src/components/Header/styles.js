@@ -27,6 +27,10 @@ export const HeaderTitle = styled.div`
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
+
+  @media (min-width: ${theme.breakpoints.xs}) {
+    margin-right: 30px;
+  }
 `
 
 export const MenuContainer = styled.div`
@@ -40,11 +44,11 @@ export const MenuContainer = styled.div`
 
   .Header__button {
     position: relative;
-    bottom: 2px;
+    padding-left: 5px;
   }
 
   .Header__Graphic {
-    width: 16px;
+    width: 13px;
     height: 30px;
     margin-right: 12px;
 

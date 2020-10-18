@@ -40,6 +40,7 @@ import { Line } from './assets/Line'
 import { AddDes } from './assets/AddDes'
 import { CalendarLine } from './assets/CalendarLine'
 import { BigArrowForwoard } from './assets/BigArrowForwoard'
+import { ArrowSelect } from './assets/ArrowSelect'
 
 const Icon = ({ type }) => {
   switch (type) {
@@ -123,6 +124,8 @@ const Icon = ({ type }) => {
       return <Line />
     case 'calendar-line':
       return <CalendarLine />
+    case 'arrow-select':
+      return <ArrowSelect />
     default:
       return ''
   }

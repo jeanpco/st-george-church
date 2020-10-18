@@ -66,7 +66,7 @@ export const validateAll = (form, formState) => {
     }
   } else {
     return {
-      message: 'Success !',
+      message: '',
       state: true,
     }
   }

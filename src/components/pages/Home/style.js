@@ -23,6 +23,7 @@ export const DesktopIntroContainer = styled.div`
 
 export const SliderContainer = styled.div`
   width: 100%;
+  margin-top: -5px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     width: 50%;
@@ -50,7 +51,8 @@ export const HomeIntroContainer = styled.div`
 export const HomeIntroContentContainer = styled.div`
   max-width: 480px;
   width: 100%;
-  margin: 20px auto;
+  padding: 20px;
+  margin: 0 auto;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     max-width: 520px;
@@ -70,16 +72,35 @@ export const HomeIntroTitle = styled(Title)`
 export const HomeIntroLink = styled(LocalizedLink)`
   color: ${(props) => props.theme.colors.black};
   font-family: ${(props) => props.theme.fontFamily.secondary};
+  font-size: ${(props) => props.theme.fonts.smallText};
+  width: fit-content;
+  position: relative;
+  text-decoration: none;
 
-  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     font-size: ${(props) => props.theme.fonts.bigText};
+  }
+
+  &::after {
+    content: '';
+    width: 100%;
+    top: 14px;
+    height: 1px;
+    position: absolute;
+    background: black;
+    left: 0;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      top: 27px;
+      height: 2px;
+    }
   }
 `
 
 export const HomeIntroText = styled(Text)`
   display: flex;
   justify-content: center;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   line-height: 1.6 !important;
 
   @media (min-width: ${(props) => props.theme.breakpoints.lg}) {

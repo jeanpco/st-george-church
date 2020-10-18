@@ -35,7 +35,6 @@ Title.propTypes = {
     'overline',
     'menuHeading',
     'contactHeading',
-    'successTitle',
     'backgroundHeading',
     'calendarTitle',
   ]),

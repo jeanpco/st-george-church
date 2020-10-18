@@ -13,12 +13,12 @@ export const SocialMediaContainer = styled.div`
   }
 
   @media (min-width: ${theme.breakpoints.md}) {
-    margin-bottom: 0;
+    margin-bottom: 15px;
   }
 `
 
 export const SocialContentContainer = styled.div`
-  padding-top: 40px;
+  padding-top: 36px;
   border-top: 1px solid ${theme.colors.secondary};
 
   @media (min-width: ${theme.breakpoints.s}) {
@@ -34,6 +34,10 @@ export const LogoContainer = styled.div`
 
   .SocialMedia__Logo {
     width: 166px;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      width: 286px;
+    }
   }
 `
 
@@ -41,6 +45,8 @@ export const LinkContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: flex-end;
+  margin-top: 10px;
+
   @media (min-width: ${theme.breakpoints.s}) {
     position: relative;
     top: 0;
@@ -52,14 +58,14 @@ export const LinkContainer = styled.div`
   }
 
   .SocialMedia__Icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
+    width: 23px;
+    height: 23px;
+    margin-left: 10px;
 
     @media (min-width: ${theme.breakpoints.md}) {
-      width: 30px;
-      height: 30px;
-      margin-right: 15px;
+      width: 43px;
+      height: 43px;
+      margin-left: 15px;
     }
   }
 `

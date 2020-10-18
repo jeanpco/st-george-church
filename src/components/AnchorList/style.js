@@ -47,6 +47,10 @@ export const AnchorLinks = styled.div`
       color: ${(props) => props.theme.colors.secondary} !important;
       cursor: pointer;
     }
+
+    svg {
+      transform: rotate(180deg) scale(0.85);
+    }
   }
 
   .anchor_links {
@@ -64,6 +68,13 @@ export const AnchorLinks = styled.div`
 
 export const AnchorIconLink = styled.div`
   padding-right: 21px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    svg {
+      transition: transform 600ms ease 0s;
+      will-change: transform;
+    }
+  }
 `
 
 export const AnchorIconTitle = styled.div`
@@ -73,7 +84,6 @@ export const AnchorIconTitle = styled.div`
 `
 
 export const AnchorLinksContainerDes = styled.div`
-  width: 40%;
   padding-right: 15px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
@@ -95,10 +105,22 @@ export const AnchorContentDes = styled.div`
 export const AnchorItemsDes = styled.div`
   padding-right: 47px;
   height: calc(100% - 20px);
-
   overflow: auto;
+
   img {
     width: 100%;
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.24);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: black;
   }
 `
 
@@ -114,7 +136,7 @@ export const AnchorItemsText = styled.div`
     float: left;
     padding-right: 12px;
     line-height: 0.6;
-    padding-top: 16px;
+    margin-top: 13px;
   }
 `
 

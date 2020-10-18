@@ -12,7 +12,7 @@ export const buttonUseStyles = makeStyles(() => ({
     borderRadius: '0px',
     width: 'auto',
     maxWidth: 160,
-    letterSpacing: '1.14px',
+    letterSpacing: '-1px',
     textDecoration: 'underline',
     fontSize: localTheme.fonts.heading6,
     fontFamily: localTheme.fontFamily.secondary,

@@ -67,26 +67,29 @@ export const TitleStyled = styled.p`
   }
 
   &.heading7 {
-    font-family: ${theme.fontFamily.primary};
-    font-size: ${theme.fonts.heading7};
+    font-family: ${theme.fontFamily.secondary};
+    font-size: ${theme.fonts.overline};
     color: ${theme.colors.secondary};
     line-height: 1.3;
     font-style: normal;
     font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: -1px;
     @media (min-width: ${theme.breakpoints.md}) {
-      font-size: ${theme.fonts.heading4};
+      font-size: ${theme.fonts.heading6};
       line-height: 1.3;
     }
   }
 
   &.heading8 {
-    font-family: ${theme.fontFamily.secondary};
-    font-size: ${theme.fonts.heading7};
+    font-family: ${theme.fontFamily.primary};
+    font-size: ${theme.fonts.heading6};
+    text-transform: capitalize;
     line-height: 1.3;
     font-style: normal;
     font-weight: normal;
     @media (min-width: ${theme.breakpoints.md}) {
-      font-size: ${theme.fonts.heading6};
+      font-size: ${theme.fonts.heading4};
       line-height: 1.3;
     }
   }
@@ -119,7 +122,6 @@ export const TitleStyled = styled.p`
     font-weight: normal;
     font-style: normal;
     color: ${theme.colors.secondary};
-    text-decoration: underline;
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading3};
       line-height: 1, 3;
@@ -138,23 +140,15 @@ export const TitleStyled = styled.p`
     }
   }
 
-  &.successTitle {
-    font-family: ${theme.fontFamily.tertiary};
-    font-size: ${theme.fonts.heading6};
-    line-height: 1.4;
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: ${(props) => props.theme.fonts.heading6};
-    }
-  }
-
   &.contactHeading {
     font-family: ${theme.fontFamily.secondary};
     font-size: ${theme.fonts.heading6};
     line-height: 1.3;
+    letter-spacing: -1px;
     font-weight: normal;
     font-style: normal;
     color: ${theme.colors.primary};
-    text-decoration: underline;
+    /* text-decoration: underline; */
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading5};
       line-height: 1, 3;

@@ -2,7 +2,9 @@ import styled from '@emotion/styled'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { theme as localTheme } from '~/utils/styles'
 
-export const theme = createMuiTheme({
+export let theme = createMuiTheme({})
+theme = {
+  ...theme,
   overrides: {
     MuiFormControl: {
       root: {
@@ -13,6 +15,10 @@ export const theme = createMuiTheme({
       root: {
         width: '100%',
         border: '1px solid',
+        padding: '10px',
+        [theme.breakpoints.up('600')]: {
+          padding: '15px',
+        },
       },
       select: {
         '&:focus': {
@@ -57,22 +63,31 @@ export const theme = createMuiTheme({
         color: localTheme.colors.primary,
         fontFamily: localTheme.fontFamily.tertiary,
         opacity: 1,
-        padding: 18,
+        padding: '18px',
+        [theme.breakpoints.down('600')]: {
+          maxHeight: '45px',
+        },
       },
       notchedOutline: {
         borderColor: localTheme.colors.primary,
       },
     },
   },
-})
+}
 
 export const ContactFormStyled = styled.form`
-  padding: 18px;
-  padding-left: 0;
-  padding-right: 0;
-
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    padding-right: 30px;
+  }
+
+  .MuiSvgIcon-root-42.MuiSelect-icon-11 {
+    position: absolute;
+    right: 17px;
+    display: inline-block;
+    pointer-events: none;
+    transform: translate(0%, 7%);
+  }
+  .MuiSelect-iconOpen {
+    transform: rotate(180deg);
   }
 
   .Mui-focused {
@@ -88,7 +103,7 @@ export const ContactFormStyled = styled.form`
   }
 
   #body {
-    height: 80px !important;
+    height: 60px !important;
   }
 
   #name-option {
@@ -144,13 +159,12 @@ export const MessageContainerMain = styled.div`
 export const FormSelectLabel = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 20px;
   margin-top: 20px;
   margin-right: 30px;
   padding-bottom: 15px;
 
   p {
-    padding-right: 30px;
+    padding-right: 13px;
   }
 `
 
@@ -173,7 +187,12 @@ export const SuccesContent = styled.div`
 `
 
 export const SuccessTitle = styled.div`
-  padding-top: 8px;
+  font-family: ${(props) => props.theme.fontFamily.tertiary};
+  font-size: ${(props) => props.theme.fonts.heading6};
+  line-height: 1.4;
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    font-size: ${(props) => props.theme.fonts.heading6};
+  }
 `
 export const SuccessText = styled.div`
   margin-top: 25px;

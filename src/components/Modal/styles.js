@@ -20,6 +20,22 @@ export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.24);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: black;
+  }
+
+  /* for firefox */
+  scrollbar-color: black lightGrey;
+  scrollbar-width: thin;
 `
 
 export const useStyles = makeStyles({
@@ -30,7 +46,8 @@ export const useStyles = makeStyles({
 })
 
 export const DialogContentContainer = styled.div`
-  padding-left: 18px;
+  padding-left: 20px;
+  padding-right: 20px;
 
   .Modal_Anchor-Img {
     width: 100%;
@@ -55,8 +72,6 @@ export const ModalTextContent = styled.div`
   height: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
-  word-break: break-word;
-  width: 94%;
 
   p::first-letter {
     color: ${(props) => props.theme.colors.secondary};
@@ -71,22 +86,22 @@ export const ModalTextContent = styled.div`
 `
 export const ModalLinksFooter = styled.div`
   display: flex;
-  padding: 14px 14px 0 15px;
+  padding: 20px 14px 0 15px;
 
   .Modal__Footer-Links {
     color: ${(props) => props.theme.colors.secondary};
     font-family: ${(props) => props.theme.fontFamily.secondary};
-    font-size: ${(props) => props.theme.fonts.overline};
+    font-size: ${(props) => props.theme.fonts.mediumText};
     text-decoration: none;
     text-transform: uppercase;
   }
 `
 
 export const MinistriesContactSection = styled.div`
-  margin: 0 0 50px 30px;
-
+  padding-left: 20px;
+  padding-bottom: 20px;
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin: 50px 0 50px 30px;
+    margin: 50px 0 0 0;
   }
 `
 
@@ -102,6 +117,7 @@ export const MinisterContactContainer = styled.div`
   align-items: center;
   margin-top: 30px;
   cursor: pointer;
+  padding-left: 5px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     :hover {

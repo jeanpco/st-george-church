@@ -3,7 +3,10 @@ import PropTypes from 'prop-types'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { GallerySliderStyling, LinearProgressBarContainer } from './styles'
+import {
+  GallerySliderStyling,
+  GalleryLinearProgressBarContainer,
+} from './styles'
 import ArrowLeft from '~/components/GalleryArrow/ArrowLeft'
 import ArrowRight from '~/components/GalleryArrow/ArrowRight'
 import { LinearProgress } from '@material-ui/core'
@@ -58,13 +61,13 @@ const GallerySliderContent = ({
         {children}
       </Slider>
 
-      <LinearProgressBarContainer>
+      <GalleryLinearProgressBarContainer>
         <LinearProgress
           color="primary"
           variant="determinate"
           value={normalise(sliderStateIndex.index)}
         />
-      </LinearProgressBarContainer>
+      </GalleryLinearProgressBarContainer>
     </GallerySliderStyling>
   )
 }
