@@ -87,7 +87,6 @@ exports.sourceNodes = async ({ actions }, options = defaultOptions) => {
       'https://www.googleapis.com/robot/v1/metadata/x509/test-962%40field-office-guessjs.iam.gserviceaccount.com',
   }
 
-  console.log(process.env.PRIVATE_KEY.replace(/\\n/gm, '\n'))
   const { createNode } = actions
   const {
     assumedUser,
