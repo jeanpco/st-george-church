@@ -40,6 +40,7 @@
     "gatsby-source-ghost": "^4.2.0",
     "gatsby-source-prismic": "^3.2.1",
     "gatsby-transformer-sharp": "^2.5.15",
+    "googleapis": "^61.0.0",
     "http-proxy-middleware": "^1.0.5",
     "lodash": "^4.17.15",
     "moment": "^2.27.0",
