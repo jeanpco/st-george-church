@@ -38,7 +38,6 @@
     "gatsby-source-cosmicjs": "^1.1.0",
     "gatsby-source-filesystem": "^2.2.4",
     "gatsby-source-ghost": "^4.2.0",
-    "gatsby-source-google-calendar-events": "file:gatsby-source-google-calendar-events",
     "gatsby-source-prismic": "^3.2.1",
     "gatsby-transformer-sharp": "^2.5.15",
     "http-proxy-middleware": "^1.0.5",
