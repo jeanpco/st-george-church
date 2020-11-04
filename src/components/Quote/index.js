@@ -5,11 +5,11 @@ import {
   HomeQuoteContainer,
   HomeQuoteContentContainer,
   HomeQuoteContent,
+  HomeQuoteContentGraph,
 } from './styles'
 
 import { Tablet, Desktop } from '../Utilities/Media'
 import Text from '../Utilities/Text'
-import Icon from '~/components/Icon'
 import { WidthLimiterContainer } from '../Layout/styles'
 import Fade from 'react-reveal/Fade'
 
@@ -19,16 +19,15 @@ const Quote = ({ query }) => {
       <Tablet>
         <HomeQuoteContainer>
           <HomeQuoteContentContainer>
+            <HomeQuoteContentGraph>
+              <img src={query.graphic ? query.graphic : ''} alt="" />
+            </HomeQuoteContentGraph>
             <Fade bottom distance="30px">
-              <Icon type="horizontal-line" />
               <HomeQuoteContent>
-                <img src={query.graphic ? query.graphic : ''} alt="" />
-
                 <Text as="p" type="bigText400">
                   {query.text ? query.text : ''}
                 </Text>
               </HomeQuoteContent>
-              <Icon type="horizontal-line" />
             </Fade>
           </HomeQuoteContentContainer>
         </HomeQuoteContainer>
@@ -39,22 +38,18 @@ const Quote = ({ query }) => {
           <HomeQuoteContainer>
             <HomeQuoteContentContainer>
               <Fade bottom distance="30px">
-                <div>
-                  <Icon type="horizontal-line-des" />
-                </div>
                 <HomeQuoteContent>
                   <Text as="p" type="bigText400">
                     {query.text ? query.text : ''}
                   </Text>
+                </HomeQuoteContent>
+                <HomeQuoteContentGraph>
                   <img
                     src={query.graphic ? query.graphic : ''}
                     alt="quote graphic"
                     className="Home__Quote-Graphic"
                   />
-                </HomeQuoteContent>
-                <div>
-                  <Icon type="horizontal-line-des" />
-                </div>
+                </HomeQuoteContentGraph>
               </Fade>
             </HomeQuoteContentContainer>
           </HomeQuoteContainer>

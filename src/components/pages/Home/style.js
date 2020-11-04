@@ -118,6 +118,7 @@ export const HomeIntroText = styled(Text)`
 `
 
 export const HomeIntroBodyContainer = styled.div`
+  margin-top: 25px;
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     max-width: 60%;
     margin: 0 auto;
@@ -125,5 +126,6 @@ export const HomeIntroBodyContainer = styled.div`
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     max-width: 55%;
+    margin-top: 0;
   }
 `
