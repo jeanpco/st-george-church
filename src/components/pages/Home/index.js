@@ -15,6 +15,7 @@ import {
   DesktopIntroContainer,
   SliderContainer,
   HomeIntroLink,
+  HomeIntroBodyContainer,
 } from './style'
 import { WidthLimiterContainer } from '../../Layout/styles'
 import Img from 'gatsby-image'
@@ -76,42 +77,72 @@ const IndexLayout = ({
         <DesktopIntroContainer>
           <HomeIntroContainer>
             <HomeIntroContentContainer>
-              <Fade bottom distance="30px">
-                {homeIntroGraphic ? (
-                  <img
-                    src={homeIntroGraphic}
-                    alt="home intro graphic"
-                    className="Home__Intro-Graphic"
-                  />
-                ) : (
-                  ''
-                )}
-                {homeIntroTitle ? (
-                  <HomeIntroTitle as="h1" type="heading1">
-                    {homeIntroTitle}
-                  </HomeIntroTitle>
-                ) : (
-                  ' '
-                )}
-                {homeIntroText ? (
-                  <HomeIntroText as="p" type="smallText700">
-                    {homeIntroText}
-                  </HomeIntroText>
-                ) : (
-                  ''
-                )}
-                {homeIntroLink ? (
-                  <HomeIntroLink
-                    to={`#${ministriesUid}`}
-                    className="Home__Intro-link"
-                  >
-                    {homeIntroLink}
-                  </HomeIntroLink>
-                ) : (
-                  ''
-                )}
-              </Fade>
+              <HomeIntroBodyContainer>
+                <Fade bottom distance="30px">
+                  {homeIntroGraphic ? (
+                    <img
+                      src={homeIntroGraphic}
+                      alt="home intro graphic"
+                      className="Home__Intro-Graphic"
+                    />
+                  ) : (
+                    ''
+                  )}
+                  {homeIntroTitle ? (
+                    <HomeIntroTitle as="h1" type="heading1">
+                      {homeIntroTitle}
+                    </HomeIntroTitle>
+                  ) : (
+                    ' '
+                  )}
+                  {homeIntroText ? (
+                    <HomeIntroText as="p" type="smallText700">
+                      {homeIntroText}
+                    </HomeIntroText>
+                  ) : (
+                    ''
+                  )}
+                  {homeIntroLink ? (
+                    <HomeIntroLink
+                      to={`#${ministriesUid}`}
+                      className="Home__Intro-link"
+                    >
+                      {homeIntroLink}
+                    </HomeIntroLink>
+                  ) : (
+                    ''
+                  )}
+                </Fade>
+              </HomeIntroBodyContainer>
             </HomeIntroContentContainer>
+            <Desktop>
+              <SliderContainer>
+                {query?.body[1].items.length > 0 ? (
+                  <SliderContent
+                    slidesToShow={1}
+                    slidesToScroll={1}
+                    autoplay={true}
+                    imgLength={query.body[1].items.length}
+                  >
+                    {query.body[1].items?.length > 0
+                      ? query.body[1].items.map((img, index) => {
+                          const sliderImage = img?.slider_img?.localFile
+                            ?.childImageSharp?.fluid
+                            ? img.slider_img.localFile.childImageSharp.fluid
+                            : ''
+                          return (
+                            <AnimatedImage key={index}>
+                              <Img fluid={sliderImage} />
+                            </AnimatedImage>
+                          )
+                        })
+                      : ''}
+                  </SliderContent>
+                ) : (
+                  ''
+                )}
+              </SliderContainer>
+            </Desktop>
           </HomeIntroContainer>
           <Tablet>
             <SliderContainer>
@@ -141,34 +172,6 @@ const IndexLayout = ({
               )}
             </SliderContainer>
           </Tablet>
-          <Desktop>
-            <SliderContainer>
-              {query?.body[1].items.length > 0 ? (
-                <SliderContent
-                  slidesToShow={1}
-                  slidesToScroll={1}
-                  autoplay={true}
-                  imgLength={query.body[1].items.length}
-                >
-                  {query.body[1].items?.length > 0
-                    ? query.body[1].items.map((img, index) => {
-                        const sliderImage = img?.slider_img?.localFile
-                          ?.childImageSharp?.fluid
-                          ? img.slider_img.localFile.childImageSharp.fluid
-                          : ''
-                        return (
-                          <AnimatedImage key={index}>
-                            <Img fluid={sliderImage} />
-                          </AnimatedImage>
-                        )
-                      })
-                    : ''}
-                </SliderContent>
-              ) : (
-                ''
-              )}
-            </SliderContainer>
-          </Desktop>
         </DesktopIntroContainer>
       </WidthLimiterContainer>
       <Quote

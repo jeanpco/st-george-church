@@ -15,19 +15,18 @@ export const DesktopIntroContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    flex-direction: row;
-    align-items: center;
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-top: -25px;
   }
 `
 
 export const SliderContainer = styled.div`
   width: 100%;
-  margin-top: -5px;
 
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    width: 50%;
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    position: relative;
     order: 2;
+    width: 50%;
   }
 `
 
@@ -37,29 +36,39 @@ export const HomeIntroContainer = styled.div`
   order: 2;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    width: 50%;
     order: 1;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    padding-right: 100px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     .Home__Intro-Graphic {
       width: 262px;
     }
   }
 `
 export const HomeIntroContentContainer = styled.div`
-  max-width: 480px;
   width: 100%;
   padding: 20px;
   margin: 0 auto;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    max-width: 520px;
+    /* max-width: 520px; */
     padding: 0 20px;
     margin-top: 35px;
     margin-left: auto;
-    margin-right: initial;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    background: ${(props) => props.theme.colors.blue};
+    padding: 0;
+    margin-top: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `
 
@@ -105,5 +114,16 @@ export const HomeIntroText = styled(Text)`
 
   @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
     padding-bottom: 47px;
+  }
+`
+
+export const HomeIntroBodyContainer = styled.div`
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+    max-width: 60%;
+    margin: 0 auto;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    max-width: 55%;
   }
 `

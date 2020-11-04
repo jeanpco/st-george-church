@@ -98,6 +98,7 @@ export const HeaderContainer = styled.header`
       top: 10px;
       width: 500px;
       height: 200px;
+      z-index: 1;
     }
   }
 `
