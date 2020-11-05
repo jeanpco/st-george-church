@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { truncateBody, truncateHeader } from '../../utils/functions/truncate'
 
 import Img from 'gatsby-image'
 
@@ -22,6 +23,8 @@ import {
   GallerySliderTitle,
   GallerySliderText,
   GallerySliderIcon,
+  GalleryImgText,
+  GalleryUpperText,
 } from './styles'
 
 const Gallery = ({ query: { title, uid, ghostData } }) => {
@@ -75,44 +78,61 @@ const Gallery = ({ query: { title, uid, ghostData } }) => {
                     ? ghostData.map((info, index) => {
                         return (
                           <Fragment key={`Gallery__Slider - ${index}`}>
+                            <GalleryImgText>
+                              {info?.tags?.length > 0
+                                ? info.tags.map((tag, index) => {
+                                    if (tag.slug === 'gallery') {
+                                      return (
+                                        <GalleryUpperText
+                                          key={`Gallery-Upper-Text - ${index}`}
+                                          className="gallery-upper-text"
+                                        >
+                                          gallery
+                                        </GalleryUpperText>
+                                      )
+                                    }
+                                  })
+                                : ''}
+                            </GalleryImgText>
                             <GallerySliderItemsContainer>
                               {info?.slug ? (
-                                <Link
-                                  to={info.slug}
-                                  className="Gallery__Slider_Link"
-                                >
-                                  {info?.localFeatureImage?.childImageSharp
-                                    ?.fluid ? (
-                                    <Img
-                                      fluid={
-                                        info.localFeatureImage.childImageSharp
-                                          .fluid
-                                      }
-                                      alt="Gallery Slider Image"
-                                    />
-                                  ) : (
-                                    ''
-                                  )}
-
-                                  {info?.title ? (
-                                    <GallerySliderTitle>
-                                      <Title as="h3" type="heading8">
-                                        {info.title}
-                                      </Title>
-                                    </GallerySliderTitle>
-                                  ) : (
-                                    ''
-                                  )}
-                                  {info?.excerpt ? (
-                                    <GallerySliderText>
-                                      <Text type="smallText700">
-                                        {info?.excerpt}
-                                      </Text>
-                                    </GallerySliderText>
-                                  ) : (
-                                    ''
-                                  )}
-                                </Link>
+                                <>
+                                  <Link
+                                    to={info.slug}
+                                    className="Gallery__Slider_Link"
+                                  >
+                                    {info?.localFeatureImage?.childImageSharp
+                                      ?.fluid ? (
+                                      <Img
+                                        fluid={
+                                          info.localFeatureImage.childImageSharp
+                                            .fluid
+                                        }
+                                        alt="Gallery Slider Image"
+                                      />
+                                    ) : (
+                                      ''
+                                    )}
+                                    {info?.title ? (
+                                      <GallerySliderTitle>
+                                        <Title as="h3" type="heading8">
+                                          {truncateHeader(info.title)}
+                                        </Title>
+                                      </GallerySliderTitle>
+                                    ) : (
+                                      ''
+                                    )}
+                                    {info?.excerpt ? (
+                                      <GallerySliderText>
+                                        <Text type="smallText700">
+                                          {truncateBody(info.excerpt)}
+                                        </Text>
+                                      </GallerySliderText>
+                                    ) : (
+                                      ''
+                                    )}
+                                  </Link>
+                                </>
                               ) : (
                                 ''
                               )}

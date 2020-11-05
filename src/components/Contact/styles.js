@@ -1,9 +1,5 @@
 import styled from '@emotion/styled'
 
-export const ContactSectionContainer = styled.div`
-  padding-top: 20px;
-`
-
 export const TeamContainer = styled.div`
   border-top: 6px solid ${(props) => props.theme.colors.primary};
 

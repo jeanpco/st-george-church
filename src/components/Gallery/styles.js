@@ -1,7 +1,15 @@
 import styled from '@emotion/styled'
+import Text from '~/components/Utilities/Text'
+
+export const GalleryUpperText = styled(Text)`
+  text-transform: capitalize;
+  font-family: ${(props) => props.theme.fontFamily.primary} !important;
+`
 
 export const GalleryContainer = styled.div`
   padding-top: 20px;
+  background: ${(props) => props.theme.colors.blue};
+  padding-bottom: 130px;
 `
 
 export const GalleryContentContainer = styled.div`
@@ -33,7 +41,6 @@ export const GallerySliderContainer = styled.div`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin-bottom: 159px;
     margin-top: 70px;
   }
 `
@@ -43,8 +50,9 @@ export const GallerySliderItemsContainer = styled.div`
   margin-bottom: 20px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    border-right: 5px solid white;
-    border-left: 5px solid white;
+    border-right: 5px solid ${(props) => props.theme.colors.blue};
+    border-left: 5px solid ${(props) => props.theme.colors.blue};
+    margin-bottom: 112px;
     :hover {
       border-right: 5px solid ${(props) => props.theme.colors.black};
       border-left: 5px solid ${(props) => props.theme.colors.black};
@@ -64,8 +72,12 @@ export const GallerySliderTitle = styled.div`
   margin-top: 25px;
   padding-bottom: 7px;
 
+  /* possible solution instead of truncate to be removed if not */
+
   h3 {
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `
 
@@ -76,10 +88,6 @@ export const GallerySliderText = styled.div`
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     height: 81px;
-  }
-
-  p {
-    padding: 0 40px;
   }
 `
 
@@ -95,5 +103,16 @@ export const GallerySliderIcon = styled.div`
       will-change: transform;
       width: 36px;
     }
+  }
+`
+
+export const GalleryImgText = styled.div`
+  position: relative;
+
+  .gallery-upper-text {
+    position: absolute;
+    z-index: 1;
+    left: 10px;
+    top: 2px;
   }
 `

@@ -9,7 +9,6 @@ import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
 import BackgroundImage from 'gatsby-background-image'
 import {
-  ContactSectionContainer,
   TeamContainer,
   TeamHeaderContainer,
   TeamContentContainer,
@@ -59,9 +58,9 @@ const Contact = ({ query: { contactData, contactUid } }) => {
   }
 
   return (
-    <ContactSectionContainer id={contactUid}>
+    <>
       <WidthLimiterContainer>
-        <TeamContainer>
+        <TeamContainer id={contactUid}>
           <TeamHeaderContainer>
             {contactSectionTitle ? (
               <Title as="h2" type="heading2">
@@ -169,7 +168,7 @@ const Contact = ({ query: { contactData, contactUid } }) => {
           }}
         />
       </WidthLimiterContainer>
-    </ContactSectionContainer>
+    </>
   )
 }
 
