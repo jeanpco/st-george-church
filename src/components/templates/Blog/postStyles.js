@@ -3,12 +3,17 @@ import Title from '~/components/Utilities/Title'
 import {
   MinisterContactContainer,
   MinistriesContactInfo,
+  MinistriesContactIcon,
 } from '../../Modal/styles'
+
+export const ArticleContactIcon = styled(MinistriesContactIcon)`
+  transform: translate(-4px, -9px) !important;
+`
 
 export const ArticleContactContainer = styled(MinisterContactContainer)`
   .Ministries__Contact__Image-Circle {
     width: 61px;
-    height: 61px;
+    height: 62px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       width: 61px;
@@ -29,8 +34,8 @@ export const ArticleContactContainer = styled(MinisterContactContainer)`
   }
 
   svg {
-    width: 70px !important;
-    height: 70px !important;
+    width: 68px !important;
+    height: 80px !important;
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       width: 70px;
       height: 70px;

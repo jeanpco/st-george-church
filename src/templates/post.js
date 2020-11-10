@@ -10,6 +10,7 @@ import ContactDrawer from '../components/ContactDrawer'
 
 import {
   PostContainer,
+  ArticleContactIcon,
   ArticleContentContainer,
   ArticleContactInfo,
   PostItemsContainer,
@@ -24,7 +25,6 @@ import Icon from '~/components/Icon'
 
 import {
   MinistriesContactImg,
-  MinistriesContactIcon,
   MinistriesPostionTitle,
   MinistriesFullName,
 } from '../components/Modal/styles'
@@ -134,9 +134,9 @@ const Post = ({ data, location }) => {
                           {articleContactFullName === authors ? (
                             <ArticleContactContainer onClick={onClickHandler}>
                               <MinistriesContactImg>
-                                <MinistriesContactIcon>
+                                <ArticleContactIcon>
                                   <Icon type="border-mob" />
-                                </MinistriesContactIcon>
+                                </ArticleContactIcon>
 
                                 {articleContactImg ? (
                                   <BackgroundImage
