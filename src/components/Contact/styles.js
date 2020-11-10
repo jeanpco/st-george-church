@@ -114,6 +114,8 @@ export const ContactBodyContainer = styled.div`
     position: relative;
     display: flex;
     align-items: center;
+    border-radius: 100%;
+    overflow: hidden;
 
     .ContactImageTitle {
       color: white;

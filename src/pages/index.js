@@ -235,7 +235,6 @@ export const query = graphql`
         }
       }
     }
-
     allGhostPost(filter: { tags: { elemMatch: { slug: { eq: $locale } } } }) {
       nodes {
         tags {

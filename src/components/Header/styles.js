@@ -92,13 +92,13 @@ export const HeaderContainer = styled.header`
   }
 
   .Header__Logo {
+    z-index: 1;
     position: relative;
     left: 8px;
     @media (min-width: ${theme.breakpoints.md}) {
       top: 10px;
       width: 500px;
       height: 200px;
-      z-index: 1;
     }
   }
 `
