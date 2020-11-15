@@ -47,10 +47,7 @@ export const HomeQuoteContent = styled.div`
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     max-width: 100%;
-    padding-top: 50px;
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-bottom: 22px;
+    padding: 50px 60px 60px 22px;
     margin-top: 0;
   }
 

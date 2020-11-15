@@ -37,6 +37,9 @@ const IndexLayout = ({
   const photoGalleryTitle =
     query?.photo_gallery?.document?.data?.gallery_title?.text
 
+  const recentArticlesImgTag =
+    query?.photo_gallery?.document?.data?.gallery_image_tag?.text
+
   const homeIntroGraphic = query?.intro_graphic?.url
   const homeIntroTitle = query?.intro_title?.text
   const homeIntroText = query?.intro_text
@@ -89,7 +92,7 @@ const IndexLayout = ({
                     ''
                   )}
                   {homeIntroTitle ? (
-                    <HomeIntroTitle as="h1" type="heading1">
+                    <HomeIntroTitle as="h2" type="heading1">
                       {homeIntroTitle}
                     </HomeIntroTitle>
                   ) : (
@@ -199,9 +202,10 @@ const IndexLayout = ({
           noEventTitle: noEventTitle,
         }}
       />
-      {photoGalleryTitle ? (
+      {photoGalleryTitle && recentArticlesImgTag ? (
         <Gallery
           query={{
+            imgTag: recentArticlesImgTag,
             title: photoGalleryTitle,
             uid: galleryUid,
             ghostData: ghostQuery ? ghostQuery : '',

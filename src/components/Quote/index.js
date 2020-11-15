@@ -19,14 +19,22 @@ const Quote = ({ query }) => {
       <Tablet>
         <HomeQuoteContainer>
           <HomeQuoteContentContainer>
-            <HomeQuoteContentGraph>
-              <img src={query.graphic ? query.graphic : ''} alt="" />
-            </HomeQuoteContentGraph>
+            {query?.graphic ? (
+              <HomeQuoteContentGraph>
+                <img src={query.graphic ? query.graphic : ''} alt="" />
+              </HomeQuoteContentGraph>
+            ) : (
+              ''
+            )}
             <Fade bottom distance="30px">
               <HomeQuoteContent>
-                <Text as="p" type="bigText400">
-                  {query.text ? query.text : ''}
-                </Text>
+                {query?.text ? (
+                  <Text as="p" type="bigText400">
+                    {query.text ? query.text : ''}
+                  </Text>
+                ) : (
+                  ''
+                )}
               </HomeQuoteContent>
             </Fade>
           </HomeQuoteContentContainer>
@@ -39,17 +47,25 @@ const Quote = ({ query }) => {
             <HomeQuoteContentContainer>
               <Fade bottom distance="30px">
                 <HomeQuoteContent>
-                  <Text as="p" type="bigText400">
-                    {query.text ? query.text : ''}
-                  </Text>
+                  {query?.text ? (
+                    <Text as="p" type="bigText400">
+                      {query.text ? query.text : ''}
+                    </Text>
+                  ) : (
+                    ''
+                  )}
                 </HomeQuoteContent>
-                <HomeQuoteContentGraph>
-                  <img
-                    src={query.graphic ? query.graphic : ''}
-                    alt="quote graphic"
-                    className="Home__Quote-Graphic"
-                  />
-                </HomeQuoteContentGraph>
+                {query?.graphic ? (
+                  <HomeQuoteContentGraph>
+                    <img
+                      src={query.graphic ? query.graphic : ''}
+                      alt="quote graphic"
+                      className="Home__Quote-Graphic"
+                    />
+                  </HomeQuoteContentGraph>
+                ) : (
+                  ''
+                )}
               </Fade>
             </HomeQuoteContentContainer>
           </HomeQuoteContainer>

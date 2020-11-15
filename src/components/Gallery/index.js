@@ -27,7 +27,7 @@ import {
   GalleryUpperText,
 } from './styles'
 
-const Gallery = ({ query: { title, uid, ghostData } }) => {
+const Gallery = ({ query: { title, uid, ghostData, imgTag } }) => {
   const theme = useTheme()
   const isTablet = useMediaQuery(theme.breakpoints.down('960'))
   const isDesktop = useMediaQuery(theme.breakpoints.up('960'))
@@ -83,12 +83,18 @@ const Gallery = ({ query: { title, uid, ghostData } }) => {
                                 ? info.tags.map((tag, index) => {
                                     if (tag.slug === 'gallery') {
                                       return (
-                                        <GalleryUpperText
-                                          key={`Gallery-Upper-Text - ${index}`}
-                                          className="gallery-upper-text"
-                                        >
-                                          gallery
-                                        </GalleryUpperText>
+                                        <>
+                                          {imgTag ? (
+                                            <GalleryUpperText
+                                              key={`Gallery-Upper-Text - ${index}`}
+                                              className="gallery-upper-text"
+                                            >
+                                              {imgTag}
+                                            </GalleryUpperText>
+                                          ) : (
+                                            ''
+                                          )}
+                                        </>
                                       )
                                     }
                                   })
