@@ -115,10 +115,25 @@ export const PostItemsContainer = styled.div`
       margin-top: 28px;
     }
 
+    p:nth-of-type(2) {
+      position: relative;
+      color: ${(props) => props.theme.colors.secondary};
+      margin-left: 30px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -28px;
+        border-left: 5px solid;
+        height: 100%;
+        width: 10px;
+      }
+    }
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       p:nth-of-type(2) {
         position: relative;
         color: ${(props) => props.theme.colors.secondary};
+        margin-left: 50px;
 
         &::before {
           content: '';

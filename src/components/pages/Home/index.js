@@ -40,6 +40,8 @@ const IndexLayout = ({
   const recentArticlesImgTag =
     query?.photo_gallery?.document?.data?.gallery_image_tag?.text
 
+  const blogPageLink = query?.photo_gallery?.document?.data?.blog_page_link.text
+
   const homeIntroGraphic = query?.intro_graphic?.url
   const homeIntroTitle = query?.intro_title?.text
   const homeIntroText = query?.intro_text
@@ -208,6 +210,7 @@ const IndexLayout = ({
             imgTag: recentArticlesImgTag,
             title: photoGalleryTitle,
             uid: galleryUid,
+            blogPageLink: blogPageLink,
             ghostData: ghostQuery ? ghostQuery : '',
           }}
         />

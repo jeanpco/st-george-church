@@ -115,7 +115,7 @@ const Header = ({ location }) => {
       <WidthLimiterContainer className="Header__WidthContainer">
         <HeaderContainer>
           <Tablet>
-            <Link to={'/'}>
+            <Link to={i18n.locale === 'en-ca' ? '/' : '/fr'}>
               <img
                 src={logo ? logo : ''}
                 alt="header logo"
@@ -124,7 +124,7 @@ const Header = ({ location }) => {
             </Link>
           </Tablet>
           <Desktop>
-            <Link to={'/'}>
+            <Link to={i18n.locale === 'en-ca' ? '/' : '/fr'}>
               <img
                 src={desktopLogo ? desktopLogo : ''}
                 alt="header logo"

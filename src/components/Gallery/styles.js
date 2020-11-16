@@ -28,6 +28,27 @@ export const GallerSliderHeader = styled.div`
 
 export const GallerySliderContainer = styled.div`
   margin-top: 0;
+  position: relative;
+
+  .allArticles__Gallery-Link {
+    font-family: ${(props) => props.theme.fontFamily.secondary};
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 18px;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      font-size: 24px;
+      display: block;
+      position: absolute;
+      margin: 0px;
+      padding: 0px;
+      bottom: 0;
+      right: 168px;
+      left: unset;
+      bottom: -73px;
+    }
+  }
 
   .Gallery__Slider_Link {
     text-decoration: none;

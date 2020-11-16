@@ -32,6 +32,9 @@ export const query = graphql`
           document {
             ... on PrismicPhotoGallery {
               data {
+                blog_page_link {
+                  text
+                }
                 gallery_title {
                   text
                 }
