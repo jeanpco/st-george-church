@@ -2,14 +2,15 @@ import styled from '@emotion/styled'
 
 export const BlogContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-row-gap: 50px;
   grid-column-gap: 20px;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
+    padding-bottom: 100px;
   }
 `
 
@@ -79,6 +80,11 @@ export const BlogPostIcon = styled.div`
 export const BlogPageHeader = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 90px;
-  margin-bottom: 90px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-top: 90px;
+    margin-bottom: 90px;
+  }
 `

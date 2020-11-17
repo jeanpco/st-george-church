@@ -48,7 +48,6 @@ export const ArticleContactContainer = styled(MinisterContactContainer)`
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     width: 100%;
-    padding-left: 20px;
   }
 `
 
@@ -186,16 +185,15 @@ export const ContactInfoContainer = styled.div`
   .Article__Contact__Publish {
     margin-top: 10px !important;
     font-weight: bold;
+    white-space: nowrap;
+    opacity: 0.6;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    width: 25%;
+    width: 250px;
     flex-direction: column;
     align-items: flex-end;
     margin-top: 0;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    padding-right: 16px;
+    margin-right: 40px;
   }
 `
