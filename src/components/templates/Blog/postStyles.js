@@ -89,16 +89,21 @@ export const PostItemsContainer = styled.div`
   .content-body {
     h1 {
       margin-top: 38px;
+      font-size: ${(props) => props.theme.fonts.heading5};
 
       @media (min-width: ${(props) => props.theme.breakpoints.md}) {
         margin-top: 76px;
+        font-size: ${(props) => props.theme.fonts.heading3};
       }
     }
 
     h2 {
       margin-top: 30px;
+      font-weight: normal;
+      font-size: ${(props) => props.theme.fonts.heading6};
       @media (min-width: ${(props) => props.theme.breakpoints.md}) {
         margin-top: 60px;
+        font-size: ${(props) => props.theme.fonts.heading5};
       }
     }
 
