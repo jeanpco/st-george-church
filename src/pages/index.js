@@ -32,7 +32,13 @@ export const query = graphql`
           document {
             ... on PrismicPhotoGallery {
               data {
+                blog_page_link {
+                  text
+                }
                 gallery_title {
+                  text
+                }
+                gallery_image_tag {
                   text
                 }
               }
@@ -235,7 +241,6 @@ export const query = graphql`
         }
       }
     }
-
     allGhostPost(filter: { tags: { elemMatch: { slug: { eq: $locale } } } }) {
       nodes {
         tags {

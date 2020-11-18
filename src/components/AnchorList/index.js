@@ -85,8 +85,6 @@ const AnchorList = ({
     }
   }, [])
 
-  console.log(ministries)
-
   const linksArray = []
 
   ministries

@@ -159,7 +159,7 @@ export const CallendarItemsContainer = styled.div`
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
 `
 
@@ -189,7 +189,7 @@ export const CalendarEventsContainer = styled.div`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    margin-left: 70px;
+    width: 50%;
     margin-top: 46px;
   }
 `

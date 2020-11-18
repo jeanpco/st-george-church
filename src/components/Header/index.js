@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher'
 import LocaleContext from '../../context/LocaleProvider'
 import { useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import {
   HeaderContainer,
   HeaderBg,
@@ -114,20 +115,22 @@ const Header = ({ location }) => {
       <WidthLimiterContainer className="Header__WidthContainer">
         <HeaderContainer>
           <Tablet>
-            <div>
+            <Link to={i18n.locale === 'en-ca' ? '/' : '/fr'}>
               <img
                 src={logo ? logo : ''}
                 alt="header logo"
                 className="Header__Logo"
               />
-            </div>
+            </Link>
           </Tablet>
           <Desktop>
-            <img
-              src={desktopLogo ? desktopLogo : ''}
-              alt="header logo"
-              className="Header__Logo"
-            />
+            <Link to={i18n.locale === 'en-ca' ? '/' : '/fr'}>
+              <img
+                src={desktopLogo ? desktopLogo : ''}
+                alt="header logo"
+                className="Header__Logo"
+              />
+            </Link>
             <MenuContainer>
               <TitleContainer>
                 <HeaderTitle>
