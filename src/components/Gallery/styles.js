@@ -1,9 +1,13 @@
 import styled from '@emotion/styled'
-import Text from '~/components/Utilities/Text'
 
-export const GalleryUpperText = styled(Text)`
-  text-transform: capitalize;
-  font-family: ${(props) => props.theme.fontFamily.primary} !important;
+export const GalleryUpperImg = styled.div`
+  svg {
+    width: 80%;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      width: 100%;
+    }
+  }
 `
 
 export const GalleryContainer = styled.div`
@@ -131,9 +135,15 @@ export const GalleryImgText = styled.div`
   position: relative;
 
   .gallery-upper-text {
+    color: white;
     position: absolute;
     z-index: 1;
-    left: 10px;
-    top: 2px;
+    right: -4px;
+    top: 0;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+      right: 10px;
+      top: 2px;
+    }
   }
 `

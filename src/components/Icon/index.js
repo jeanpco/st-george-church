@@ -41,6 +41,7 @@ import { AddDes } from './assets/AddDes'
 import { CalendarLine } from './assets/CalendarLine'
 import { BigArrowForwoard } from './assets/BigArrowForwoard'
 import { ArrowSelect } from './assets/ArrowSelect'
+import { ImageIcon } from './assets/ImageIcon'
 
 const Icon = ({ type }) => {
   switch (type) {
@@ -126,6 +127,8 @@ const Icon = ({ type }) => {
       return <CalendarLine />
     case 'arrow-select':
       return <ArrowSelect />
+    case 'image-icon':
+      return <ImageIcon />
     default:
       return ''
   }

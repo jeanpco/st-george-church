@@ -107,6 +107,57 @@ export const PostItemsContainer = styled.div`
       }
     }
 
+    h3 {
+      margin-top: 30px;
+      font-weight: normal;
+      @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+        margin-top: 60px;
+      }
+    }
+
+    h4 {
+      margin-top: 30px;
+      font-weight: normal;
+      @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+        margin-top: 60px;
+      }
+    }
+
+    h5 {
+      margin-top: 30px;
+      font-weight: normal;
+      @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+        margin-top: 60px;
+      }
+    }
+
+    h6 {
+      margin-top: 30px;
+      font-weight: normal;
+      font-size: 12px;
+      @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+        margin-top: 60px;
+      }
+    }
+
+    ul {
+      margin-top: 30px;
+      padding-left: 20px;
+      font-weight: normal;
+      @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+        margin-top: 60px;
+      }
+    }
+
+    ol {
+      margin-top: 30px;
+      padding-left: 20px;
+      font-weight: normal;
+      @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+        margin-top: 60px;
+      }
+    }
+
     img {
       margin-top: 25px;
 

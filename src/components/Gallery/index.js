@@ -25,12 +25,10 @@ import {
   GallerySliderText,
   GallerySliderIcon,
   GalleryImgText,
-  GalleryUpperText,
+  GalleryUpperImg,
 } from './styles'
 
-const Gallery = ({
-  query: { title, uid, ghostData, imgTag, blogPageLink },
-}) => {
+const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
   const theme = useTheme()
   const isTablet = useMediaQuery(theme.breakpoints.down('960'))
   const isDesktop = useMediaQuery(theme.breakpoints.up('960'))
@@ -90,13 +88,9 @@ const Gallery = ({
                                       <Fragment
                                         key={`Gallery-Upper-Text - ${index}`}
                                       >
-                                        {imgTag ? (
-                                          <GalleryUpperText className="gallery-upper-text">
-                                            {imgTag}
-                                          </GalleryUpperText>
-                                        ) : (
-                                          ''
-                                        )}
+                                        <GalleryUpperImg className="gallery-upper-text">
+                                          <Icon type="image-icon" />
+                                        </GalleryUpperImg>
                                       </Fragment>
                                     )
                                   }

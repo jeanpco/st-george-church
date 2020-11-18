@@ -37,9 +37,6 @@ const IndexLayout = ({
   const photoGalleryTitle =
     query?.photo_gallery?.document?.data?.gallery_title?.text
 
-  const recentArticlesImgTag =
-    query?.photo_gallery?.document?.data?.gallery_image_tag?.text
-
   const blogPageLink = query?.photo_gallery?.document?.data?.blog_page_link.text
 
   const homeIntroGraphic = query?.intro_graphic?.url
@@ -207,7 +204,6 @@ const IndexLayout = ({
       {photoGalleryTitle && recentArticlesImgTag ? (
         <Gallery
           query={{
-            imgTag: recentArticlesImgTag,
             title: photoGalleryTitle,
             uid: galleryUid,
             blogPageLink: blogPageLink,
