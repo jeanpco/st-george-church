@@ -48,14 +48,20 @@ export const BlogPostTitle = styled.div`
   padding-top: 10px;
   margin-top: 25px;
   padding-bottom: 7px;
-  text-align: center;
+  text-align: left;
+  padding-left: 5px;
+  display: flex;
+  align-items: flex-end;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    min-height: 140px;
+  }
 `
 export const BlogPostText = styled.div`
   padding-top: 22px;
   padding: 22px 5px 5px 5px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
+
+  text-align: left;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     height: 100px;
@@ -86,5 +92,42 @@ export const BlogPageHeader = styled.div`
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin-top: 90px;
     margin-bottom: 90px;
+  }
+`
+export const BlogImgText = styled.div`
+  position: relative;
+`
+
+export const BlogPostUpperImg = styled.div`
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  background: white;
+  right: 10px;
+  top: 10px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    background: white;
+    right: 16px;
+    top: 16px;
+  }
+
+  svg {
+    width: 50%;
+    margin: 0 auto;
+    @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+      width: 100%;
+    }
   }
 `

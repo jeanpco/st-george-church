@@ -1,15 +1,5 @@
 import styled from '@emotion/styled'
 
-export const GalleryUpperImg = styled.div`
-  svg {
-    width: 80%;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      width: 100%;
-    }
-  }
-`
-
 export const GalleryContainer = styled.div`
   padding-top: 20px;
   background: ${(props) => props.theme.colors.blue};
@@ -96,20 +86,20 @@ export const GallerySliderTitle = styled.div`
   padding-top: 10px;
   margin-top: 25px;
   padding-bottom: 7px;
+  text-align: left;
+  padding-left: 5px;
+  display: flex;
+  align-items: flex-end;
 
-  /* possible solution instead of truncate to be removed if not */
-
-  h3 {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    min-height: 140px;
   }
 `
 
 export const GallerySliderText = styled.div`
   padding-top: 22px;
-  display: flex;
-  justify-content: center;
+  text-align: left;
+  padding-left: 10px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     height: 81px;
@@ -133,17 +123,37 @@ export const GallerySliderIcon = styled.div`
 
 export const GalleryImgText = styled.div`
   position: relative;
+`
+export const GalleryUpperImg = styled.div`
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  background: white;
+  right: 10px;
+  top: 10px;
 
-  .gallery-upper-text {
-    color: white;
+  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
     position: absolute;
+    right: 0;
     z-index: 1;
-    right: -4px;
-    top: 0;
+    background: white;
+    right: 16px;
+    top: 16px;
+  }
 
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      right: 10px;
-      top: 2px;
+  svg {
+    width: 50%;
+    margin: 0 auto;
+    @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+      width: 100%;
     }
   }
 `

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { truncateBody, truncateHeader } from '../../utils/functions/truncate'
+import { truncateBody } from '../../utils/functions/truncate'
 import LocaleContext from '../../context/LocaleProvider'
 
 import Img from 'gatsby-image'
@@ -30,7 +30,9 @@ import {
 
 const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
   const theme = useTheme()
-  const isTablet = useMediaQuery(theme.breakpoints.down('960'))
+
+  const isMobile = useMediaQuery(theme.breakpoints.down('960'))
+  const isTablet = useMediaQuery(theme.breakpoints.down('1120'))
   const isDesktop = useMediaQuery(theme.breakpoints.up('960'))
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
@@ -45,6 +47,11 @@ const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
   }
 
   if (isTablet) {
+    slideToShow = 2
+    infinite = false
+  }
+
+  if (isMobile) {
     slideToShow = 1.4
     infinite = false
   }
@@ -78,77 +85,85 @@ const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
               >
                 {ghostData
                   ? ghostData.map((info, index) => {
-                      return (
-                        <Fragment key={`Gallery__Slider - ${index}`}>
-                          <GalleryImgText>
-                            {info?.tags?.length > 0
-                              ? info.tags.map((tag, index) => {
-                                  if (tag.slug === 'gallery') {
-                                    return (
-                                      <Fragment
-                                        key={`Gallery-Upper-Text - ${index}`}
-                                      >
-                                        <GalleryUpperImg className="gallery-upper-text">
-                                          <Icon type="image-icon" />
-                                        </GalleryUpperImg>
-                                      </Fragment>
-                                    )
-                                  }
-                                })
-                              : ''}
-                          </GalleryImgText>
-                          <GallerySliderItemsContainer>
-                            {info?.slug ? (
-                              <>
-                                <Link
-                                  to={
-                                    i18n.locale === 'en-ca'
-                                      ? `/blog/${info.slug}`
-                                      : `/fr/blog/${info.slug}`
-                                  }
-                                  className="Gallery__Slider_Link"
-                                >
-                                  {info?.localFeatureImage?.childImageSharp
-                                    ?.fluid ? (
-                                    <Img
-                                      fluid={
-                                        info.localFeatureImage.childImageSharp
-                                          .fluid
-                                      }
-                                      alt="Gallery Slider Image"
-                                    />
-                                  ) : (
-                                    ''
-                                  )}
-                                  {info?.title ? (
-                                    <GallerySliderTitle>
-                                      <Title as="h3" type="heading8">
-                                        {truncateHeader(info.title)}
-                                      </Title>
-                                    </GallerySliderTitle>
-                                  ) : (
-                                    ''
-                                  )}
-                                  {info?.excerpt ? (
-                                    <GallerySliderText>
-                                      <Text type="smallText700">
-                                        {truncateBody(info.excerpt)}
-                                      </Text>
-                                    </GallerySliderText>
-                                  ) : (
-                                    ''
-                                  )}
-                                </Link>
-                              </>
-                            ) : (
-                              ''
-                            )}
-                          </GallerySliderItemsContainer>
-                          <GallerySliderIcon className="Gallery__Flower-Icon">
-                            <Icon type="flower" />
-                          </GallerySliderIcon>
-                        </Fragment>
-                      )
+                      const galleryFilterTag =
+                        info.tags.length > 0
+                          ? info.tags.map((value) => {
+                              return value.slug
+                            })
+                          : ''
+                      if (!galleryFilterTag.includes('orthoflash')) {
+                        return (
+                          <Fragment key={`Gallery__Slider - ${index}`}>
+                            <GalleryImgText>
+                              {info?.tags?.length > 0
+                                ? info.tags.map((tag, index) => {
+                                    if (tag.slug === 'gallery') {
+                                      return (
+                                        <Fragment
+                                          key={`Gallery-Upper-Text - ${index}`}
+                                        >
+                                          <GalleryUpperImg className="gallery-upper-text">
+                                            <Icon type="image-icon" />
+                                          </GalleryUpperImg>
+                                        </Fragment>
+                                      )
+                                    }
+                                  })
+                                : ''}
+                            </GalleryImgText>
+                            <GallerySliderItemsContainer>
+                              {info?.slug ? (
+                                <>
+                                  <Link
+                                    to={
+                                      i18n.locale === 'en-ca'
+                                        ? `/blog/${info.slug}`
+                                        : `/fr/blog/${info.slug}`
+                                    }
+                                    className="Gallery__Slider_Link"
+                                  >
+                                    {info?.localFeatureImage?.childImageSharp
+                                      ?.fluid ? (
+                                      <Img
+                                        fluid={
+                                          info.localFeatureImage.childImageSharp
+                                            .fluid
+                                        }
+                                        alt="Gallery Slider Image"
+                                      />
+                                    ) : (
+                                      ''
+                                    )}
+                                    {info?.title ? (
+                                      <GallerySliderTitle>
+                                        <Title as="h3" type="heading8">
+                                          {info.title}
+                                        </Title>
+                                      </GallerySliderTitle>
+                                    ) : (
+                                      ''
+                                    )}
+                                    {info?.excerpt ? (
+                                      <GallerySliderText>
+                                        <Text type="smallText700">
+                                          {truncateBody(info.excerpt)}
+                                        </Text>
+                                      </GallerySliderText>
+                                    ) : (
+                                      ''
+                                    )}
+                                  </Link>
+                                </>
+                              ) : (
+                                ''
+                              )}
+                            </GallerySliderItemsContainer>
+                            <GallerySliderIcon className="Gallery__Flower-Icon">
+                              <Icon type="flower" />
+                            </GallerySliderIcon>
+                          </Fragment>
+                        )
+                      }
                     })
                   : ''}
               </GallerySliderContent>

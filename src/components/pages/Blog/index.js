@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Title from '../../Utilities/Title'
 import Text from '../../Utilities/Text'
-import { truncateBody, truncateHeader } from '../../../utils/functions/truncate'
+import { truncateBody } from '../../../utils/functions/truncate'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { WidthLimiterContainer } from '../../Layout/styles'
@@ -17,6 +17,8 @@ import {
   BlogPostTitle,
   BlogPostText,
   BlogPostIcon,
+  BlogImgText,
+  BlogPostUpperImg,
 } from './styles'
 
 const BlogLayout = ({ data }) => {
@@ -62,55 +64,82 @@ const BlogLayout = ({ data }) => {
         <BlogContainer>
           {currentList?.length > 0
             ? currentList.map((info, index) => {
-                return (
-                  <div key={index}>
-                    <BlogPostContainer>
-                      {info?.slug ? (
-                        <>
-                          <Link to={info.slug} className="Blog__Slider_Link">
-                            {info?.localFeatureImage?.childImageSharp?.fluid ? (
-                              <Img
-                                fluid={
-                                  info.localFeatureImage.childImageSharp.fluid
-                                }
-                                alt="Gallery Slider Image"
-                              />
-                            ) : (
-                              ''
-                            )}
-                            {info?.title ? (
-                              <BlogPostTitle>
-                                <Title
-                                  as="h3"
-                                  type="heading8"
-                                  className="BlogPost__Title"
-                                >
-                                  {truncateHeader(info.title)}
-                                </Title>
-                              </BlogPostTitle>
-                            ) : (
-                              ''
-                            )}
-                            {info?.excerpt ? (
-                              <BlogPostText>
-                                <Text type="smallText700">
-                                  {truncateBody(info.excerpt)}
-                                </Text>
-                              </BlogPostText>
-                            ) : (
-                              ''
-                            )}
-                          </Link>
-                        </>
-                      ) : (
-                        ''
-                      )}
-                    </BlogPostContainer>
-                    <BlogPostIcon className="Blog__Flower-Icon">
-                      <Icon type="flower" />
-                    </BlogPostIcon>
-                  </div>
-                )
+                const blogFilterTag =
+                  info.tags.length > 0
+                    ? info.tags.map((value) => {
+                        return value.slug
+                      })
+                    : ''
+                if (!blogFilterTag.includes('orthoflash')) {
+                  return (
+                    <div key={index}>
+                      <BlogImgText>
+                        {info?.tags?.length > 0
+                          ? info.tags.map((tag, index) => {
+                              if (tag.slug === 'gallery') {
+                                return (
+                                  <Fragment
+                                    key={`Gallery-Upper-Text - ${index}`}
+                                  >
+                                    <BlogPostUpperImg className="blog-upper-text">
+                                      <Icon type="image-icon" />
+                                    </BlogPostUpperImg>
+                                  </Fragment>
+                                )
+                              }
+                            })
+                          : ''}
+                      </BlogImgText>
+
+                      <BlogPostContainer>
+                        {info?.slug ? (
+                          <>
+                            <Link to={info.slug} className="Blog__Slider_Link">
+                              {info?.localFeatureImage?.childImageSharp
+                                ?.fluid ? (
+                                <Img
+                                  fluid={
+                                    info.localFeatureImage.childImageSharp.fluid
+                                  }
+                                  alt="Gallery Slider Image"
+                                />
+                              ) : (
+                                ''
+                              )}
+                              {info?.title ? (
+                                <BlogPostTitle>
+                                  <Title
+                                    as="h3"
+                                    type="heading8"
+                                    className="BlogPost__Title"
+                                  >
+                                    {info.title}
+                                  </Title>
+                                </BlogPostTitle>
+                              ) : (
+                                ''
+                              )}
+                              {info?.excerpt ? (
+                                <BlogPostText>
+                                  <Text type="smallText700">
+                                    {truncateBody(info.excerpt)}
+                                  </Text>
+                                </BlogPostText>
+                              ) : (
+                                ''
+                              )}
+                            </Link>
+                          </>
+                        ) : (
+                          ''
+                        )}
+                      </BlogPostContainer>
+                      <BlogPostIcon className="Blog__Flower-Icon">
+                        <Icon type="flower" />
+                      </BlogPostIcon>
+                    </div>
+                  )
+                }
               })
             : ''}
         </BlogContainer>
