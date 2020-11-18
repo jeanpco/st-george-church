@@ -201,7 +201,7 @@ const IndexLayout = ({
           noEventTitle: noEventTitle,
         }}
       />
-      {photoGalleryTitle && recentArticlesImgTag ? (
+      {photoGalleryTitle ? (
         <Gallery
           query={{
             title: photoGalleryTitle,
