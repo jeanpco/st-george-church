@@ -142,4 +142,5 @@ export const AnchorItemsText = styled.div`
 
 export const AnchorBodyContainer = styled.div`
   height: 630px;
+  overflow: auto;
 `

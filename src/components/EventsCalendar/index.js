@@ -55,7 +55,6 @@ const EventsCalendar = ({
             dateTime(formatString: "h:mm A")
           }
           summary
-          description
         }
       }
     }
