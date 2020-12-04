@@ -92,7 +92,7 @@ export const GallerySliderTitle = styled.div`
   align-items: flex-end;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    min-height: 140px;
+    /* min-height: 140px; */
   }
 `
 

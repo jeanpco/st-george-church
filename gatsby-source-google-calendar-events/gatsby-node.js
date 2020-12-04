@@ -75,7 +75,7 @@ exports.sourceNodes = async ({ actions }, options = defaultOptions) => {
   // const key = getAuth(options)
   const key = {
     type: 'service_account',
-    project_id: 'field-office-guessjs',
+    project_id: 'api-7264356156306496264-378900',
     private_key_id: process.env.PRIVATE_KEY_ID,
     private_key: process.env.PRIVATE_KEY.replace(/\\n/gm, '\n'),
     client_email: process.env.CLIENT_EMAIL,
@@ -84,7 +84,7 @@ exports.sourceNodes = async ({ actions }, options = defaultOptions) => {
     token_uri: 'https://oauth2.googleapis.com/token',
     auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
     client_x509_cert_url:
-      'https://www.googleapis.com/robot/v1/metadata/x509/test-962%40field-office-guessjs.iam.gserviceaccount.com',
+      'https://www.googleapis.com/robot/v1/metadata/x509/calendar%40api-7264356156306496264-378900.iam.gserviceaccount.com',
   }
 
   const { createNode } = actions
