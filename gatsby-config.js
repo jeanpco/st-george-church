@@ -84,7 +84,7 @@ module.exports = {
     {
       resolve: `./gatsby-source-google-calendar-events`,
       options: {
-        calendarId: 'jp@field-office.ca',
+        calendarId: 'saintgeorgecalendar@gmail.com',
         assumedUser: 'jp@field-office.ca',
       },
     },
