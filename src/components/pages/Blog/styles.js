@@ -50,11 +50,10 @@ export const BlogPostTitle = styled.div`
   padding-bottom: 7px;
   text-align: left;
   padding-left: 5px;
-  display: flex;
-  align-items: flex-end;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    min-height: 140px;
+    height: 130px;
+    overflow: hidden;
   }
 `
 export const BlogPostText = styled.div`
