@@ -16,6 +16,7 @@ module.exports = {
     'gatsby-plugin-page-transitions',
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-preload-fonts`,
     {
       resolve: 'gatsby-source-prismic',
       options: {

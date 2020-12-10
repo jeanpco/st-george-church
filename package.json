@@ -32,6 +32,7 @@
     "gatsby-plugin-material-ui": "^2.1.10",
     "gatsby-plugin-offline": "^3.2.24",
     "gatsby-plugin-page-transitions": "^1.0.8",
+    "gatsby-plugin-preload-fonts": "^1.5.0",
     "gatsby-plugin-react-helmet": "^3.2.4",
     "gatsby-plugin-root-import": "^2.0.5",
     "gatsby-plugin-sharp": "^2.6.36",
@@ -83,6 +84,7 @@
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
   },
   "scripts": {
+    "preload-fonts": "gatsby-preload-fonts",
     "start": "gatsby build; gatsby serve --port $PORT",
     "dev": "gatsby develop",
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
