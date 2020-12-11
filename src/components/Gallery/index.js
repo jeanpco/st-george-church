@@ -37,13 +37,15 @@ const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
 
+  console.log(ghostData)
+
   let slideToShow = 1
 
   let infinite = false
 
   if (isDesktop) {
-    slideToShow = ghostData.length < 3 ? ghostData.length : 3
-    infinite = true
+    slideToShow = ghostData.length < 3 ? ghostData.length : 2
+    infinite = false
   }
 
   if (isTablet) {
