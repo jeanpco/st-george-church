@@ -5,6 +5,9 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+const config = require(`./config/website`)
+const generateRSSFeed = require(`./src/utils/rss/generateFeed`)
+
 // const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer')
 const prismicLinkResolver = require('./src/gatsby/linkResolver')
 
@@ -42,6 +45,24 @@ module.exports = {
           single_contact: require('./src/schemas/single_contact.json'),
           ministries_section_contact: require('./src/schemas/ministries_section_contact.json'),
         },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+              allGhostSettings {
+                  edges {
+                      node {
+                          title
+                          description
+                      }
+                  }
+              }
+          }
+        `,
+        feeds: [generateRSSFeed(config)],
       },
     },
     {
