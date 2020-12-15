@@ -28,6 +28,9 @@ export const query = graphql`
         blog_page_title {
           text
         }
+        orthodox_section_title {
+          text
+        }
       }
     }
   }

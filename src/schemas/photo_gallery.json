@@ -36,6 +36,14 @@
         "label": "blog page title",
         "placeholder": "This is the title of the blog page"
       }
+    },
+    "orthodox_section_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Orthodox Section Title",
+        "placeholder": "Blog Section Orthodox Title"
+      }
     }
   }
 }
