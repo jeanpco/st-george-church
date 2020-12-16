@@ -30,13 +30,22 @@
     "event_description": {
       "type": "Text",
       "config": {
-        "label": "Event description"
+        "label": "Event description",
+        "placeholder": "This is the message if there is no events description in the calendar"
       }
     },
     "no_events_title": {
       "type": "Text",
       "config": {
         "label": "No Events Title"
+      }
+    },
+    "upcoming_event_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "upcoming event title",
+        "placeholder": "Upcoming Event Title"
       }
     }
   }
