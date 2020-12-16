@@ -79,7 +79,7 @@ export const DayPickerContainer = styled.div`
   }
   .DayPicker-Day--today {
     font-weight: normal;
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.secondary};
   }
 
   .DayPicker-Day--today:focus {
@@ -163,9 +163,48 @@ export const CallendarItemsContainer = styled.div`
   }
 `
 
-export const CalendarEventsContainer = styled.div`
+export const CalendarBodyEventsContainer = styled.div`
+  width: 100%;
+  margin-left: 15px;
+  max-height: 545px;
   overflow: auto;
-  max-height: 307px;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.24);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: black;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-left: 50px;
+    min-height: 545px;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    margin-top: 25px;
+  }
+`
+
+export const CalendarEventsContainer = styled.div`
+  margin: 38px 0 10px 0;
+  position: relative;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin: 28px 0 20px 0;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    /* width: 50%; */
+  }
+`
+
+export const UpcomingCalendarEventsContainer = styled.div`
   margin: 38px 0 10px 0;
   position: relative;
 
@@ -182,14 +221,10 @@ export const CalendarEventsContainer = styled.div`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    max-height: 545px;
-    min-height: 545px;
-
     margin: 28px 0 100px 0;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    width: 50%;
     margin-top: 46px;
   }
 `

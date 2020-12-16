@@ -59,6 +59,9 @@ const IndexLayout = ({
   const eventCalendarTitle =
     query?.events_calendar?.document?.data?.events_title?.text
 
+  const upcomingEventTitle =
+    query?.events_calendar?.document?.data?.upcoming_event_title?.text
+
   const eventAddress =
     query?.events_calendar?.document?.data?.event_address?.html
 
@@ -199,6 +202,7 @@ const IndexLayout = ({
           eventDescription: eventDescription,
           uid: eventUid,
           noEventTitle: noEventTitle,
+          upcomingEventTitle: upcomingEventTitle,
         }}
       />
       {photoGalleryTitle ? (

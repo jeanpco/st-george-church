@@ -34,7 +34,6 @@ export const query = graphql`
 `
 
 const Blog = ({ location, data }) => {
-  console.log(data)
   return <BlogLayout data={data} location={location} />
 }
 

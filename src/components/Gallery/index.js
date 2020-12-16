@@ -37,8 +37,6 @@ const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
 
-  console.log(ghostData)
-
   let slideToShow = 1
 
   let infinite = false

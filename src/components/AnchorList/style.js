@@ -143,4 +143,16 @@ export const AnchorItemsText = styled.div`
 export const AnchorBodyContainer = styled.div`
   height: 630px;
   overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.24);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: black;
+  }
 `

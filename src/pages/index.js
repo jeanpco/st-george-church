@@ -15,6 +15,9 @@ export const query = graphql`
                 event_address {
                   html
                 }
+                upcoming_event_title {
+                  text
+                }
                 event_description
                 event_calendar_title {
                   text
