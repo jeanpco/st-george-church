@@ -168,6 +168,7 @@ export const CalendarBodyEventsContainer = styled.div`
   margin-left: 15px;
   max-height: 545px;
   overflow: auto;
+  margin-bottom: 40px;
 
   &::-webkit-scrollbar {
     width: 5px;
