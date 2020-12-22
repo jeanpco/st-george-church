@@ -69,7 +69,16 @@ const EventsCalendar = ({
 
   const currentMonth = +JSON.stringify(selectedDay).split('-')[1]
 
-  const allMonthEvent = []
+  let nextMonth
+
+  if (currentMonth === 12) {
+    nextMonth = 1
+  } else {
+    nextMonth = currentMonth + 1
+  }
+
+  const currentMonthEvents = []
+  const nextMonthEvents = []
 
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
@@ -113,7 +122,11 @@ const EventsCalendar = ({
         eventStartSplit === currentMonth &&
         todayEventSplit > filterDateSplit
       ) {
-        allMonthEvent.push(event)
+        currentMonthEvents.push(event)
+      }
+
+      if (eventStartSplit === nextMonth) {
+        nextMonthEvents.push(event)
       }
     }
 
@@ -136,6 +149,8 @@ const EventsCalendar = ({
       </div>
     )
   }
+
+  const upcomingMonthEvents = currentMonthEvents.concat(nextMonthEvents)
 
   return (
     <CallendarSectionContainer id={uid}>
@@ -257,7 +272,7 @@ const EventsCalendar = ({
                   : ''}
               </CalendarEventsContainer>
               <UpcomingCalendarEventsContainer>
-                {allMonthEvent?.length > 0 &&
+                {upcomingMonthEvents?.length > 0 &&
                 upcomingEventTitle &&
                 noEventTitle ? (
                   <UpcomingEventDiv>
@@ -272,8 +287,8 @@ const EventsCalendar = ({
                     </Title>
                   </div>
                 )}
-                {allMonthEvent?.length > 0
-                  ? allMonthEvent.map((info, index) => {
+                {upcomingMonthEvents?.length > 0
+                  ? upcomingMonthEvents.map((info, index) => {
                       return (
                         <EventItemsContainer key={`Google Events -- ${index}`}>
                           <CalendarEventDates>
