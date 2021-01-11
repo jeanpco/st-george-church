@@ -84,86 +84,87 @@ const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
                 galleryImageLength={ghostData.length}
               >
                 {ghostData
-                  ? ghostData.map((info, index) => {
+                  ? ghostData.filter((post) => {
                       const galleryFilterTag =
-                        info.tags.length > 0
-                          ? info.tags.map((value) => {
+                        post.tags.length > 0
+                          ? post.tags.map((value) => {
                               return value.slug
                             })
                           : ''
-                      if (!galleryFilterTag.includes('orthoflash')) {
-                        return (
-                          <Fragment key={`Gallery__Slider - ${index}`}>
-                            <GalleryImgText>
-                              {info?.tags?.length > 0
-                                ? info.tags.map((tag, index) => {
-                                    if (tag.slug === 'gallery') {
-                                      return (
-                                        <Fragment
-                                          key={`Gallery-Upper-Text - ${index}`}
-                                        >
-                                          <GalleryUpperImg className="gallery-upper-text">
-                                            <Icon type="image-icon" />
-                                          </GalleryUpperImg>
-                                        </Fragment>
-                                      )
-                                    }
-                                  })
-                                : ''}
-                            </GalleryImgText>
-                            <GallerySliderItemsContainer>
-                              {info?.slug ? (
-                                <>
-                                  <Link
-                                    to={
-                                      i18n.locale === 'en-ca'
-                                        ? `/blog/${info.slug}`
-                                        : `/fr/blog/${info.slug}`
-                                    }
-                                    className="Gallery__Slider_Link"
-                                  >
-                                    {info?.localFeatureImage?.childImageSharp
-                                      ?.fluid ? (
-                                      <Img
-                                        fluid={
-                                          info.localFeatureImage.childImageSharp
-                                            .fluid
-                                        }
-                                        alt="Gallery Slider Image"
-                                      />
-                                    ) : (
-                                      ''
-                                    )}
-                                    {info?.title ? (
-                                      <GallerySliderTitle>
-                                        <Title as="h3" type="heading8">
-                                          {info.title}
-                                        </Title>
-                                      </GallerySliderTitle>
-                                    ) : (
-                                      ''
-                                    )}
-                                    {info?.excerpt ? (
-                                      <GallerySliderText>
-                                        <Text type="smallText700">
-                                          {truncateBody(info.excerpt)}
-                                        </Text>
-                                      </GallerySliderText>
-                                    ) : (
-                                      ''
-                                    )}
-                                  </Link>
-                                </>
-                              ) : (
-                                ''
-                              )}
-                            </GallerySliderItemsContainer>
-                            <GallerySliderIcon className="Gallery__Flower-Icon">
-                              <Icon type="flower" />
-                            </GallerySliderIcon>
-                          </Fragment>
-                        )
-                      }
+                        
+                      return !galleryFilterTag.includes('orthoflash')
+                    }).map((post, index) => {
+                      return (
+                        <Fragment key={`Gallery__Slider - ${index}`}>
+                          <GalleryImgText>
+                            {post?.tags?.length > 0
+                              ? post.tags.map((tag, index) => {
+                                  if (tag.slug === 'gallery') {
+                                    return (
+                                      <Fragment
+                                        key={`Gallery-Upper-Text - ${index}`}
+                                      >
+                                        <GalleryUpperImg className="gallery-upper-text">
+                                          <Icon type="image-icon" />
+                                        </GalleryUpperImg>
+                                      </Fragment>
+                                    )
+                                  }
+                                })
+                              : ''}
+                          </GalleryImgText>
+                          <GallerySliderItemsContainer>
+                            {post?.slug ? (
+                              <>
+                                <Link
+                                  to={
+                                    i18n.locale === 'en-ca'
+                                      ? `/blog/${post.slug}`
+                                      : `/fr/blog/${post.slug}`
+                                  }
+                                  className="Gallery__Slider_Link"
+                                >
+                                  {post?.localFeatureImage?.childImageSharp
+                                    ?.fluid ? (
+                                    <Img
+                                      fluid={
+                                        post.localFeatureImage.childImageSharp
+                                          .fluid
+                                      }
+                                      alt="Gallery Slider Image"
+                                    />
+                                  ) : (
+                                    ''
+                                  )}
+                                  {post?.title ? (
+                                    <GallerySliderTitle>
+                                      <Title as="h3" type="heading8">
+                                        {post.title}
+                                      </Title>
+                                    </GallerySliderTitle>
+                                  ) : (
+                                    ''
+                                  )}
+                                  {post?.excerpt ? (
+                                    <GallerySliderText>
+                                      <Text type="smallText700">
+                                        {truncateBody(post.excerpt)}
+                                      </Text>
+                                    </GallerySliderText>
+                                  ) : (
+                                    ''
+                                  )}
+                                </Link>
+                              </>
+                            ) : (
+                              ''
+                            )}
+                          </GallerySliderItemsContainer>
+                          <GallerySliderIcon className="Gallery__Flower-Icon">
+                            <Icon type="flower" />
+                          </GallerySliderIcon>
+                        </Fragment>
+                      )
                     })
                   : ''}
               </GallerySliderContent>

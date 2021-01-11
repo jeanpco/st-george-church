@@ -19,9 +19,7 @@ import {
 } from './style'
 import { WidthLimiterContainer } from '../../Layout/styles'
 import Img from 'gatsby-image'
-import AnimatedImage from '../../AnimatedImage'
 import Fade from 'react-reveal/Fade'
-import { Desktop, Tablet } from '../../Utilities/Media'
 
 const IndexLayout = ({
   data: {
@@ -120,25 +118,22 @@ const IndexLayout = ({
                 </Fade>
               </HomeIntroBodyContainer>
             </HomeIntroContentContainer>
-            <Desktop>
-              <SliderContainer>
-                {query?.body[1].items.length > 0 ? (
+            <SliderContainer>
+                {query?.body[0].items.length > 0 ? (
                   <SliderContent
                     slidesToShow={1}
                     slidesToScroll={1}
                     autoplay={true}
-                    imgLength={query.body[1].items.length}
+                    imgLength={query.body[0].items.length}
                   >
-                    {query.body[1].items?.length > 0
-                      ? query.body[1].items.map((img, index) => {
+                    {query.body[0].items?.length > 0
+                      ? query.body[0].items.map((img, index) => {
                           const sliderImage = img?.slider_img?.localFile
                             ?.childImageSharp?.fluid
                             ? img.slider_img.localFile.childImageSharp.fluid
                             : ''
                           return (
-                            <AnimatedImage key={index}>
-                              <Img fluid={sliderImage} />
-                            </AnimatedImage>
+                            <Img key={index} fluid={sliderImage} />
                           )
                         })
                       : ''}
@@ -147,36 +142,7 @@ const IndexLayout = ({
                   ''
                 )}
               </SliderContainer>
-            </Desktop>
           </HomeIntroContainer>
-          <Tablet>
-            <SliderContainer>
-              {query?.body[0].items.length > 0 ? (
-                <SliderContent
-                  slidesToShow={1}
-                  slidesToScroll={1}
-                  autoplay={true}
-                  imgLength={query.body[0].items.length}
-                >
-                  {query.body[0].items?.length > 0
-                    ? query.body[0].items.map((img, index) => {
-                        const sliderImage = img?.slider_img?.localFile
-                          ?.childImageSharp?.fluid
-                          ? img.slider_img.localFile.childImageSharp.fluid
-                          : ''
-                        return (
-                          <AnimatedImage key={index}>
-                            <Img fluid={sliderImage} />
-                          </AnimatedImage>
-                        )
-                      })
-                    : ''}
-                </SliderContent>
-              ) : (
-                ''
-              )}
-            </SliderContainer>
-          </Tablet>
         </DesktopIntroContainer>
       </WidthLimiterContainer>
       <Quote

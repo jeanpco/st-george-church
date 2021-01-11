@@ -51,7 +51,7 @@ export const HomeIntroContainer = styled.div`
 export const HomeIntroContentContainer = styled.div`
   width: 100%;
   padding: 20px;
-  margin: 0 auto;
+  margin: 0 auto 40px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     /* max-width: 520px; */
@@ -63,8 +63,7 @@ export const HomeIntroContentContainer = styled.div`
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     background: ${(props) => props.theme.colors.blue};
     padding: 0;
-    margin-top: 0;
-    margin-left: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
