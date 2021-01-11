@@ -63,7 +63,7 @@ const EventsCalendar = ({
     }
   `)
 
-  const [selectedDay, setSelectedDay] = useState([])
+  const [selectedDay, setSelectedDay] = useState({ selectedDay: new Date() })
   const [filterDate, setfilterDate] = useState(new Date().toLocaleDateString())
   const [locale, setLocale] = useState('')
 
@@ -100,7 +100,7 @@ const EventsCalendar = ({
         })
       }
     })
-  }, [])
+  }, [filterDate])
 
   const handleDayClick = (day, { selected }) => {
     setSelectedDay({
