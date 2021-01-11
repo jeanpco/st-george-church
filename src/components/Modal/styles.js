@@ -154,7 +154,8 @@ export const MinisterContactContainer = styled.div`
     position: relative;
     display: flex;
     align-items: center;
-
+    border-radius: 100%;
+    overflow: hidden;
     .Ministries__ContactImageTitle {
       color: white;
       position: absolute;
@@ -178,6 +179,8 @@ export const MinistriesContactImg = styled.div`
   position: relative;
   .Ministries__Contact-Img {
     width: 86px;
+    border-radius: 100%;
+    overflow: hidden;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       width: 120px;

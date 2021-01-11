@@ -12,9 +12,8 @@ export const HomeQuoteContainer = styled.div`
 export const HomeQuoteContentContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: calc(100% - 40px);
+  flex-direction: column;
   margin: 0 auto;
-  max-width: 440px;
   animation: 2s ease-out 0s 1 slideInFromLeft;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
@@ -22,12 +21,9 @@ export const HomeQuoteContentContainer = styled.div`
     max-width: initial;
   }
 
-  .Home__Quote-Graphic {
-    width: 151px;
-  }
   @keyframes slideInFromLeft {
     0% {
-      transform: translateY(-50%);
+      transform: translateY(-20%);
     }
     100% {
       transform: translateY(0);
@@ -38,14 +34,24 @@ export const HomeQuoteContent = styled.div`
   position: relative;
   width: 90%;
   margin: 0 auto;
+  background: ${(props) => props.theme.colors.yellow};
+  padding-top: 12px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-top: -16px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+    max-width: 61%;
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    width: 100%;
+    max-width: 100%;
+    padding: 50px 60px 60px 22px;
+    margin-top: 0;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    padding-right: 73px;
-    padding-left: 73px;
   }
 
   p {
@@ -54,6 +60,16 @@ export const HomeQuoteContent = styled.div`
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       padding-top: 0;
       padding-bottom: 56px;
+    }
+  }
+`
+
+export const HomeQuoteContentGraph = styled.div`
+  z-index: 1;
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-top: -50px;
+    img {
+      width: 14%;
     }
   }
 `

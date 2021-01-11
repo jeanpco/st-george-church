@@ -23,7 +23,6 @@ import { encode } from '../../utils/functions/encode'
 import axios from 'axios'
 import Button from '../Utilities/Button'
 import Text from '../Utilities/Text'
-// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import Icon from '~/components/Icon'
 
 const ContactForm = ({

@@ -1,50 +1,21 @@
 import styled from '@emotion/styled'
 
-export const GalleryContainer = styled.div`
-  padding-top: 20px;
-  background: ${(props) => props.theme.colors.blue};
-  padding-bottom: 130px;
-`
-
-export const GalleryContentContainer = styled.div`
-  border-top: 6px solid ${(props) => props.theme.colors.primary};
+export const BlogContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 50px;
+  grid-column-gap: 20px;
+  padding-bottom: 50px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    border-top: 12px solid ${(props) => props.theme.colors.black};
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    padding-bottom: 100px;
   }
 `
-export const GallerSliderHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 24px;
-`
 
-export const GallerySliderContainer = styled.div`
-  margin-top: 0;
-  position: relative;
-
-  .allArticles__Gallery-Link {
-    font-family: ${(props) => props.theme.fontFamily.secondary};
-    display: flex;
-    justify-content: center;
-    color: black;
-    font-size: 18px;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      font-size: 24px;
-      display: block;
-      position: absolute;
-      margin: 0px;
-      padding: 0px;
-      bottom: 0;
-      right: 168px;
-      left: unset;
-      bottom: -73px;
-    }
-  }
-
-  .Gallery__Slider_Link {
+export const BlogPostContainer = styled.div`
+  .Blog__Slider_Link {
     text-decoration: none;
     color: ${(props) => props.theme.colors.primary};
 
@@ -56,31 +27,22 @@ export const GallerySliderContainer = styled.div`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin-top: 70px;
-  }
-`
+    border-right: 5px solid white;
+    border-left: 5px solid white;
+    margin-bottom: 50px;
 
-export const GallerySliderItemsContainer = styled.div`
-  text-align: center;
-  margin-bottom: 20px;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    border-right: 5px solid ${(props) => props.theme.colors.blue};
-    border-left: 5px solid ${(props) => props.theme.colors.blue};
-    margin-bottom: 112px;
     :hover {
       border-right: 5px solid ${(props) => props.theme.colors.black};
       border-left: 5px solid ${(props) => props.theme.colors.black};
     }
 
-    &:hover + .Gallery__Flower-Icon svg {
+    &:hover + .Blog__Flower-Icon svg {
       color: ${(props) => props.theme.colors.secondary};
       transform: rotate(180deg) scale(0.85);
     }
   }
 `
-
-export const GallerySliderTitle = styled.div`
+export const BlogPostTitle = styled.div`
   border-top: 2px solid black;
   border-bottom: 1px solid black;
   padding-top: 10px;
@@ -94,18 +56,18 @@ export const GallerySliderTitle = styled.div`
     overflow: hidden;
   }
 `
-
-export const GallerySliderText = styled.div`
+export const BlogPostText = styled.div`
   padding-top: 22px;
+  padding: 22px 5px 5px 5px;
+
   text-align: left;
-  padding-left: 10px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    height: 81px;
+    height: 100px;
   }
 `
 
-export const GallerySliderIcon = styled.div`
+export const BlogPostIcon = styled.div`
   text-align: center;
 
   svg {
@@ -120,10 +82,22 @@ export const GallerySliderIcon = styled.div`
   }
 `
 
-export const GalleryImgText = styled.div`
+export const BlogPageHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-top: 90px;
+    margin-bottom: 90px;
+  }
+`
+export const BlogImgText = styled.div`
   position: relative;
 `
-export const GalleryUpperImg = styled.div`
+
+export const BlogPostUpperImg = styled.div`
   width: 30px;
   height: 30px;
   display: flex;
@@ -155,4 +129,10 @@ export const GalleryUpperImg = styled.div`
       width: 100%;
     }
   }
+`
+
+export const BlogOrthodoxSectionHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
 `

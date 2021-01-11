@@ -74,7 +74,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const postTemplate = path.resolve(`./src/templates/post.js`)
 
     posts.forEach(({ node }) => {
-      node.url = `/${node.slug}/`
+      node.url = `/blog/${node.slug}`
       const localizedPath =
         locales[lang].path === 'en'
           ? node.url

@@ -12,6 +12,38 @@
         "single": "heading1, heading2, heading3, heading4, heading5, heading6",
         "label": "Gallery Title"
       }
+    },
+    "gallery_image_tag": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "gallery image tag",
+        "placeholder": "Image Tag For Gallery Post"
+      }
+    },
+    "blog_page_link": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "blog page link",
+        "placeholder": "See all articles link"
+      }
+    },
+    "blog_page_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "blog page title",
+        "placeholder": "This is the title of the blog page"
+      }
+    },
+    "orthodox_section_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Orthodox Section Title",
+        "placeholder": "Blog Section Orthodox Title"
+      }
     }
   }
 }

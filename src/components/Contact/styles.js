@@ -1,9 +1,5 @@
 import styled from '@emotion/styled'
 
-export const ContactSectionContainer = styled.div`
-  padding-top: 20px;
-`
-
 export const TeamContainer = styled.div`
   border-top: 6px solid ${(props) => props.theme.colors.primary};
 
@@ -118,6 +114,8 @@ export const ContactBodyContainer = styled.div`
     position: relative;
     display: flex;
     align-items: center;
+    border-radius: 100%;
+    overflow: hidden;
 
     .ContactImageTitle {
       color: white;

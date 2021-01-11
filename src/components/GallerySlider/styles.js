@@ -11,6 +11,16 @@ export const GallerySliderStyling = styled.div`
     }
   }
 
+  /* .slick-slider .slick-track,
+  .slick-slider .slick-list {
+    transform: none;
+    width: 100%;
+  } */
+
+  .slick-slider .slick-list {
+    width: 100%;
+  }
+
   .slick-prev {
     display: none;
 

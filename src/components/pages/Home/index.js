@@ -15,6 +15,7 @@ import {
   DesktopIntroContainer,
   SliderContainer,
   HomeIntroLink,
+  HomeIntroBodyContainer,
 } from './style'
 import { WidthLimiterContainer } from '../../Layout/styles'
 import Img from 'gatsby-image'
@@ -36,6 +37,8 @@ const IndexLayout = ({
   const photoGalleryTitle =
     query?.photo_gallery?.document?.data?.gallery_title?.text
 
+  const blogPageLink = query?.photo_gallery?.document?.data?.blog_page_link.text
+
   const homeIntroGraphic = query?.intro_graphic?.url
   const homeIntroTitle = query?.intro_title?.text
   const homeIntroText = query?.intro_text
@@ -55,6 +58,9 @@ const IndexLayout = ({
 
   const eventCalendarTitle =
     query?.events_calendar?.document?.data?.events_title?.text
+
+  const upcomingEventTitle =
+    query?.events_calendar?.document?.data?.upcoming_event_title?.text
 
   const eventAddress =
     query?.events_calendar?.document?.data?.event_address?.html
@@ -76,42 +82,72 @@ const IndexLayout = ({
         <DesktopIntroContainer>
           <HomeIntroContainer>
             <HomeIntroContentContainer>
-              <Fade bottom distance="30px">
-                {homeIntroGraphic ? (
-                  <img
-                    src={homeIntroGraphic}
-                    alt="home intro graphic"
-                    className="Home__Intro-Graphic"
-                  />
-                ) : (
-                  ''
-                )}
-                {homeIntroTitle ? (
-                  <HomeIntroTitle as="h1" type="heading1">
-                    {homeIntroTitle}
-                  </HomeIntroTitle>
-                ) : (
-                  ' '
-                )}
-                {homeIntroText ? (
-                  <HomeIntroText as="p" type="smallText700">
-                    {homeIntroText}
-                  </HomeIntroText>
-                ) : (
-                  ''
-                )}
-                {homeIntroLink ? (
-                  <HomeIntroLink
-                    to={`#${ministriesUid}`}
-                    className="Home__Intro-link"
-                  >
-                    {homeIntroLink}
-                  </HomeIntroLink>
-                ) : (
-                  ''
-                )}
-              </Fade>
+              <HomeIntroBodyContainer>
+                <Fade bottom distance="30px">
+                  {homeIntroGraphic ? (
+                    <img
+                      src={homeIntroGraphic}
+                      alt="home intro graphic"
+                      className="Home__Intro-Graphic"
+                    />
+                  ) : (
+                    ''
+                  )}
+                  {homeIntroTitle ? (
+                    <HomeIntroTitle as="h2" type="heading1">
+                      {homeIntroTitle}
+                    </HomeIntroTitle>
+                  ) : (
+                    ' '
+                  )}
+                  {homeIntroText ? (
+                    <HomeIntroText as="p" type="smallText700">
+                      {homeIntroText}
+                    </HomeIntroText>
+                  ) : (
+                    ''
+                  )}
+                  {homeIntroLink ? (
+                    <HomeIntroLink
+                      to={`#${ministriesUid}`}
+                      className="Home__Intro-link"
+                    >
+                      {homeIntroLink}
+                    </HomeIntroLink>
+                  ) : (
+                    ''
+                  )}
+                </Fade>
+              </HomeIntroBodyContainer>
             </HomeIntroContentContainer>
+            <Desktop>
+              <SliderContainer>
+                {query?.body[1].items.length > 0 ? (
+                  <SliderContent
+                    slidesToShow={1}
+                    slidesToScroll={1}
+                    autoplay={true}
+                    imgLength={query.body[1].items.length}
+                  >
+                    {query.body[1].items?.length > 0
+                      ? query.body[1].items.map((img, index) => {
+                          const sliderImage = img?.slider_img?.localFile
+                            ?.childImageSharp?.fluid
+                            ? img.slider_img.localFile.childImageSharp.fluid
+                            : ''
+                          return (
+                            <AnimatedImage key={index}>
+                              <Img fluid={sliderImage} />
+                            </AnimatedImage>
+                          )
+                        })
+                      : ''}
+                  </SliderContent>
+                ) : (
+                  ''
+                )}
+              </SliderContainer>
+            </Desktop>
           </HomeIntroContainer>
           <Tablet>
             <SliderContainer>
@@ -141,34 +177,6 @@ const IndexLayout = ({
               )}
             </SliderContainer>
           </Tablet>
-          <Desktop>
-            <SliderContainer>
-              {query?.body[1].items.length > 0 ? (
-                <SliderContent
-                  slidesToShow={1}
-                  slidesToScroll={1}
-                  autoplay={true}
-                  imgLength={query.body[1].items.length}
-                >
-                  {query.body[1].items?.length > 0
-                    ? query.body[1].items.map((img, index) => {
-                        const sliderImage = img?.slider_img?.localFile
-                          ?.childImageSharp?.fluid
-                          ? img.slider_img.localFile.childImageSharp.fluid
-                          : ''
-                        return (
-                          <AnimatedImage key={index}>
-                            <Img fluid={sliderImage} />
-                          </AnimatedImage>
-                        )
-                      })
-                    : ''}
-                </SliderContent>
-              ) : (
-                ''
-              )}
-            </SliderContainer>
-          </Desktop>
         </DesktopIntroContainer>
       </WidthLimiterContainer>
       <Quote
@@ -194,6 +202,7 @@ const IndexLayout = ({
           eventDescription: eventDescription,
           uid: eventUid,
           noEventTitle: noEventTitle,
+          upcomingEventTitle: upcomingEventTitle,
         }}
       />
       {photoGalleryTitle ? (
@@ -201,6 +210,7 @@ const IndexLayout = ({
           query={{
             title: photoGalleryTitle,
             uid: galleryUid,
+            blogPageLink: blogPageLink,
             ghostData: ghostQuery ? ghostQuery : '',
           }}
         />

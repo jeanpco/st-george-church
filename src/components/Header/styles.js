@@ -92,6 +92,7 @@ export const HeaderContainer = styled.header`
   }
 
   .Header__Logo {
+    z-index: 1;
     position: relative;
     left: 8px;
     @media (min-width: ${theme.breakpoints.md}) {

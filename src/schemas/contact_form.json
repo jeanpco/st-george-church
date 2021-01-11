@@ -63,6 +63,12 @@
       "config": {
         "label": "Form Button Text"
       }
+    },
+    "article_publish_text": {
+      "type": "Text",
+      "config": {
+        "label": "article publish text"
+      }
     }
   }
 }
