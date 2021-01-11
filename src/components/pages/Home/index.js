@@ -133,7 +133,7 @@ const IndexLayout = ({
                             ? img.slider_img.localFile.childImageSharp.fluid
                             : ''
                           return (
-                            <Img key={index} fluid={sliderImage} />
+                            <Img key={index} fluid={{ ...sliderImage, aspectRatio: 714 / 624 }} />
                           )
                         })
                       : ''}
