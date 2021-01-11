@@ -9,7 +9,7 @@ import {
   PostContainer,
   PostItemsContainer,
   PostContentContainer,
-} from '../components/Templates/Blog/postStyles'
+} from '../components/templates/Blog/postStyles'
 
 /**
  * Single post view (/:slug)
