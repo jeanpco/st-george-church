@@ -28,6 +28,7 @@
   },
   "bundleDependencies": false,
   "dependencies": {
+    "gatsby-plugin-feed": "^2.11.0",
     "googleapis": "^46.0.0",
     "moment": "^2.24.0"
   },
