@@ -130,7 +130,7 @@ module.exports = {
                 return {
                   title: edge.node.title,
                   description: edge.node.excerpt,
-                  // date: edge.node.frontmatter.date,
+                  date: edge.node.created_at,
                   url: 'https://youth.saintgeorgemontreal.org/' + edge.node.slug,
                   guid: 'https://youth.saintgeorgemontreal.org/' + edge.node.slug,
                   custom_elements: [{ 'content:encoded': edge.node.html }],
@@ -150,6 +150,7 @@ module.exports = {
                     html
                     excerpt
                     feature_image
+                    created_at
                   }
                 }
               }
