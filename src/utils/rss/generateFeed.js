@@ -56,7 +56,7 @@ const generateRSSFeed = function generateRSSFeed(siteConfig) {
   return {
     serialize: ({ query: { allGhostPost } }) =>
       allGhostPost.edges.map((edge) =>
-        Object.assign({}, generateItem(siteConfig.siteUrl, edge.node))
+        Object.assign({}, generateItem('https://youth.saintgeorgemontreal.org', edge.node))
       ),
     setup: ({ query: { allGhostSettings } }) => {
       const siteTitle = allGhostSettings.edges[0].node.title || `No Title`
@@ -67,9 +67,9 @@ const generateRSSFeed = function generateRSSFeed(siteConfig) {
         description: siteDescription,
         // generator: `Ghost ` + data.safeVersion,
         generator: `Ghost 2.9`,
-        feed_url: `${siteConfig.siteUrl}/rss/`,
-        site_url: `${siteConfig.siteUrl}/`,
-        image_url: `${siteConfig.siteUrl}/${siteConfig.siteIcon}`,
+        feed_url: `https://youth.saintgeorgemontreal.org}/rss/`,
+        site_url: `https://youth.saintgeorgemontreal.org/`,
+        image_url: `https://youth.saintgeorgemontreal.org}/${siteConfig.siteIcon}`,
         ttl: `60`,
         custom_namespaces: {
           content: `http://purl.org/rss/1.0/modules/content/`,
