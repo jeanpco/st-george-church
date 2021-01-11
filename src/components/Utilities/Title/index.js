@@ -17,15 +17,11 @@ const Title = ({
     className: `${className ? className : ''} Title ${type ? type : ''}`,
   }
 
-  return (
-    <TitleStyled {...textProps}>
-      {children}
-    </TitleStyled>
-  )
+  return <TitleStyled {...textProps}>{children}</TitleStyled>
 }
 
 Title.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.any,
   as: PropTypes.string,
   type: PropTypes.oneOf([
     'heading1',
@@ -33,7 +29,14 @@ Title.propTypes = {
     'heading3',
     'heading4',
     'heading5',
-    'subheading1',
+    'heading6',
+    'heading7',
+    'heading8',
+    'overline',
+    'menuHeading',
+    'contactHeading',
+    'backgroundHeading',
+    'calendarTitle',
   ]),
   className: PropTypes.string,
   style: PropTypes.object,

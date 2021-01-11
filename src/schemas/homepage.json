@@ -1,0 +1,126 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "Home Page"
+      }
+    },
+    "intro_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Intro Title"
+      }
+    },
+    "intro_graphic": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Intro Graphic"
+      }
+    },
+    "intro_text": {
+      "type": "Text",
+      "config": {
+        "label": "Intro Text"
+      }
+    },
+    "intro_link": {
+      "type": "Text",
+      "config": {
+        "label": "Intro Link"
+      }
+    },
+    "home_quote": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["quote"],
+        "label": "Home quote"
+      }
+    },
+    "ministries_section": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["ministries"],
+        "label": "Ministries Section"
+      }
+    },
+    "photo_gallery": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["photo_gallery"],
+        "label": "Photo Gallery"
+      }
+    },
+    "events_calendar": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["events_calendar"],
+        "label": "Events Calendar"
+      }
+    },
+    "contact_section": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["who_we_are"],
+        "label": "contact section",
+        "placeholder": "This links the contact section and form"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "slider_home_des": [],
+          "slider_home_mob": []
+        },
+        "choices": {
+          "slider_home_des": {
+            "type": "Slice",
+            "fieldset": "Slider Home Des",
+            "description": "Slider Home Desktop",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "slider_img": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Slider Img"
+                }
+              }
+            }
+          },
+          "slider_home_mob": {
+            "type": "Slice",
+            "fieldset": "Slider Home Mob",
+            "description": "Slider Home Mobile",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "slider_img": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Slider IMG"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

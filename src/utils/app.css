@@ -12,3 +12,25 @@
   font-weight: 900;
   font-style: italic;
 } */
+
+@font-face {
+  font-family: 'francesco-italic';
+  src: url('../../static/fonts/francesco/francescoweb-italic.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../static/fonts/francesco/francescoweb-italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'francesco-regular';
+  src: url('../../static/fonts/francesco/francescoweb-regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../static/fonts/francesco/francescoweb-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'protogrotesk-regular';
+  src: url('../../static/fonts/proto-grotesk/protogroteskweb-regular.eot');
+  src: url('../../static/fonts/proto-grotesk/protogroteskweb-regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../static/fonts/proto-grotesk/protogroteskweb-regular.woff')
+      format('woff');
+}

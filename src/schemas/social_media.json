@@ -1,0 +1,54 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "Social Media"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "social_media": []
+        },
+        "choices": {
+          "social_media": {
+            "type": "Slice",
+            "fieldset": "Social Media",
+            "description": "Social Media Section",
+            "icon": "perm_media",
+            "display": "list",
+            "non-repeat": {
+              "social_media_logo": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Social Media Logo"
+                }
+              }
+            },
+            "repeat": {
+              "social_media_icon": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Social Media Icon"
+                }
+              },
+              "social_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Social Link"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

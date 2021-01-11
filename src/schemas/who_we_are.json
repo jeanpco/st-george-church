@@ -1,0 +1,78 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "Contact"
+      }
+    },
+    "contact_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Contact Title"
+      }
+    },
+    "contact_flyout_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Contact Flyout Title"
+      }
+    },
+    "contact_flyout_address": {
+      "type": "Text",
+      "config": {
+        "label": "Contact Flyout Address"
+      }
+    },
+    "contact_flyout_number": {
+      "type": "Text",
+      "config": {
+        "label": "Contact Flyout Number"
+      }
+    },
+    "contact_form_title": {
+      "type": "Text",
+      "config": {
+        "label": "Contact Form Title"
+      }
+    },
+    "contact_form": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "label": "Contact Form"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "team_content": []
+        },
+        "choices": {
+          "team_content": {
+            "type": "Slice",
+            "fieldset": "Team Content",
+            "description": "Who We Are Section Content",
+            "icon": "account_circle",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "single_contact_link": {
+                "type": "Link",
+                "config": {
+                  "select": "document",
+                  "label": "Single Contact Link",
+                  "placeholder": "This is to add all the single contact created"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

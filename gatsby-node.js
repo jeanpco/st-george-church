@@ -1,55 +1,128 @@
-const each = require('lodash/each')
-const Promise = require('bluebird')
+const locales = require('./config/i18n')
 const path = require('path')
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
-  const indexPage = path.resolve('./src/pages/index.js')
-  createPage({
-    path: `posts`,
-    component: indexPage,
+const {
+  replaceTrailing,
+  replaceBoth,
+  wrapper,
+} = require('./src/utils/gatsby-node-helpers')
+
+exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
+  const config = getConfig()
+  config.node = {
+    fs: 'empty',
+  }
+}
+
+// Take the pages from src/pages and generate pages for all locales, e.g. /index and /en/index
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions
+
+  // First delete the pages so we can re-create them
+  deletePage(page)
+
+  Object.keys(locales).map((lang) => {
+    // Remove the trailing slash from the path, e.g. --> /categories
+    page.path = replaceTrailing(page.path)
+
+    // Remove the leading AND traling slash from path, e.g. --> categories
+    const name = replaceBoth(page.path)
+
+    // Create the "slugs" for the pages. Unless default language, add prefix àla "/en"
+    const localizedPath = locales[lang].default
+      ? page.path
+      : `${locales[lang].path}${page.path}`
+
+    return createPage({
+      ...page,
+      path: localizedPath,
+      context: {
+        locale: lang,
+        name,
+      },
+    })
   })
+}
 
-  return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
-    resolve(
-      graphql(
-        `
-          {
-            allCosmicjsPosts(sort: { fields: [created], order: DESC }, limit: 1000) {
-              edges {
-                node {
-                  slug,
-                  title
-                }
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+
+  const result = await wrapper(
+    graphql(`
+      {
+        allGhostPost {
+          edges {
+            node {
+              slug
+              tags {
+                slug
               }
             }
           }
-        `
-      ).then(result => {
-        if (result.errors) {
-          console.log(result.errors)
-          reject(result.errors)
         }
+      }
+    `)
+  )
 
-        // Create blog posts pages.
-        const posts = result.data.allCosmicjsPosts.edges;
+  Object.keys(locales).map((lang) => {
+    // Remove the trailing slash from the path, e.g. --> /categories
+    const posts = result.data.allGhostPost.edges
 
-        each(posts, (post, index) => {
-          const next = index === posts.length - 1 ? null : posts[index + 1].node;
-          const previous = index === 0 ? null : posts[index - 1].node;
+    // Load templates
+    const postTemplate = path.resolve(`./src/templates/post.js`)
 
-          createPage({
-            path: `posts/${post.node.slug}`,
-            component: blogPost,
-            context: {
-              slug: post.node.slug,
-              previous,
-              next,
-            },
-          })
-        })
+    posts.forEach(({ node }) => {
+      node.url = `/${node.slug}/`
+      const localizedPath =
+        locales[lang].path === 'en'
+          ? node.url
+          : `${locales[lang].path}${node.url}`
+
+      createPage({
+        path: localizedPath,
+        component: postTemplate,
+        context: {
+          tags: node.tags,
+          locale: lang,
+          // Data passed to context is available
+          // in page queries as GraphQL variables.
+          slug: node.slug,
+        },
       })
-    )
+    })
   })
+}
+
+exports.onCreateNode = async ({
+  node,
+  actions,
+  store,
+  createNodeId,
+  cache,
+}) => {
+  // Check that we are modifying right node types.
+  const nodeTypes = [`GhostPost`]
+  if (!nodeTypes.includes(node.internal.type)) {
+    return
+  }
+
+  const { createNode } = actions
+
+  if (node.feature_image != null) {
+    // Download image and create a File node with gatsby-transformer-sharp.
+    const fileNode = await createRemoteFileNode({
+      url: node.feature_image,
+      store,
+      cache,
+      createNode,
+      parentNodeId: node.id,
+      createNodeId,
+    })
+
+    if (fileNode) {
+      // Link File node to GhostPost node at field image.
+      node.localFeatureImage___NODE = fileNode.id
+    }
+  }
 }

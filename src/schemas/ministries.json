@@ -1,0 +1,81 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "ministries"
+      }
+    },
+    "anchor_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Anchor Title"
+      }
+    },
+    "next_link_text": {
+      "type": "Text",
+      "config": {
+        "label": "Next Link Text"
+      }
+    },
+    "prev_link_text": {
+      "type": "Text",
+      "config": {
+        "label": "Prev Link Text"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "ministries_links": [],
+          "youth_ministries_list": []
+        },
+        "choices": {
+          "youth_ministries_list": {
+            "type": "Slice",
+            "fieldset": "Youth Ministries List",
+            "description": "Youth Ministries List",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "list_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "List Image"
+                }
+              },
+              "list_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "label": "List Title"
+                }
+              },
+              "list_text": {
+                "type": "Text",
+                "config": {
+                  "label": "List Text"
+                }
+              },
+              "ministries_group_contact": {
+                "type": "Link",
+                "config": {
+                  "select": "document",
+                  "customtypes": ["ministries_section_contact"],
+                  "label": "ministries_group_contact",
+                  "placeholder": "This is to ling the contact for each section: ex:Alter Boys and Acolytes"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -11,22 +11,22 @@ export const breakpoints = {
 
 export const theme = {
   colors: {
-    peach: '#FAC2A5',
-    peach50: 'rgba(250, 194, 165, 0.5)',
-    peach20: 'rgba(250, 194, 165, 0.2)',
+    yellow: '#F0E290',
     black: '#000000',
-    black50: 'rgba(32, 32, 32, 0.5)',
-    black20: 'rgba(32, 32, 32, 0.2)',
-    black10: 'rgba(32, 32, 32, 0.1)',
-    black5: 'rgba(32, 32, 32, 0.05)',
-    gray: '#979797',
-    primary: '#202020',
-    secondary: '#FAC2A5',
+    black50: 'rgba(0, 0, 0, 0.8)',
+    black20: 'rgba(0, 0, 0, 0.6)',
+    black10: 'rgba(0, 0, 0, 0.4)',
+    red50: 'rgba(204, 29, 39, 0.8)',
+    red20: 'rgba(204, 29, 39, 0.6)',
+    red10: ' rgba(204, 29, 39, 0.4)',
+    primary: '#000000',
+    secondary: '#CC1D27',
     tertiary: '#ffffff',
     background: '#f6f6f6',
-    success: '',
-    error: '',
   },
+  maxWidthDesktop: '1440px',
+  maxWidthMobile: '600px',
+  maxWidthText: '720px',
   breakpoints: {
     xxs: '350px',
     xs: '400px',
@@ -37,24 +37,29 @@ export const theme = {
     xl: '1920px',
   },
   fontFamily: {
-    primary: 'Azo Sans',
+    primary: 'francesco-regular',
+    secondary: 'protogrotesk-regular',
+    tertiary: 'Arial',
   },
   fonts: {
-    heading1: '60px',
-    heading2: '50px',
-    heading3: '35px',
-    heading4: '20px',
-    heading5: '16px',
-    subheading1: '20px',
-    bigText: '18px',
-    body: '12px',
-    smallText: '10px',
-    cta: '10px',
+    heading1: '48px',
+    heading2: '45px',
+    heading3: '36px',
+    heading4: '30px',
+    heading5: '24px',
+    heading6: '18px',
+    heading7: '14px',
+    overline: '12px',
+    body: '18px',
+    bigText: '24px',
+    smallText: '12px',
+    mediumText: '14px',
+    quote: '43px',
     links: '10px',
   },
   letterSpacing: {
     heading1: '3px',
-    heading2: '3px',
+    heading2: '2px',
     heading3: '1.75px',
     heading4: '1.71px',
     heading5: '1.92px',
@@ -70,7 +75,7 @@ export const theme = {
     if (value.indexOf(' ') >= 0) {
       value = value.split(' ')
       value = value
-        .map(v => `${Math.floor(+v.split('px')[0] * by)}px`)
+        .map((v) => `${Math.floor(+v.split('px')[0] * by)}px`)
         .join(' ')
       return value
     } else {
@@ -81,30 +86,22 @@ export const theme = {
   },
 }
 
-export const GlobalStyle = props => (
+export const GlobalStyle = (props) => (
   <Global
     {...props}
     styles={css`
       ${reset};
 
       body {
-        margin: 0;
-        font-family: 'Azo Sans';
-        color: #202020;
-        margin-top: 84px;
-
-        @media (min-width: ${theme.breakpoints.s}) {
-          margin-top: 129px;
-        }
-
-        @media (min-width: ${theme.breakpoints.md}) {
-          margin-top: 186px;
-        }
+        color: ${theme.colors.black};
+        background-color: #ffffff;
+        scroll-behavior: smooth;
+        overflow: visible;
       }
       html {
-        font-family: sans-serif;
-        -ms-text-size-adjust: 100%;
-        -webkit-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
       }
     `}
   />

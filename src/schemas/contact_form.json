@@ -1,0 +1,68 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "Contact Form"
+      }
+    },
+    "form_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Form Title"
+      }
+    },
+    "form_select_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Form Select Title"
+      }
+    },
+    "form_field_name": {
+      "type": "Text",
+      "config": {
+        "label": "Form Field Name"
+      }
+    },
+    "form_field_email": {
+      "type": "Text",
+      "config": {
+        "label": "Form Field Email"
+      }
+    },
+    "form_field_text": {
+      "type": "Text",
+      "config": {
+        "label": "Form Field Text"
+      }
+    },
+    "form_success_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Form Success Title"
+      }
+    },
+    "form_success_subtitle": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Form Success SubTitle"
+      }
+    },
+    "form_success_message": {
+      "type": "Text",
+      "config": {
+        "label": "Form Success Message"
+      }
+    },
+    "form_button_text": {
+      "type": "Text",
+      "config": {
+        "label": "Form Button Text"
+      }
+    }
+  }
+}

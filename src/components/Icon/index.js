@@ -28,6 +28,19 @@ import { FastShipping } from './assets/FastShipping'
 import { Minus } from './assets/Minus'
 import { AfterPay } from './assets/AfterPay'
 import { Zip } from './assets/Zip'
+import { BigMenu } from './assets/BigMenu'
+import { HorizontalLine } from './assets/HorizontalLine'
+import { HorizontalLineDes } from './assets/HorizontalLineDes'
+import { Cross } from './assets/Cross'
+import { CrossDes } from './assets/CrossDes'
+import { Flower } from './assets/Flower'
+import { Border } from './assets/Border'
+import { BorderMob } from './assets/BorderMob'
+import { Line } from './assets/Line'
+import { AddDes } from './assets/AddDes'
+import { CalendarLine } from './assets/CalendarLine'
+import { BigArrowForwoard } from './assets/BigArrowForwoard'
+import { ArrowSelect } from './assets/ArrowSelect'
 
 const Icon = ({ type }) => {
   switch (type) {
@@ -43,6 +56,8 @@ const Icon = ({ type }) => {
       return <ArrowBack />
     case 'arrow-forward':
       return <ArrowForward />
+    case 'big-arrow-forward':
+      return <BigArrowForwoard />
     case 'arrow-right':
       return <ArrowRight />
     case 'call':
@@ -87,6 +102,30 @@ const Icon = ({ type }) => {
       return <Search />
     case 'fast-shipping':
       return <FastShipping />
+    case 'bigMenu':
+      return <BigMenu />
+    case 'horizontal-line':
+      return <HorizontalLine />
+    case 'horizontal-line-des':
+      return <HorizontalLineDes />
+    case 'cross':
+      return <Cross />
+    case 'cross-des':
+      return <CrossDes />
+    case 'add-des':
+      return <AddDes />
+    case 'flower':
+      return <Flower />
+    case 'border':
+      return <Border />
+    case 'border-mob':
+      return <BorderMob />
+    case 'line':
+      return <Line />
+    case 'calendar-line':
+      return <CalendarLine />
+    case 'arrow-select':
+      return <ArrowSelect />
     default:
       return ''
   }
