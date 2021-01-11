@@ -5,7 +5,7 @@ module.exports = {
   description:
     'Based on gatsby-starter-prismic with Internationalization (i18n) support',
   headline: 'Writing and publishing content for LekoArts', // Headline for schema.org JSONLD
-  url: 'https://prismic-i18n.lekoarts.de', // Domain of your site. No trailing slash!
+  url: 'https://youth.saintgeorgemontreal.org/', // Domain of your site. No trailing slash!
   logo: '/logos/logo-1024.png', // Used for SEO
   ogLanguage: 'en_US', // Facebook Language
 
