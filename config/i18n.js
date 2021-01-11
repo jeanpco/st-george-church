@@ -16,6 +16,7 @@ module.exports = {
     entries: 'entries',
   },
   'fr-ca': {
+    default: false,
     path: 'fr',
     locale: 'fr-ca',
     siteLanguage: 'fr',
