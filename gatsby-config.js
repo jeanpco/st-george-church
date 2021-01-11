@@ -150,7 +150,7 @@ module.exports = {
                     html
                     excerpt
                     feature_image
-                    created_at
+                    created_at(formatString: "MMMM DD YYYY")
                   }
                 }
               }
