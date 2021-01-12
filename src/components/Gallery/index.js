@@ -41,13 +41,13 @@ const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
 
   let infinite = false
 
-  if (isDesktop) {
-    slideToShow = ghostData.length < 3 ? ghostData.length : 2
+  if (isTablet) {
+    slideToShow = 2
     infinite = false
   }
 
-  if (isTablet) {
-    slideToShow = 2
+  if (isDesktop) {
+    slideToShow = ghostData.length < 3 ? ghostData.length : 3
     infinite = false
   }
 
@@ -55,6 +55,8 @@ const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
     slideToShow = 1.4
     infinite = false
   }
+
+  console.log(slideToShow)
 
   return (
     <GalleryContainer id={uid}>
@@ -84,88 +86,90 @@ const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
                 galleryImageLength={ghostData.length}
               >
                 {ghostData
-                  ? ghostData.filter((post) => {
-                      const galleryFilterTag =
-                        post.tags.length > 0
-                          ? post.tags.map((value) => {
-                              return value.slug
-                            })
-                          : ''
-                        
-                      return !galleryFilterTag.includes('orthoflash')
-                    }).map((post, index) => {
-                      return (
-                        <Fragment key={`Gallery__Slider - ${index}`}>
-                          <GalleryImgText>
-                            {post?.tags?.length > 0
-                              ? post.tags.map((tag, index) => {
-                                  if (tag.slug === 'gallery') {
-                                    return (
-                                      <Fragment
-                                        key={`Gallery-Upper-Text - ${index}`}
-                                      >
-                                        <GalleryUpperImg className="gallery-upper-text">
-                                          <Icon type="image-icon" />
-                                        </GalleryUpperImg>
-                                      </Fragment>
-                                    )
-                                  }
-                                })
-                              : ''}
-                          </GalleryImgText>
-                          <GallerySliderItemsContainer>
-                            {post?.slug ? (
-                              <>
-                                <Link
-                                  to={
-                                    i18n.locale === 'en-ca'
-                                      ? `/blog/${post.slug}`
-                                      : `/fr/blog/${post.slug}`
-                                  }
-                                  className="Gallery__Slider_Link"
-                                >
-                                  {post?.localFeatureImage?.childImageSharp
-                                    ?.fluid ? (
-                                    <Img
-                                      fluid={
-                                        post.localFeatureImage.childImageSharp
-                                          .fluid
-                                      }
-                                      alt="Gallery Slider Image"
-                                    />
-                                  ) : (
-                                    ''
-                                  )}
-                                  {post?.title ? (
-                                    <GallerySliderTitle>
-                                      <Title as="h3" type="heading8">
-                                        {post.title}
-                                      </Title>
-                                    </GallerySliderTitle>
-                                  ) : (
-                                    ''
-                                  )}
-                                  {post?.excerpt ? (
-                                    <GallerySliderText>
-                                      <Text type="smallText700">
-                                        {truncateBody(post.excerpt)}
-                                      </Text>
-                                    </GallerySliderText>
-                                  ) : (
-                                    ''
-                                  )}
-                                </Link>
-                              </>
-                            ) : (
-                              ''
-                            )}
-                          </GallerySliderItemsContainer>
-                          <GallerySliderIcon className="Gallery__Flower-Icon">
-                            <Icon type="flower" />
-                          </GallerySliderIcon>
-                        </Fragment>
-                      )
-                    })
+                  ? ghostData
+                      .filter((post) => {
+                        const galleryFilterTag =
+                          post.tags.length > 0
+                            ? post.tags.map((value) => {
+                                return value.slug
+                              })
+                            : ''
+
+                        return !galleryFilterTag.includes('orthoflash')
+                      })
+                      .map((post, index) => {
+                        return (
+                          <Fragment key={`Gallery__Slider - ${index}`}>
+                            <GalleryImgText>
+                              {post?.tags?.length > 0
+                                ? post.tags.map((tag, index) => {
+                                    if (tag.slug === 'gallery') {
+                                      return (
+                                        <Fragment
+                                          key={`Gallery-Upper-Text - ${index}`}
+                                        >
+                                          <GalleryUpperImg className="gallery-upper-text">
+                                            <Icon type="image-icon" />
+                                          </GalleryUpperImg>
+                                        </Fragment>
+                                      )
+                                    }
+                                  })
+                                : ''}
+                            </GalleryImgText>
+                            <GallerySliderItemsContainer>
+                              {post?.slug ? (
+                                <>
+                                  <Link
+                                    to={
+                                      i18n.locale === 'en-ca'
+                                        ? `/blog/${post.slug}`
+                                        : `/fr/blog/${post.slug}`
+                                    }
+                                    className="Gallery__Slider_Link"
+                                  >
+                                    {post?.localFeatureImage?.childImageSharp
+                                      ?.fluid ? (
+                                      <Img
+                                        fluid={
+                                          post.localFeatureImage.childImageSharp
+                                            .fluid
+                                        }
+                                        alt="Gallery Slider Image"
+                                      />
+                                    ) : (
+                                      ''
+                                    )}
+                                    {post?.title ? (
+                                      <GallerySliderTitle>
+                                        <Title as="h3" type="heading8">
+                                          {post.title}
+                                        </Title>
+                                      </GallerySliderTitle>
+                                    ) : (
+                                      ''
+                                    )}
+                                    {post?.excerpt ? (
+                                      <GallerySliderText>
+                                        <Text type="smallText700">
+                                          {truncateBody(post.excerpt)}
+                                        </Text>
+                                      </GallerySliderText>
+                                    ) : (
+                                      ''
+                                    )}
+                                  </Link>
+                                </>
+                              ) : (
+                                ''
+                              )}
+                            </GallerySliderItemsContainer>
+                            <GallerySliderIcon className="Gallery__Flower-Icon">
+                              <Icon type="flower" />
+                            </GallerySliderIcon>
+                          </Fragment>
+                        )
+                      })
                   : ''}
               </GallerySliderContent>
               {blogPageLink ? (

@@ -32,7 +32,7 @@ export const HomeQuoteContentContainer = styled.div`
 `
 export const HomeQuoteContent = styled.div`
   position: relative;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   background: ${(props) => props.theme.colors.yellow};
   padding-top: 12px;
@@ -47,11 +47,12 @@ export const HomeQuoteContent = styled.div`
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     max-width: 100%;
-    padding: 50px 60px 60px 22px;
+    padding: 50px 60px 60px;
     margin-top: 0;
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+    width: calc(100% - 40px);
   }
 
   p {
