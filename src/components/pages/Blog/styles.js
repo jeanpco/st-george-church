@@ -89,7 +89,7 @@ export const BlogPageHeader = styled.div`
   margin-bottom: 40px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin-top: 90px;
+    margin-top: 45px;
     margin-bottom: 90px;
   }
 `

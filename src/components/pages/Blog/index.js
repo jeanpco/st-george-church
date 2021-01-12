@@ -67,9 +67,7 @@ const BlogLayout = ({ data }) => {
             ? currentList.map((info, index) => {
                 const blogFilterTag =
                   info.tags.length > 0
-                    ? info.tags.map((value) => {
-                        return value.slug
-                      })
+                    ? info.tags.map((value) => value.slug)
                     : ''
                 if (!blogFilterTag.includes('orthoflash')) {
                   return (
