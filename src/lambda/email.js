@@ -6,8 +6,6 @@ require('dotenv').config({
 exports.handler = function (event, context, callback) {
   const body = JSON.parse(event.body)
 
-  console.log(body.to)
-
   const msg = {
     to: body.to,
     from: 'info@saintgeorgemontreal.org',
