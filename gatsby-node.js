@@ -1,12 +1,25 @@
 const locales = require('./config/i18n')
 const path = require('path')
+const util = require('util')
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
-
+const exec = util.promisify(child_process.exec)
 const {
   replaceTrailing,
   replaceBoth,
   wrapper,
 } = require('./src/utils/gatsby-node-helpers')
+
+exports.onPostBuild = async (gatsbyNodeHelpers) => {
+  const { reporter } = gatsbyNodeHelpers
+
+  const reportOut = (report) => {
+    const { stderr, stdout } = report
+    if (stderr) reporter.error(stderr)
+    if (stdout) reporter.info(stdout)
+  }
+
+  reportOut(await exec('npm run build:lambda'))
+}
 
 exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
   const config = getConfig()
