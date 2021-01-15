@@ -12,7 +12,6 @@ import { useStaticQuery, graphql } from 'gatsby'
 import LocaleContext from '../../context/LocaleProvider'
 import SocialMedia from '../../components/SocialMedia'
 import Text from '../Utilities/Text'
-import { Link } from 'gatsby'
 import { WidthLimiterContainer } from '../Layout/styles'
 
 const Footer = () => {
@@ -29,6 +28,12 @@ const Footer = () => {
             legal_section {
               privacy
               terms_of_service
+              terms_of_service_link {
+                url
+              }
+              privacy_link {
+                url
+              }
             }
           }
         }
@@ -50,6 +55,38 @@ const Footer = () => {
     : ''
   const today = new Date()
   const year = today.getFullYear()
+
+  const legalLinks =
+    footerLocal?.legal_section?.length > 0
+      ? footerLocal.legal_section.map((section) => {
+          return (
+            <>
+              {section.privacy_link?.url && section.privacy ? (
+                <a key={section.privacy} href={section.privacy_link?.url}>
+                  <Text type="link" className="Footer__LegalLinks">
+                    {section?.privacy ? section.privacy : ''}
+                  </Text>
+                </a>
+              ) : (
+                <></>
+              )}
+              {section.terms_of_service_link?.url &&
+              section.terms_of_service ? (
+                <a
+                  key={section?.terms_of_service}
+                  href={section.terms_of_service_link?.url}
+                >
+                  <Text type="link" className="Footer__LegalLinks">
+                    {section?.terms_of_service ? section.terms_of_service : ''}
+                  </Text>
+                </a>
+              ) : (
+                <></>
+              )}
+            </>
+          )
+        })
+      : ''
 
   return (
     <FooterContainer>
@@ -101,22 +138,7 @@ const Footer = () => {
         </DesignedTextContainer>
         <LegalLinksContainer>
           <MobileDown>
-            {footerLocal?.legal_section?.length > 0
-              ? footerLocal.legal_section.map((section, index) => {
-                  return (
-                    <Link key={`LegalSectionsLink -  ${index}`} to="/faq">
-                      <Text type="link" className="Footer__LegalLinks">
-                        {section?.privacy ? section.privacy : ''}
-                      </Text>
-                      <Text type="link" className="Footer__LegalLinks">
-                        {section?.terms_of_service
-                          ? section.terms_of_service
-                          : ''}
-                      </Text>
-                    </Link>
-                  )
-                })
-              : ''}
+            {legalLinks}
             {footerLocal?.copyright_text ? (
               <Text
                 type="smallText400"
@@ -137,22 +159,7 @@ const Footer = () => {
             ) : (
               ''
             )}
-            {footerLocal?.legal_section?.length > 0
-              ? footerLocal.legal_section.map((section, index) => {
-                  return (
-                    <Link key={`LegalSectionsLink -  ${index}`} to="/faq">
-                      <Text type="link" className="Footer__LegalLinks">
-                        {section?.privacy ? section.privacy : ''}
-                      </Text>
-                      <Text type="link" className="Footer__LegalLinks">
-                        {section?.terms_of_service
-                          ? section.terms_of_service
-                          : ''}
-                      </Text>
-                    </Link>
-                  )
-                })
-              : ''}
+            {legalLinks}
           </MobileUp>
         </LegalLinksContainer>
       </WidthLimiterContainer>

@@ -6,7 +6,7 @@ require('dotenv').config({
 })
 
 const config = require(`./config/website`)
-const generateRSSFeed = require(`./src/utils/rss/generateFeed`)
+const feeds = require(`./src/utils/rss/generateFeed`)
 
 // const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer')
 const prismicLinkResolver = require('./src/gatsby/linkResolver')
@@ -62,7 +62,10 @@ module.exports = {
               }
           }
         `,
-        feeds: [generateRSSFeed(config)],
+        feeds: [
+          feeds.generateRSSFeedOrthoflash(config),
+          feeds.generateRSSFeedNews(config),
+        ],
       },
     },
     {
@@ -175,7 +178,7 @@ module.exports = {
     //               }
     //             }
     //           }
-    //         }            
+    //         }
     //         `,
     //         output: '/rss.xml',
     //         title: 'St-George Orthoflash RSS Feed',

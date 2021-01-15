@@ -30,10 +30,22 @@
               "label": "Privacy"
             }
           },
+          "privacy_link": {
+            "type": "Link",
+            "config": {
+              "label": "Privacy Link"
+            }
+          },
           "terms_of_service": {
             "type": "Text",
             "config": {
               "label": "Terms of Service"
+            }
+          },
+          "terms_of_service_link": {
+            "type": "Link",
+            "config": {
+              "label": "Terms of Service Link"
             }
           }
         },

@@ -6,11 +6,13 @@ require('dotenv').config({
 exports.handler = function (event, context, callback) {
   const body = JSON.parse(event.body)
 
+  console.log(body.to)
+
   const msg = {
     to: body.to,
-    from: body.from,
+    from: 'info@saintgeorgemontreal.org',
     subject: `Email from St-George Contact form: ${body.subject}`,
-    text: body.text,
+    text: `Email: ${body.from}, Message: ${body.text}`,
   }
 
   sgMail.setApiKey(process.env.SENDGRID_API_KEY)
