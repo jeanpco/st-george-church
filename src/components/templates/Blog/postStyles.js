@@ -170,7 +170,7 @@ export const PostItemsContainer = styled.div`
       margin-top: 28px;
     }
 
-    p:nth-of-type(2) {
+    blockquote {
       position: relative;
       color: ${(props) => props.theme.colors.secondary};
       margin-left: 30px;
@@ -185,7 +185,7 @@ export const PostItemsContainer = styled.div`
       }
     }
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      p:nth-of-type(2) {
+      blockquote {
         position: relative;
         color: ${(props) => props.theme.colors.secondary};
         margin-left: 50px;

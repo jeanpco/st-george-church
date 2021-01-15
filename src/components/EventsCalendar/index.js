@@ -255,12 +255,7 @@ const EventsCalendar = ({
                                 {info.description}
                               </Text>
                             ) : (
-                              <Text
-                                type="smallText900"
-                                className="Event__Description-Text"
-                              >
-                                {eventDescription}
-                              </Text>
+                              <></>
                             )}
                           </CalenderEventsBodyText>
                           <CalendarEventsIcon>
@@ -337,12 +332,7 @@ const EventsCalendar = ({
                                 {info.description}
                               </Text>
                             ) : (
-                              <Text
-                                type="smallText900"
-                                className="Event__Description-Text"
-                              >
-                                {eventDescription}
-                              </Text>
+                              <></>
                             )}
                           </CalenderEventsBodyText>
                           <CalendarEventsIcon>

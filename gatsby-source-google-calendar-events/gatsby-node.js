@@ -99,11 +99,6 @@ exports.sourceNodes = async ({ actions }, options = defaultOptions) => {
 
   // setting the general auth property for client
 
-  console.log(key.client_email)
-  console.log(key.private_key)
-  console.log(scopes)
-  console.log(assumedUser)
-
   const token = new google.auth.JWT(
     key.client_email,
     null,

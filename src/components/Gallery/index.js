@@ -56,8 +56,6 @@ const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
     infinite = false
   }
 
-  console.log(slideToShow)
-
   return (
     <GalleryContainer id={uid}>
       <WidthLimiterContainer>

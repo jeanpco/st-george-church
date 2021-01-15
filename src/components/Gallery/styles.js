@@ -37,9 +37,8 @@ export const GallerySliderContainer = styled.div`
       position: absolute;
       margin: 0px;
       padding: 0px;
-      left: 50%;
+      right: 150px;
       bottom: -73px;
-      transform: translateX(-50%);
     }
   }
 
