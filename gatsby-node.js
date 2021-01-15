@@ -2,6 +2,7 @@ const locales = require('./config/i18n')
 const path = require('path')
 const util = require('util')
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+const child_process = require('child_process')
 const exec = util.promisify(child_process.exec)
 const {
   replaceTrailing,
