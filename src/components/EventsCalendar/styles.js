@@ -42,7 +42,7 @@ export const DayPickerContainer = styled.div`
     border-radius: 50%;
 
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      padding: 8px;
+      padding: 8px 9.5px;
     }
   }
 
