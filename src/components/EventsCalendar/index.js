@@ -2,23 +2,21 @@ import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 import Moment from 'react-moment'
+
 import Navbar from './NavbarElement/NavBarElement'
 import LocaleContext from '../../context/LocaleProvider'
 import MomentLocaleUtils from 'react-day-picker/moment'
 import 'moment/min/locales'
-
 import { WidthLimiterContainer } from '../Layout/styles'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
-
 import Icon from '~/components/Icon'
 import { Desktop, Tablet } from '../Utilities/Media'
-
 import DayPicker from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
 import { useStaticQuery, graphql } from 'gatsby'
 import {
-  CallendarSectionContainer,
+  CalendarSectionContainer,
   CalendarContainer,
   CalendarHeaderContainer,
   CallendarItemsContainer,
@@ -34,14 +32,12 @@ import {
   CalendarEventSubTitle,
   UpcomingEventDiv,
 } from './styles'
-import { useEffect } from 'react'
 
 const EventsCalendar = ({
   query: {
     eventSectionTitle,
     calendarTitle,
     eventAddress,
-    eventDescription,
     uid,
     noEventTitle,
     upcomingEventTitle,
@@ -63,50 +59,25 @@ const EventsCalendar = ({
     }
   `)
 
-  const [selectedDay, setSelectedDay] = useState({ selectedDay: new Date() })
+  const [selectedDay, setSelectedDay] = useState(new Date())
   const [filterDate, setfilterDate] = useState(new Date().toLocaleDateString())
-  const [locale, setLocale] = useState('')
-
+  const lang = React.useContext(LocaleContext)
+  const locale = lang.i18n[lang.locale].path
   const currentMonth = +JSON.stringify(selectedDay).split('-')[1]
 
-  let nextMonth
-
-  if (currentMonth === 12) {
-    nextMonth = 1
-  } else {
-    nextMonth = currentMonth + 1
-  }
+  const nextMonth = currentMonth === 12 ? 1 : currentMonth + 1
 
   const currentMonthEvents = []
   const nextMonthEvents = []
 
-  const lang = React.useContext(LocaleContext)
-  const i18n = lang.i18n[lang.locale]
   const dayFilteredEvents = []
   const eventDates = []
   const modifiers = {
     event: eventDates,
   }
 
-  useEffect(() => {
-    setLocale(i18n.path)
-  }, [])
-
-  useEffect(() => {
-    eventDates.map((event) => {
-      if (event.toLocaleDateString() === filterDate) {
-        setSelectedDay({
-          selectedDay: new Date(),
-        })
-      }
-    })
-  }, [filterDate])
-
   const handleDayClick = (day, { selected }) => {
-    setSelectedDay({
-      selectedDay: selected ? undefined : day,
-    })
-
+    setSelectedDay(selected ? undefined : day)
     setfilterDate(day.toLocaleDateString())
   }
 
@@ -139,21 +110,19 @@ const EventsCalendar = ({
 
   const renderDay = (day) => {
     const date = day.getDate()
-    const dateStyle = {}
-    const cellStyle = {}
+
     return (
-      <div style={cellStyle} className="cell-style">
-        <div style={dateStyle} className="date-cell">
-          {date}
-        </div>
+      <div className="cell-style">
+        <div className="date-cell">{date}</div>
       </div>
     )
   }
 
   const upcomingMonthEvents = currentMonthEvents.concat(nextMonthEvents)
+  const date = JSON.stringify(selectedDay)?.split('-')?.[2]?.split('T')?.[0]
 
   return (
-    <CallendarSectionContainer id={uid}>
+    <CalendarSectionContainer id={uid}>
       <WidthLimiterContainer>
         <CalendarContainer>
           <CalendarHeaderContainer>
@@ -184,7 +153,7 @@ const EventsCalendar = ({
                 showOutsideDays
                 firstDayOfWeek={1}
                 onDayClick={handleDayClick}
-                selectedDays={selectedDay ? selectedDay.selectedDay : ''}
+                selectedDays={selectedDay ? selectedDay : ''}
                 renderDay={renderDay}
                 navbarElement={<Navbar />}
                 localeUtils={MomentLocaleUtils}
@@ -199,7 +168,7 @@ const EventsCalendar = ({
                 noEventTitle ? (
                   <UpcomingEventDiv>
                     <Title as="h3" type="calendarTitle">
-                      {calendarTitle}
+                      {calendarTitle.replace('%date%', date)}
                     </Title>
                   </UpcomingEventDiv>
                 ) : (
@@ -208,60 +177,12 @@ const EventsCalendar = ({
                 {dayFilteredEvents?.length > 0
                   ? dayFilteredEvents.map((info, index) => {
                       return (
-                        <EventItemsContainer key={`Google Events -- ${index}`}>
-                          <CalendarEventDates>
-                            {info?.start?.dateTime ? (
-                              <Moment
-                                locale={locale}
-                                date={info.start.dateTime}
-                                format="MMMM DD, YYYY @ h:mm A"
-                                className="Formated-Date"
-                              ></Moment>
-                            ) : (
-                              ''
-                            )}
-                            {info?.end?.dateTime ? (
-                              <Text> - {info.end.dateTime}</Text>
-                            ) : (
-                              ''
-                            )}
-                          </CalendarEventDates>
-                          <CalendarEventsBodyHead>
-                            {info?.summary ? (
-                              <CalendarEventSubTitle as="h4">
-                                {info.summary}
-                              </CalendarEventSubTitle>
-                            ) : (
-                              ''
-                            )}
-                            {eventAddress ? (
-                              <Text
-                                type="smallText900"
-                                dangerouslySetInnerHTML={{
-                                  __html: eventAddress,
-                                }}
-                                className="Event__Address-Text"
-                              />
-                            ) : (
-                              ''
-                            )}
-                          </CalendarEventsBodyHead>
-                          <CalenderEventsBodyText>
-                            {info.description && eventDescription ? (
-                              <Text
-                                type="smallText900"
-                                className="Event__Description-Text"
-                              >
-                                {info.description}
-                              </Text>
-                            ) : (
-                              <></>
-                            )}
-                          </CalenderEventsBodyText>
-                          <CalendarEventsIcon>
-                            <Icon type="calendar-line" />
-                          </CalendarEventsIcon>
-                        </EventItemsContainer>
+                        <CalendarEventBody
+                          info={info}
+                          key={`GoogleEvents--${index}`}
+                          locale={locale}
+                          eventAddress={eventAddress}
+                        />
                       )
                     })
                   : ''}
@@ -285,60 +206,12 @@ const EventsCalendar = ({
                 {upcomingMonthEvents?.length > 0
                   ? upcomingMonthEvents.map((info, index) => {
                       return (
-                        <EventItemsContainer key={`Google Events -- ${index}`}>
-                          <CalendarEventDates>
-                            {info?.start?.dateTime ? (
-                              <Moment
-                                locale={locale}
-                                date={info.start.dateTime}
-                                format="MMMM DD, YYYY @ h:mm A"
-                                className="Formated-Date"
-                              ></Moment>
-                            ) : (
-                              ''
-                            )}
-                            {info?.end?.dateTime ? (
-                              <Text> - {info.end.dateTime}</Text>
-                            ) : (
-                              ''
-                            )}
-                          </CalendarEventDates>
-                          <CalendarEventsBodyHead>
-                            {info?.summary ? (
-                              <CalendarEventSubTitle as="h4">
-                                {info.summary}
-                              </CalendarEventSubTitle>
-                            ) : (
-                              ''
-                            )}
-                            {eventAddress ? (
-                              <Text
-                                type="smallText900"
-                                dangerouslySetInnerHTML={{
-                                  __html: eventAddress,
-                                }}
-                                className="Event__Address-Text"
-                              />
-                            ) : (
-                              ''
-                            )}
-                          </CalendarEventsBodyHead>
-                          <CalenderEventsBodyText>
-                            {info.description && eventDescription ? (
-                              <Text
-                                type="smallText900"
-                                className="Event__Description-Text"
-                              >
-                                {info.description}
-                              </Text>
-                            ) : (
-                              <></>
-                            )}
-                          </CalenderEventsBodyText>
-                          <CalendarEventsIcon>
-                            <Icon type="calendar-line" />
-                          </CalendarEventsIcon>
-                        </EventItemsContainer>
+                        <CalendarEventBody
+                          info={info}
+                          key={`GoogleEvents--${index}`}
+                          locale={locale}
+                          eventAddress={eventAddress}
+                        />
                       )
                     })
                   : ''}
@@ -347,8 +220,68 @@ const EventsCalendar = ({
           </CallendarItemsContainer>
         </CalendarContainer>
       </WidthLimiterContainer>
-    </CallendarSectionContainer>
+    </CalendarSectionContainer>
   )
+}
+
+const CalendarEventBody = ({ info, locale, eventAddress }) => {
+  return (
+    <EventItemsContainer>
+      <CalendarEventDates>
+        {info?.start?.dateTime ? (
+          <Moment
+            locale={locale}
+            date={info.start.dateTime}
+            format="MMMM DD, YYYY @ h:mm A"
+            className="Formated-Date"
+          />
+        ) : (
+          ''
+        )}
+        {info?.end?.dateTime ? <Text> - {info.end.dateTime}</Text> : ''}
+      </CalendarEventDates>
+      <CalendarEventsBodyHead>
+        {info?.summary ? (
+          <CalendarEventSubTitle as="h4">{info.summary}</CalendarEventSubTitle>
+        ) : (
+          ''
+        )}
+        {eventAddress ? (
+          <Text
+            type="smallText900"
+            dangerouslySetInnerHTML={{
+              __html: eventAddress,
+            }}
+            className="Event__Address-Text"
+          />
+        ) : (
+          ''
+        )}
+      </CalendarEventsBodyHead>
+      <CalenderEventsBodyText>
+        {info?.description ? (
+          <Text type="smallText900" className="Event__Description-Text">
+            {info.description}
+          </Text>
+        ) : (
+          <></>
+        )}
+      </CalenderEventsBodyText>
+      <CalendarIcon />
+    </EventItemsContainer>
+  )
+}
+
+const CalendarIcon = () => (
+  <CalendarEventsIcon>
+    <Icon type="calendar-line" />
+  </CalendarEventsIcon>
+)
+
+CalendarEventBody.propTypes = {
+  locale: PropTypes.string,
+  info: PropTypes.object,
+  eventAddress: PropTypes.any,
 }
 
 EventsCalendar.propTypes = {

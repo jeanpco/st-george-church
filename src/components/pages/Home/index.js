@@ -20,6 +20,7 @@ import {
 import { WidthLimiterContainer } from '../../Layout/styles'
 import Img from 'gatsby-image'
 import Fade from 'react-reveal/Fade'
+import { Desktop, Tablet } from '../../../components/Utilities/Media'
 
 const IndexLayout = ({
   data: {
@@ -63,9 +64,6 @@ const IndexLayout = ({
   const eventAddress =
     query?.events_calendar?.document?.data?.event_address?.html
 
-  const eventDescription =
-    query?.events_calendar?.document?.data?.event_description
-
   const ministriesUid = query?.ministries_section?.uid
 
   const galleryUid = query?.photo_gallery?.uid
@@ -79,6 +77,9 @@ const IndexLayout = ({
       <WidthLimiterContainer className="HomePage__WidthLimiter">
         <DesktopIntroContainer>
           <HomeIntroContainer>
+            <Tablet>
+              <Slider style={{ marginTop: -10 }} query={query} />
+            </Tablet>
             <HomeIntroContentContainer>
               <HomeIntroBodyContainer>
                 <Fade bottom distance="30px">
@@ -118,30 +119,9 @@ const IndexLayout = ({
                 </Fade>
               </HomeIntroBodyContainer>
             </HomeIntroContentContainer>
-            <SliderContainer>
-                {query?.body[0].items.length > 0 ? (
-                  <SliderContent
-                    slidesToShow={1}
-                    slidesToScroll={1}
-                    autoplay={true}
-                    imgLength={query.body[0].items.length}
-                  >
-                    {query.body[0].items?.length > 0
-                      ? query.body[0].items.map((img, index) => {
-                          const sliderImage = img?.slider_img?.localFile
-                            ?.childImageSharp?.fluid
-                            ? img.slider_img.localFile.childImageSharp.fluid
-                            : ''
-                          return (
-                            <Img key={index} fluid={{ ...sliderImage, aspectRatio: 714 / 624 }} />
-                          )
-                        })
-                      : ''}
-                  </SliderContent>
-                ) : (
-                  ''
-                )}
-              </SliderContainer>
+            <Desktop>
+              <Slider query={query} />
+            </Desktop>
           </HomeIntroContainer>
         </DesktopIntroContainer>
       </WidthLimiterContainer>
@@ -162,13 +142,12 @@ const IndexLayout = ({
       />
       <EventsCalendar
         query={{
-          eventSectionTitle: eventSectionTitle,
+          eventSectionTitle,
           calendarTitle: eventCalendarTitle,
-          eventAddress: eventAddress,
-          eventDescription: eventDescription,
+          eventAddress,
           uid: eventUid,
-          noEventTitle: noEventTitle,
-          upcomingEventTitle: upcomingEventTitle,
+          noEventTitle,
+          upcomingEventTitle,
         }}
       />
       {photoGalleryTitle ? (
@@ -191,6 +170,43 @@ const IndexLayout = ({
       />
     </HomePageContainer>
   )
+}
+
+const Slider = ({ query, style }) => {
+  return (
+    <SliderContainer style={style}>
+      {query?.body[0].items.length > 0 ? (
+        <SliderContent
+          slidesToShow={1}
+          slidesToScroll={1}
+          autoplay={true}
+          imgLength={query.body[0].items.length}
+        >
+          {query.body[0].items?.length > 0
+            ? query.body[0].items.map((img, index) => {
+                const sliderImage = img?.slider_img?.localFile?.childImageSharp
+                  ?.fluid
+                  ? img.slider_img.localFile.childImageSharp.fluid
+                  : ''
+                return (
+                  <Img
+                    key={index}
+                    fluid={{ ...sliderImage, aspectRatio: 714 / 624 }}
+                  />
+                )
+              })
+            : ''}
+        </SliderContent>
+      ) : (
+        ''
+      )}
+    </SliderContainer>
+  )
+}
+
+Slider.propTypes = {
+  query: PropTypes.object,
+  style: PropTypes.object,
 }
 
 IndexLayout.propTypes = {

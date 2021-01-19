@@ -16,6 +16,7 @@ import Drawer from '../Drawer'
 import { Tablet, Desktop } from '~/components/Utilities/Media'
 import Icon from '~/components/Icon'
 import { WidthLimiterContainer } from '../Layout/styles'
+import Fade from 'react-reveal/Fade'
 
 const Header = ({ location }) => {
   const data = useStaticQuery(graphql`
@@ -113,83 +114,85 @@ const Header = ({ location }) => {
   return (
     <HeaderBg>
       <WidthLimiterContainer className="Header__WidthContainer">
-        <HeaderContainer>
-          <Tablet>
-            <Link to={i18n.locale === 'en-ca' ? '/' : '/fr'}>
-              <img
-                src={logo ? logo : ''}
-                alt="header logo"
-                className="Header__Logo"
+        <Fade bottom distance="10px" delay={500}>
+          <HeaderContainer>
+            <Tablet>
+              <Link to={i18n.locale === 'en-ca' ? '/' : '/fr'}>
+                <img
+                  src={logo ? logo : ''}
+                  alt="header logo"
+                  className="Header__Logo"
+                />
+              </Link>
+            </Tablet>
+            <Desktop>
+              <Link to={i18n.locale === 'en-ca' ? '/' : '/fr'}>
+                <img
+                  src={desktopLogo ? desktopLogo : ''}
+                  alt="header logo"
+                  className="Header__Logo"
+                />
+              </Link>
+              <MenuContainer>
+                <TitleContainer>
+                  <HeaderTitle>
+                    <Title as="h3" type="heading6">
+                      {menuTitle ? menuTitle : ''}
+                    </Title>
+                    <div
+                      role="button"
+                      onClick={() => setToggleDrawer(!toggleDrawer)}
+                    >
+                      <Icon type="bigMenu" />
+                    </div>
+                  </HeaderTitle>
+                  <img
+                    src={graphic ? graphic : ''}
+                    alt="header graphic"
+                    className="Header__Graphic"
+                  />
+                </TitleContainer>
+              </MenuContainer>
+
+              <Drawer
+                aboutData={aboutContentQuery ? aboutContentQuery : ''}
+                menuLinks={menuLinks ? menuLinks : ''}
+                title={menuTitle ? menuTitle : ''}
+                toggleDrawer={toggleDrawer}
+                setToggleDrawer={setToggleDrawer}
               />
-            </Link>
-          </Tablet>
-          <Desktop>
-            <Link to={i18n.locale === 'en-ca' ? '/' : '/fr'}>
-              <img
-                src={desktopLogo ? desktopLogo : ''}
-                alt="header logo"
-                className="Header__Logo"
-              />
-            </Link>
-            <MenuContainer>
-              <TitleContainer>
-                <HeaderTitle>
+            </Desktop>
+            <LanguageSwitcher location={location} />
+            <Tablet>
+              <MenuContainer>
+                <TitleContainer>
                   <Title as="h3" type="heading6">
                     {menuTitle ? menuTitle : ''}
                   </Title>
                   <div
+                    className="Header__button"
                     role="button"
                     onClick={() => setToggleDrawer(!toggleDrawer)}
                   >
-                    <Icon type="bigMenu" />
+                    <Icon type="menu" />
                   </div>
-                </HeaderTitle>
+                </TitleContainer>
                 <img
-                  src={graphic ? graphic : ''}
+                  src={graphic}
                   alt="header graphic"
                   className="Header__Graphic"
                 />
-              </TitleContainer>
-            </MenuContainer>
-
-            <Drawer
-              aboutData={aboutContentQuery ? aboutContentQuery : ''}
-              menuLinks={menuLinks ? menuLinks : ''}
-              title={menuTitle ? menuTitle : ''}
-              toggleDrawer={toggleDrawer}
-              setToggleDrawer={setToggleDrawer}
-            />
-          </Desktop>
-          <LanguageSwitcher location={location} />
-          <Tablet>
-            <MenuContainer>
-              <TitleContainer>
-                <Title as="h3" type="heading6">
-                  {menuTitle ? menuTitle : ''}
-                </Title>
-                <div
-                  className="Header__button"
-                  role="button"
-                  onClick={() => setToggleDrawer(!toggleDrawer)}
-                >
-                  <Icon type="menu" />
-                </div>
-              </TitleContainer>
-              <img
-                src={graphic}
-                alt="header graphic"
-                className="Header__Graphic"
-              />
-            </MenuContainer>
-            <Drawer
-              aboutData={aboutContentQuery ? aboutContentQuery : ''}
-              menuLinks={menuLinks ? menuLinks : ''}
-              title={menuTitle ? menuTitle : ''}
-              toggleDrawer={toggleDrawer}
-              setToggleDrawer={setToggleDrawer}
-            ></Drawer>
-          </Tablet>
-        </HeaderContainer>
+              </MenuContainer>
+              <Drawer
+                aboutData={aboutContentQuery ? aboutContentQuery : ''}
+                menuLinks={menuLinks ? menuLinks : ''}
+                title={menuTitle ? menuTitle : ''}
+                toggleDrawer={toggleDrawer}
+                setToggleDrawer={setToggleDrawer}
+              ></Drawer>
+            </Tablet>
+          </HeaderContainer>
+        </Fade>
       </WidthLimiterContainer>
     </HeaderBg>
   )

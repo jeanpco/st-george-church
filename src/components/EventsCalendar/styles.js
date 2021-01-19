@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import Title from '../Utilities/Title'
 
-export const CallendarSectionContainer = styled.div`
+export const CalendarSectionContainer = styled.div`
   padding-top: 20px;
 `
 

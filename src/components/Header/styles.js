@@ -9,6 +9,11 @@ export const HeaderBg = styled.div`
     justify-content: space-between;
     width: 100%;
     padding: 0;
+
+    .react-reveal {
+      width: 100%;
+      z-index: 1;
+    }
   }
 `
 
@@ -36,26 +41,36 @@ export const TitleContainer = styled.div`
 export const MenuContainer = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  margin-bottom: 10px;
+  justify-content: flex-end;
 
   @media (min-width: ${theme.breakpoints.xs}) {
-    justify-content: flex-end;
+  }
+
+  @media (min-width: ${theme.breakpoints.md}) {
+    margin-bottom: 0px;
   }
 
   .Header__button {
     position: relative;
-    padding-left: 5px;
+    padding-left: 10px;
+    transform: scale(2);
   }
 
   .Header__Graphic {
-    width: 13px;
-    height: 30px;
-    margin-right: 12px;
+    width: 20px;
+    height: auto;
+    margin: 0 10px;
+    margin-left: 25px;
 
     @media (min-width: ${theme.breakpoints.md}) {
       height: 90px;
       width: 50px;
       margin-right: 0;
+    }
+
+    @media (min-width: ${theme.breakpoints.xs}) {
+      margin-left: 0;
     }
   }
 
@@ -96,12 +111,16 @@ export const HeaderContainer = styled.header`
     position: relative;
     width: 230px;
     height: auto;
-
     left: 8px;
+
     @media (min-width: ${theme.breakpoints.md}) {
       top: 10px;
       width: 500px;
       height: 200px;
+    }
+
+    @media (max-width: ${theme.breakpoints.xxs}) {
+      width: 180px;
     }
   }
 `
