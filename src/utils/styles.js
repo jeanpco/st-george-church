@@ -97,7 +97,7 @@ export const GlobalStyle = (props) => (
         color: ${theme.colors.black};
         background-color: #ffffff;
         scroll-behavior: smooth;
-        overflow: visible;
+        overflow: hidden;
       }
       html {
         -webkit-font-smoothing: antialiased;
