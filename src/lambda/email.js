@@ -6,9 +6,13 @@ require('dotenv').config({
 exports.handler = function (event, context, callback) {
   const body = JSON.parse(event.body)
 
+  console.log(body)
+
   const msg = {
-    to: body.to,
-    from: 'info@saintgeorgemontreal.org',
+    // to: body.to,
+    to: 'jp@field-office.ca',
+    // from: 'info@saintgeorgemontreal.org',
+    from: 'phil@field-office.ca',
     subject: `Email from St-George Contact form: ${body.subject}`,
     text: `Email: ${body.from}, Message: ${body.text}`,
   }

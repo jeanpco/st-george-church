@@ -40,7 +40,7 @@ const ContactForm = ({
   })
 
   const [personName, setPersonName] = useState([])
-  const [emailState, setEmail] = useState([])
+  const [email, setEmail] = useState([])
   const [open, setOpen] = useState(false)
   const [formStatus, setFormStatus] = useState({
     message: '',
@@ -51,7 +51,9 @@ const ContactForm = ({
     getContactEmail(contactCurrent)
   }, [])
 
-  const names = []
+  const names = formInformation.map(
+    (contact) => contact.single_contact_link.document.data.contact_name.text
+  )
 
   const getContactEmail = (contactTarget) => {
     formInformation.map((contact) => {
@@ -64,9 +66,7 @@ const ContactForm = ({
     })
   }
 
-  formInformation.map((contact) => {
-    names.push(contact.single_contact_link.document.data.contact_name.text)
-  })
+  console.log(email)
 
   const changeHandler = (e) => {
     setFormState({
@@ -109,6 +109,8 @@ const ContactForm = ({
     }
   }
 
+  console.log(formState)
+
   const submitHandler = async (e) => {
     e.preventDefault()
     const validationOnSubmit = validateAll(e.target, formState)
@@ -129,8 +131,8 @@ const ContactForm = ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          to: emailState,
-          from: emailState, // Use the email address or domain you verified above
+          to: email,
+          from: formState.email, // Use the email address or domain you verified above
           subject: `${formState.email} sent you a message through your website contact form`,
           text: formState.text,
         }),
