@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { navigateTo } from 'gatsby'
+import { navigate } from 'gatsby'
 import { Button as ButtonMaterial } from '@material-ui/core'
 import { buttonUseStyles } from './styles'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import { css } from '@emotion/core'
-import DotLoader from 'react-spinners/DotLoader'
-import { theme as localTheme } from '~/utils/styles'
+// import { css } from '@emotion/core'
+// import DotLoader from 'react-spinners/DotLoader'
+// import { theme as localTheme } from '~/utils/styles'
 
-const override = css``
+// const override = css``
 
 const theme = createMuiTheme({
   overrides: {
@@ -21,7 +21,7 @@ const theme = createMuiTheme({
 const Button = ({
   children,
   buttonStyle = 'primary',
-  isLoading = false,
+  // isLoading = false,
   className,
   to,
   href,
@@ -46,22 +46,10 @@ const Button = ({
         disabled={disabled}
         role="button"
         {...buttonProps}
-        onClick={to ? () => navigateTo(to ? to : '/') : clickHandler}
+        onClick={to ? () => navigate(to ? to : '/') : clickHandler}
         href={href ? href : ''}
       >
         {children}
-        {isLoading ? (
-          <div className="DotLoader">
-            <DotLoader
-              css={override}
-              size={15}
-              color={localTheme.colors.tertiary}
-              loading={isLoading}
-            />
-          </div>
-        ) : (
-          ''
-        )}
       </ButtonMaterial>
     </ThemeProvider>
   )

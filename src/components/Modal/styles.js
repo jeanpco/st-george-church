@@ -21,21 +21,23 @@ export const ModalContent = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
 
-  &::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.24);
-  }
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.24);
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background: black;
-  }
+    &::-webkit-scrollbar-thumb {
+      background: black;
+    }
 
-  /* for firefox */
-  scrollbar-color: black lightGrey;
-  scrollbar-width: thin;
+    /* for firefox */
+    scrollbar-color: black lightGrey;
+    scrollbar-width: thin;
+  }
 `
 
 export const useStyles = makeStyles({
@@ -47,7 +49,10 @@ export const useStyles = makeStyles({
 
 export const DialogContentContainer = styled.div`
   padding-left: 20px;
-  padding-right: 20px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    padding-right: 20px;
+  }
 
   .Modal_Anchor-Img {
     width: 100%;

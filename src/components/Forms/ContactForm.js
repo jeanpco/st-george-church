@@ -19,8 +19,6 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import { validateInput, validateAll } from '../../utils/functions/validateForm'
-import { encode } from '../../utils/functions/encode'
-import axios from 'axios'
 import Button from '../Utilities/Button'
 import Text from '../Utilities/Text'
 import Icon from '~/components/Icon'
@@ -122,15 +120,7 @@ const ContactForm = ({
       })
     }
 
-    const body = encode({ 'form-name': 'contact', ...formState })
-
     try {
-      const form = await axios.post('/', body, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      })
-
       const response = await fetch('/.netlify/functions/email', {
         method: 'POST',
         credentials: 'same-origin',
@@ -146,7 +136,7 @@ const ContactForm = ({
         }),
       })
 
-      if (response.status != 200) {
+      if (response.status !== 200) {
         setHasError({
           state: true,
           message:
@@ -154,7 +144,9 @@ const ContactForm = ({
         })
       }
 
-      if (form.status === 200 && response.status === 200) {
+      console.log(response)
+
+      if (response.status === 200) {
         // eslint-disable-next-line no-console
         setFormSuccess(true)
         setFormStatus({

@@ -1,6 +1,6 @@
 const cheerio = require(`cheerio`)
 const tagsHelper = require(`@tryghost/helpers`).tags
-const _ = require(`lodash`)
+const map = require(`lodash`).map
 
 const generateItem = function generateItem(siteUrl, post) {
   const itemUrl = post.canonical_url || `${siteUrl}/${post.slug}/`
@@ -15,7 +15,7 @@ const generateItem = function generateItem(siteUrl, post) {
     guid: post.id,
     url: itemUrl,
     date: post.published_at,
-    categories: _.map(
+    categories: map(
       tagsHelper(post, { visibility: `public`, fn: (tag) => tag }),
       `name`
     ),

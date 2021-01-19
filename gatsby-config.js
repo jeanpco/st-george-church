@@ -135,57 +135,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-feed`,
-    //   options: {
-    //     query: `
-    //       {
-    //         site {
-    //           siteMetadata {
-    //             title
-    //           }
-    //         }
-    //       }
-    //     `,
-    //     feeds: [
-    //       {
-    //         serialize: ({ query: { site, allGhostPost } }) => {
-    //           return allGhostPost.edges.map((edge) => {
-    //             return {
-    //               title: edge.node.title,
-    //               description: edge.node.excerpt,
-    //               date: edge.node.created_at,
-    //               url: 'https://youth.saintgeorgemontreal.org/' + edge.node.slug,
-    //               guid: 'https://youth.saintgeorgemontreal.org/' + edge.node.slug,
-    //               custom_elements: [{ 'content:encoded': edge.node.html }],
-    //             }
-    //           })
-    //         },
-    //         query: `
-    //         {
-    //           allGhostPost(filter: {tags: {elemMatch: {slug: {eq: "orthoflash"}}}}) {
-    //             edges {
-    //               node {
-    //                 tags {
-    //                   slug
-    //                 }
-    //                 slug
-    //                 title
-    //                 html
-    //                 excerpt
-    //                 feature_image
-    //                 created_at(formatString: "MMMM DD YYYY")
-    //               }
-    //             }
-    //           }
-    //         }
-    //         `,
-    //         output: '/rss.xml',
-    //         title: 'St-George Orthoflash RSS Feed',
-    //       },
-    //     ],
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
