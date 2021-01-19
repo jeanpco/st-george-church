@@ -133,7 +133,7 @@ const ContactForm = ({
         body: JSON.stringify({
           to: email,
           from: formState.email, // Use the email address or domain you verified above
-          subject: `${formState.email} sent you a message through your website contact form`,
+          subject: `New message from Saint-George contact form`,
           text: formState.text,
         }),
       })

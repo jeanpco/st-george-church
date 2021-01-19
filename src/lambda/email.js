@@ -11,8 +11,8 @@ exports.handler = function (event, context, callback) {
   const msg = {
     to: body.to,
     from: 'info@saintgeorgemontreal.org',
-    subject: `Email from St-George Contact form: ${body.subject}`,
-    text: `Email: ${body.from}, Message: ${body.text}`,
+    subject: `${body.subject}`,
+    text: `From: ${body.from}, Message: ${body.text}`,
   }
 
   sgMail.setApiKey(process.env.SENDGRID_API_KEY)
