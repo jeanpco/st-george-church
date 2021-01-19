@@ -9,10 +9,8 @@ exports.handler = function (event, context, callback) {
   console.log(body)
 
   const msg = {
-    // to: body.to,
-    to: 'jp@field-office.ca',
-    // from: 'info@saintgeorgemontreal.org',
-    from: 'phil@field-office.ca',
+    to: body.to,
+    from: 'info@saintgeorgemontreal.org',
     subject: `Email from St-George Contact form: ${body.subject}`,
     text: `Email: ${body.from}, Message: ${body.text}`,
   }
