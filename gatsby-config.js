@@ -16,7 +16,7 @@ module.exports = {
     'gatsby-plugin-material-ui',
     'gatsby-plugin-emotion',
     `gatsby-plugin-react-helmet`,
-    'gatsby-plugin-page-transitions',
+    // 'gatsby-plugin-page-transitions',
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {
