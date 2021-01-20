@@ -34,10 +34,8 @@ import { Tablet, Desktop } from '../Utilities/Media'
 import Text from '../Utilities/Text'
 import Title from '../Utilities/Title'
 import { CSSTransition } from 'react-transition-group'
-
 import Img from 'gatsby-image'
 import BackgroundImage from 'gatsby-background-image'
-
 import Fade from 'react-reveal/Fade'
 import AnimatedImage from '../AnimatedImage'
 

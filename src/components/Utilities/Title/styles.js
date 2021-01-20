@@ -19,7 +19,6 @@ export const TitleStyled = styled.p`
     font-weight: normal;
     font-style: normal;
     line-height: normal;
-    text-transform: capitalize;
     @media (min-width: ${theme.breakpoints.md}) {
       font-size: ${theme.fonts.heading2};
     }
@@ -84,7 +83,6 @@ export const TitleStyled = styled.p`
   &.heading8 {
     font-family: ${theme.fontFamily.primary};
     font-size: ${theme.fonts.heading6};
-    text-transform: capitalize;
     line-height: 1.3;
     font-style: normal;
     font-weight: normal;
