@@ -1,0 +1,41 @@
+{
+  "Main": {
+    "internal_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Internal Title"
+      }
+    },
+    "blog_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Blog Title"
+      }
+    },
+    "blog_subtitle": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Blog Subtitle"
+      }
+    }
+  },
+  "Orthoflash": {
+    "orthoflash_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Orthoflash Title"
+      }
+    },
+    "orthoflash_subtitle": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Orthoflash Subtitle"
+      }
+    }
+  }
+}

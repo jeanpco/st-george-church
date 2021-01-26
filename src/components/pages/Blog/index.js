@@ -24,8 +24,7 @@ import {
 
 const BlogLayout = ({ data }) => {
   const ghostData = data?.allGhostPost?.nodes
-
-  const galleryData = data?.prismicPhotoGallery?.data
+  const blogData = data?.prismicBlog?.data
 
   const [hasMore, setMore] = useState(true)
   const [currentList, setCurrentList] = useState([...ghostData.slice(0, 6)])
@@ -49,13 +48,16 @@ const BlogLayout = ({ data }) => {
   return (
     <WidthLimiterContainer>
       <BlogPageHeader>
-        {galleryData?.blog_page_title?.text ? (
-          <Title as="h2" type="heading2">
-            {galleryData.blog_page_title.text}
-          </Title>
-        ) : (
-          ''
-        )}
+        <>
+          {blogData?.blog_title?.text && (
+            <Title as="h2" type="heading2">
+              {blogData.blog_title.text}
+            </Title>
+          )}
+          {blogData?.blog_subtitle?.text && (
+            <Text type="smallText400">{blogData.blog_subtitle.text}</Text>
+          )}
+        </>
       </BlogPageHeader>
       <InfiniteScroll
         dataLength={currentList.length}
@@ -144,13 +146,18 @@ const BlogLayout = ({ data }) => {
         </BlogContainer>
 
         <BlogOrthodoxSectionHeader>
-          {galleryData?.orthodox_section_title?.text ? (
-            <Title as="h2" type="heading2">
-              {galleryData.orthodox_section_title.text}
-            </Title>
-          ) : (
-            ''
-          )}
+          <>
+            {blogData?.orthoflash_title?.text && (
+              <Title as="h2" type="heading2">
+                {blogData.orthoflash_title.text}
+              </Title>
+            )}
+            {blogData?.orthoflash_subtitle?.text && (
+              <Text type="smallText400">
+                {blogData.orthoflash_subtitle.text}
+              </Text>
+            )}
+          </>
         </BlogOrthodoxSectionHeader>
 
         <BlogContainer>

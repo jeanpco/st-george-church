@@ -44,6 +44,7 @@ module.exports = {
           events_calendar: require('./src/schemas/events_calendar.json'),
           single_contact: require('./src/schemas/single_contact.json'),
           ministries_section_contact: require('./src/schemas/ministries_section_contact.json'),
+          blog: require('./src/schemas/blog.json'),
         },
       },
     },

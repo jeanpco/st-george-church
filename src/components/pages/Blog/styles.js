@@ -87,6 +87,12 @@ export const BlogPageHeader = styled.div`
   justify-content: center;
   margin-top: 40px;
   margin-bottom: 40px;
+  flex-direction: column;
+  align-items: center;
+
+  > p {
+    margin-top: 10px;
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin-top: 45px;
@@ -134,5 +140,11 @@ export const BlogPostUpperImg = styled.div`
 export const BlogOrthodoxSectionHeader = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
   margin-bottom: 50px;
+  align-items: center;
+
+  > p {
+    margin-top: 10px;
+  }
 `

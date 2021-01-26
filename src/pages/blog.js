@@ -23,12 +23,18 @@ export const query = graphql`
         excerpt
       }
     }
-    prismicPhotoGallery(lang: { eq: $locale }) {
+    prismicBlog(lang: { eq: $locale }) {
       data {
-        blog_page_title {
+        blog_title {
           text
         }
-        orthodox_section_title {
+        blog_subtitle {
+          text
+        }
+        orthoflash_title {
+          text
+        }
+        orthoflash_subtitle {
           text
         }
       }
