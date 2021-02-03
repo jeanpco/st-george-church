@@ -139,7 +139,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `saint-george-headless-website`,
+        name: `Youth - Saint-George Church`,
         short_name: `Saint George Church`,
         start_url: `/`,
         background_color: `#ffffff`,
