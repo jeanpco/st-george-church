@@ -41,6 +41,9 @@ export const query = graphql`
                 gallery_title {
                   text
                 }
+                gallery_title_secondary {
+                  text
+                }
                 gallery_image_tag {
                   text
                 }

@@ -28,7 +28,7 @@ import {
   GalleryUpperImg,
 } from './styles'
 
-const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
+const Gallery = ({ title, uid, ghostData, blogPageLink, excludeArticles }) => {
   const theme = useTheme()
 
   const isMobile = useMediaQuery(theme.breakpoints.down('960'))
@@ -93,7 +93,9 @@ const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
                               })
                             : ''
 
-                        return !galleryFilterTag.includes('orthoflash')
+                        return excludeArticles
+                          ? !galleryFilterTag.includes(excludeArticles)
+                          : galleryFilterTag.includes('orthoflash')
                       })
                       .map((post, index) => {
                         return (
@@ -188,9 +190,11 @@ const Gallery = ({ query: { title, uid, ghostData, blogPageLink } }) => {
 }
 
 Gallery.propTypes = {
-  query: PropTypes.object,
+  title: PropTypes.string,
   uid: PropTypes.string,
   ghostData: PropTypes.object,
+  excludeArticles: PropTypes.string,
+  blogPageLink: PropTypes.string,
 }
 
 export default Gallery

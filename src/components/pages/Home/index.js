@@ -32,12 +32,7 @@ const IndexLayout = ({
 }) => {
   const contactData = query?.contact_section?.document?.data
   const contactUid = query?.contact_section?.document?.uid
-
-  const photoGalleryTitle =
-    query?.photo_gallery?.document?.data?.gallery_title?.text
-
   const blogPageLink = query?.photo_gallery?.document?.data?.blog_page_link.text
-
   const homeIntroGraphic = query?.intro_graphic?.url
   const homeIntroTitle = query?.intro_title?.text
   const homeIntroText = query?.intro_text
@@ -46,31 +41,23 @@ const IndexLayout = ({
   const quoteGraphic = query?.home_quote?.document?.data?.quote_graphic?.url
   const ministriesSectionTitle =
     query?.ministries_section?.document?.data?.anchor_title?.text
-
   const ministriesInfo =
     query?.ministries_section?.document?.data?.body[0]?.items
-
   const ministriesData = query?.ministries_section?.document?.data
-
   const eventSectionTitle =
     query?.events_calendar?.document?.data?.event_calendar_title?.text
-
   const eventCalendarTitle =
     query?.events_calendar?.document?.data?.events_title?.text
-
   const upcomingEventTitle =
     query?.events_calendar?.document?.data?.upcoming_event_title?.text
-
   const eventAddress =
     query?.events_calendar?.document?.data?.event_address?.html
-
   const ministriesUid = query?.ministries_section?.uid
-
   const galleryUid = query?.photo_gallery?.uid
-
   const eventUid = query?.events_calendar?.uid
-
   const noEventTitle = query?.events_calendar?.document?.data?.no_events_title
+
+  console.log(query?.photo_gallery?.document?.data)
 
   return (
     <HomePageContainer>
@@ -150,14 +137,25 @@ const IndexLayout = ({
           upcomingEventTitle,
         }}
       />
-      {photoGalleryTitle ? (
+      {query?.photo_gallery?.document?.data?.gallery_title?.text ? (
         <Gallery
-          query={{
-            title: photoGalleryTitle,
-            uid: galleryUid,
-            blogPageLink: blogPageLink,
-            ghostData: ghostQuery ? ghostQuery : '',
-          }}
+          title={query?.photo_gallery?.document?.data?.gallery_title?.text}
+          uid={galleryUid}
+          blogPageLink={blogPageLink}
+          ghostData={ghostQuery ? ghostQuery : ''}
+          excludeArticles={'orthoflash'}
+        />
+      ) : (
+        ''
+      )}
+      {query?.photo_gallery?.document?.data?.gallery_title_secondary?.text ? (
+        <Gallery
+          title={
+            query?.photo_gallery?.document?.data?.gallery_title_secondary?.text
+          }
+          uid={galleryUid}
+          blogPageLink={blogPageLink}
+          ghostData={ghostQuery ? ghostQuery : ''}
         />
       ) : (
         ''

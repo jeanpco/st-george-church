@@ -13,6 +13,13 @@
         "label": "Gallery Title"
       }
     },
+    "gallery_title_secondary": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Gallery Title Secondary"
+      }
+    },
     "gallery_image_tag": {
       "type": "StructuredText",
       "config": {
