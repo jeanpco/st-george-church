@@ -110,7 +110,9 @@ export const query = graphql`
                 body {
                   ... on PrismicMinistriesBodyYouthMinistriesList {
                     items {
-                      list_text
+                      list_text {
+                        html
+                      }
                       list_title {
                         text
                       }

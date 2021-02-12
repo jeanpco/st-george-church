@@ -70,8 +70,9 @@ export const ModalTitleContainer = styled.div`
   padding: 27px 25px 0;
 `
 export const ModalTitleContent = styled.div`
-  width: 200px;
-  height: 50px;
+  width: 150px;
+  margin-top: -3px;
+  margin-bottom: -10px;
 `
 export const ModalTextContent = styled.div`
   height: 100%;
@@ -92,6 +93,10 @@ export const ModalTextContent = styled.div`
 export const ModalLinksFooter = styled.div`
   display: flex;
   padding: 20px 14px 0 15px;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+    padding: 20px 25px 0 25px;
+  }
 
   .Modal__Footer-Links {
     color: ${(props) => props.theme.colors.secondary};
@@ -115,6 +120,16 @@ export const ModalTitleFooter = styled.div`
   padding-right: 15px;
   width: 100%;
   text-align: right;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+    > * {
+      font-size: 16px !important;
+    }
+
+    .Modal__Footer-Links {
+      font-size: 16px !important;
+    }
+  }
 `
 
 export const MinisterContactContainer = styled.div`

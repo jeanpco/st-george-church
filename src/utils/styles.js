@@ -96,13 +96,11 @@ export const GlobalStyle = (props) => (
       body {
         color: ${theme.colors.black};
         background-color: #ffffff;
-        scroll-behavior: smooth;
         overflow: hidden;
       }
       html {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        scroll-behavior: smooth;
       }
     `}
   />

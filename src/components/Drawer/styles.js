@@ -147,6 +147,41 @@ export const DrawerMenuText = styled.div`
       display: none;
     }
 
+    &:hover {
+      &::before,
+      &::after {
+        background: ${(props) => props.theme.colors.black};
+      }
+
+      &::after {
+        transform: scaleX(1);
+      }
+
+      &::before {
+        transform: scaleX(0);
+      }
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      transition: transform 350ms ease;
+      transform-origin: right;
+      will-change: transform;
+      background: ${(props) => props.theme.colors.black};
+    }
+
+    &::after {
+      transform: scaleX(0);
+      transition-delay: 400ms;
+      transform-origin: left;
+    }
+
     @media (min-width: ${localTheme.breakpoints.l}) {
       font-size: ${localTheme.fonts.heading3};
       line-height: 1.3;
@@ -170,24 +205,6 @@ export const DrawerMenuText = styled.div`
           opacity: 1;
           transform: translateX(0);
         }
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 3px;
-        background-color: black;
-        bottom: 0;
-        left: 0;
-        display: inline-block;
-        transform: scaleX(0);
-      }
-
-      &:hover::after {
-        transform: scaleX(1);
-        transition: transform 0.5s linear;
-        transform-origin: bottom left;
       }
     }
   }

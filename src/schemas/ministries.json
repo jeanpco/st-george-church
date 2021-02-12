@@ -58,9 +58,10 @@
                 }
               },
               "list_text": {
-                "type": "Text",
+                "type": "StructuredText",
                 "config": {
-                  "label": "List Text"
+                  "multi": "paragraph, strong, em",
+                  "label": "list_text"
                 }
               },
               "ministries_group_contact": {

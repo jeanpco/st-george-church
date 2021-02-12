@@ -50,6 +50,22 @@ const AnchorList = ({
   const [toggleDrawer, setToggleDrawer] = useState(false)
   const [contactPerson, setContactPerson] = useState('')
 
+  // useEffect(() => {
+  //   if (open) {
+  //     document.body.style.position = 'fixed'
+  //   } else if (!open) {
+  //     document.body.style.position = 'block'
+  //   }
+  // }, [open])
+
+  useEffect(() => {
+    setStateLinks(linksArray)
+
+    if (ministries) {
+      setanchorInfo([ministries[0]])
+    }
+  }, [])
+
   const contactBody = contactData?.body[0]?.items
     ? contactData.body[0].items
     : ''
@@ -73,16 +89,6 @@ const AnchorList = ({
   const contactFormInformation = contactData?.contact_form?.document?.data
     ? contactData.contact_form.document.data
     : ''
-
-  useEffect(() => {
-    setStateLinks(linksArray)
-  }, [])
-
-  useEffect(() => {
-    if (ministries) {
-      setanchorInfo([ministries[0]])
-    }
-  }, [])
 
   const linksArray = []
 
@@ -281,11 +287,14 @@ const AnchorList = ({
                                       ) : (
                                         ''
                                       )}
-                                      {info?.list_text ? (
+                                      {info?.list_text?.html ? (
                                         <AnchorItemsText>
-                                          <Text type="body">
-                                            {info.list_text}
-                                          </Text>
+                                          <Text
+                                            dangerouslySetInnerHTML={{
+                                              __html: info.list_text.html,
+                                            }}
+                                            type="body"
+                                          />
                                         </AnchorItemsText>
                                       ) : (
                                         ''

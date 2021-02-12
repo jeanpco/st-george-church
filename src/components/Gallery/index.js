@@ -2,9 +2,8 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { truncateBody } from '../../utils/functions/truncate'
 import LocaleContext from '../../context/LocaleProvider'
-
+import LocalizedLink from '~/components/LocalizedLink'
 import Img from 'gatsby-image'
-
 import { WidthLimiterContainer } from '../Layout/styles'
 import Title from '../Utilities/Title'
 import Text from '../Utilities/Text'
@@ -173,9 +172,9 @@ const Gallery = ({ title, uid, ghostData, blogPageLink, excludeArticles }) => {
                   : ''}
               </GallerySliderContent>
               {blogPageLink ? (
-                <Link to="/blog" className="allArticles__Gallery-Link">
+                <LocalizedLink to="/blog" className="allArticles__Gallery-Link">
                   {blogPageLink}
-                </Link>
+                </LocalizedLink>
               ) : (
                 ''
               )}

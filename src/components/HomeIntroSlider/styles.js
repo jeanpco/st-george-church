@@ -74,6 +74,10 @@ export const SliderStyling = styled.div`
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       padding-top: 0px;
+
+      .gatsby-image-wrapper {
+        margin-bottom: -4px;
+      }
     }
   }
 

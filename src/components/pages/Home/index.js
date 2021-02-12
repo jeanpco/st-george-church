@@ -57,7 +57,7 @@ const IndexLayout = ({
   const eventUid = query?.events_calendar?.uid
   const noEventTitle = query?.events_calendar?.document?.data?.no_events_title
 
-  console.log(query?.photo_gallery?.document?.data)
+  console.log(ministriesInfo)
 
   return (
     <HomePageContainer>
@@ -96,7 +96,7 @@ const IndexLayout = ({
                   {homeIntroLink ? (
                     <HomeIntroLink
                       to={`#${ministriesUid}`}
-                      className="Home__Intro-link"
+                      className="Home__Intro-link scroll"
                     >
                       {homeIntroLink}
                     </HomeIntroLink>

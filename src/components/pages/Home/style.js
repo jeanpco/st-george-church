@@ -88,21 +88,6 @@ export const HomeIntroLink = styled(LocalizedLink)`
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     font-size: ${(props) => props.theme.fonts.bigText};
   }
-
-  &::after {
-    content: '';
-    width: 100%;
-    top: 14px;
-    height: 1px;
-    position: absolute;
-    background: black;
-    left: 0;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.md}) {
-      top: 27px;
-      height: 2px;
-    }
-  }
 `
 
 export const HomeIntroText = styled(Text)`

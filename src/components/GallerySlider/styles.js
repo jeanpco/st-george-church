@@ -89,10 +89,10 @@ export const GallerySliderStyling = styled.div`
 `
 
 export const GalleryLinearProgressBarContainer = styled.div`
-  margin-bottom: 26px;
-  margin-top: 25px;
   padding-left: 10px;
-  margin-right: 18px;
+  margin: 25px auto;
+  width: calc(100% - 10px);
+  margin-left: -10px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: none !important;

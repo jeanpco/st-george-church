@@ -30,6 +30,7 @@ export const GallerySliderContainer = styled.div`
     justify-content: center;
     color: black;
     font-size: 18px;
+    padding-bottom: 25px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.md}) {
       font-size: 24px;
@@ -96,7 +97,6 @@ export const GallerySliderTitle = styled.div`
 export const GallerySliderText = styled.div`
   padding-top: 22px;
   text-align: left;
-  padding-left: 10px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     height: 81px;

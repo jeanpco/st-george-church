@@ -109,7 +109,7 @@ const Modal = ({
           <Fade bottom distance="30px">
             <ModalTitleContent>
               {currentLink ? (
-                <Title as="h2" type="heading4">
+                <Title as="h2" type="heading3">
                   {currentLink}
                 </Title>
               ) : (
@@ -148,8 +148,13 @@ const Modal = ({
                           </div>
                           <Fade bottom distance="30px">
                             <ModalTextContent>
-                              {info?.list_text ? (
-                                <Text type="body">{info.list_text}</Text>
+                              {info?.list_text?.html ? (
+                                <Text
+                                  type="body"
+                                  dangerouslySetInnerHTML={{
+                                    __html: info.list_text.html,
+                                  }}
+                                />
                               ) : (
                                 ''
                               )}

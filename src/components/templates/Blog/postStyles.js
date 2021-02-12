@@ -80,11 +80,7 @@ export const PostContentContainer = styled.div`
 `
 
 export const PostItemsContainer = styled.div`
-  img {
-    background-size: cover;
-    background-position: center center;
-    width: 100%;
-  }
+  width: 100%;
 
   .content-body {
     h1 {
@@ -219,7 +215,24 @@ export const PostItemBodyContent = styled.div`
 
 export const PostItemFeatureImg = styled.div`
   border-bottom: 4px solid black;
-  padding-bottom: 35px;
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  background: ${(props) => props.theme.colors.blue};
+
+  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+    height: 250px;
+  }
+
+  img {
+    max-width: 100%;
+    width: auto;
+    height: 100%;
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `
 
 export const ArticleContentContainer = styled.div`
