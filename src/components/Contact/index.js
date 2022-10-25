@@ -19,6 +19,8 @@ import {
   ContactImageContainer,
 } from './styles'
 
+console.log("triggering build")
+
 const Contact = ({ query: { contactData, contactUid } }) => {
   const [toggleDrawer, setToggleDrawer] = useState(false)
   const [contactPerson, setContactPerson] = useState('')
