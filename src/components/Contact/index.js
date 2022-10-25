@@ -79,7 +79,7 @@ const Contact = ({ query: { contactData, contactUid } }) => {
           {contactBody?.length > 0 ? (
             <TeamContentContainer>
               {contactBody?.map((info, index) => {
-                const contactImages = info.single_contact_link.document.data
+                const contactImages = info?.single_contact_link?.document?.data
                   ?.contact_img?.localFile?.childImageSharp?.fluid
                   ? info.single_contact_link.document.data.contact_img.localFile
                       .childImageSharp.fluid

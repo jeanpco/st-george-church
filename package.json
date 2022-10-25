@@ -38,7 +38,7 @@
     "gatsby-plugin-root-import": "^2.0.5",
     "gatsby-plugin-sharp": "^2.6.36",
     "gatsby-source-filesystem": "^2.2.4",
-    "gatsby-source-ghost": "^4.2.0",
+    "gatsby-source-ghost": "^4.2.4",
     "gatsby-source-prismic": "^3.2.1",
     "gatsby-transformer-sharp": "^2.5.15",
     "googleapis": "^67.0.0",
