@@ -50,6 +50,8 @@ const AnchorList = ({
   const [toggleDrawer, setToggleDrawer] = useState(false)
   const [contactPerson, setContactPerson] = useState('')
 
+  console.log('test build')
+
   // useEffect(() => {
   //   if (open) {
   //     document.body.style.position = 'fixed'
