@@ -34,22 +34,25 @@ const defaultOptions = {
 const forbiddenChars = [',', '!', '#', '?', '.']
 
 const getSlug = (event) => {
-  const summary = event.summary
-    .split(' ')
-    .map((word) => {
-      return word
-        .toLowerCase()
-        .split('')
-        .filter((char) => !forbiddenChars.includes(char))
-        .join('')
-    })
-    .join('-')
 
-  const date = event.start.date
-    ? event.start.date
-    : moment(event.start.dateTime).format('MM-DD-YYYY')
-
-  return `${date}/${summary}`
+  if (event.summary) {
+    const summary = event.summary
+      .split(' ')
+      .map((word) => {
+        return word
+          .toLowerCase()
+          .split('')
+          .filter((char) => !forbiddenChars.includes(char))
+          .join('')
+      })
+      .join('-')
+  
+    const date = event.start.date
+      ? event.start.date
+      : moment(event.start.dateTime).format('MM-DD-YYYY')
+  
+    return `${date}/${summary}`
+  }
 }
 
 const processEvents = (event, fieldsToInclude) => {
