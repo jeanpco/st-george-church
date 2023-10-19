@@ -11,6 +11,8 @@ const feeds = require(`./src/utils/rss/generateFeed`)
 // const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer')
 const prismicLinkResolver = require('./src/gatsby/linkResolver')
 
+console.log(process.env.GHOST_API_URL)
+
 module.exports = {
   plugins: [
     'gatsby-plugin-material-ui',
